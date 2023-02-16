@@ -173,6 +173,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
         ])
             .click_Agree_checkbox()
             .click_Save_and_Continue_button()
+        
             //.click_Submit_Application_button()
         ui.onboarding.verify_success_page()
         cy.wait(45000)
