@@ -315,6 +315,93 @@ export default class BasePage {
         return this;
     };
 
+    fetchGmailUnseenMails({username, password, markSeen}) {
+        var config = {
+            imap: {
+                user: username,
+                password: password,
+                host: 'imap.gmail.com',
+                port: 993,
+                tls: true,
+                authTimeout: 5000
+            }
+        };
 
+        return imaps.connect(config).then(function (connection) {
+
+            return connection.openBox('INBOX').then(function () {
+                var searchCriteria = [
+                    'UNSEEN'
+                ];
+
+                var fetchOptions = {
+                    bodies: ['HEADER', 'TEXT'],
+                    markSeen: markSeen
+                };
+
+                return connection.search(searchCriteria, fetchOptions).then(function (results) {
+                    var mails = [];
+                    if (results) {
+                        results.forEach(item => {
+                            var _mail = {};
+                            if (item && item.parts) {
+                                item.parts.forEach(_item => {
+                                    if (_item.which == "TEXT") {
+                                        _mail.body = _item.body;
+                                    }
+                                    if (_item.which == "HEADER" && _item.body && _item.body.from && _item.body.from.length) {
+                                        _mail.from = _item.body.from[0];
+                                    }
+                                    if (_item.which == "HEADER" && _item.body && _item.body.subject && _item.body.subject.length) {
+                                        _mail.subject = _item.body.subject[0];
+                                    }
+                                    if (_item.which == "HEADER" && _item.body && _item.body.to && _item.body.to.length) {
+                                        _mail.to = _item.body.to[0];
+                                    }
+                                })
+                            }
+                            mails.push(_mail);
+                        });
+                        //connection.end()
+                    }
+                    return mails;
+                });
+            });
+        });
+    }
+
+    clear_gmail_inbox() {
+        D.unreadEmail1 = []
+        D.unreadEmailsForSpecificRecipient = []
+
+        cy.task('fetchGmailUnseenMails', {
+            username: D.gmailAccount.email,
+            password: D.gmailAccount.password,
+            markSeen: true
+        });
+        return this;
+    };
+
+    verify_email_arrives_to_specified_address(emailAccount, emailTemplate) {
+        cy.task('fetchGmailUnseenMails', {
+            username: emailAccount.email,
+            password: emailAccount.password,
+            markSeen: false
+        }).then(emails => {
+            cy.log('EMAIL IS ' + JSON.stringify(emails[0]))
+            var last_unread_email = emails[0];
+            assert.include(last_unread_email.from, emailTemplate.from);
+            assert.include(last_unread_email.subject, emailTemplate.subject);
+
+
+            let email = (JSON.stringify(last_unread_email.body)).replace(/(\r\n\r\n|\n|\r)/gm, "")
+
+            emailTemplate.attachments.forEach(filename => {
+                assert.isAbove(email.indexOf(filename), -1)
+            })
+        })
+
+        return this;
+    };
 
 }
