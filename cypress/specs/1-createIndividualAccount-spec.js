@@ -5,7 +5,6 @@ const d = D.scenarios[0]
 
 context('Log in to the Nucleus Wealth portal, create an individual account, and complete the onboarding portal', () => {
     
-
     beforeEach(function () {
         Cypress.Cookies.debug(true)
         Cypress.Cookies.defaults({
