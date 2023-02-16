@@ -4,10 +4,7 @@ const C = require('../fixtures/constants');
 const d = D.scenarios[0]
 
 context('Log in to the Nucleus Wealth portal, create an individual account, and complete the onboarding portal', () => {
-
-    before(function () {
-        ui.app.clear_gmail_inbox()
-    })
+    
 
     beforeEach(function () {
         Cypress.Cookies.debug(true)
