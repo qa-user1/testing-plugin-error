@@ -172,7 +172,8 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             'Praemium SMA PDS and Investment Guide extract',
         ])
             .click_Agree_checkbox()
-            .click_Submit_Application_button()
+            .click_Save_and_Continue_button()
+            //.click_Submit_Application_button()
         ui.onboarding.verify_success_page()
         cy.wait(45000)
         ui.app.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individualAccountCreated)
