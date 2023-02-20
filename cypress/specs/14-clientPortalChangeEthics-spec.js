@@ -17,6 +17,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
 
 
     it('1. Direct user to “Your Account(s)” page', function () {
+        ui.app.clear_gmail_inbox()
         ui.login.open_base_url()
             .verify_login_menu(D.user)
         ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)

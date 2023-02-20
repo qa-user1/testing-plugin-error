@@ -16,6 +16,7 @@ context('Client Portal - Administration', () => {
 
 
     it('1. Direct user to “Administration” page', function () {
+
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)

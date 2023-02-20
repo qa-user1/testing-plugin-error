@@ -13,6 +13,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     });
 
     it('1. Validate login credentials', function () {
+        ui.app.clear_gmail_inbox()
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_wrong_credentials_and_click_Sign_In(D.user.username, 'wrongPass')

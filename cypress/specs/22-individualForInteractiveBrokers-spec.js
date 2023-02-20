@@ -15,6 +15,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
     });
 
     it('1. Log into user with IB access', function () {
+        ui.app.clear_gmail_inbox()
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
