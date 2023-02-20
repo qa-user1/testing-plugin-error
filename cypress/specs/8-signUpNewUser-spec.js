@@ -27,6 +27,5 @@ context('Sign Up new user', () => {
             cy.wait(40000)
             ui.app.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
     })
-
-
+    
 })
