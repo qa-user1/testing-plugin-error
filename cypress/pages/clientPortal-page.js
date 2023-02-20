@@ -153,7 +153,6 @@ export default class LoginPage extends BasePage {
     }
 
     verify_links_on_home_page() {
-        cy.wait(2000)
         yourAccountLink().should('be.visible');
         performanceLink().should('be.visible');
         administrationLink().should('be.visible');

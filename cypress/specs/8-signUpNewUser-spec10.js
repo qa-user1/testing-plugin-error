@@ -5,8 +5,6 @@ const {currentDate} = require("../support/e2e-helper");
 
 context('Sign Up new user', () => {
 
-
-
     beforeEach(function () {
         Cypress.Cookies.debug(true)
         Cypress.Cookies.defaults({
@@ -14,10 +12,12 @@ context('Sign Up new user', () => {
         })
     });
 
+    after(function () {
+        ui.app.clear_gmail_inbox()
 
+    });
 
     it('1. Create a new user', function () {
-        ui.app.clear_gmail_inbox()
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
                 .click_sign_up_button()

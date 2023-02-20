@@ -37,9 +37,8 @@ context('Client Portal - Administration', () => {
         ui.clientPortal.upload_verification_document()
             .verify_text_is_present_on_main_container('Successfully Uploaded!')
         cy.wait(35000)
-        ui.onboarding
+        ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.uploadedDocument)
             .verify_text_is_present_on_main_container('Verification Document Uploaded')
-            .verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.uploadedDocument)
     })
 
 

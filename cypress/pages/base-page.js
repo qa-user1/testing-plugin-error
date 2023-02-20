@@ -36,7 +36,17 @@ export default class BasePage {
         return this
     }
 
+    clear_gmail_inbox() {
+        D.unreadEmail1 = []
+        D.unreadEmailsForSpecificRecipient = []
 
+        cy.task('fetchGmailUnseenMails', {
+            username: D.gmailAccount.email,
+            password: D.gmailAccount.password,
+            markSeen: true
+        });
+        return this;
+    };
 
     verify_multiple_text_values_in_one_container(container, arrayOfProperties) {
         container().should('exist');
@@ -296,7 +306,27 @@ export default class BasePage {
         return this;
     };
 
+    verify_email_arrives_to_specified_address(emailAccount, emailTemplate) {
+        cy.task('fetchGmailUnseenMails', {
+            username: emailAccount.email,
+            password: emailAccount.password,
+            markSeen: false
+        }).then(emails => {
+            cy.log('EMAIL IS ' + JSON.stringify(emails[0]))
+            var last_unread_email = emails[0];
+           assert.include(last_unread_email.from, emailTemplate.from);
+           assert.include(last_unread_email.subject, emailTemplate.subject);
 
+
+            let email = (JSON.stringify(last_unread_email.body)).replace(/(\r\n\r\n|\n|\r)/gm, "")
+
+            emailTemplate.attachments.forEach(filename => {
+                assert.isAbove(email.indexOf(filename), -1)
+            })
+        })
+
+        return this;
+    };
 
     navigate_to(url) {
         cy.visit(url);
@@ -315,41 +345,6 @@ export default class BasePage {
         return this;
     };
 
-
-
-    clear_gmail_inbox() {
-        D.unreadEmail1 = []
-        D.unreadEmailsForSpecificRecipient = []
-
-        cy.task('fetchGmailUnseenMails', {
-            username: D.gmailAccount.email,
-            password: D.gmailAccount.password,
-            markSeen: true
-        });
-        return this;
-    };
-
-    verify_email_arrives_to_specified_address(emailAccount, emailTemplate) {
-        cy.task('fetchGmailUnseenMails', {
-            username: emailAccount.email,
-            password: emailAccount.password,
-            markSeen: false
-        }).then(emails => {
-            cy.log('EMAIL IS ' + JSON.stringify(emails[0]))
-            var last_unread_email = emails[0];
-            assert.include(last_unread_email.from, emailTemplate.from);
-            assert.include(last_unread_email.subject, emailTemplate.subject);
-
-
-            let email = (JSON.stringify(last_unread_email.body)).replace(/(\r\n\r\n|\n|\r)/gm, "")
-
-            emailTemplate.attachments.forEach(filename => {
-                assert.isAbove(email.indexOf(filename), -1)
-            })
-        })
-
-        return this;
-    };
     verify_email_and_save_values(emailAccount, propertyToSave1, valueBefore1, valueAfter1, propertyToSave2, valueBefore2, valueAfter2) {
 
         cy.wait(15000);
@@ -361,7 +356,7 @@ export default class BasePage {
 
             let last_unread_email = mails[0];
             assert.isOk(last_unread_email.from.includes("contact@nucleuswealth.com"));
-            //  assert.isOk(last_unread_email.from === "contact@nucleuswealth.com <contact@nucleuswealth.com>");
+          //  assert.isOk(last_unread_email.from === "contact@nucleuswealth.com <contact@nucleuswealth.com>");
 
             cy.log('EMAIL CONTENT IS _______ ' + JSON.stringify(last_unread_email))
 
@@ -369,9 +364,9 @@ export default class BasePage {
             valueToSave1 = this.returnTrimString(valueToSave1);
             cy.setLocalStorage(propertyToSave1, valueToSave1);
 
-            /* let valueToSave1 = JSON.stringify(last_unread_email).match("<\[(\d+)\]>")[1];
-             valueToSave1 = this.returnTrimString(valueToSave1);
-             cy.setLocalStorage(propertyToSave1, valueToSave1);*/
+           /* let valueToSave1 = JSON.stringify(last_unread_email).match("<\[(\d+)\]>")[1];
+            valueToSave1 = this.returnTrimString(valueToSave1);
+            cy.setLocalStorage(propertyToSave1, valueToSave1);*/
 
             /*let valueToSave2 = JSON.stringify(last_unread_email).match(valueBefore2 + "(.*?)" + valueAfter2)[1];
             valueToSave2 = this.returnTrimString(valueToSave2);
@@ -386,4 +381,5 @@ export default class BasePage {
         let resultF = result.trim();
         return resultF;
     }
+
 }

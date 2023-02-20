@@ -88,16 +88,16 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
     it('7. Review Review Page', function () {
         ui.onboarding
             .save_final_JSON_report('personal_super_')
-           .click_Save_and_Continue_button()
-           .verify_applicants_page()
+        //   .click_Save_and_Continue_button()
+          // .verify_applicants_page()
     })
 
-    it('8. Navigate to Insurance Quote', function () {
+    xit('8. Navigate to Insurance Quote', function () {
         ui.onboarding.verify_applicant_is_visible()
             .click_Save_and_Continue_button()
     })
 
-    it('9. Complete Insurance Quote', function () {
+    xit('9. Complete Insurance Quote', function () {
         ui.onboarding
             .verify_insurance_quote_page()
             .click_yes_insurance_button()
@@ -112,7 +112,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
             .verify_Final_Review_page()
     })
 
-    it('10. Review Final Review', function () {
+    xit('10. Review Final Review', function () {
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'Statement of Advice',

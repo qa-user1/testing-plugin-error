@@ -28,7 +28,6 @@ context('Create Test User on Live Portal', () => {
         cy.wait(25000)
         C.emailTemplates.signUpNewUser.subject = 'Welcome to Nucleus Wealth'
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
-
     })
 
     it('2. Subscribe to Nucleus Wealth mailing list', function () {
@@ -36,7 +35,7 @@ context('Create Test User on Live Portal', () => {
             .verify_production_home_page()
             .click_subscribe_button()
             .verify_hubspot_form()
-            .enter_email_on_HS_form('testing+' + 'website' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com')
+            .enter_email_on_HS_form('testing+' + 'website' + currentDate  + '@nucleuswealth.com')
             .click_subscribe()
             .verify_text_is_visible('Thanks for subscribing to email updates from nucleus wealth')
     })
@@ -51,7 +50,7 @@ context('Create Test User on Live Portal', () => {
             .click_OK_on_Calculator_wizard()
             .enter_Last_Name('testing')
             .click_OK_on_Calculator_wizard()
-             .enter_email_on_last_question('testing+' + 'suitabilitycalculator' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com')
+             .enter_email_on_last_question('testing+' + 'suitabilitycalculator' + currentDate +  '@nucleuswealth.com')
              .click_submit_on_Calculator_wizard()
             .verify_text_is_visible('Investment Suitability')
     })
@@ -70,7 +69,7 @@ context('Create Test User on Live Portal', () => {
             .click_OK_on_Calculator_wizard()
             .enter_Last_Name('testing')
             .click_OK_on_Calculator_wizard()
-            .enter_email_on_last_question('testing+' + 'ethicalcalculator' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com')
+            .enter_email_on_last_question('testing+' + 'ethicalcalculator' + currentDate + '@nucleuswealth.com')
             .click_submit_on_Calculator_wizard()
             .verify_text_is_visible('How do your ethics compare?')
     })

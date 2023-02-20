@@ -1,8 +1,5 @@
 import BasePage from "./base-page";
 import D from "../fixtures/data";
-import ui from "./ui-spec";
-import C from "../fixtures/constants";
-const local = process.argv[2];
 
 // *************************** ELEMENTS ***************************
 
@@ -1858,13 +1855,5 @@ class OnboardingPage extends BasePage {
         cy.get('[class="ant-collapse-content ant-collapse-content-active"]').should('not.contain', option);
         return this;
     }
-fetch_unseen_email() {
-    if (!local) {
-        console.log('Fetch unseen email');
 
-    } else {
-        console.log('Skipping fetch unseen email');
-    }
-    return this;
-}
 }
