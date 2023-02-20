@@ -25,9 +25,12 @@ context('Sign Up new user', () => {
                 .enter_credentials_for_sign_up(D.newUser)
                 .click_submit_sign_up_button()
         ui.onboarding.verify_account_selection()
+       
+    })
+
+    it('2. Create a new user', function () {
+
         cy.wait(25000)
             ui.onboarding.fetch_unseen_email()
-
-
     })
 })
