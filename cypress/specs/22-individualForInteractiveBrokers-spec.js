@@ -15,7 +15,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
     });
 
     it('1. Log into user with IB access', function () {
-        ui.app.clear_gmail_inbox()
+
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
@@ -167,6 +167,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
     });
 
     it('14. Complete Final Review', function () {
+        ui.app.clear_gmail_inbox()
         ui.onboarding.click_sidebar_option('Final Review')
             .verify_Final_Review_page()
             .click_Save_and_Continue_button()
