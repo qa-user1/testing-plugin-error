@@ -5,63 +5,20 @@ on:
 # schedule:
 # - cron: '*/15 * * * *' # runs every 15th minute
 #  - cron: '0 4 * * *'
-  
  [ push ]
 
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-   # container:
-   #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-    #  options: --user 1001
-    # continue-on-error: false
-    strategy:
-      fail-fast: false
-
-
-
-    steps:
-
-      #   - name: Cleanup pre-installed tools
-      #     run:
-      #         sudo rm -rf /usr/share/dotnet
-      #         sudo rm -rf /opt/ghc
-      #         sudo rm -rf "/usr/local/share/boost"
-      #         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-
-
-      - name: Install dependencies
-        run: npm i
-
-      #  - name: Cypress run
-    #    uses: cypress-io/github-action@v1
-    #    with:
-    #       env: failOnSnapshotDiff=true
-
-
   Run-Cypress-Test1:
     name: Cypress Test 1
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test2]
+    needs: [Run-Cypress-Test2]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-   # container:
-   #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-
       - run: npm i
       - run: npm run e2e-test1
 
@@ -71,16 +28,11 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-   # container:
-   #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test2
 
@@ -90,16 +42,11 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test3
 
@@ -109,16 +56,11 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-   #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test4
 
@@ -128,16 +70,11 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test5
 
@@ -147,35 +84,25 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test6
 
   Run-Cypress-Test8:
     name: Cypress Test 8
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test1]
+    needs: [Run-Cypress-Test1]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test8
 
@@ -185,16 +112,11 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test9
 
@@ -204,16 +126,11 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test10
 
@@ -236,19 +153,14 @@ jobs:
   Run-Cypress-Test11:
     name: Cypress Test 11
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test17]
+    needs: [Run-Cypress-Test17]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test11
 
@@ -258,54 +170,39 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test12
 
   Run-Cypress-Test13:
     name: Cypress Test 13
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test1, Run-Cypress-Test14]
+    needs: [Run-Cypress-Test1, Run-Cypress-Test14]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test13
 
   Run-Cypress-Test14:
     name: Cypress Test 14
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test1, Run-Cypress-Test8]
+    needs: [Run-Cypress-Test1, Run-Cypress-Test8]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test14
 
@@ -315,16 +212,11 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test15
 
@@ -334,16 +226,11 @@ jobs:
     needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test16
 
@@ -351,19 +238,14 @@ jobs:
   Run-Cypress-Test17:
     name: Cypress Test 17
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test13]
+    needs: [Run-Cypress-Test13]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test17
 
@@ -381,8 +263,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test18
 
@@ -400,8 +280,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test19
 
@@ -419,46 +297,34 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test20
 
   Run-Cypress-Test21:
     name: Cypress Test 21
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test11]
+    needs: [Run-Cypress-Test11]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test21
 
   Run-Cypress-Test22:
     name: Cypress Test 22
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test21]
+    needs: [Run-Cypress-Test21]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-  #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #    options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: npm run e2e-test22
 
@@ -469,23 +335,18 @@ jobs:
     needs: [Run-Cypress-Test1,Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12,Run-Cypress-Test13, Run-Cypress-Test14, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
     runs-on: ubuntu-latest
     timeout-minutes: 60
-  #  container:
-   #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - run: npm i
       - run: node mainScript.js
 
 
 env:
   #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-  CYPRESS_RECORD_KEY: 765baaa8-7f06-448c-ae3b-155bc7077551
+  CYPRESS_RECORD_KEY: a72a92d2-f84f-4c57-a807-ed2badaa0ba8
   BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
   AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
