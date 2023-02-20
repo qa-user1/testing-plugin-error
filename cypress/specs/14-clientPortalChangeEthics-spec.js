@@ -52,7 +52,8 @@ context('Client Portal - Change Ethics/Exclusions', () => {
     it('5. Submit Change', function () {
         ui.clientPortal.click_submit_changes_button()
             .verify_account_dashboard()
-        cy.wait(55000)
+    //    cy.wait(55000)
+    //    ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.changeEthics)
 
 
     })

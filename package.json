@@ -41,7 +41,14 @@
     "parallelTests": "npm run clearReport && cypress-parallel -s allTests -t 2 -d cypress/specs",
     "parallelTestsAndReport": "npm run parallelTests && npm run openReport",
     "docker:run": "docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_updateSnapshots cypress/included:9.7.0",
-    "update:snapshots": "cross-env CYPRESS_updateSnapshots=true npm run docker:run"
+    "update:snapshots": "cross-env CYPRESS_updateSnapshots=true npm run docker:run",
+
+    "email1": "cypress run --env type=actual failSilently=false onGithubActions=true --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/email1.js ",
+    "email8": "cypress run --env type=actual failSilently=false onGithubActions=true --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/email8.js ",
+    "email11": "cypress run --env type=actual failSilently=false onGithubActions=true --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/email11.js ",
+    "email13": "cypress run --env type=actual failSilently=false onGithubActions=true --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/email13.js ",
+    "email14": "cypress run --env type=actual failSilently=false onGithubActions=true --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/email14.js ",
+    "email22": "cypress run --env type=actual failSilently=false onGithubActions=true --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/email22.js "
   },
   "dependencies": {
     "cypress": "9.7.0",
