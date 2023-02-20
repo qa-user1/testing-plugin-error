@@ -5,6 +5,7 @@ on:
 # schedule:
 # - cron: '*/15 * * * *' # runs every 15th minute
 #  - cron: '0 4 * * *'
+  
  [ push ]
 
 jobs:
