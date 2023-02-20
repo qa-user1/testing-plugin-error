@@ -11,6 +11,7 @@ jobs:
   Run-Cypress-Test1:
     name: Cypress Test 1
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -20,6 +21,7 @@ jobs:
   Run-Cypress-Test2:
     name: Cypress Test 2
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -29,6 +31,7 @@ jobs:
   Run-Cypress-Test3:
     name: Cypress Test 3
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -38,6 +41,7 @@ jobs:
   Run-Cypress-Test4:
     name: Cypress Test 4
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -47,6 +51,7 @@ jobs:
   Run-Cypress-Test5:
     name: Cypress Test 5
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -56,6 +61,7 @@ jobs:
   Run-Cypress-Test6:
     name: Cypress Test 6
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -65,6 +71,7 @@ jobs:
   Run-Cypress-Test8:
     name: Cypress Test 8
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -74,6 +81,7 @@ jobs:
   Run-Cypress-Test9:
     name: Cypress Test 9
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -83,6 +91,7 @@ jobs:
   Run-Cypress-Test10:
     name: Cypress Test 10
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -108,6 +117,7 @@ jobs:
   Run-Cypress-Test11:
     name: Cypress Test 11
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -117,6 +127,7 @@ jobs:
   Run-Cypress-Test12:
     name: Cypress Test 12
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -126,6 +137,7 @@ jobs:
   Run-Cypress-Test13:
     name: Cypress Test 13
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -135,6 +147,7 @@ jobs:
   Run-Cypress-Test14:
     name: Cypress Test 14
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -144,6 +157,7 @@ jobs:
   Run-Cypress-Test15:
     name: Cypress Test 15
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -153,6 +167,7 @@ jobs:
   Run-Cypress-Test16:
     name: Cypress Test 16
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -163,6 +178,7 @@ jobs:
   Run-Cypress-Test17:
     name: Cypress Test 17
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -172,6 +188,7 @@ jobs:
   Run-Cypress-Test18:
     name: Cypress Test 18
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -181,6 +198,7 @@ jobs:
   Run-Cypress-Test19:
     name: Cypress Test 19
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -190,6 +208,7 @@ jobs:
   Run-Cypress-Test20:
     name: Cypress Test 20
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -199,6 +218,7 @@ jobs:
   Run-Cypress-Test21:
     name: Cypress Test 21
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -208,6 +228,7 @@ jobs:
   Run-Cypress-Test22:
     name: Cypress Test 22
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -218,6 +239,7 @@ jobs:
   Run-Main-Script:
     name: Main Script
     if: success() || failure()
+    runs-on: ubuntu-latest
     needs: [Run-Cypress-Test1,Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12,Run-Cypress-Test13, Run-Cypress-Test14, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
     steps:
       - uses: actions/checkout@v2
