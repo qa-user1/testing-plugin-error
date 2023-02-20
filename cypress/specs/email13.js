@@ -11,7 +11,7 @@ context('Email 13', () => {
 
 
     it('13. Verify Email', function () {
-        // cy.wait(45000)
+         cy.wait(45000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.accountChanges)
     });
 })
