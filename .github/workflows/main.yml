@@ -67,7 +67,7 @@ jobs:
   Fetch-email-1:
     name: Fetch email 1
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test1]
+    needs: [Run-Cypress-Test1]
     runs-on: ubuntu-latest
     timeout-minutes: 30
    # container:
@@ -201,7 +201,7 @@ jobs:
   Fetch-email-8:
           name: Fetch email 8
           if: success() || failure()
-          needs: [ cypress-run, Run-Cypress-Test8 ]
+          needs: [Run-Cypress-Test8 ]
           runs-on: ubuntu-latest
           timeout-minutes: 30
           # container:
@@ -294,7 +294,7 @@ jobs:
   Fetch-email-11:
           name: Fetch email 11
           if: success() || failure()
-          needs: [ cypress-run, Run-Cypress-Test11 ]
+          needs: [Run-Cypress-Test11 ]
           runs-on: ubuntu-latest
           timeout-minutes: 30
           # container:
@@ -352,7 +352,7 @@ jobs:
   Fetch-email-13:
           name: Fetch email 13
           if: success() || failure()
-          needs: [ cypress-run, Run-Cypress-Test13 ]
+          needs: [Run-Cypress-Test13 ]
           runs-on: ubuntu-latest
           timeout-minutes: 30
           # container:
@@ -391,7 +391,7 @@ jobs:
   Fetch-email-14:
           name: Fetch email 14
           if: success() || failure()
-          needs: [ cypress-run, Run-Cypress-Test14 ]
+          needs: [Run-Cypress-Test14 ]
           runs-on: ubuntu-latest
           timeout-minutes: 30
           # container:
@@ -564,7 +564,7 @@ jobs:
   Fetch-email-22:
     name: Fetch email 22
     if: success() || failure()
-    needs: [ cypress-run, Run-Cypress-Test22 ]
+    needs: [Run-Cypress-Test22 ]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     # container:
