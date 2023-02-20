@@ -30,7 +30,7 @@ jobs:
 
   Fetch-email-1:
     name: Fetch email 1
-    if: success()
+    if: success() || failure()
     needs: [Run-Cypress-Test1]
     runs-on: ubuntu-latest
     timeout-minutes: 30
