@@ -696,6 +696,7 @@ class OnboardingPage extends BasePage {
 
     click_Agree_checkbox() {
         agreementCheckbox().click()
+        this.pause(1)
         return this;
     }
 
