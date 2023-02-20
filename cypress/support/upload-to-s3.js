@@ -1,3 +1,4 @@
+
 const fs = require('fs');
 var path = require('path');
 const AWS = require('aws-sdk');
@@ -23,10 +24,10 @@ function uploadToS3(file, name, type) {
         if (err) {
             throw err;
         }
-        /* eslint-disable no-console */
+        /!* eslint-disable no-console *!/
         console.log('Success!');
         console.log(data);
-        /* eslint-enable no-console */
+        /!* eslint-enable no-console *!/
     });
 }
 
@@ -78,4 +79,5 @@ const snapshots = getFiles(snapshotsDir, []);
 module.exports = {
     uploadAllFilesToS3
 };
+
 
