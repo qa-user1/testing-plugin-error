@@ -5,9 +5,9 @@ const d = D.scenarios[0]
 
 context('Email 11', () => {
 
-    before(function () {
+    /*before(function () {
         ui.app.clear_gmail_inbox()
-    })
+    })*/
 
 
     it('13. Verify Email', function () {
