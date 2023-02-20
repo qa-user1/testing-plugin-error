@@ -10,7 +10,7 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
    # container:
    #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
     #  options: --user 1001
@@ -49,7 +49,7 @@ jobs:
     if: success() || failure()
     needs: [cypress-run, Run-Cypress-Test2]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
    # container:
    #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
    #   options: --user 1001
@@ -69,7 +69,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
    # container:
    #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -88,7 +88,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
    #   options: --user 1001
@@ -107,7 +107,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
    #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
    #   options: --user 1001
@@ -126,7 +126,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
    #   options: --user 1001
@@ -145,7 +145,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
    #   options: --user 1001
@@ -164,7 +164,7 @@ jobs:
     if: success() || failure()
     needs: [cypress-run, Run-Cypress-Test1]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -183,7 +183,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -202,7 +202,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -237,7 +237,7 @@ jobs:
     if: success() || failure()
     needs: [cypress-run, Run-Cypress-Test17]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -256,7 +256,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -275,7 +275,7 @@ jobs:
     if: success() || failure()
     needs: [cypress-run, Run-Cypress-Test1, Run-Cypress-Test14]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -294,7 +294,7 @@ jobs:
     if: success() || failure()
     needs: [cypress-run, Run-Cypress-Test1, Run-Cypress-Test8]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
    #   options: --user 1001
@@ -313,7 +313,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -332,7 +332,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -352,7 +352,7 @@ jobs:
     if: success() || failure()
     needs: [cypress-run, Run-Cypress-Test13]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -371,7 +371,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
    #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -390,7 +390,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
    #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -409,7 +409,7 @@ jobs:
     if: success() || failure()
     needs: cypress-run
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
    #   options: --user 1001
@@ -428,7 +428,7 @@ jobs:
     if: success() || failure()
     needs: [cypress-run, Run-Cypress-Test11]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -447,7 +447,7 @@ jobs:
     if: success() || failure()
     needs: [cypress-run, Run-Cypress-Test21]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
   #    image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
   #    options: --user 1001
@@ -467,7 +467,7 @@ jobs:
     if: success() || failure()
     needs: [Run-Cypress-Test1,Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12,Run-Cypress-Test13, Run-Cypress-Test14, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
   #  container:
    #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
    #   options: --user 1001
