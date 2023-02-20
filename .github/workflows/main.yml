@@ -24,7 +24,6 @@ jobs:
   Run-Cypress-Test2:
     name: Cypress Test 2
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -38,7 +37,6 @@ jobs:
   Run-Cypress-Test3:
     name: Cypress Test 3
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -52,7 +50,6 @@ jobs:
   Run-Cypress-Test4:
     name: Cypress Test 4
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -66,7 +63,6 @@ jobs:
   Run-Cypress-Test5:
     name: Cypress Test 5
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -80,7 +76,6 @@ jobs:
   Run-Cypress-Test6:
     name: Cypress Test 6
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -108,7 +103,6 @@ jobs:
   Run-Cypress-Test9:
     name: Cypress Test 9
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -122,7 +116,6 @@ jobs:
   Run-Cypress-Test10:
     name: Cypress Test 10
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -166,7 +159,6 @@ jobs:
   Run-Cypress-Test12:
     name: Cypress Test 12
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -208,7 +200,6 @@ jobs:
   Run-Cypress-Test15:
     name: Cypress Test 15
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -222,7 +213,6 @@ jobs:
   Run-Cypress-Test16:
     name: Cypress Test 16
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -251,7 +241,6 @@ jobs:
   Run-Cypress-Test18:
     name: Cypress Test 18
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
   #  container:
@@ -268,7 +257,6 @@ jobs:
   Run-Cypress-Test19:
     name: Cypress Test 19
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
   #  container:
@@ -285,7 +273,6 @@ jobs:
   Run-Cypress-Test20:
     name: Cypress Test 20
     if: success() || failure()
-    needs: cypress-run
     runs-on: ubuntu-latest
     timeout-minutes: 60
   #  container:
