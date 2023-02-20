@@ -44,45 +44,45 @@ jobs:
     #       env: failOnSnapshotDiff=true
 
 
- # Run-Cypress-Test1:
-  #  name: Cypress Test 1
-   # if: success() || failure()
-  #  needs: [cypress-run, Run-Cypress-Test2]
-  #  runs-on: ubuntu-latest
-  #  timeout-minutes: 30
-   # container:
-   #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
-   # strategy:
-   #   fail-fast: false
-   # steps:
-   #   - uses: actions/checkout@v2
-   #   - uses: actions/setup-node@v3
-   #     with:
-    #      node-version: 14
-#
-   #   - run: npm i
-   #   - run: npm run e2e-test1
+  Run-Cypress-Test1:
+    name: Cypress Test 1
+    if: success() || failure()
+    needs: [cypress-run, Run-Cypress-Test2]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+         node-version: 14
 
- # Fetch-email-1:
- #   name: Fetch email 1
- #   if: success() || failure()
- #   needs: [Run-Cypress-Test1]
- #   runs-on: ubuntu-latest
- #   timeout-minutes: 30
-   # container:
-   #   image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-   #   options: --user 1001
- #   strategy:
- #     fail-fast: false
- #   steps:
-  #    - uses: actions/checkout@v2
-  #    - uses: actions/setup-node@v3
-  #      with:
-  #        node-version: 14
+      - run: npm i
+      - run: npm run e2e-test1
 
-  #    - run: npm i
-  #    - run: npm run email1
+  Fetch-email-1:
+    name: Fetch email 1
+    if: success() || failure()
+    needs: [Run-Cypress-Test1]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - run: npm i
+      - run: npm run email1
 
   Run-Cypress-Test2:
     name: Cypress Test 2
@@ -182,7 +182,7 @@ jobs:
   Run-Cypress-Test8:
     name: Cypress Test 8
     if: success() || failure()
-    needs: [cypress-run]
+    needs: [cypress-run, Run-Cypress-Test1]
     runs-on: ubuntu-latest
     timeout-minutes: 30
   #  container:
