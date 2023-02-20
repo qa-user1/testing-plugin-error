@@ -16,7 +16,7 @@ context('Client Portal - Administration', () => {
 
 
     it('1. Direct user to “Administration” page', function () {
-
+        ui.app.clear_gmail_inbox()
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
@@ -39,7 +39,7 @@ context('Client Portal - Administration', () => {
         cy.wait(35000)
         ui.onboarding
             .verify_text_is_present_on_main_container('Verification Document Uploaded')
-          //  .verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.uploadedDocument)
+            .verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.uploadedDocument)
     })
 
 

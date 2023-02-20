@@ -1861,7 +1861,7 @@ class OnboardingPage extends BasePage {
 fetch_unseen_email() {
     if (!local) {
         console.log('Fetch unseen email');
-        this.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
+
     } else {
         console.log('Skipping fetch unseen email');
     }

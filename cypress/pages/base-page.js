@@ -350,5 +350,40 @@ export default class BasePage {
 
         return this;
     };
+    verify_email_and_save_values(emailAccount, propertyToSave1, valueBefore1, valueAfter1, propertyToSave2, valueBefore2, valueAfter2) {
 
+        cy.wait(15000);
+        cy.task('fetchGmailUnseenMails', {
+            username: emailAccount.email,
+            password: emailAccount.password,
+            markSeen: true
+        }).then(mails => {
+
+            let last_unread_email = mails[0];
+            assert.isOk(last_unread_email.from.includes("contact@nucleuswealth.com"));
+            //  assert.isOk(last_unread_email.from === "contact@nucleuswealth.com <contact@nucleuswealth.com>");
+
+            cy.log('EMAIL CONTENT IS _______ ' + JSON.stringify(last_unread_email))
+
+            let valueToSave1 = JSON.stringify(last_unread_email).match(valueBefore1 + "(.*?)" + valueAfter1)[1];
+            valueToSave1 = this.returnTrimString(valueToSave1);
+            cy.setLocalStorage(propertyToSave1, valueToSave1);
+
+            /* let valueToSave1 = JSON.stringify(last_unread_email).match("<\[(\d+)\]>")[1];
+             valueToSave1 = this.returnTrimString(valueToSave1);
+             cy.setLocalStorage(propertyToSave1, valueToSave1);*/
+
+            /*let valueToSave2 = JSON.stringify(last_unread_email).match(valueBefore2 + "(.*?)" + valueAfter2)[1];
+            valueToSave2 = this.returnTrimString(valueToSave2);
+            cy.setLocalStorage(propertyToSave2, valueToSave2);*/
+        });
+        return this;
+    };
+
+    returnTrimString = function (valueToTrim) {
+        let remove= valueToTrim.indexOf('\\');
+        let result =  valueToTrim.substring(0, remove);
+        let resultF = result.trim();
+        return resultF;
+    }
 }
