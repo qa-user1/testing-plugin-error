@@ -182,7 +182,7 @@ jobs:
   Run-Cypress-Test8:
     name: Cypress Test 8
     if: success() || failure()
-    needs: [cypress-run, Run-Cypress-Test1]
+    needs: [cypress-run]
     runs-on: ubuntu-latest
     timeout-minutes: 30
   #  container:
