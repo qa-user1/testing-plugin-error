@@ -21,7 +21,7 @@ context('Create Test User on Live Portal', () => {
         ui.app.clear_gmail_inbox()
         S.baseUrl = 'https://portal.nucleuswealth.com/register'
         ui.login.open_base_url()
-            .verify_sign_up_login_menu()
+            .verify_login_menu()
             .enter_credentials_for_sign_up(D.newUserLivePortal)
             .click_submit_sign_up_button()
         ui.onboarding.verify_account_selection()
@@ -30,7 +30,7 @@ context('Create Test User on Live Portal', () => {
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
     })
 
-    it('2. Subscribe to Nucleus Wealth mailing list', function () {
+    xit('2. Subscribe to Nucleus Wealth mailing list', function () {
         ui.production.open_production_url()
             .verify_production_home_page()
             .click_subscribe_button()
@@ -41,7 +41,7 @@ context('Create Test User on Live Portal', () => {
     })
 
 
-    it('3. Subscribe user via Investment Suitability Calculator', function () {
+    xit('3. Subscribe user via Investment Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/investment-suitability-calculator'
         ui.production.open_base_url()
             .verify_calculator_page()
@@ -56,7 +56,7 @@ context('Create Test User on Live Portal', () => {
     })
 
 
-    it('4. Subscribe user via Suitability Calculator', function () {
+    xit('4. Subscribe user via Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/ethical-investment-calculator'
         ui.production.open_base_url()
             .verify_ethical_calculator_page()

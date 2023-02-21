@@ -145,8 +145,6 @@ export default class LoginPage extends BasePage {
                 givenNameInput().should('be.visible');
                 passwordSignUpInput().should('be.visible');
                 signUpButton().should('be.visible');
-            } else if (text.includes('Sign in with your email and password')) {
-                signUpButton().click({force:true});
             } else {
                 for (let i = 0; i < 10; i++) {
                 //    cy.wait(500)
@@ -157,7 +155,8 @@ export default class LoginPage extends BasePage {
                         }
                         if (text.includes('Sign in with Cognito')) {
                             cy.contains('Sign in with Cognito').click()
-                            self.verify_sign_up_login_menu()
+                            self.verify_login_menu()
+                            cy.contains('Sign up').click()
                         }
                     });
                 }
