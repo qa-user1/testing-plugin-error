@@ -117,7 +117,7 @@ export default class LoginPage extends BasePage {
                 signInButton().should('be.visible');
             } else {
                 for (let i = 0; i < 10; i++) {
-                //    cy.wait(500)
+                    cy.wait(2000)
                     mainContainer().invoke('text').then(function (text) {
                         if (text.includes('Sign in with your email and password')) {
                             i = 10
