@@ -99,6 +99,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     it('9. Navigate to Risk Profile', function () {
         ui.onboarding.click_sidebar_option('Investment Choice')
             .click_limited_advice_button()
+            .go_through_tour_steps(C.stepMessages)
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
