@@ -195,6 +195,11 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     investmentTotal = e => cy.get('#risk-profile-form_investment_total'),
     sideBar = e => cy.get('[class="ant-layout-sider ant-layout-sider-dark"]'),
     tourWindow = e => cy.get('.ant-tour-inner'),
+    modalButton = e => cy.contains('Need help with this page?'),
+    modalWindow = e => cy.get('[role="dialog"]'),
+    videoTutorial = e => cy.get('#widget2'),
+    chat = e => cy.get('[id="hubspot-conversations-inline-iframe"]'),
+    meetings = e => cy.get('.meetings-iframe-container > iframe'),
     nextButtonTourWindow = e => cy.get('[class="ant-btn css-86j49d ant-btn-primary ant-btn-sm ant-tour-next-btn"]'),
     investmentChoiceSideBar = e => cy.get('[class="ant-layout-sider ant-layout-sider-dark"]'),
     companyNameValidationMsg = e => cy.contains('Company Name').parent().parent().find('[role="alert"]'),
@@ -932,6 +937,7 @@ class OnboardingPage extends BasePage {
 
 
     verify_question_responses(arrayOfQuestions, arrayOfResponses) {
+        this.pause(3)
         for (let i = 0; i < 12; i++) {
             questionsOnReviewPage(i).invoke('text').should('contain', arrayOfQuestions[i])
             answersOnReviewPage(i).invoke('text').should('contain', arrayOfResponses[i])
@@ -1878,7 +1884,30 @@ class OnboardingPage extends BasePage {
     }
 
     click_on_need_help_with_this_page() {
-        
+        modalButton().click();
+        return this;
+    }
+
+    verify_modal_window(){
+        modalWindow().should('be.visible');
+        return this;
+    }
+
+    click_and_verify_each_modal_step(){
+        this.verify_text_is_visible('Video Tutorial');
+        videoTutorial().should('be.visible');
+        this.verify_text_is_visible('Chat with us');
+        cy.contains('Chat with us').click();
+        chat().should('be.visible');
+        this.verify_text_is_visible('Contact us');
+        cy.contains('Contact us').click();
+        meetings().should('be.visible');
+        return this;
+    }
+
+    click_done_button(){
+        cy.contains('Done').click();
+        return this;
     }
 
 }
