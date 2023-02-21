@@ -70,6 +70,7 @@ export default class AdminPage extends BasePage {
     }
 
     click_CRM_on_header() {
+        this.pause(3)
       //  cy.contains('CRM').click();
         cy.get('.submenu-title-wrapper').click();
         this.pause(2)
