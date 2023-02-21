@@ -194,6 +194,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     liquidNetWorth = e => cy.get('#risk-profile-form_financialInfo_liquid_net_worth'),
     investmentTotal = e => cy.get('#risk-profile-form_investment_total'),
     sideBar = e => cy.get('[class="ant-layout-sider ant-layout-sider-dark"]'),
+    tourWindow = e => cy.get('.ant-tour-inner'),
+    nextButtonTourWindow = e => cy.get('[class="ant-btn css-86j49d ant-btn-primary ant-btn-sm ant-tour-next-btn"]'),
     investmentChoiceSideBar = e => cy.get('[class="ant-layout-sider ant-layout-sider-dark"]'),
     companyNameValidationMsg = e => cy.contains('Company Name').parent().parent().find('[role="alert"]'),
     companyAustralianBusinessNumberValidationMsg = e => cy.contains('Company Australian Business Number').parent().parent().find('[role="alert"]'),
@@ -1854,6 +1856,24 @@ class OnboardingPage extends BasePage {
 
     verify_your_portfolio_content_not_exist(option){
         cy.get('[class="ant-collapse-content ant-collapse-content-active"]').should('not.contain', option);
+        return this;
+    }
+
+    go_through_tour_steps(data){
+        this.pause(3)
+        tourWindow().should('be.visible');
+        this.verify_text_is_visible(data.step1)
+        nextButtonTourWindow().click()
+        this.verify_text_is_visible(data.step2)
+        nextButtonTourWindow().click()
+        this.verify_text_is_visible(data.step3)
+        nextButtonTourWindow().click()
+        this.verify_text_is_visible(data.step4)
+        nextButtonTourWindow().click()
+        this.verify_text_is_visible(data.step5)
+        nextButtonTourWindow().click()
+        this.verify_text_is_visible(data.step6)
+        nextButtonTourWindow().click()
         return this;
     }
 
