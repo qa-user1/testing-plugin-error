@@ -221,7 +221,7 @@ export default class AdminPage extends BasePage {
 
     click_kanban_config() {
         kanbanConfig().click({force: true});
-        this.pause(2)
+        this.pause(3)
         return this;
     }
 
@@ -252,6 +252,7 @@ export default class AdminPage extends BasePage {
 
     search_account_id(id){
         searchBar().type(id)
+        this.pause(2)
         return this;
     }
 
