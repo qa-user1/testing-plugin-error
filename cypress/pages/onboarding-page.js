@@ -1877,4 +1877,8 @@ class OnboardingPage extends BasePage {
         return this;
     }
 
+    click_on_need_help_with_this_page() {
+        
+    }
+
 }

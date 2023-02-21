@@ -44,6 +44,11 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
         cy.saveLocalStorage()
     })
 
+    it('4. Check Help Modal in Investment Choice', function () {
+        ui.onboarding.click_on_need_help_with_this_page()
+
+    })
+
     it('4. Navigate to Build Your Portfolio Page from Investment Choice', function () {
         ui.onboarding.click_self_directed_button()
             .verify_acknowledgment_and_agreement_appear()
