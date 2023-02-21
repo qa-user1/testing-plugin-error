@@ -71,66 +71,79 @@ export default class AdminPage extends BasePage {
 
     click_CRM_on_header() {
         cy.contains('CRM').click();
+        this.pause(2)
         return this;
     }
 
     click_calculators_on_header() {
         cy.contains('Calculators').click();
+        this.pause(2)
         return this;
     }
 
     click_kanbans_submenu() {
         kanbans().click();
+        this.pause(2)
         return this;
     }
 
     click_states_submenu() {
         states().click();
+        this.pause(2)
         return this;
     }
 
     click_sales_submenu() {
         sales().click();
+        this.pause(2)
         return this;
     }
 
     click_key_prospects() {
         keyProspects().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_agile_tasks() {
         agileTasks().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_contact_clients() {
         contactClients().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_brokerage_free_offer() {
         brokerageFreeOffer().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_trading_submenu() {
         trading().click();
+        this.pause(2)
         return this;
     }
 
     click_trade_recent() {
         tradeRecent().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_trade_weights() {
         tradeWeights().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_important_follow_ups() {
         importantFollowUps().click({force: true});
+        this.pause(2)
         return this;
     }
 
@@ -141,77 +154,92 @@ export default class AdminPage extends BasePage {
 
     click_client() {
         client().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_research() {
         research().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_non_client_certified_docs() {
         nonClientCertifiedDocs().click();
+        this.pause(2)
         return this;
     }
 
     click_investment_account_search() {
         investmentAccountSearch().click();
+        this.pause(2)
         return this;
     }
 
     click_property_calculator() {
         propertyCalculator().click();
+        this.pause(2)
         return this;
     }
 
     click_ethical_investment() {
         ethicalInvestment().click();
+        this.pause(2)
         return this;
     }
 
     click_investment_suitability() {
         investmentSuitability().click();
+        this.pause(2)
         return this;
     }
 
 
     click_insurance_kanban() {
         insuranceKanban().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_onboarding_kanban() {
         onboardingKanban().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_invested_kanban() {
         investedKanban().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_cashflow_kanban() {
         cashflowKanban().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_kanban_config() {
         kanbanConfig().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_call_stats(option) {
         callStats(option).click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_marketing_stats() {
         marketingStats().click({force: true});
+        this.pause(2)
         return this;
     }
 
     click_signup_stats() {
         signupStats().click({force: true});
+        this.pause(2)
         return this;
     }
 
