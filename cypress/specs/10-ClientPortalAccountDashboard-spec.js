@@ -50,7 +50,7 @@ context('Client Portal - Account Dashboard', () => {
 
     it('5. Expand Strategic', function () {
         ui.clientPortal.click_strategic_panel()
-           // .compare_snapshots()
+            .compare_snapshots()
             .verify_change_portfolio_button()
             .click_strategic_panel()
     })

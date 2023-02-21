@@ -13,7 +13,7 @@ let
     administrationLink = e => cy.get('[href="/client-portal/4860/administration"]'),
     loginToPraemiumLink = e => cy.get('[href="https://login.onpraemium.com/nucleus/"]'),
     createNewAccountLink = e => cy.get('[href="/onboarding/account-selection/4860"]'),
-    frequentlyAskedQLink = e => cy.get('[href="https://nucleuswealth.com/frequently-asked-questions/"]'),
+    frequentlyAskedQLink = e => cy.get('[href="https://nucleuswealth.com/frequently-asked-questions/#:~:text=with%20Nucleus%20Wealth%3F-,EXISTING%20CLIENTS,-SUPERANNUATION%20ACCOUNTS"]'),
     formsLink = e => cy.get('[href="/client-portal/4860/forms"]'),
     insightsLink = e => cy.get('[href="https://nucleuswealth.com/content"]'),
     yourAccountsTitle = e => cy.get('[data-test="clientPortal-yourAccounts-title"]'),
@@ -154,13 +154,21 @@ export default class LoginPage extends BasePage {
 
     verify_links_on_home_page() {
         yourAccountLink().should('be.visible');
+        this.verify_text_is_visible('Your Account(s)')
         performanceLink().should('be.visible');
+        this.verify_text_is_visible('Performance')
         administrationLink().should('be.visible');
+        this.verify_text_is_visible('Administration')
         loginToPraemiumLink().should('be.visible');
+        this.verify_text_is_visible('Login to Praemium')
         createNewAccountLink().should('be.visible');
+        this.verify_text_is_visible('Create/Continue a new account')
         frequentlyAskedQLink().should('be.visible');
+        this.verify_text_is_visible('Frequently Asked Questions')
         formsLink().should('be.visible');
+        this.verify_text_is_visible('Forms')
         insightsLink().should('be.visible');
+        this.verify_text_is_visible('Nucleus Wealth Insights')
         return this;
     }
 
