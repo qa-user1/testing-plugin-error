@@ -2,7 +2,7 @@ const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 const accountSid = "ACac0f0be90244a421a66b99476e960bbc";
-const authToken = "48c7565c0ce6e5664e4e0822ff88ad45";
+const authToken = "619b13eb61c425e596d3b7d53707968a";
 
 context('Test 2 Factor Login is working', () => {
 
