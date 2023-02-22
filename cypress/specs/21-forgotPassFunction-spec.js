@@ -28,7 +28,6 @@ context('Forgot password function', () => {
         ui.app.clear_gmail_inbox()
         ui.login.enter_email_for_reset_password('testing+forgotpassword@nucleuswealth.com')
             .click_reset_password_button()
-        cy.wait(45000)
         ui.app.verify_email_and_save_values(D.gmailAccount,
             'code', 'Your password reset code is', 'You received this message because you are subscribed to the Google Groups')
 
