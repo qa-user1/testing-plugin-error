@@ -17,7 +17,7 @@ context('Sign Up new user', () => {
 
 
     it('1. Create a new user', function () {
-       // ui.app.clear_gmail_inbox()
+        ui.app.clear_gmail_inbox()
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
                 .click_sign_up_button()
@@ -29,4 +29,5 @@ context('Sign Up new user', () => {
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
 
     })
+
 })

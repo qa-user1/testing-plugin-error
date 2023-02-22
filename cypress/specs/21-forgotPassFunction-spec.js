@@ -25,7 +25,7 @@ context('Forgot password function', () => {
     })
 
     it('2. Reset password', function () {
-        ui.app.clear_gmail_inbox()
+     //   ui.app.clear_gmail_inbox()
         ui.login.enter_email_for_reset_password('testing+forgotpassword@nucleuswealth.com')
             .click_reset_password_button()
         ui.app.verify_email_and_save_values(D.gmailAccount,
