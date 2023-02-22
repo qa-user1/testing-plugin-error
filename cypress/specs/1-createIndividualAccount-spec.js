@@ -177,7 +177,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     });
 
     it('14. Complete Final Review', function () {
-        ui.app.clear_gmail_inbox()
+        //ui.app.clear_gmail_inbox()
         ui.onboarding.click_Submit_Application_button()
             .verify_validation_message_for_agree_checkbox(D.finalReviewValidationMessage)
         ui.onboarding.verify_Documents_available_for_download([
@@ -188,7 +188,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .click_Agree_checkbox()
             .click_Submit_Application_button()
         ui.onboarding.verify_success_page()
-        cy.wait(45000)
+        cy.wait(55000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individualAccountCreated)
     });
 })

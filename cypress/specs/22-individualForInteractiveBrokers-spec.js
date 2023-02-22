@@ -163,14 +163,15 @@ context('Individual Onboarding for Interactive Brokers', () => {
         ui.app.pause(3)
         ui.onboarding.click_Save_and_Continue_button()
         ui.app.pause(3)
-        ui.onboarding.click_Save_and_Continue_button()
-            .verify_review_page()
+            ui.onboarding.verify_review_page()
             .verify_your_portfolio_content_not_exist('Tactical Growth')
+        ui.onboarding.click_Save_and_Continue_button()
+
 
     });
 
     it('14. Complete Final Review', function () {
-        ui.app.clear_gmail_inbox()
+    //    ui.app.clear_gmail_inbox()
         ui.onboarding.click_sidebar_option('Final Review')
             .verify_Final_Review_page()
             .click_Save_and_Continue_button()

@@ -34,7 +34,7 @@ context('Client Portal - Administration', () => {
     })
 
     it('4. Check Administration Page', function () {
-        ui.app.clear_gmail_inbox()
+      //  ui.app.clear_gmail_inbox()
         ui.clientPortal.upload_verification_document()
             .verify_text_is_present_on_main_container('Successfully Uploaded!')
         cy.wait(35000)
