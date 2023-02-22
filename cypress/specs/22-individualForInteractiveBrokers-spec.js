@@ -30,6 +30,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .verify_non_super_subtypes()
             .select_individual_non_super_subtype()
             .click_create_investment_account()
+            .go_through_tour_steps(C.stepMessages)
             .verify_investment_choice_page()
         cy.saveLocalStorage()
     })
@@ -152,6 +153,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
     it('13. Limited Advice Path', function () {
         //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4240/risk-profile')
         ui.onboarding.click_sidebar_option('Investment Choice')
+            .go_through_tour_steps(C.stepMessages)
             .verify_investment_choice_page()
             .click_limited_advice_button()
             .select_all_checkboxes(6)
