@@ -137,6 +137,7 @@ jobs:
   Run-Cypress-Test13:
     name: Cypress Test 13
     if: success() || failure()
+    needs: [Run-Cypress-Test1]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -147,6 +148,7 @@ jobs:
   Run-Cypress-Test14:
     name: Cypress Test 14
     if: success() || failure()
+    needs: [Run-Cypress-Test1]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -178,6 +180,7 @@ jobs:
   Run-Cypress-Test17:
     name: Cypress Test 17
     if: success() || failure()
+    needs: [Run-Cypress-Test2]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -218,6 +221,7 @@ jobs:
   Run-Cypress-Test21:
     name: Cypress Test 21
     if: success() || failure()
+    needs: [Run-Cypress-Test3]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -228,6 +232,7 @@ jobs:
   Run-Cypress-Test22:
     name: Cypress Test 22
     if: success() || failure()
+    needs: [Run-Cypress-Test4]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -257,7 +262,7 @@ jobs:
 
 env:
   #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-  CYPRESS_RECORD_KEY: 294f37fd-6ad6-4916-879f-4647b2b8057f
+  CYPRESS_RECORD_KEY: fd65a0e8-9fe7-453f-a56b-9c983392db0f
   BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
   AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
