@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-clearGmail
+      - run: npm run clearGmail
 
   Run-Cypress-Test2:
     name: Cypress Test 2
