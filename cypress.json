@@ -18,7 +18,7 @@
     "allure": true,
     "failSilently": false,
     "failOnSnapshotDiff": true,
-    "cypressRunner": "local"
+    "cypressRunnerLocal": true
 
   },
   "retries" : 0,

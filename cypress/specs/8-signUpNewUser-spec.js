@@ -17,7 +17,7 @@ context('Sign Up new user', () => {
 
 
     it('1. Create a new user', function () {
-        if (Cypress.env('cypressRunner') === 'local') {
+        if (Cypress.env('cypressRunnerLocal') === false) {
             ui.app.clear_gmail_inbox()
         }
             ui.login.open_base_url()
