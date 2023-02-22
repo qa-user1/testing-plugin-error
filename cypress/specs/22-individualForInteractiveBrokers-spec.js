@@ -6,7 +6,6 @@ const d = D.scenarios[0]
 context('Individual Onboarding for Interactive Brokers', () => {
 
 
-
     beforeEach(function () {
         Cypress.Cookies.debug(true)
         Cypress.Cookies.defaults({
@@ -161,8 +160,10 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .verify_risk_profile_page()
             .verify_sidebar_content_not_exist('Build Your Portfolio')
             .click_Save_and_Continue_button()
-            .click_Save_and_Continue_button()
-            .click_Save_and_Continue_button()
+        ui.app.pause(3)
+        ui.onboarding.click_Save_and_Continue_button()
+        ui.app.pause(3)
+        ui.onboarding.click_Save_and_Continue_button()
             .verify_review_page()
             .verify_your_portfolio_content_not_exist('Tactical Growth')
 

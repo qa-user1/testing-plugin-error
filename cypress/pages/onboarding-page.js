@@ -375,6 +375,7 @@ class OnboardingPage extends BasePage {
         citizenshipInputField().click({force: true})
         citizenshipInputField().type(data.citizenshipInput)
         employmentInputField().click();
+        this.pause(3)
         employmentTypeOption(data.employmentType).click()
         occupationInputField().click();
         occupationInputField().type(data.occupation);
@@ -385,9 +386,9 @@ class OnboardingPage extends BasePage {
         taxInputField().type(data.taxInput)
         residentialAddressInputField().click();
         residentialAddressInputField().type('Ter');
-        cy.wait(1000);
+        this.pause(1)
         cy.contains('Terminal 3 & Terminal 4, Perth Airport WA, Australia').click()
-        cy.wait(2000);
+        this.pause(2)
         return this;
     }
 
@@ -492,6 +493,7 @@ class OnboardingPage extends BasePage {
     }
 
     enter_financial_info(data) {
+        investmentTotal().clear()
         investmentTotal().type(data.questionResponse[13].investmentTotal);
         netWorth().type(data.questionResponse[13].netWorth);
         annualNetIncome().type(data.questionResponse[13].annualNetIncome);
@@ -1837,6 +1839,7 @@ class OnboardingPage extends BasePage {
     }
 
     verify_sidebar_content_not_exist(option){
+        this.pause(5)
         sideBar().should('not.contain', option);
         return this;
     }
@@ -1861,6 +1864,7 @@ class OnboardingPage extends BasePage {
     }
 
     verify_your_portfolio_content_not_exist(option){
+        this.pause(3)
         cy.get('[class="ant-collapse-content ant-collapse-content-active"]').should('not.contain', option);
         return this;
     }
