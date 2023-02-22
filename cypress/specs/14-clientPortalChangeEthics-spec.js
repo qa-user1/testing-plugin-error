@@ -50,7 +50,9 @@ context('Client Portal - Change Ethics/Exclusions', () => {
     })
 
     it('5. Submit Change', function () {
-     //   ui.app.clear_gmail_inbox()
+        if (Cypress.env('cypressRunnerLocal') === true) {
+            ui.app.clear_gmail_inbox()
+        }
         ui.clientPortal.click_submit_changes_button()
             .verify_account_dashboard()
         cy.wait(55000)

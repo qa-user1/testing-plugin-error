@@ -18,7 +18,9 @@ context('Create Test User on Live Portal', () => {
 
 
     it('1. Create a new user on Live Portal', function () {
-     //   ui.app.clear_gmail_inbox()
+        if (Cypress.env('cypressRunnerLocal') === true) {
+            ui.app.clear_gmail_inbox()
+        }
         S.baseUrl = 'https://portal.nucleuswealth.com/register'
         ui.login.open_base_url()
             .verify_login_menu()
@@ -76,7 +78,9 @@ context('Create Test User on Live Portal', () => {
     })
 
     it('5. Create a new user for Walk The World', function () {
-     //   ui.app.clear_gmail_inbox()
+        if (Cypress.env('cypressRunnerLocal') === true) {
+            ui.app.clear_gmail_inbox()
+        }
         S.baseUrl = 'https://walktheworld.nucleuswealth.com/register'
         ui.login.open_base_url()
             .verify_sign_up_login_menu()
@@ -90,7 +94,9 @@ context('Create Test User on Live Portal', () => {
     })
 
     it('6. Create a new user for Macro business', function () {
-     //   ui.app.clear_gmail_inbox()
+        if (Cypress.env('cypressRunnerLocal') === true) {
+            ui.app.clear_gmail_inbox()
+        }
         S.baseUrl = 'https://mb.nucleuswealth.com/register'
         ui.login.open_base_url()
             .verify_sign_up_login_menu()

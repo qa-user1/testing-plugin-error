@@ -171,7 +171,9 @@ context('Individual Onboarding for Interactive Brokers', () => {
     });
 
     it('14. Complete Final Review', function () {
-    //    ui.app.clear_gmail_inbox()
+        if (Cypress.env('cypressRunnerLocal') === true) {
+            ui.app.clear_gmail_inbox()
+        }
         ui.onboarding.click_sidebar_option('Final Review')
             .verify_Final_Review_page()
             .click_Save_and_Continue_button()

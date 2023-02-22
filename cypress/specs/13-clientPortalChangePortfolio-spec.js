@@ -54,7 +54,9 @@ context('Client Portal - Change Portfolio', () => {
     })
 
     it('6. Submit Change', function () {
-      //  ui.app.clear_gmail_inbox()
+        if (Cypress.env('cypressRunnerLocal') === true) {
+            ui.app.clear_gmail_inbox()
+        }
         ui.clientPortal.click_submit_changes_button()
             .verify_account_dashboard()
         cy.wait(25000)
