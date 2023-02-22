@@ -17,7 +17,9 @@
     "allureResultsPath": "report/allure-results",
     "allure": true,
     "failSilently": false,
-    "failOnSnapshotDiff": true
+    "failOnSnapshotDiff": true,
+    "cypressRunner": "local"
+
   },
   "retries" : 0,
   "ignoreTestFiles": [

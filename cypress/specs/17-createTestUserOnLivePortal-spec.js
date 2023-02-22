@@ -22,6 +22,7 @@ context('Create Test User on Live Portal', () => {
         S.baseUrl = 'https://portal.nucleuswealth.com/register'
         ui.login.open_base_url()
             .verify_login_menu()
+            .click_sign_up_button()
             .enter_credentials_for_sign_up(D.newUserLivePortal)
             .click_submit_sign_up_button()
         ui.onboarding.verify_account_selection()

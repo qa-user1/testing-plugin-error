@@ -25,7 +25,7 @@ let
     subscribe = e => cy.get('[name="Subscribe"]'),
     ethicsGroups = e => cy.get('[data-testid="ethic-groups"]'),
     ethicsPageTitle = e => cy.get('[data-testid="page-1-title-1"]'),
-    getStartedButton = e => cy.get('[class="ant-btn ant-btn-ghost ant-btn-round ant-btn-lg"]'),
+    getStartedButton = e => cy.get('[class="ant-btn css-86j49d ant-btn-round ant-btn-ghost ant-btn-lg"]'),
     nextButton = e => cy.contains('Next'),
     gender = e => cy.get('[id="ethic-groups_Gender"]'),
     male = e => cy.get('[title="Male"]'),
