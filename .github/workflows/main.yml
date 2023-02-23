@@ -11,6 +11,7 @@ jobs:
   Run-Cypress-Test1:
     name: Cypress Test 1
     if: success() || failure()
+    needs: [Run-Cypress-Test22]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
