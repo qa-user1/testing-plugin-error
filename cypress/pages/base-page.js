@@ -314,7 +314,7 @@ export default class BasePage {
         }).then(emails => {
             cy.log('EMAIL IS ' + JSON.stringify(emails[0]))
             var last_unread_email = emails[0];
-           //assert.include(last_unread_email.from, emailTemplate.from);
+           assert.include(last_unread_email.from, emailTemplate.from);
            assert.include(last_unread_email.subject, emailTemplate.subject);
 
 
