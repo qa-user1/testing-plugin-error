@@ -196,7 +196,7 @@ jobs:
   Run-Cypress-Test17:
     name: Cypress Test 17
     if: success() || failure()
-    needs: [Run-Cypress-Test2]
+    needs: [Run-Cypress-Test11]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -250,7 +250,7 @@ jobs:
   Run-Cypress-Test22:
     name: Cypress Test 22
     if: success() || failure()
-    needs: [Run-Cypress-Test15]
+    needs: [Run-Cypress-Test17]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
