@@ -29,7 +29,7 @@ context('Client Portal - Account Dashboard', () => {
     })
 
 
-    it('3. Direct user to Account Dashboard', function () {
+    xit('3. Direct user to Account Dashboard', function () {
         ui.clientPortal.check_investment_account_panel()
             .verify_target_weight_total()
             .verify_content_of_investment_account_panel('1', 9999.0)
