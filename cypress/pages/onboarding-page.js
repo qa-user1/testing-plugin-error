@@ -1282,6 +1282,14 @@ class OnboardingPage extends BasePage {
         return this;
     }
 
+    card_number(){
+        individualAccountNumber().invoke('text').then(function (text) {
+            cy.log('ACCOUNT NUMBER ' + text)
+            const accountNo = text.match('Account (' + "(.*)" + ')')[1];
+            Cypress.env('accountNo', accountNo)
+        })
+    }
+
     save_report_for_Indicative_Portfolio_Cash() {
         let headers = [
             'Cash',
