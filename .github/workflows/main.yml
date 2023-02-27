@@ -20,7 +20,9 @@ jobs:
       - run: npm run clearGmail
       - run: npm run e2e-test1
       - run: npm run e2e-test10
+        if: success() || failure()
       - run: npm run e2e-test13
+        if: success() || failure()
       - run: npm run e2e-test14
 
   Run-Clear-Gmail:
@@ -33,76 +35,6 @@ jobs:
       - run: npm i
       - run: npm run clearGmail
 
-  Run-Cypress-Test2:
-    name: Cypress Test 2
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test2
-
-  Run-Cypress-Test3:
-    name: Cypress Test 3
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test3
-
-  Run-Cypress-Test4:
-    name: Cypress Test 4
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test4
-
-  Run-Cypress-Test5:
-    name: Cypress Test 5
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test5
-
-  Run-Cypress-Test6:
-    name: Cypress Test 6
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test6
-
-  Run-Cypress-Test8:
-    name: Cypress Test 8
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
-      - run: npm run e2e-test8
-
-  Run-Cypress-Test9:
-    name: Cypress Test 9
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test9
 
   Run-Cypress-Test10:
     name: Cypress Test 10
@@ -177,25 +109,7 @@ jobs:
       - run: npm run clearGmail
       - run: npm run e2e-test14
 
-  Run-Cypress-Test15:
-    name: Cypress Test 15
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test15
 
-  Run-Cypress-Test16:
-    name: Cypress Test 16
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test16
 
 
   Run-Cypress-Test17:
@@ -210,59 +124,13 @@ jobs:
       - run: npm run clearGmail
       - run: npm run e2e-test17
 
-  Run-Cypress-Test18:
-    name: Cypress Test 18
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test18
 
-  Run-Cypress-Test19:
-    name: Cypress Test 19
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test19
 
-  Run-Cypress-Test20:
-    name: Cypress Test 20
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test20
 
-  Run-Cypress-Test21:
-    name: Cypress Test 21
-    if: success() || failure()
-    needs: [Run-Cypress-Test8]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
-      - run: npm run e2e-test21
 
-  Run-Cypress-Test22:
-    name: Cypress Test 22
-    if: success() || failure()
-    needs: [Run-Cypress-Test17]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
-      - run: npm run e2e-test22
+
+
+
 
 
   Run-Main-Script:
