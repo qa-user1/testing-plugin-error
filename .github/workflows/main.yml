@@ -19,8 +19,8 @@ jobs:
       - uses: actions/setup-node@v3
       - uses: actions/upload-artifact@v2
         with:
-        name: data
-        path: data.txt
+          name: data
+          path: data.txt
       - run: npm i
       - run: npm run clearGmail
       - run: npm run e2e-test1
@@ -38,13 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
       - uses: actions/download-artifact@v2
         with:
           name: data
-          # Copy the data file to the current directory
-      - name: Copy data file
+      - run: npm i
+      - run: npm run clearGmail
       - run: cp ${{ github.workspace }}/data.txt
       - run: npm run e2e-test10
 
