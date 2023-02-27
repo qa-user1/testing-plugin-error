@@ -9,7 +9,7 @@ on:
 
 jobs:
   Run-Cypress-Test1:
-    name: Cypress Test 1
+    name: Cypress Test 1,10,13,14
     if: success() || failure()
     needs: [Run-Cypress-Test22]
     runs-on: ubuntu-latest
@@ -19,6 +19,9 @@ jobs:
       - run: npm i
       - run: npm run clearGmail
       - run: npm run e2e-test1
+      - run: npm run e2e-test10
+      - run: npm run e2e-test13
+      - run: npm run e2e-test14
 
   Run-Clear-Gmail:
     name: Clear Gmail
