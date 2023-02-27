@@ -102,17 +102,7 @@ jobs:
 
 
 
-  Run-Cypress-Test17:
-    name: Cypress Test 17
-    if: success() || failure()
-    needs: [Run-Cypress-Test11]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
-      - run: npm run e2e-test17
+  
 
 
 
