@@ -17,13 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
+      - uses: actions/upload-artifact@v2
+        with:
+        name: data
+        path: data.txt
       - run: npm i
       - run: npm run clearGmail
       - run: npm run e2e-test1
-      - uses: actions/upload-artifact@v2
-        with:
-          name: data
-          path: data.txt
+      - run: |
+            echo "Hello, world!" > data.txt
+            # Upload the data file as an artifact
+      
+      
 
   Run-Cypress-Test10:
     name: Cypress Test 10
