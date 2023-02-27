@@ -1290,6 +1290,8 @@ class OnboardingPage extends BasePage {
         })
     }
 
+
+
     save_report_for_Indicative_Portfolio_Cash() {
         let headers = [
             'Cash',
