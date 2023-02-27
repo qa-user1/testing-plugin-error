@@ -82,7 +82,7 @@ context('Client Portal - Account Dashboard', () => {
             .verify_performance_card('1', '3')
             .verify_performance_card('2', '4')
             .verify_performance_card('3', '5')
-
+        cy.saveLocalStorage()
     })
 
 })

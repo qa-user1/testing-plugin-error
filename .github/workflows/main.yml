@@ -24,6 +24,7 @@ jobs:
       - run: npm run e2e-test13
         if: success() || failure()
       - run: npm run e2e-test14
+        if: success() || failure()
 
   Run-Clear-Gmail:
     name: Clear Gmail
