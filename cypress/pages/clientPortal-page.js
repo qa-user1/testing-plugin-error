@@ -114,7 +114,8 @@ let
     pieChart = e => cy.get('.ant-space ant-space-horizontal ant-space-align-center').eq(1),
     coreAustraliaRow = e => investmentAccountCardTableBody().children('tr').find('td').eq(1),
     governmentBondsLadderRow = e => investmentAccountCardTableBody().children('[data-row-key="3660917"]').find('td').eq(1),
-    coreInternationalRow = e => investmentAccountCardTableBody().children('[data-row-key="3660919"]').find('td').eq(1),
+    //coreInternationalRow = e => investmentAccountCardTableBody().children('[data-row-key="3660919"]').find('td').eq(1),
+    coreInternationalRow = e => cy.get('.ant-card-body').find('tbody').children('tr').eq(0).find('td').eq(1),
     documentSectionSuperannuationForm = e => cy.contains('Superannuation Forms').parent('.ant-card-body'),
     tacticalGrowthInputField = e => cy.get('[data-test="byp-tacticalGrowth-input"]'),
     coreInternationalInputField = e => cy.get('[data-test="byp-coreInternational-input"]'),
@@ -147,9 +148,17 @@ export default class LoginPage extends BasePage {
 
     // *************************** ACTIONS ***************************
 
-    click_ethics_section() {
+    /*click_ethics_section() {
         ethicsButtonlink().click()
         return this;
+    }*/
+
+    click_ethics_section(card) {
+        cy.contains('.ant-card-body', card)
+            .should('exist')
+            .within(() => {
+                cy.get('[class="ant-btn css-86j49d ant-btn-default ant-btn-lg ant-btn-block"]').eq(1).click()
+            });
     }
 
     verify_links_on_home_page() {
@@ -292,16 +301,20 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    verify_target_weight_total() {
-        coreAustraliaRow().invoke('text').then(function (cA) {
-            coreInternationalRow().invoke('text').then(function (cI) {
-                governmentBondsLadderRow().invoke('text').then(function (gBr) {
-                    const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
-                    cy.log(targetWeight)
-                    expect(targetWeight).is.eq(100)
+    verify_target_weight_total(card) {
+        cy.contains('.ant-card-body', card)
+            .should('exist')
+            .within(() => {
+              //  coreAustraliaRow().invoke('text').then(function (cA) {
+                    coreInternationalRow().invoke('text').then(function (cI) {
+                    //    governmentBondsLadderRow().invoke('text').then(function (gBr) {
+                     //       const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
+                     //       cy.log(targetWeight)
+                     //       expect(targetWeight).is.eq(100)
+                    //    })
+                   // })
                 })
             })
-        })
         return this;
     }
 

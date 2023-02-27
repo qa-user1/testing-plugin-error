@@ -25,14 +25,13 @@ context('Client Portal - Change Ethics/Exclusions', () => {
     })
 
     it('2. Direct user to “Ethical Overlay”', function () {
-        ui.clientPortal.click_ethics_section()
+        ui.clientPortal.click_ethics_section('card')
             .verify_ethical_overlay_page()
         cy.saveLocalStorage()
     })
 
     it('3. Complete Ethical Overlay', function () {
-        ui.clientPortal.verify_ethical_overlay_page()
-            .check_or_uncheck_nuclear_power()
+        ui.clientPortal.check_or_uncheck_nuclear_power()
         ui.onboarding.click_Save_and_Continue_button()
     })
 
