@@ -193,7 +193,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
        // cy.wait(55000)
        // ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individualAccountCreated)
             ui.onboarding.card_number()
-        cy.saveLocalStorage()
     });
 })
 

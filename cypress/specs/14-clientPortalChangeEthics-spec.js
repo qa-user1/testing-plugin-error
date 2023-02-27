@@ -56,7 +56,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .verify_account_dashboard()
       //  cy.wait(55000)
       //  ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.changeEthics)
-        cy.saveLocalStorage()
+
     })
 
 
