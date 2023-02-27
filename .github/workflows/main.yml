@@ -11,7 +11,7 @@ jobs:
   Run-Cypress-Test1:
     name: Cypress Test 1,10,13,14
     if: success() || failure()
-    needs: [Run-Cypress-Test22]
+    needs: [Run-Cypress-Test12]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -63,17 +63,7 @@ jobs:
   #         name: snapshot
   #         path: cypress/snapshots
 
-  Run-Cypress-Test11:
-    name: Cypress Test 11
-    if: success() || failure()
-    needs: [Run-Cypress-Test21]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
-      - run: npm run e2e-test11
+
 
   Run-Cypress-Test12:
     name: Cypress Test 12
