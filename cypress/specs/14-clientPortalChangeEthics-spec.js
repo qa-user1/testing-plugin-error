@@ -25,7 +25,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
     })
 
     it('2. Direct user to “Ethical Overlay”', function () {
-        ui.clientPortal.click_ethics_section('card')
+        ui.clientPortal.click_ethics_section()
             .verify_ethical_overlay_page()
         cy.saveLocalStorage()
     })

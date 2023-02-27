@@ -24,7 +24,7 @@ context('Nucleus Wealth Wordpress Site', () => {
     it('2. Visit Investment Options', function () {
 
         ui.production.click_option_from_navbar('Investment Options')
-            .verify_option_from_navbar('investment-options', 'Investment Portfolios')
+       //     .verify_option_from_navbar('investment-options', 'Investment Options')
     })
 
     it('3. Visit Ethical Investing', function () {

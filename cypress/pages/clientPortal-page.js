@@ -115,7 +115,7 @@ let
     coreAustraliaRow = e => investmentAccountCardTableBody().children('tr').find('td').eq(1),
     governmentBondsLadderRow = e => investmentAccountCardTableBody().children('[data-row-key="3660917"]').find('td').eq(1),
     //coreInternationalRow = e => investmentAccountCardTableBody().children('[data-row-key="3660919"]').find('td').eq(1),
-    coreInternationalRow = e => cy.get('.ant-card-body').find('tbody').children('tr').eq(0).find('td').eq(1),
+    coreInternationalRow = e => cy.get('.ant-card-body').find('tbody').children('tr').eq(1).find('td').eq(1),
     documentSectionSuperannuationForm = e => cy.contains('Superannuation Forms').parent('.ant-card-body'),
     tacticalGrowthInputField = e => cy.get('[data-test="byp-tacticalGrowth-input"]'),
     coreInternationalInputField = e => cy.get('[data-test="byp-coreInternational-input"]'),
@@ -153,7 +153,8 @@ export default class LoginPage extends BasePage {
         return this;
     }*/
 
-    click_ethics_section(card) {
+    click_ethics_section() {
+        const card = Cypress.env('accountNo')
         cy.contains('.ant-card-body', card)
             .should('exist')
             .within(() => {
@@ -301,18 +302,19 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    verify_target_weight_total(card) {
+    verify_target_weight_total() {
+        const card = Cypress.env('accountNo')
         cy.contains('.ant-card-body', card)
             .should('exist')
             .within(() => {
-              //  coreAustraliaRow().invoke('text').then(function (cA) {
-                    coreInternationalRow().invoke('text').then(function (cI) {
-                    //    governmentBondsLadderRow().invoke('text').then(function (gBr) {
-                     //       const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
-                     //       cy.log(targetWeight)
-                     //       expect(targetWeight).is.eq(100)
-                    //    })
-                   // })
+                cy.get('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
+                    cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
+                        cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
+                            const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
+                            cy.log(targetWeight)
+                            expect(targetWeight).is.eq(100)
+                        })
+                    })
                 })
             })
         return this;
@@ -539,7 +541,8 @@ export default class LoginPage extends BasePage {
         return this;
     }*/
 
-    click_change_portfolio_button(card) {
+    click_change_portfolio_button() {
+        const card = Cypress.env('accountNo')
         cy.contains('.ant-card-body', card)
             .should('exist')
             .within(() => {
