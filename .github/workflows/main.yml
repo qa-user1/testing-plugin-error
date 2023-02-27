@@ -37,7 +37,7 @@ jobs:
 
 
 
-  Run-Cypress-Test1:
+  job3:
     name: Cypress Test 1
     if: success() || failure()
     needs: [Run-Cypress-Test12], job1
@@ -49,7 +49,7 @@ jobs:
       - run: npm run clearGmail
       - run: npm run e2e-test1
 
-  Run-Cypress-Test10:
+  job4:
     name: Cypress Test 10
     if: success() || failure()
     needs: [Run-Cypress-Test1], job1
@@ -66,8 +66,8 @@ jobs:
       - name: Copy data file
       - run: cp ${{ github.workspace }}/data.txt
       - run: npm run e2e-test10
-        
-  Run-Clear-Gmail:
+
+  job5:
     name: Clear Gmail
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -98,7 +98,7 @@ jobs:
 
 
 
-  Run-Cypress-Test12:
+  job6:
     name: Cypress Test 12
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -108,7 +108,7 @@ jobs:
       - run: npm i
       - run: npm run e2e-test12
 
-  Run-Cypress-Test13:
+  job7:
     name: Cypress Test 13
     if: success() || failure()
     needs: [Run-Cypress-Test1]
@@ -120,7 +120,7 @@ jobs:
       - run: npm run clearGmail
       - run: npm run e2e-test13
 
-  Run-Cypress-Test14:
+  job8:
     name: Cypress Test 14
     if: success() || failure()
     needs: [Run-Cypress-Test1]
