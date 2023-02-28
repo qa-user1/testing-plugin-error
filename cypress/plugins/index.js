@@ -24,7 +24,20 @@ module.exports = (on, config) => {
     allureWriter(on, config);
     getCompareSnapshotsPlugin(on, config);
 
+    const data = {}
+
     on('task', {
+
+        saveData(x) {
+            console.log('accountNo', x)
+            data['accountNo'] = x
+            return null
+        },
+
+        loadData() {
+            console.log('returning accountNo', data.accountNo)
+            return data['accountNo'] || null
+        },
 
         generate_excel_file(args) {
 

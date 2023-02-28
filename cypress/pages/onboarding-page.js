@@ -1282,11 +1282,10 @@ class OnboardingPage extends BasePage {
         return this;
     }
 
-    card_number(){
+    store_current_account_number(){
         individualAccountNumber().invoke('text').then(function (text) {
-            cy.log('ACCOUNT NUMBER ' + text)
             const accountNo = text.match('Account (' + "(.*)" + ')')[1];
-            Cypress.env('accountNo', accountNo)
+            cy.task('saveData', accountNo)
         })
     }
 

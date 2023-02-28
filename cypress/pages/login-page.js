@@ -76,6 +76,7 @@ export default class LoginPage extends BasePage {
 
     check_for_Cognito_message_and_perform_login(user) {
         let self = this
+        cy.wait(1000)
         mainContainer().invoke('text').then(function (text) {
             cy.log('text found ' + text)
             if (text.includes('Sign in with your email and password')) {
@@ -83,19 +84,20 @@ export default class LoginPage extends BasePage {
                 passwordInput().type(user.password);
                 signInButton().click()
             } else {
-                for (let i = 0; i < 10; i++) {
+              //  for (let i = 0; i < 10; i++) {
                     cy.wait(500)
                     mainContainer().invoke('text').then(function (text) {
-                        if (text.includes('Sign in with your email and password')) {
-                            self.check_for_Cognito_message_and_perform_login(user)
-                        }
+                        // if (text.includes('Sign in with your email and password')) {
+                        //     i = 10
+                        //     self.check_for_Cognito_message_and_perform_login(user)
+                        // }
                         if (text.includes('Sign in with Cognito')) {
                             cy.contains('Sign in with Cognito').click()
                             self.check_for_Cognito_message_and_perform_login(user)
                         }
                     });
                 }
-            }
+           // }
         });
         return this;
     }
@@ -108,6 +110,7 @@ export default class LoginPage extends BasePage {
 
     verify_login_menu() {
         let self = this
+        cy.wait(1000)
         mainContainer().invoke('text').then(function (text) {
             if (text.includes('Sign in with your email and password')) {
                 visibleModal().should('be.visible');
@@ -116,20 +119,20 @@ export default class LoginPage extends BasePage {
                 passwordInput().should('be.visible');
                 signInButton().should('be.visible');
             } else {
-                for (let i = 0; i < 10; i++) {
+               // for (let i = 0; i < 10; i++) {
                     cy.wait(2000)
                     mainContainer().invoke('text').then(function (text) {
-                        if (text.includes('Sign in with your email and password')) {
-                            i = 10
-                            self.verify_login_menu()
-                        }
+                        // if (text.includes('Sign in with your email and password')) {
+                        //     i = 10
+                        //     self.verify_login_menu()
+                        // }
                         if (text.includes('Sign in with Cognito')) {
                             cy.contains('Sign in with Cognito').click()
                             self.verify_login_menu()
                         }
                     });
                 }
-            }
+         //   }
         });
         return this;
     }

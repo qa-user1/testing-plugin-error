@@ -3,6 +3,7 @@
   "author": "Amina Senderovic",
   "version": "1.0.0",
   "scripts": {
+    "xxx-tests": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --config screenshotsFolder=cypress/snapshots/actual --headed --browser chrome --spec cypress/specs/xxx*",
     "e2e-tests": "cypress run --env type=actual failSilently=false onGithubActions=true  --config screenshotsFolder=cypress/snapshots/actual --headed --browser chrome --spec cypress/specs/15-2factorLogin** ",
     "e2e-test1": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false accountNo=$ACCOUNT_NO --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/1-createIndividualAccount-spec.js ",
     "e2e-test2": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/2-createPersonalSuperAccount-spec.js ",

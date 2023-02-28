@@ -542,12 +542,13 @@ export default class LoginPage extends BasePage {
     }*/
 
     click_change_portfolio_button() {
-        const card = Cypress.env('accountNo')
-        cy.contains('.ant-card-body', card)
+        cy.task('loadData').then(accountNo => {
+        cy.contains(accountNo).parents('.ant-card-body')
             .should('exist')
             .within(() => {
-                cy.get('[class="ant-btn css-86j49d ant-btn-default ant-btn-lg ant-btn-block"]').eq(2).click()
+                cy.contains('Change Portfolio').click()
             });
+        })
     }
 
     verify_self_directed_icon_is_highlighted() {
