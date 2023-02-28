@@ -9,6 +9,10 @@ on:
 
 jobs:
 
+  Set-Card_Name:
+    name: Set cardName environment variable
+    run: echo "accountNo=accountNo" >> $GITHUB_ENV
+
   Run-Cypress-Test1:
     name: Cypress Test 1
     if: success() || failure()
@@ -20,13 +24,13 @@ jobs:
       - run: npm i
       - run: npm run clearGmail
       - run: npm run e2e-test1
-      - run: |
-            echo "Hello, world!" > data.txt
+  #    - run: |
+   #         echo "Hello, world!" > data.txt
             # Upload the data file as an artifact
-      - uses: actions/upload-artifact@v2
-        with:
-          name: data
-          path: data.txt
+   #   - uses: actions/upload-artifact@v2
+  #      with:
+  #        name: data
+  #        path: data.txt
       
 
   Run-Cypress-Test10:
@@ -37,12 +41,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
-      - uses: actions/download-artifact@v2
-        with:
-          name: data
+  #    - uses: actions/download-artifact@v2
+  #      with:
+   #       name: data
       - run: npm i
       - run: npm run clearGmail
-      - run: cp ${{ github.workspace }}/testing-plugin-error/data.txt
+  #    - run: cp ${{ github.workspace }}/testing-plugin-error/data.txt
       - run: npm run e2e-test10
 
   Run-Clear-Gmail:
