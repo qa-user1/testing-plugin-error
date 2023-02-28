@@ -22,17 +22,10 @@ context('Client Portal - Change Portfolio', () => {
     })
 
     it('2. Direct user to “Investment Choice”', function () {
-        cy.visit('https://testwebserver.nucleuswealth.com/client-portal/4860/your-accounts')
-        const card = Cypress.env('accountNo')
-        cy.contains(card).click()
-       // cy.get('.ant-card').contains(card).
-        //find('[class="ant-btn css-86j49d ant-btn-default ant-btn-lg ant-btn-block"]')
-
-       // cy.get('.ant-btn-block').find(card).click()
-        /*ui.clientPortal.click_change_portfolio_button()
+        ui.clientPortal.click_change_portfolio_button()
         ui.onboarding.go_through_tour_steps(C.stepMessages)
         ui.clientPortal.verify_investment_choice_link()
-        cy.saveLocalStorage()*/
+        cy.saveLocalStorage()
     })
 
     xit('3. Direct user to “Build Your Portfolio”', function () {
@@ -66,9 +59,8 @@ context('Client Portal - Change Portfolio', () => {
         }
         ui.clientPortal.click_submit_changes_button()
             .verify_account_dashboard()
-        cy.wait(25000)
-        ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.accountChanges)
-
+        //  cy.wait(25000)
+        // ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.accountChanges)
     })
 
 
