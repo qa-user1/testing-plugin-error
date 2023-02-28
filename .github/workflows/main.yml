@@ -42,7 +42,7 @@ jobs:
           name: data
       - run: npm i
       - run: npm run clearGmail
-      - run: cp ${{ github.workspace }}/data.txt
+      - run: cp ${{ github.workspace }}/testing-plugin-error/data.txt
       - run: npm run e2e-test10
 
   Run-Clear-Gmail:
