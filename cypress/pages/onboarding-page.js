@@ -1286,7 +1286,7 @@ class OnboardingPage extends BasePage {
         individualAccountNumber().invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
             const accountNo = text.match('Account (' + "(.*)" + ')')[1];
-            Cypress.env('accountNo', ${accountNo})
+            Cypress.env('accountNo', accountNo)
         })
     }
 
