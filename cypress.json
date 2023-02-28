@@ -19,7 +19,7 @@
     "failSilently": false,
     "failOnSnapshotDiff": true,
     "cypressRunnerLocal": true,
-    "accountNo": "${ACCOUNT_NO}"
+    "accountNo": "${accountNo}"
 
   },
   "retries" : 0,
