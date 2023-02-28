@@ -22,7 +22,7 @@ jobs:
       - run: npm i
       - run: npm run clearGmail
       - run: npm run e2e-test1
-    
+
   #    - run: |
    #         echo "Hello, world!" > data.txt
             # Upload the data file as an artifact
