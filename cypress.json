@@ -18,7 +18,8 @@
     "allure": true,
     "failSilently": false,
     "failOnSnapshotDiff": true,
-    "cypressRunnerLocal": true
+    "cypressRunnerLocal": true,
+    "accountNo": ""
 
   },
   "retries" : 0,
@@ -26,5 +27,5 @@
     "**/__snapshots__/*",
     "**/__image_snapshots__/*"
   ],
-  "projectId": "npy1p3"
+  "projectId": "fmx7mz"
 }

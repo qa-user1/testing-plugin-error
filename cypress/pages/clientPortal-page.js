@@ -303,8 +303,8 @@ export default class LoginPage extends BasePage {
     }
 
     verify_target_weight_total() {
-        const card = Cypress.env('accountNo')
-        cy.contains('.ant-card-body', card)
+        const accountNo = Cypress.env('accountNo')
+        cy.contains('.ant-card-body', accountNo)
             .should('exist')
             .within(() => {
                 cy.get('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
