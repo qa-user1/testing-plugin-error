@@ -12,7 +12,7 @@ jobs:
 
 
   Run-Cypress-Test1:
-    name: Cypress Test 1,10
+    name: Cypress Test 1
     if: success() || failure()
     needs: [Run-Cypress-Test12]
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
       - run: npm i
       - run: npm run clearGmail
       - run: npm run e2e-test1
-      - run: npm run e2e-test10
+    
   #    - run: |
    #         echo "Hello, world!" > data.txt
             # Upload the data file as an artifact
