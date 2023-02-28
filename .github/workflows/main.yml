@@ -9,9 +9,7 @@ on:
 
 jobs:
 
-  Set-Card_Name:
-    name: Set cardName environment variable
-    run: echo "accountNo=accountNo" >> $GITHUB_ENV
+
 
   Run-Cypress-Test1:
     name: Cypress Test 1
@@ -148,3 +146,4 @@ env:
   BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
   AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  accountNo: accountNo
