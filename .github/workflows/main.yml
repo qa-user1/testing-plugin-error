@@ -88,7 +88,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run xxx-tests
+      - run: npm run e2e-test1
+      - run: npm run e2e-test13
 
   Run-Cypress-Test13:
     name: Cypress Test 13
