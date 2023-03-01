@@ -320,6 +320,7 @@ export default class LoginPage extends BasePage {
                 })
             return this;
         })
+        return this;
     }
 
     click_change_portfolio_button() {
