@@ -266,7 +266,7 @@ jobs:
     name: Main Script
     if: success() || failure()
     runs-on: ubuntu-latest
-    needs: [Cypress Test 1-10-13-14,Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
+    needs: [Run-Cypress-Test1-10-13-14,Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
