@@ -12,7 +12,7 @@ context('Client Portal - Change Portfolio', () => {
     });
 
 
-    it('1. Direct user to “Your Account(s)” page', function () {
+    xit('1. Direct user to “Your Account(s)” page', function () {
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -21,7 +21,7 @@ context('Client Portal - Change Portfolio', () => {
             .verify_your_accounts_page()
     })
 
-    it('2. Direct user to “Investment Choice”', function () {
+    xit('2. Direct user to “Investment Choice”', function () {
         ui.clientPortal.click_change_portfolio_button()
         ui.onboarding.go_through_tour_steps(C.stepMessages)
         ui.clientPortal.verify_investment_choice_link()

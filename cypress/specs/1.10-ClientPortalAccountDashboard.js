@@ -24,7 +24,7 @@ context('Client Portal - Account Dashboard', () => {
         ui.clientPortal.verify_your_accounts_page()
     })
 
-    xit('2. Overall asset summary panel', function () {
+    it('2. Overall asset summary panel', function () {
         ui.clientPortal.verify_overall_asset_summary_panel('0')
     })
 
@@ -32,12 +32,12 @@ context('Client Portal - Account Dashboard', () => {
     it('3. Direct user to Account Dashboard', function () {
         ui.clientPortal.check_investment_account_panel()
             .verify_target_weight_total()
-          //  .verify_content_of_investment_account_panel('1', 9999.0)
-          //  .click_view_account_details()
-           // .verify_account_dashboard()
+            .verify_content_of_investment_account_panel()
+            .click_view_account_details()
+            .verify_account_dashboard()
     })
 
-    xit('4. Check Tactical Panel', function () {
+    it('4. Check Tactical Panel', function () {
         ui.login.open_base_url()
         ui.clientPortal.click_your_accounts_link()
             .click_view_account_details()
@@ -48,14 +48,14 @@ context('Client Portal - Account Dashboard', () => {
             .enter_cash_and_own_home_values(D.tacticalAdditionalAssets)
     })
 
-    xit('5. Expand Strategic', function () {
+    it('5. Expand Strategic', function () {
         ui.clientPortal.click_strategic_panel()
             .compare_snapshots()
             .verify_change_portfolio_button()
             .click_strategic_panel()
     })
 
-    xit('6. Expand Ethics/Exclusions', function () {
+    it('6. Expand Ethics/Exclusions', function () {
         ui.clientPortal.click_ethics_panel()
         ui.onboarding.verify_chosen_ethics([
             ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
@@ -65,7 +65,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_ethics_panel()
     })
 
-    xit('7. Expand Portfolio', function () {
+    it('7. Expand Portfolio', function () {
         ui.clientPortal.click_portfolio_panel()
             .verify_change_ethics_button2()
             .verify_change_portfolio_button2()
@@ -75,7 +75,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_portfolio_panel()
     })
 
-    xit('8. Expand Performance', function () {
+    it('8. Expand Performance', function () {
         ui.clientPortal.click_performance_panel()
             .verify_performance_titles()
             .verify_performance_card('0', '2')
