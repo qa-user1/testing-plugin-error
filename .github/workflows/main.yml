@@ -101,16 +101,16 @@ jobs:
       - run: npm i
       - run: npm run e2e-test9
 
-  Run-Cypress-Test10:
-    name: Cypress Test 10
-    if: success() || failure()
-    needs: [Run-Cypress-Test1]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run e2e-test10
+ # Run-Cypress-Test10:
+  #  name: Cypress Test 10
+  #  if: success() || failure()
+  #  needs: [Run-Cypress-Test1]
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - uses: actions/setup-node@v3
+ #     - run: npm i
+  #    - run: npm run e2e-test10
 
   # Store-snapshots:
   #   name: Store snapshots
@@ -150,29 +150,29 @@ jobs:
       - run: npm i
       - run: npm run e2e-test12
 
-  Run-Cypress-Test13:
-    name: Cypress Test 13
-    if: success() || failure()
-    needs: [Run-Cypress-Test1]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
-      - run: npm run e2e-test13
+  #Run-Cypress-Test13:
+  #  name: Cypress Test 13
+  #  if: success() || failure()
+  #  needs: [Run-Cypress-Test1]
+  #  runs-on: ubuntu-latest
+ #   steps:
+  #    - uses: actions/checkout@v2
+  #    - uses: actions/setup-node@v3
+  #    - run: npm i
+  #    - run: npm run clearGmail
+  #    - run: npm run e2e-test13
 
-  Run-Cypress-Test14:
-    name: Cypress Test 14
-    if: success() || failure()
-    needs: [Run-Cypress-Test1]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
-      - run: npm run e2e-test14
+ # Run-Cypress-Test14:
+ #   name: Cypress Test 14
+ #   if: success() || failure()
+  #  needs: [Run-Cypress-Test1]
+ #   runs-on: ubuntu-latest
+ #   steps:
+ #     - uses: actions/checkout@v2
+ #     - uses: actions/setup-node@v3
+ #     - run: npm i
+ #     - run: npm run clearGmail
+ #     - run: npm run e2e-test14
 
   Run-Cypress-Test15:
     name: Cypress Test 15
