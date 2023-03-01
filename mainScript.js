@@ -22,7 +22,7 @@ if (fs.existsSync("report/allure-results")) {
 //         // 'cypress/specs/6-createCompanyAccount-spec.js',
 //        // 'cypress/specs/8-signUpNewUser-spec.js',
 //        // 'cypress/specs/9-clientPortalHome-spec.js',
-//        // 'cypress/specs/spec10-ClientPortalAccountDashboard.js',
+//        // 'cypress/specs/1.10-ClientPortalAccountDashboard.js',
 //        // 'cypress/specs/11-clientPortalAdministration-spec.js',
 //        // 'cypress/specs/12-clientPortalForms-spec.js',
 //        // 'cypress/specs/13-clientPortalChangePortfolio-spec.js',

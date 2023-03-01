@@ -154,12 +154,13 @@ export default class LoginPage extends BasePage {
     }*/
 
     click_ethics_section() {
-        const card = Cypress.env('accountNo')
-        cy.contains('.ant-card-body', card)
-            .should('exist')
-            .within(() => {
-                cy.get('[class="ant-btn css-86j49d ant-btn-default ant-btn-lg ant-btn-block"]').eq(1).click()
-            });
+        cy.task('loadData').then(accountNo => {
+            cy.contains(accountNo).parents('.ant-card-body')
+                .should('exist')
+                .within(() => {
+                    cy.get('[class="ant-btn css-86j49d ant-btn-default ant-btn-lg ant-btn-block"]').eq(1).click()
+                });
+        })
     }
 
     verify_links_on_home_page() {
@@ -303,20 +304,32 @@ export default class LoginPage extends BasePage {
     }
 
     verify_target_weight_total() {
-        const card = Cypress.env('accountNo')
-        cy.contains('.ant-card-body', card)
-            .should('exist')
-            .within(() => {
-                cy.get('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
-                    cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
-                        cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
-                            const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
-                            cy.log(targetWeight)
-                            expect(targetWeight).is.eq(100)
+        cy.task('loadData').then(accountNo => {
+            cy.contains(accountNo).parents('.ant-card-body')
+                .should('exist')
+                .within(() => {
+                    cy.get('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
+                        cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
+                            cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
+                                const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
+                                cy.log(targetWeight)
+                                expect(targetWeight).is.eq(100)
+                            })
                         })
                     })
                 })
-            })
+            return this;
+        })
+    }
+
+    click_change_portfolio_button() {
+        cy.task('loadData').then(accountNo => {
+            cy.contains(accountNo).parents('.ant-card-body')
+                .should('exist')
+                .within(() => {
+                    cy.contains('Change Portfolio').click()
+                });
+        })
         return this;
     }
 
@@ -529,8 +542,8 @@ export default class LoginPage extends BasePage {
     }
 
     compare_snapshots() {
-        canvasStrategic().compareSnapshot('canvas-element', {errorThreshold: 0.6} );
-        targetStrategicNucleusAssetMix().compareSnapshot('target-strategic-element', {errorThreshold: 0.6} );
+        canvasStrategic().compareSnapshot('canvas-element', {errorThreshold: 0.6});
+        targetStrategicNucleusAssetMix().compareSnapshot('target-strategic-element', {errorThreshold: 0.6});
         chart().compareSnapshot('pie-chart-element', {errorThreshold: 0.6});
         return this;
     }
@@ -541,15 +554,6 @@ export default class LoginPage extends BasePage {
         return this;
     }*/
 
-    click_change_portfolio_button() {
-        cy.task('loadData').then(accountNo => {
-        cy.contains(accountNo).parents('.ant-card-body')
-            .should('exist')
-            .within(() => {
-                cy.contains('Change Portfolio').click()
-            });
-        })
-    }
 
     verify_self_directed_icon_is_highlighted() {
         selfDirectedButton().should('have.class', 'ant-radio-button-wrapper-checked')
