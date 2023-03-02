@@ -73,6 +73,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     investmentTotalField = e => cy.get('#investment_total'),
     alertBYPpage = e => cy.get('[data-test="byp-alert"]'),
     pageTitle = e => cy.get('[data-test="onboarding-leftHeader-title"]', {timeout: 55000}),
+    pageTitle2 = e => cy.get('[data-test="clientPortal-ethicalOverlay-title"]', {timeout: 55000}),
     selectedMenuOption = e => cy.get('.ant-menu-item-selected'),
     applicantsTabSideMenu = e => cy.get('[data-test="navigation-Applicants-link"]'),
     climateChangeButton = e => cy.get(':nth-child(1) > .ant-radio-button-wrapper'),
@@ -748,6 +749,12 @@ class OnboardingPage extends BasePage {
         pageTitle().should('have.text', 'Ethical Overlay');
         this.verify_text(selectedMenuOption, 'Ethical Overlay')
         this.verify_text_is_present_on_main_container('Vices')
+        return this;
+    }
+    verify_ethical_overlay_page2() {
+        climateChangeButton().should('be.visible')
+        cy.url().should('include', 'ethical-overlay');
+        pageTitle2().should('have.text', 'Ethical Overlay');
         return this;
     }
 

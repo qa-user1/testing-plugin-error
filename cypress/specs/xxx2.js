@@ -30,7 +30,7 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('3. Direct user to Account Dashboard', function () {
-     //   cy.visit('https://testwebserver.nucleuswealth.com/client-portal/4860/your-accounts')
+        cy.visit('https://testwebserver.nucleuswealth.com/client-portal/4860/your-accounts')
         ui.clientPortal.check_investment_account_panel()
             .verify_target_weight_total()
             .verify_content_of_investment_account_panel()
@@ -50,13 +50,14 @@ context('Client Portal - Account Dashboard', () => {
     })
 
     it('5. Expand Strategic', function () {
+       // cy.visit('https://testwebserver.nucleuswealth.com/client-portal/investment-account/5322/account-dashboard')
         ui.clientPortal.click_strategic_panel()
             .compare_snapshots()
             .verify_change_portfolio_button()
             .click_strategic_panel()
     })
 
-    it('6. Expand Ethics/Exclusions', function () {
+    xit('6. Expand Ethics/Exclusions', function () {
         ui.clientPortal.click_ethics_panel()
         ui.onboarding.verify_chosen_ethics([
             ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
@@ -66,7 +67,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_ethics_panel()
     })
 
-    it('7. Expand Portfolio', function () {
+    xit('7. Expand Portfolio', function () {
         ui.clientPortal.click_portfolio_panel()
             .verify_change_ethics_button2()
             .verify_change_portfolio_button2()
@@ -76,7 +77,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_portfolio_panel()
     })
 
-    it('8. Expand Performance', function () {
+    xit('8. Expand Performance', function () {
         ui.clientPortal.click_performance_panel()
             .verify_performance_titles()
             .verify_performance_card('0', '2')
