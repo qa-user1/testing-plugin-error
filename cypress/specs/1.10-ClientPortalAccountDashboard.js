@@ -55,7 +55,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_strategic_panel()
     })
 
-    xit('6. Expand Ethics/Exclusions', function () {
+    it('6. Expand Ethics/Exclusions', function () {
         ui.clientPortal.click_ethics_panel()
         ui.onboarding.verify_chosen_ethics([
             ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
@@ -65,7 +65,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_ethics_panel()
     })
 
-    xit('7. Expand Portfolio', function () {
+    it('7. Expand Portfolio', function () {
         ui.clientPortal.click_portfolio_panel()
             .verify_change_ethics_button2()
             .verify_change_portfolio_button2()
@@ -75,7 +75,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_portfolio_panel()
     })
 
-    xit('8. Expand Performance', function () {
+    it('8. Expand Performance', function () {
         ui.clientPortal.click_performance_panel()
             .verify_performance_titles()
             .verify_performance_card('0', '2')
