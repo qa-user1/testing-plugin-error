@@ -8,7 +8,7 @@
     "e2e-test1": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/1.1-createIndividualAccount.js ",
     "e2e-test2": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/2-createPersonalSuperAccount-spec.js ",
     "e2e-test3": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/3-createSMSFaccount-spec.js ",
-    "e2e-test4": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config --browser chrome --spec cypress/specs/4-createJointAccount-spec.js ",
+    "e2e-test4": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/4-createJointAccount-spec.js ",
     "e2e-test5": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/5-createTrustAccount-spec.js ",
     "e2e-test6": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/6-createCompanyAccount-spec.js ",
     "e2e-test8": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/8-signUpNewUser-spec.js ",
@@ -46,7 +46,7 @@
     "update:snapshots": "cross-env CYPRESS_updateSnapshots=true npm run docker:run"
   },
   "dependencies": {
-    "cypress": "9.7.0",
+    "cypress": "10.4.0",
     "cypress-iframe": "^1.0.1",
     "cypress-promise": "^1.1.0",
     "cypress-webpack-preprocessor-v5": "^5.0.0-alpha.1",
