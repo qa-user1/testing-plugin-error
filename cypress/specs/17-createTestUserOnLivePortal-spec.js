@@ -96,7 +96,7 @@ context('Create Test User on Live Portal', () => {
     it('6. Create a new user for Macro business', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
-        }
+        }t
         S.baseUrl = 'https://mb.nucleuswealth.com/register'
         ui.login.open_base_url()
             .verify_sign_up_login_menu()
