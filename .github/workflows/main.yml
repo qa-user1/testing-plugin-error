@@ -10,7 +10,8 @@ on:
 jobs:
   Run-Cypress-Test1-10-13-14:
     name: Cypress Test 1-10-13-14
-    needs: [Run-Cypress-Test22]
+    if: success() || failure()
+    needs: [Run-Cypress-Test17]
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -131,7 +132,7 @@ jobs:
   Run-Cypress-Test11:
     name: Cypress Test 11
     if: success() || failure()
-    needs: [Run-Cypress-Test21]
+    needs: [Run-Cypress-Test18]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -198,7 +199,7 @@ jobs:
   Run-Cypress-Test17:
     name: Cypress Test 17
     if: success() || failure()
-    needs: [Run-Cypress-Test11]
+    needs: [Run-Cypress-Test21]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -252,7 +253,7 @@ jobs:
   Run-Cypress-Test22:
     name: Cypress Test 22
     if: success() || failure()
-    needs: [Run-Cypress-Test17]
+    needs: [Run-Cypress-Test15]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
