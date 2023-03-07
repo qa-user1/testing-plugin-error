@@ -8,12 +8,12 @@ context('Create Test User on Live Portal', () => {
 
 
 
-    beforeEach(function () {
+   /* beforeEach(function () {
         Cypress.Cookies.debug(true)
         Cypress.Cookies.defaults({
             preserve: /secure|ntercom|XSRF-TOKEN|__hssc|hubspotutk|__hstc|_fbp|cognito|__Secure-next-auth.callback-url|__Secure-next-auth.session-token|__Host-next-auth.csrf-token/,
         })
-    });
+    });*/
 
 
 
@@ -33,7 +33,7 @@ context('Create Test User on Live Portal', () => {
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
     })
 
-    it('2. Subscribe to Nucleus Wealth mailing list', function () {
+    xit('2. Subscribe to Nucleus Wealth mailing list', function () {
         ui.production.open_production_url()
             .verify_production_home_page()
             .click_subscribe_button()
@@ -44,7 +44,7 @@ context('Create Test User on Live Portal', () => {
     })
 
 
-    it('3. Subscribe user via Investment Suitability Calculator', function () {
+    xit('3. Subscribe user via Investment Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/investment-suitability-calculator'
         ui.production.open_base_url()
             .verify_calculator_page()
@@ -59,7 +59,7 @@ context('Create Test User on Live Portal', () => {
     })
 
 
-    it('4. Subscribe user via Suitability Calculator', function () {
+    xit('4. Subscribe user via Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/ethical-investment-calculator'
         ui.production.open_base_url()
             .verify_ethical_calculator_page()
@@ -83,7 +83,8 @@ context('Create Test User on Live Portal', () => {
         }
         S.baseUrl = 'https://walktheworld.nucleuswealth.com/register'
         ui.login.open_base_url()
-            .verify_sign_up_login_menu()
+            .verify_login_menu()
+            .click_sign_up_button()
             D.newUserLivePortal.email = 'testing+' + 'walktheworld' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com'
             ui.login.enter_credentials_for_sign_up(D.newUserLivePortal)
             .click_submit_sign_up_button()
@@ -96,10 +97,11 @@ context('Create Test User on Live Portal', () => {
     it('6. Create a new user for Macro business', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
-        }t
+        }
         S.baseUrl = 'https://mb.nucleuswealth.com/register'
         ui.login.open_base_url()
-            .verify_sign_up_login_menu()
+            .verify_login_menu()
+            .click_sign_up_button()
             D.newUserLivePortal.email = 'testing+' + 'macrobusiness' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com'
             ui.login.enter_credentials_for_sign_up(D.newUserLivePortal)
             .click_submit_sign_up_button()

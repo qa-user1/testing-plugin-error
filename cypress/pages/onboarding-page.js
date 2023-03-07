@@ -427,9 +427,11 @@ class OnboardingPage extends BasePage {
     }
 
     click_submit_applicant_button() {
+        this.pause(3)
         submitApplicantButton().should('be.visible');
-        // cy.contains('Submit Applicant').click().click();
-        submitApplicantButton().click().click();
+        this.pause(3)
+         cy.contains('Submit Applicant').click().click();
+       // submitApplicantButton().click().click();
         return this;
     }
 

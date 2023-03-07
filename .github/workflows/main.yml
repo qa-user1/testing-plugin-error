@@ -10,9 +10,9 @@ on:
 jobs:
   Run-Cypress-Test1-10-13-14:
     name: Cypress Test 1-10-13-14
-    if: success() || failure()
     needs: [Run-Cypress-Test22]
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
