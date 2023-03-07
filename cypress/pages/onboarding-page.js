@@ -608,9 +608,9 @@ class OnboardingPage extends BasePage {
     }
 
     click_Save_and_Continue_button() {
-        this.pause(2)
+        this.pause(3)
         this.scroll_and_click(saveContinueButton)
-        this.pause(1)
+        this.pause(2)
         return this;
     }
 
