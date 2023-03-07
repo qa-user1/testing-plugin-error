@@ -22,7 +22,7 @@ module.exports = defineConfig({
     cypressRunnerLocal: true,
   },
   retries: 0,
-  projectId: '4k7igv',
+  projectId: '6ccunw',
   e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
