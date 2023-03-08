@@ -24,9 +24,7 @@ context('Client Portal - Account Dashboard', () => {
         ui.clientPortal.verify_your_accounts_page()
     })
 
-    xit('2. Overall asset summary panel', function () {
-        ui.clientPortal.verify_overall_asset_summary_panel('0')
-    })
+
 
 
     it('3. Direct user to Account Dashboard', function () {
