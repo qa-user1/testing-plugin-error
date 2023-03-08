@@ -151,17 +151,17 @@ export default class LoginPage extends BasePage {
             } else {
                 for (let i = 0; i < 10; i++) {
                 //    cy.wait(500)
-                    mainContainer().invoke('text').then(function (text) {
+                    /*mainContainer().invoke('text').then(function (text) {
                         if (text.includes('Sign up with a new account')) {
                             i = 10
                             self.verify_sign_up_login_menu()
-                        }
+                        }*/
                         if (text.includes('Sign in with Cognito')) {
                             cy.contains('Sign in with Cognito').click()
                             self.verify_login_menu()
-                            cy.contains('Sign up').click()
+                            self.click_sign_up_button()
                         }
-                    });
+                   // });
                 }
             }
         });
