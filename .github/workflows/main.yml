@@ -29,6 +29,7 @@ jobs:
       - run: npm i
       - run: npm run clearGmail
       - run: npm run e2e-test1
+      - run: npm run e2e-test10
 
 
   Run-Cypress-Test10:
