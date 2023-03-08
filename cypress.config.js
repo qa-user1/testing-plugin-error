@@ -35,6 +35,6 @@ module.exports = defineConfig({
     experimentalSessionAndOrigin: true,
     cacheAcrossSpecs: true,
     cache: true,
-    testIsolation: false
+    testIsolation: "off"
   },
 })
