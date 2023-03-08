@@ -337,7 +337,8 @@ export default class LoginPage extends BasePage {
 
     verify_target_weight_total() {
         //cy.task('loadData').then(accountNo => {
-        cy.session('accountNo').then(accountNo => {
+        cy.session({ cache: true }, () => {
+            const accountNo = window.sessionStorage.getItem('accountNo');
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .within(() => {
