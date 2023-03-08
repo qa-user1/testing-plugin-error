@@ -14,7 +14,7 @@ module.exports = defineConfig({
   watchForFileChanges: false,
   chromeWebSecurity: false,
   screenshotOnRunFailure: true,
-  experimentalSessionAndOrigin: true,
+
   env: {
     allureResultsPath: 'report/allure-results',
     allure: true,
@@ -32,5 +32,6 @@ module.exports = defineConfig({
     },
     specPattern: './cypress/specs/**/*.{js,jsx,ts,tsx}',
     excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
+    experimentalSessionAndOrigin: true,
   },
 })
