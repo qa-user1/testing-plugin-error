@@ -33,6 +33,7 @@ jobs:
   Run-Cypress-Test10:
     name: Cypress Test 10
     if: success() || failure()
+    needs: [Run-Cypress-Test1]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -41,7 +42,7 @@ jobs:
       - run: npm run clearGmail
       - run: npm run e2e-test10
 
-  
+
 
 
 env:
