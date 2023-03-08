@@ -34,6 +34,7 @@ module.exports = defineConfig({
     excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
     experimentalSessionAndOrigin: true,
     cacheAcrossSpecs: true,
-    cache: true
+    cache: true,
+    testIsolation: false
   },
 })
