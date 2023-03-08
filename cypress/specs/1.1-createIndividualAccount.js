@@ -23,6 +23,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .redirect_user_to_the_create_a_new_account_page()
         cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5322/success')
         ui.onboarding.store_current_account_number()
+
     })
     it('1. Validate login credentials', function () {
 
