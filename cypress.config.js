@@ -14,6 +14,7 @@ module.exports = defineConfig({
   watchForFileChanges: false,
   chromeWebSecurity: false,
   screenshotOnRunFailure: true,
+  experimentalSessionAndOrigin: true,
   env: {
     allureResultsPath: 'report/allure-results',
     allure: true,
