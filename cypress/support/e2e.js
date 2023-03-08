@@ -18,6 +18,6 @@ import '@shelex/cypress-allure-plugin';
 import 'cypress-file-upload';
 import "cypress-localstorage-commands";
 import 'cypress-iframe';
-import 'cypress-session';
+
 
 
