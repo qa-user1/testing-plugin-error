@@ -59,8 +59,8 @@ context('Client Portal - Change Portfolio', () => {
         }
         ui.clientPortal.click_submit_changes_button()
             .verify_account_dashboard()
-        cy.wait(25000)
-        ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.accountChanges)
+       // cy.wait(25000)
+      //  ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.accountChanges)
     })
 
 

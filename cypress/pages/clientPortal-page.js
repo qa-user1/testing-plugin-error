@@ -336,9 +336,7 @@ export default class LoginPage extends BasePage {
      }*/
 
     verify_target_weight_total() {
-        //cy.task('loadData').then(accountNo => {
-        cy.session({ cache: false }, () => {
-            const accountNo = window.sessionStorage.getItem('accountNo');
+        cy.task('loadData').then(accountNo => {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .within(() => {
@@ -357,7 +355,7 @@ export default class LoginPage extends BasePage {
     }
 
     click_change_portfolio_button() {
-        /* cy.task('loadData').then(accountNo => {
+         cy.task('loadData').then(accountNo => {
              cy.contains(accountNo).parents('.ant-card-body')
                  .should('exist')
                  .within(() => {
@@ -365,17 +363,8 @@ export default class LoginPage extends BasePage {
                  });
          })
          return this;
-     }*/
-        cy.session({cache: false}, () => {
-            const accountNo = window.sessionStorage.getItem('accountNo');
-            cy.contains(accountNo).parents('.ant-card-body')
-                .should('exist')
-                .within(() => {
-                    cy.contains('Change Portfolio').click();
-                });
-        });
+     }
 
-    }
 
 
     click_view_account_details() {

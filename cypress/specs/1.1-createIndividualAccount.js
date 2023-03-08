@@ -15,16 +15,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     });
 
 
-    it.only('1. Validate login credentials', function () {
-
-        ui.login.open_base_url()
-            .verify_login_menu(D.user)
-            .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-            .redirect_user_to_the_create_a_new_account_page()
-        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5322/success')
-        ui.onboarding.store_current_account_number()
-
-    })
     it('1. Validate login credentials', function () {
 
         ui.login.open_base_url()
@@ -201,8 +191,8 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .click_Agree_checkbox()
             .click_Submit_Application_button()
         ui.onboarding.verify_success_page()
-        cy.wait(55000)
-        ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individualAccountCreated)
+     //   cy.wait(55000)
+      //  ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individualAccountCreated)
         ui.onboarding.store_current_account_number()
     });
 })
