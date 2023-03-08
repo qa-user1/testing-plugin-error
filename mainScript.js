@@ -14,7 +14,7 @@ if (fs.existsSync("report/allure-results")) {
 // cypress.run({
 //     spec: [
 //
-//         'cypress/specs/1-xxx-spec.js',
+//         'cypress/specs/1.*',
 //         // 'cypress/specs/2-createPersonalSuperAccount-spec.js',
 //         // 'cypress/specs/3-createSMSFaccount-spec.js',
 //         // 'cypress/specs/4-createJointAccount-spec.js',
