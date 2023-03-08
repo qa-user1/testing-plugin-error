@@ -358,7 +358,7 @@ export default class LoginPage extends BasePage {
 
     click_change_portfolio_button() {
          //cy.task('loadData').then(accountNo => {
-        cy.session({cache: true, cacheAcrossSpecs: true}, () => {
+        cy.session({cacheKey: 'accountNo', cacheAcrossSpecs: true}, () => {
             const accountNo = window.localStorage.getItem('accountNo');
              cy.contains(accountNo).parents('.ant-card-body')
                  .should('exist')

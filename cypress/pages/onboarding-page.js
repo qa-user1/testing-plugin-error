@@ -1295,11 +1295,10 @@ class OnboardingPage extends BasePage {
         individualAccountNumber().invoke('text').then(function (text) {
             const accountNo = text.match('Account (' + "(.*)" + ')')[1];
             cy.session(
-                { name: accountNo, cache: false },
+                { name: accountNo, cache: false, cacheKey: accountNo, cacheAcrossSpecs: true },
                 () => {
                     window.localStorage.setItem('accountNo', accountNo);
-                },
-                { cacheAcrossSpecs: true }
+                }
             );
         })
     }
