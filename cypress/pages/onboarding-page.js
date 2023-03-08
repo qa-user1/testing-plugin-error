@@ -1300,7 +1300,7 @@ class OnboardingPage extends BasePage {
                     window.localStorage.setItem('accountNo', accountNo);
                 }
             );
-        })
+        });
     }
 
 
