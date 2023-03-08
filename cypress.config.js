@@ -8,7 +8,7 @@ module.exports = defineConfig({
   taskTimeout: 150000,
   responseTimeout: 100000,
   pageLoadTimeout: 100000,
-  video: false,
+  video: true,
   viewportHeight: 900,
   viewportWidth: 1000,
   watchForFileChanges: false,
