@@ -336,9 +336,7 @@ export default class LoginPage extends BasePage {
      }*/
 
     verify_target_weight_total() {
-      //  cy.task('loadData').then(accountNo => {
-        cy.session({ cache: true }, () => {
-            const accountNo = window.localStorage.getItem('accountNo');
+        cy.task('loadData').then(accountNo => {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .within(() => {
@@ -357,9 +355,7 @@ export default class LoginPage extends BasePage {
     }
 
     click_change_portfolio_button() {
-         //cy.task('loadData').then(accountNo => {
-        cy.session({cache: true, cacheAcrossSpecs: true}, () => {
-            const accountNo = window.localStorage.getItem('accountNo');
+         cy.task('loadData').then(accountNo => {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .within(() => {
