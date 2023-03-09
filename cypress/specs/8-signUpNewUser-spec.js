@@ -37,8 +37,8 @@ context('Sign Up new user', () => {
                 .enter_credentials_for_sign_up(D.newUser)
                 .click_submit_sign_up_button()
         ui.onboarding.verify_account_selection()
-      //  cy.wait(45000)
-        //ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
+        cy.wait(45000)
+        ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
 
     })
 
