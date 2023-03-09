@@ -88,7 +88,8 @@ module.exports = defineConfig({
               host: 'imap.gmail.com',
               port: 993,
               tls: true,
-              authTimeout: 5000
+              authTimeout: 5000,
+              rejectUnauthorized: false
             }
           };
 

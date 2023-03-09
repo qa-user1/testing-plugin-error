@@ -6,26 +6,11 @@ const {currentDate} = require("../support/e2e-helper");
 
 context('Create Test User on Live Portal', () => {
 
-
-
     beforeEach(function () {
-        Cypress.Cookies.debug(true)
-        cy.preserveCookieOnce(
-            'secure',
-            'ntercom',
-            'XSRF-TOKEN',
-            '__hssc',
-            'hubspotutk',
-            '__hstc',
-            '_fbp',
-            'cognito',
-            '__Secure-next-auth.callback-url',
-            '__Secure-next-auth.session-token',
-            '__Host-next-auth.csrf-token',
-        )
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
     })
-
-
 
     it('1. Create a new user on Live Portal', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
@@ -48,11 +33,10 @@ context('Create Test User on Live Portal', () => {
             .verify_production_home_page()
             .click_subscribe_button()
             .verify_hubspot_form()
-            .enter_email_on_HS_form('testing+' + 'website' + currentDate  + '@nucleuswealth.com')
+            .enter_email_on_HS_form('testing+' + 'website' + currentDate + '@nucleuswealth.com')
             .click_subscribe()
             .verify_text_is_visible('Thanks for subscribing to email updates from nucleus wealth')
     })
-
 
     it('3. Subscribe user via Investment Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/investment-suitability-calculator'
@@ -63,11 +47,10 @@ context('Create Test User on Live Portal', () => {
             .click_OK_on_Calculator_wizard()
             .enter_Last_Name('testing')
             .click_OK_on_Calculator_wizard()
-             .enter_email_on_last_question('testing+' + 'suitabilitycalculator' + currentDate +  '@nucleuswealth.com')
-             .click_submit_on_Calculator_wizard()
+            .enter_email_on_last_question('testing+' + 'suitabilitycalculator' + currentDate + '@nucleuswealth.com')
+            .click_submit_on_Calculator_wizard()
             .verify_text_is_visible('Investment Suitability')
     })
-
 
     it('4. Subscribe user via Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/ethical-investment-calculator'
@@ -95,8 +78,8 @@ context('Create Test User on Live Portal', () => {
         ui.login.open_base_url()
             .verify_login_menu()
             .click_sign_up_button()
-            D.newUserLivePortal.email = 'testing+' + 'walktheworld' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com'
-            ui.login.enter_credentials_for_sign_up(D.newUserLivePortal)
+        D.newUserLivePortal.email = 'testing+' + 'walktheworld' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com'
+        ui.login.enter_credentials_for_sign_up(D.newUserLivePortal)
             .click_submit_sign_up_button()
         ui.onboarding.verify_account_selection()
         cy.wait(25000)
@@ -112,8 +95,8 @@ context('Create Test User on Live Portal', () => {
         ui.login.open_base_url()
             .verify_login_menu()
             .click_sign_up_button()
-            D.newUserLivePortal.email = 'testing+' + 'macrobusiness' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com'
-            ui.login.enter_credentials_for_sign_up(D.newUserLivePortal)
+        D.newUserLivePortal.email = 'testing+' + 'macrobusiness' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com'
+        ui.login.enter_credentials_for_sign_up(D.newUserLivePortal)
             .click_submit_sign_up_button()
         ui.onboarding.verify_account_selection()
         cy.wait(25000)

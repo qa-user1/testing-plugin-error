@@ -347,7 +347,7 @@ export default class BasePage {
 
     verify_email_and_save_values(emailAccount, propertyToSave1, valueBefore1, valueAfter1, propertyToSave2, valueBefore2, valueAfter2) {
 
-        cy.wait(15000);
+        cy.wait(5000);
         cy.task('fetchGmailUnseenMails', {
             username: emailAccount.email,
             password: emailAccount.password,
