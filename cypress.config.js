@@ -24,17 +24,35 @@ module.exports = defineConfig({
   },
   retries: 0,
   projectId: '4knqwa',
-  e2e: {
+  /*e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
       return require('./cypress/plugins/index.js')(on, config)
+    },*/
+
+    e2e: {
+    // We've imported your old cypress plugins here.
+    // You may want to clean this up later by importing these.
+    setupNodeEvents(on, config) {
+      on('task', {
+        saveData(x) {
+          console.log('accountNo', x)
+          data['accountNo'] = x
+          return null
+        },
+
+        loadData() {
+          console.log('returning accountNo', data.accountNo)
+          return data['accountNo'] || null
+        },
+      })
+      return config;
     },
     specPattern: './cypress/specs/**/*.{js,jsx,ts,tsx}',
     excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
-    experimentalSessionAndOrigin: true,
     cacheAcrossSpecs: true,
     cache: true,
-    testIsolation: "off"
+    testIsolation: false
   },
 })
