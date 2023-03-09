@@ -8,9 +8,20 @@ context('Test 2 Factor Login is working', () => {
 
     beforeEach(function () {
         Cypress.Cookies.debug(true)
-        Cypress.Cookies.defaults({
-            preserve: /secure|ntercom|XSRF-TOKEN|__hssc|hubspotutk|__hstc|_fbp|cognito|__Secure-next-auth.callback-url|__Secure-next-auth.session-token|__Host-next-auth.csrf-token/,
-        })
+        cy.preserveCookieOnce(
+            'secure',
+            'ntercom',
+            'XSRF-TOKEN',
+            '__hssc',
+            'hubspotutk',
+            '__hstc',
+            '_fbp',
+            'cognito',
+            '__Secure-next-auth.callback-url',
+            '__Secure-next-auth.session-token',
+            '__Host-next-auth.csrf-token',
+        )
+
         D.newUser.email = 'testing+mfa' + D.getNewRandomNumber() + '@nucleuswealth.com'
         D.newUser.password = 'Testing1234!'
         D.newUser.phoneNumber = '+16506632879'

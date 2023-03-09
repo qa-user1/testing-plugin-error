@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress')
+const getCompareSnapshotsPlugin = require("cypress-visual-regression/dist/plugin");
 
 module.exports = defineConfig({
   screenshotsFolder: './cypress/snapshots',
@@ -35,6 +36,8 @@ module.exports = defineConfig({
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
+      const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin');
+      getCompareSnapshotsPlugin(on, config);
       const data = {}
       on('task', {
         saveData(x) {

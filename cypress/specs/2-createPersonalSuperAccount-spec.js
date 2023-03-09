@@ -6,14 +6,29 @@ const d = D.scenarios[0]
 context('Log in to the Nucleus Wealth portal, create a Personal Super Account and complete the onboarding portal', () => {
 
 
-    beforeEach(function () {
+   /* beforeEach(function () {
         Cypress.Cookies.debug(true)
         Cypress.Cookies.defaults({
             preserve: /secure|ntercom|XSRF-TOKEN|__hssc|hubspotutk|__hstc|_fbp|cognito|__Secure-next-auth.callback-url|__Secure-next-auth.session-token|__Host-next-auth.csrf-token/,
         })
-    });
+    });*/
 
-
+     beforeEach(function () {
+         Cypress.Cookies.debug(true)
+         cy.preserveCookieOnce(
+             'secure',
+             'ntercom',
+             'XSRF-TOKEN',
+             '__hssc',
+             'hubspotutk',
+             '__hstc',
+             '_fbp',
+             'cognito',
+             '__Secure-next-auth.callback-url',
+             '__Secure-next-auth.session-token',
+             '__Host-next-auth.csrf-token',
+         )
+     })
 
     it('1. Validate login credentials', function () {
         ui.login.open_base_url()
@@ -24,7 +39,8 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
     })
 
     it('2. Create new Personal Super Account', function () {
-        ui.onboarding.click_create_new_investment_account()
+        ui.onboarding
+            .click_create_new_investment_account()
             .verify_types_of_investment_account()
             .click_super_type()
             .verify_super_subtypes()
