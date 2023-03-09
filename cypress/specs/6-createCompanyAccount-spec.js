@@ -69,6 +69,7 @@ context('Company Account', () => {
     })
 
     it('6. Review Review Page', function () {
+       // cy.visit('testwebserver.nucleuswealth.com/onboarding/5477/review')
         ui.onboarding
             .expand_ethical_overlay_panel()
             .verify_no_ethics_selected_message()
