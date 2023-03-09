@@ -26,7 +26,7 @@ context('Clear Gmail', () => {
 
 
 
-    xit('1. Clear Gmail', function () {
+    it('1. Clear Gmail', function () {
         ui.app.clear_gmail_inbox()
     })
 

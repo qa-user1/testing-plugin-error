@@ -141,8 +141,8 @@ module.exports = defineConfig({
     },
     specPattern: './cypress/specs/**/*.{js,jsx,ts,tsx}',
     excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
-    cacheAcrossSpecs: true,
-    cache: true,
+    cacheAcrossSpecs: false,
+    cache: false,
     testIsolation: false
   },
 })
