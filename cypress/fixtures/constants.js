@@ -74,7 +74,7 @@ C.emailTemplates = {
 
     signUpNewUser: {
         from: `Nucleus Wealth <contact@nucleuswealth.com>`,
-        subject: 'Test Email - Welcome to Nucleus Wealth',
+        subject: 'Test Emaill - Welcome to Nucleus Wealth',
         content: 'Thanks for registering with Nucleus Wealth.',
         attachments: [
             'Nucleus Wealth - Financial Services Guide.pdf',
