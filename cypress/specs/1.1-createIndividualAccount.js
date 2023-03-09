@@ -7,12 +7,12 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
 
 
 
-    beforeEach(function () {
+    /*beforeEach(function () {
         Cypress.Cookies.debug(true)
         Cypress.Cookies.defaults({
             preserve: /secure|ntercom|XSRF-TOKEN|__hssc|hubspotutk|__hstc|_fbp|cognito|__Secure-next-auth.callback-url|__Secure-next-auth.session-token|__Host-next-auth.csrf-token/,
         })
-    });
+    });*/
 
     it.only('1. Validate login credentials', function () {
 
