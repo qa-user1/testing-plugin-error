@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
   #    - run: npm run clearGmail
-      - run: npm run e2e-tests-8
+      - run: npm run e2e-test-8
 
   Run-Clear-Gmail:
     name: Clear Gmail
