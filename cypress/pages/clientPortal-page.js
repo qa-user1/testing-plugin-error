@@ -315,7 +315,7 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    /* verify_target_weight_total() {
+     verify_target_weight_total() {
          cy.task('loadData').then(accountNo => {
              cy.contains(accountNo).parents('.ant-card-body')
                  .should('exist')
@@ -333,7 +333,7 @@ export default class LoginPage extends BasePage {
              return this;
          })
          return this;
-     }*/
+     }
 
     /*verify_target_weight_total() {
         cy.task('loadData').then(accountNo => {
@@ -354,23 +354,7 @@ export default class LoginPage extends BasePage {
         return this;
     }*/
 
-    verify_target_weight_total() {
-        this.pause(5)
-        cy.task('loadData').then(accountNo => {
-            cy.get('.ant-card-body:contains(' + accountNo + ')')
-                .should('exist')
-                .find('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
-                return cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
-                    return cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
-                        const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
-                        cy.log(targetWeight);
-                        expect(targetWeight).to.eq(100);
-                    });
-                });
-            });
-        });
-        return this;
-    }
+
 
 
 
