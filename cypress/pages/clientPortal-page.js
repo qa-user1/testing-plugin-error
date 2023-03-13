@@ -360,10 +360,13 @@ export default class LoginPage extends BasePage {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .find('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
+                cy.log('cA:', cA);
                 return cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
+                    cy.log('cI:', cI);
                     return cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
+                        cy.log('gBr:', gBr);
                         const targetWeight = parseInt(cA.replace(/[^0-9]/g, '')) + parseInt(cI.replace(/[^0-9]/g, '')) + parseInt(gBr.replace(/[^0-9]/g, ''));
-                        cy.log(targetWeight);
+                        cy.log('targetWeight:', targetWeight);
                         expect(targetWeight).to.eq(100);
                     });
                 });
@@ -371,6 +374,7 @@ export default class LoginPage extends BasePage {
         });
 
         return this;
+
 
     }
 
