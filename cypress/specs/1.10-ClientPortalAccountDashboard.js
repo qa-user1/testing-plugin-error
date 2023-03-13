@@ -26,16 +26,41 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('1. Direct user to “Your Accounts” page', function () {
-        ui.login.open_base_url()
-            .verify_login_menu(D.user)
-        ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-        ui.clientPortal.click_your_accounts_link()
-            .verify_your_accounts_page()
-        ui.clientPortal.verify_your_accounts_page()
+        function runTest() {
+            ui.login.open_base_url()
+                .verify_login_menu(D.user)
+            ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+            ui.clientPortal.click_your_accounts_link()
+                .verify_your_accounts_page()
+            ui.clientPortal.verify_your_accounts_page()
+        }
+
+        function runTestWithRetry() {
+            runTest().catch((error) => {
+                if (error.message.includes('ECONNRESET')) {
+                    runTestWithRetry();
+                }
+            });
+        }
+
+        runTestWithRetry();
     })
 
+
     it('2. Overall asset summary panel', function () {
+        function runTest() {
         ui.clientPortal.verify_overall_asset_summary_panel('0')
+        }
+
+        function runTestWithRetry() {
+            runTest().catch((error) => {
+                if (error.message.includes('ECONNRESET')) {
+                    runTestWithRetry();
+                }
+            });
+        }
+
+        runTestWithRetry();
     })
 
 

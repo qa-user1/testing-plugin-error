@@ -430,8 +430,8 @@ class OnboardingPage extends BasePage {
         this.pause(3)
         submitApplicantButton().should('be.visible');
         this.pause(3)
-         cy.contains('Submit Applicant').click().click();
-       // submitApplicantButton().click().click();
+       //  cy.contains('Submit Applicant').click().click();
+        submitApplicantButton().click().click();
         return this;
     }
 

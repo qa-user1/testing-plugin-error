@@ -13,7 +13,7 @@ jobs:
     if: success() || failure()
     needs: [Run-Cypress-Test17]
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -278,7 +278,7 @@ jobs:
 
 env:
   #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-  CYPRESS_RECORD_KEY: a72a92d2-f84f-4c57-a807-ed2badaa0ba8
+  CYPRESS_RECORD_KEY: fbcb11db-f2de-4d9a-8e4d-f90d60d6902c
   BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
   AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}

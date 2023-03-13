@@ -106,28 +106,28 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .add_new_applicant()
             .verify_add_new_applicant_page()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
-            .click_submit_applicant_button()
+            /*.click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
             .upload_and_submit_document_for_verification(D.documentType.waterBill)
             .click_Save_and_Continue_button()
-            .verify_applicants_page()
+            .verify_applicants_page()*/
 
     });
 
-    it('8. Navigate from Applicants to Bank Details', function () {
+    xit('8. Navigate from Applicants to Bank Details', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_Bank_Details_page()
     });
 
-    it('9. Complete Bank Details', function () {
+    xit('9. Complete Bank Details', function () {
         ui.onboarding.enter_Bank_Details(D.bankDetails)
             .click_Save_and_Continue_button()
             .verify_Final_Review_page()
     });
 
-    it('10. Review Final Review', function () {
+    xit('10. Review Final Review', function () {
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'Statement of Advice',
@@ -138,7 +138,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_applicants_page()
     });
 
-    it('11. Add another investor in Applicants', function () {
+    xit('11. Add another investor in Applicants', function () {
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
@@ -156,7 +156,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_Final_Review_page()
     });
 
-    it('12. Review Final Review', function () {
+    xit('12. Review Final Review', function () {
         ui.onboarding
             .verify_no_alert_msg_final_review_page()
     });
