@@ -330,7 +330,6 @@ export default class LoginPage extends BasePage {
                          })
                      })
                  })
-             return this;
          })
          return this;
      }
