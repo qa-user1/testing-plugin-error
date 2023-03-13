@@ -362,7 +362,7 @@ export default class LoginPage extends BasePage {
                 .find('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
                 return cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
                     return cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
-                        const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
+                        const targetWeight = parseInt(cA.replace(/[^0-9]/g, '')) + parseInt(cI.replace(/[^0-9]/g, '')) + parseInt(gBr.replace(/[^0-9]/g, ''));
                         cy.log(targetWeight);
                         expect(targetWeight).to.eq(100);
                     });
@@ -371,6 +371,7 @@ export default class LoginPage extends BasePage {
         });
 
         return this;
+
     }
 
     click_change_portfolio_button() {
