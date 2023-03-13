@@ -22,7 +22,7 @@ context('Client Portal - Change Portfolio', () => {
     })
 
 
-    xit('1. Direct user to “Your Account(s)” page', function () {
+    it('1. Direct user to “Your Account(s)” page', function () {
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -32,13 +32,13 @@ context('Client Portal - Change Portfolio', () => {
         cy.saveLocalStorage()
     })
 
-    xit('2. Direct user to “Investment Choice”', function () {
+    it('2. Direct user to “Investment Choice”', function () {
         ui.clientPortal.click_change_portfolio_button()
         ui.onboarding.go_through_tour_steps(C.stepMessages)
         ui.clientPortal.verify_investment_choice_link()
     })
 
-    xit('3. Direct user to “Build Your Portfolio”', function () {
+    it('3. Direct user to “Build Your Portfolio”', function () {
         ui.onboarding.click_self_directed_button()
         ui.clientPortal.verify_self_directed_icon_is_highlighted()
         ui.onboarding.select_all_checkboxes(5)
@@ -46,14 +46,14 @@ context('Client Portal - Change Portfolio', () => {
 
     })
 
-    xit('4. Complete Build Your Portfolio', function () {
+    it('4. Complete Build Your Portfolio', function () {
         ui.clientPortal.verify_build_your_portfolio_link()
             .complete_build_your_portfolio()
         ui.onboarding.click_Save_and_Continue_button()
         ui.clientPortal.verify_final_review_link()
     })
 
-    xit('5. Check Final Review', function () {
+    it('5. Check Final Review', function () {
         ui.clientPortal.verify_final_review_page()
             .verify_download_button_for_documents(2)
         ui.onboarding.verify_Documents_available_for_download([
@@ -63,7 +63,7 @@ context('Client Portal - Change Portfolio', () => {
 
     })
 
-    xit('6. Submit Change', function () {
+    it('6. Submit Change', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }
