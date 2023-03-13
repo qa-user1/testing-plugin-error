@@ -25,7 +25,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
 
 
 
-    xit('1. Direct user to “Your Account(s)” page', function () {
+    it('1. Direct user to “Your Account(s)” page', function () {
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -34,17 +34,17 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .verify_your_accounts_page()
     })
 
-    xit('2. Direct user to “Ethical Overlay”', function () {
+    it('2. Direct user to “Ethical Overlay”', function () {
         ui.clientPortal.click_ethics_section()
             ui.onboarding.verify_ethical_overlay_page2()
     })
 
-    xit('3. Complete Ethical Overlay', function () {
+    it('3. Complete Ethical Overlay', function () {
         ui.clientPortal.check_or_uncheck_nuclear_power()
         ui.onboarding.click_Save_and_Continue_button()
     })
 
-    xit('4. Check Final Review', function () {
+    it('4. Check Final Review', function () {
         ui.clientPortal.verify_final_review_page()
             .expand_current_ethics()
             .expand_new_ethics()
@@ -58,7 +58,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
 
     })
 
-    xit('5. Submit Change', function () {
+    it('5. Submit Change', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }
