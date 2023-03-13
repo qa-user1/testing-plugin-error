@@ -356,7 +356,6 @@ export default class LoginPage extends BasePage {
 
 
     verify_target_weight_total() {
-        verify_target_weight_total() {
             this.pause(5)
             cy.task('loadData').then(accountNo => {
                 cy.contains(accountNo).parents('.ant-card-body')
