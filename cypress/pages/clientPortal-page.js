@@ -354,42 +354,30 @@ export default class LoginPage extends BasePage {
         return this;
     }*/
 
-
     verify_target_weight_total() {
-            this.pause(5)
-            cy.task('loadData').then(accountNo => {
-                cy.contains(accountNo).parents('.ant-card-body')
-                    .should('exist')
-                    .find('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
-                    cy.log('cA:', cA);
-                    return cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
-                        cy.log('cI:', cI);
-                        return cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
-                            cy.log('gBr:', gBr);
-                            const parsedCA = parseFloat(cA.replace(/[^0-9\.]/g, ''));
-                            const parsedCI = parseFloat(cI.replace(/[^0-9\.]/g, ''));
-                            const parsedGBr = parseFloat(gBr.replace(/[^0-9\.]/g, ''));
-                            if (isNaN(parsedCA) || isNaN(parsedCI) || isNaN(parsedGBr)) {
-                                throw new Error('Invalid data - cannot calculate target weight');
-                            }
-                            const targetWeight = parsedCA + parsedCI + parsedGBr;
-                            cy.log('targetWeight:', targetWeight);
-                            expect(targetWeight).to.eq(100);
-                        });
+        this.pause(5)
+        cy.task('loadData').then(accountNo => {
+            cy.get('.ant-card-body:contains(' + accountNo + ')')
+                .should('exist')
+                .find('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
+                return cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
+                    return cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
+                        const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
+                        cy.log(targetWeight);
+                        expect(targetWeight).to.eq(100);
                     });
-                })
-                    .catch(error => {
-                        // Handle any errors here
-                        cy.log(error);
-                        throw error;
-                    });
+                });
             });
+        });
+        return this;
+    }
 
-            return this;
-        }
 
 
-        click_change_portfolio_button() {
+
+
+
+    click_change_portfolio_button() {
          cy.task('loadData').then(accountNo => {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')

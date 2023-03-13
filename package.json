@@ -1,9 +1,9 @@
 {
   "name": "cypress-code-accelerator",
-  "author": "Amina Senderovic",
+  "author": "Amina Senderovic - Kanlic",
   "version": "1.0.0",
   "scripts": {
-    "e2e-tests-1-10-13-14": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false  --config screenshotsFolder=cypress/snapshots/actual/1.10-ClientPortalAccountDashboard.js --headed --browser chrome --spec cypress/specs/1.*",
+    "e2e-tests-1-10-13-14": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual/1.10-ClientPortalAccountDashboard.js --headed --browser chrome --spec cypress/specs/1.*",
     "e2e-tests": "cypress run --env type=actual failSilently=false onGithubActions=true  --config screenshotsFolder=cypress/snapshots/actual --headed --browser chrome --spec cypress/specs/15-2factorLogin** ",
     "e2e-test1": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/1.1-createIndividualAccount.js ",
     "e2e-test2": "cypress run --env type=actual failSilently=false onGithubActions=true cypressRunnerLocal=false --record --config screenshotsFolder=cypress/snapshots/actual --browser chrome --spec cypress/specs/2-createPersonalSuperAccount-spec.js ",
