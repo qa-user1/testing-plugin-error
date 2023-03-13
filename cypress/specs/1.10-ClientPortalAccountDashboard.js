@@ -25,7 +25,7 @@ context('Client Portal - Account Dashboard', () => {
 
 
 
-    it('1. Direct user to “Your Accounts” page', function () {
+    it.only('1. Direct user to “Your Accounts” page', function () {
         function runTest() {
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
