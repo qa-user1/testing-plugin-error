@@ -6,56 +6,29 @@ context('Client Portal - Account Dashboard', () => {
 
 
     beforeEach(function () {
-        Cypress.Cookies.debug(true)
-        cy.preserveCookieOnce(
-            'secure',
-            'ntercom',
-            'XSRF-TOKEN',
-            '__hssc',
-            'hubspotutk',
-            '__hstc',
-            '_fbp',
-            'cognito',
-            '__Secure-next-auth.callback-url',
-            '__Secure-next-auth.session-token',
-            '__Host-next-auth.csrf-token',
-        )
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
     })
 
 
-    it('1. Direct user to “Your Accounts” page', function () {
-        function runTest() {
-            return new Promise((resolve, reject) => {
-                ui.login.open_base_url()
-                    .verify_login_menu(D.user)
-                ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-                ui.clientPortal.click_your_accounts_link()
-                    .verify_your_accounts_page()
-                ui.clientPortal.verify_your_accounts_page()
-                cy.saveLocalStorage()
-                    .then(() => {
-                        resolve();
-                    })
-                /*.catch((error) => {
-                    reject(error);
-                });*/
-            });
-        }
-
-        function runTestWithRetry(retries = 3) {
-            if (retries <= 0) {
-                throw new Error('Maximum number of retries reached');
-            }
-            return runTest().catch((error) => {
+    it.only('1. Direct user to “Your Accounts” page', () => {
+        cy.log('Attempt #1')
+        ui.login.open_base_url()
+            .verify_login_menu(D.user)
+        ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+        ui.clientPortal.click_your_accounts_link()
+            .verify_your_accounts_page()
+        ui.clientPortal.verify_your_accounts_page()
+            .catch((error) => {
                 if (error.message.includes('ECONNRESET')) {
-                    return runTestWithRetry(retries - 1);
+                    cy.log('Retrying...')
+                    cy.wait(5000) // Wait for 5 seconds before retrying
+                    cy.retry()
                 } else {
-                    throw error;
+                    throw error
                 }
-            });
-        }
-
-        return runTestWithRetry();
+            })
     })
 
 
