@@ -26,25 +26,113 @@ context('Client Portal - Change Ethics/Exclusions', () => {
 
 
     it('1. Direct user to “Your Account(s)” page', function () {
-
+        function runTest() {
+            return new Promise((resolve, reject) => {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
         ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
         ui.clientPortal.click_your_accounts_link()
             .verify_your_accounts_page()
+                    cy.saveLocalStorage()
+                        .then(() => {
+                            resolve();
+                        })
+                    /*.catch((error) => {
+                        reject(error);
+                    });*/
+                }
+            )
+                ;
+        }
+
+        function runTestWithRetry(retries = 3) {
+            if (retries <= 0) {
+                throw new Error('Maximum number of retries reached');
+            }
+            return runTest().catch((error) => {
+                if (error.message.includes('ECONNRESET')) {
+                    return runTestWithRetry(retries - 1);
+                } else {
+                    throw error;
+                }
+            });
+        }
+
+        return runTestWithRetry();
     })
 
     it('2. Direct user to “Ethical Overlay”', function () {
+        function runTest() {
+            return new Promise((resolve, reject) => {
+
         ui.clientPortal.click_ethics_section()
             ui.onboarding.verify_ethical_overlay_page2()
+                    cy.saveLocalStorage()
+                        .then(() => {
+                            resolve();
+                        })
+                    /*.catch((error) => {
+                        reject(error);
+                    });*/
+                }
+            )
+                ;
+        }
+
+        function runTestWithRetry(retries = 3) {
+            if (retries <= 0) {
+                throw new Error('Maximum number of retries reached');
+            }
+            return runTest().catch((error) => {
+                if (error.message.includes('ECONNRESET')) {
+                    return runTestWithRetry(retries - 1);
+                } else {
+                    throw error;
+                }
+            });
+        }
+
+        return runTestWithRetry();
     })
 
     it('3. Complete Ethical Overlay', function () {
+        function runTest() {
+            return new Promise((resolve, reject) => {
+
         ui.clientPortal.check_or_uncheck_nuclear_power()
         ui.onboarding.click_Save_and_Continue_button()
+                    cy.saveLocalStorage()
+                        .then(() => {
+                            resolve();
+                        })
+                    /*.catch((error) => {
+                        reject(error);
+                    });*/
+                }
+            )
+                ;
+        }
+
+        function runTestWithRetry(retries = 3) {
+            if (retries <= 0) {
+                throw new Error('Maximum number of retries reached');
+            }
+            return runTest().catch((error) => {
+                if (error.message.includes('ECONNRESET')) {
+                    return runTestWithRetry(retries - 1);
+                } else {
+                    throw error;
+                }
+            });
+        }
+
+        return runTestWithRetry();
     })
 
     it('4. Check Final Review', function () {
+        function runTest() {
+            return new Promise((resolve, reject) => {
+
         ui.clientPortal.verify_final_review_page()
             .expand_current_ethics()
             .expand_new_ethics()
@@ -55,10 +143,38 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             'Record of Engagement',
             'Praemium SMA PDS and Investment Guide extract'
         ])
+                    cy.saveLocalStorage()
+                        .then(() => {
+                            resolve();
+                        })
+                    /*.catch((error) => {
+                        reject(error);
+                    });*/
+                }
+            )
+                ;
+        }
 
+        function runTestWithRetry(retries = 3) {
+            if (retries <= 0) {
+                throw new Error('Maximum number of retries reached');
+            }
+            return runTest().catch((error) => {
+                if (error.message.includes('ECONNRESET')) {
+                    return runTestWithRetry(retries - 1);
+                } else {
+                    throw error;
+                }
+            });
+        }
+
+        return runTestWithRetry();
     })
 
     it('5. Submit Change', function () {
+        function runTest() {
+            return new Promise((resolve, reject) => {
+
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }
@@ -66,7 +182,32 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .verify_account_dashboard()
       //  cy.wait(55000)
       //  ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.changeEthics)
+                    cy.saveLocalStorage()
+                        .then(() => {
+                            resolve();
+                        })
+                    /*.catch((error) => {
+                        reject(error);
+                    });*/
+                }
+            )
+                ;
+        }
 
+        function runTestWithRetry(retries = 3) {
+            if (retries <= 0) {
+                throw new Error('Maximum number of retries reached');
+            }
+            return runTest().catch((error) => {
+                if (error.message.includes('ECONNRESET')) {
+                    return runTestWithRetry(retries - 1);
+                } else {
+                    throw error;
+                }
+            });
+        }
+
+        return runTestWithRetry();
     })
 
 
