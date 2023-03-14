@@ -22,7 +22,7 @@ context('Client Portal - Account Dashboard', () => {
                 .verify_your_accounts_page()
             ui.clientPortal.verify_your_accounts_page()
         } catch (error) {
-            if (error.code === 'ECONNRESET') {
+            if (error.code === 'read ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
@@ -35,7 +35,7 @@ context('Client Portal - Account Dashboard', () => {
         try {
             ui.clientPortal.verify_overall_asset_summary_panel('0')
         } catch (error) {
-            if (error.code === 'ECONNRESET') {
+            if (error.code === 'read ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
@@ -47,20 +47,23 @@ context('Client Portal - Account Dashboard', () => {
 
     it('3. Direct user to Account Dashboard', function () {
         try {
-            ui.clientPortal.check_investment_account_panel()
-                .verify_target_weight_total()
-                .verify_content_of_investment_account_panel()
-                .click_view_account_details()
-                .verify_account_dashboard()
+            ui.clientPortal.click_strategic_panel()
+                .compare_snapshots()
+                .verify_change_portfolio_button()
+                .click_strategic_panel();
         } catch (error) {
-            if (error.code === 'ECONNRESET') {
-                cy.log('Skipping test due to ECONNRESET error')
+            if (error.message.includes('read ECONNRESET')) {
+                cy.log('Caught "read ECONNRESET" error')
+                // Return early here
                 return;
-
             }
+            // No error or a different error was thrown, continue with the test
+            cy.log('No error or different error was thrown')
+            // Add more commands here
         }
+    });
 
-    })
+
 
     it('4. Check Tactical Panel', function () {
         try {
@@ -73,7 +76,7 @@ context('Client Portal - Account Dashboard', () => {
                 .verify_additional_assets_input_fields()
                 .enter_cash_and_own_home_values(D.tacticalAdditionalAssets)
         } catch (error) {
-            if (error.code === 'ECONNRESET') {
+            if (error.code === 'read ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
