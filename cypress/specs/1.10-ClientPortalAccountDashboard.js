@@ -59,7 +59,7 @@ context('Client Portal - Account Dashboard', () => {
                 }
             });
         }
-
+        return runTestWithRetry();
     })
 
 
