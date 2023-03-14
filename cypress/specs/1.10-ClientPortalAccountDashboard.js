@@ -12,7 +12,7 @@ context('Client Portal - Account Dashboard', () => {
     })
 
 
-    it.only('1. Direct user to “Your Accounts” page', () => {
+    it('1. Direct user to “Your Accounts” page', () => {
         if (Cypress.env('skipError')) {
             cy.log('Skipping test due to error in config file')
             return;
@@ -78,8 +78,10 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('6. Expand Ethics/Exclusions', function () {
-        function runTest() {
-            return new Promise((resolve, reject) => {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
                 ui.clientPortal.click_ethics_panel()
                 ui.onboarding.verify_chosen_ethics([
                     ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
@@ -87,35 +89,13 @@ context('Client Portal - Account Dashboard', () => {
                 ])
                 ui.clientPortal.verify_change_ethics_button()
                     .click_ethics_panel()
-                cy.saveLocalStorage()
-                    .then(() => {
-                        resolve();
-                    })
-                /*.catch((error) => {
-                    reject(error);
-                });*/
-            });
-        }
-
-        function runTestWithRetry(retries = 3) {
-            if (retries <= 0) {
-                throw new Error('Maximum number of retries reached');
-            }
-            return runTest().catch((error) => {
-                if (error.message.includes('ECONNRESET')) {
-                    return runTestWithRetry(retries - 1);
-                } else {
-                    throw error;
-                }
-            });
-        }
-
-        return runTestWithRetry();
     })
 
     it('7. Expand Portfolio', function () {
-        function runTest() {
-            return new Promise((resolve, reject) => {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
                 ui.clientPortal.click_portfolio_panel()
                     .verify_change_ethics_button2()
                     .verify_change_portfolio_button2()
@@ -123,68 +103,21 @@ context('Client Portal - Account Dashboard', () => {
                     .verify_security_holdings()
                     .verify_security_column()
                     .click_portfolio_panel()
-                cy.saveLocalStorage()
-                    .then(() => {
-                        resolve();
-                    })
-                /*.catch((error) => {
-                    reject(error);
-                });*/
-            });
-        }
 
-        function runTestWithRetry(retries = 3) {
-            if (retries <= 0) {
-                throw new Error('Maximum number of retries reached');
-            }
-            return runTest().catch((error) => {
-                if (error.message.includes('ECONNRESET')) {
-                    return runTestWithRetry(retries - 1);
-                } else {
-                    throw error;
-                }
-            });
-        }
-
-        return runTestWithRetry();
     })
 
     it('8. Expand Performance', function () {
-        function runTest() {
-            return new Promise((resolve, reject) => {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
             ui.clientPortal.click_performance_panel()
                 .verify_performance_titles()
                 .verify_performance_card('0', '2')
                 .verify_performance_card('1', '3')
                 .verify_performance_card('2', '4')
                 .verify_performance_card('3', '5')
-            cy.saveLocalStorage()
-                .then(() => {
-                    resolve();
-                })
-            /*.catch((error) => {
-                reject(error);
-            });*/
-        }
 
-    )
-        ;
-    }
-
-    function runTestWithRetry(retries = 3) {
-        if (retries <= 0) {
-            throw new Error('Maximum number of retries reached');
-        }
-        return runTest().catch((error) => {
-            if (error.message.includes('ECONNRESET')) {
-                return runTestWithRetry(retries - 1);
-            } else {
-                throw error;
-            }
-        });
-    }
-
-    return runTestWithRetry();
 })
 
 })
