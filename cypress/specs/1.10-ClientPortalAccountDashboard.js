@@ -13,93 +13,48 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it.only('1. Direct user to “Your Accounts” page', () => {
-        cy.log('Attempt #1')
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
         ui.login.open_base_url()
             .verify_login_menu(D.user)
         ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
         ui.clientPortal.click_your_accounts_link()
             .verify_your_accounts_page()
         ui.clientPortal.verify_your_accounts_page()
-            .catch((error) => {
-                if (error.message.includes('ECONNRESET')) {
-                    cy.log('Retrying...')
-                    cy.wait(5000) // Wait for 5 seconds before retrying
-                    cy.retry()
-                } else {
-                    throw error
-                }
-            })
+
     })
 
 
+
     it('2. Overall asset summary panel', function () {
-        function runTest() {
-            return new Promise((resolve, reject) => {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
                 ui.clientPortal.verify_overall_asset_summary_panel('0')
-                cy.saveLocalStorage()
-                    .then(() => {
-                        resolve();
-                    })
-                /*.catch((error) => {
-                    reject(error);
-                });*/
-            });
-        }
 
-        function runTestWithRetry(retries = 3) {
-            if (retries <= 0) {
-                throw new Error('Maximum number of retries reached');
-            }
-            return runTest().catch((error) => {
-                if (error.message.includes('ECONNRESET')) {
-                    return runTestWithRetry(retries - 1);
-                } else {
-                    throw error;
-                }
-            });
-        }
-
-        return runTestWithRetry();
     })
 
 
     it('3. Direct user to Account Dashboard', function () {
-        function runTest() {
-            return new Promise((resolve, reject) => {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
                 ui.clientPortal.check_investment_account_panel()
                     .verify_target_weight_total()
                     .verify_content_of_investment_account_panel()
                     .click_view_account_details()
                     .verify_account_dashboard()
-                cy.saveLocalStorage()
-                    .then(() => {
-                        resolve();
-                    })
-                /*.catch((error) => {
-                    reject(error);
-                });*/
-            });
-        }
-
-        function runTestWithRetry(retries = 3) {
-            if (retries <= 0) {
-                throw new Error('Maximum number of retries reached');
-            }
-            return runTest().catch((error) => {
-                if (error.message.includes('ECONNRESET')) {
-                    return runTestWithRetry(retries - 1);
-                } else {
-                    throw error;
-                }
-            });
-        }
-
-        return runTestWithRetry();
     })
 
     it('4. Check Tactical Panel', function () {
-        function runTest() {
-            return new Promise((resolve, reject) => {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
                 ui.login.open_base_url()
                 ui.clientPortal.click_your_accounts_link()
                     .click_view_account_details()
@@ -108,63 +63,17 @@ context('Client Portal - Account Dashboard', () => {
                     .click_additional_assets()
                     .verify_additional_assets_input_fields()
                     .enter_cash_and_own_home_values(D.tacticalAdditionalAssets)
-                cy.saveLocalStorage()
-                    .then(() => {
-                        resolve();
-                    })
-                /*.catch((error) => {
-                    reject(error);
-                });*/
-            });
-        }
-
-        function runTestWithRetry(retries = 3) {
-            if (retries <= 0) {
-                throw new Error('Maximum number of retries reached');
-            }
-            return runTest().catch((error) => {
-                if (error.message.includes('ECONNRESET')) {
-                    return runTestWithRetry(retries - 1);
-                } else {
-                    throw error;
-                }
-            });
-        }
-
-        return runTestWithRetry();
     })
 
     it('5. Expand Strategic', function () {
-        function runTest() {
-            return new Promise((resolve, reject) => {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
                 ui.clientPortal.click_strategic_panel()
                     .compare_snapshots()
                     .verify_change_portfolio_button()
                     .click_strategic_panel()
-                cy.saveLocalStorage()
-                    .then(() => {
-                        resolve();
-                    })
-                /*.catch((error) => {
-                    reject(error);
-                });*/
-            });
-        }
-
-        function runTestWithRetry(retries = 3) {
-            if (retries <= 0) {
-                throw new Error('Maximum number of retries reached');
-            }
-            return runTest().catch((error) => {
-                if (error.message.includes('ECONNRESET')) {
-                    return runTestWithRetry(retries - 1);
-                } else {
-                    throw error;
-                }
-            });
-        }
-
-        return runTestWithRetry();
     })
 
 

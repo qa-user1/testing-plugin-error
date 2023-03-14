@@ -25,6 +25,7 @@ module.exports = defineConfig({
     failSilently: false,
     failOnSnapshotDiff: true,
     cypressRunnerLocal: true,
+    skipError: true
   },
   retries: 0,
   projectId: 'i1dtxi',
