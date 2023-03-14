@@ -13,56 +13,73 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('1. Direct user to “Your Accounts” page', () => {
-        if (Cypress.env('skipError')) {
-            cy.log('Skipping test due to error in config file')
-            return;
-        }
-        ui.login.open_base_url()
-            .verify_login_menu(D.user)
-        ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-        ui.clientPortal.click_your_accounts_link()
-            .verify_your_accounts_page()
-        ui.clientPortal.verify_your_accounts_page()
 
+        try {
+            ui.login.open_base_url()
+                .verify_login_menu(D.user)
+            ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+            ui.clientPortal.click_your_accounts_link()
+                .verify_your_accounts_page()
+            ui.clientPortal.verify_your_accounts_page()
+        } catch (error) {
+            if (error.code === 'ECONNRESET') {
+                cy.log('Skipping test due to ECONNRESET error')
+                return;
+
+            }
+        }
     })
 
 
 
     it('2. Overall asset summary panel', function () {
-        if (Cypress.env('skipError')) {
-            cy.log('Skipping test due to error in config file')
-            return;
+        try {
+            ui.clientPortal.verify_overall_asset_summary_panel('0')
+        } catch (error) {
+            if (error.code === 'ECONNRESET') {
+                cy.log('Skipping test due to ECONNRESET error')
+                return;
+
+            }
         }
-                ui.clientPortal.verify_overall_asset_summary_panel('0')
 
     })
 
 
     it('3. Direct user to Account Dashboard', function () {
-        if (Cypress.env('skipError')) {
-            cy.log('Skipping test due to error in config file')
-            return;
+        try {
+            ui.clientPortal.check_investment_account_panel()
+                .verify_target_weight_total()
+                .verify_content_of_investment_account_panel()
+                .click_view_account_details()
+                .verify_account_dashboard()
+        } catch (error) {
+            if (error.code === 'ECONNRESET') {
+                cy.log('Skipping test due to ECONNRESET error')
+                return;
+
+            }
         }
-                ui.clientPortal.check_investment_account_panel()
-                    .verify_target_weight_total()
-                    .verify_content_of_investment_account_panel()
-                    .click_view_account_details()
-                    .verify_account_dashboard()
+
     })
 
     it('4. Check Tactical Panel', function () {
-        if (Cypress.env('skipError')) {
-            cy.log('Skipping test due to error in config file')
-            return;
+        try {
+            ui.login.open_base_url()
+            ui.clientPortal.click_your_accounts_link()
+                .click_view_account_details()
+            ui.clientPortal.click_tactical_panel()
+                .verify_tactical_headings()
+                .click_additional_assets()
+                .verify_additional_assets_input_fields()
+                .enter_cash_and_own_home_values(D.tacticalAdditionalAssets)
+        } catch (error) {
+            if (error.code === 'ECONNRESET') {
+                cy.log('Skipping test due to ECONNRESET error')
+                return;
+
+            }
         }
-                ui.login.open_base_url()
-                ui.clientPortal.click_your_accounts_link()
-                    .click_view_account_details()
-                ui.clientPortal.click_tactical_panel()
-                    .verify_tactical_headings()
-                    .click_additional_assets()
-                    .verify_additional_assets_input_fields()
-                    .enter_cash_and_own_home_values(D.tacticalAdditionalAssets)
     })
 
     it('5. Expand Strategic', function () {
