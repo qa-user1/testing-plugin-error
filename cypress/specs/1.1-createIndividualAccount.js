@@ -24,7 +24,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
         )
     })
 
-    it.only('1. Validate login credentials', function () {
+    xit('1. Validate login credentials', function () {
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)

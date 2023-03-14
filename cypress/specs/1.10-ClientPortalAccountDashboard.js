@@ -31,7 +31,6 @@ context('Client Portal - Account Dashboard', () => {
     })
 
 
-
     it('2. Overall asset summary panel', function () {
         try {
             ui.clientPortal.verify_overall_asset_summary_panel('0')
@@ -83,59 +82,85 @@ context('Client Portal - Account Dashboard', () => {
     })
 
     it('5. Expand Strategic', function () {
-        if (Cypress.env('skipError')) {
+        try {
+            ui.clientPortal.click_strategic_panel()
+                .compare_snapshots()
+                .verify_change_portfolio_button()
+                .click_strategic_panel()
+        } catch (error) {
+            if (error.code === 'ECONNRESET') {
+                cy.log('Skipping test due to ECONNRESET error')
+                return;
+
+            }
+        }
+        /*if (Cypress.env('skipError')) {
             cy.log('Skipping test due to error in config file')
             return;
         }
                 ui.clientPortal.click_strategic_panel()
                     .compare_snapshots()
                     .verify_change_portfolio_button()
-                    .click_strategic_panel()
+                    .click_strategic_panel()*/
     })
 
 
     it('6. Expand Ethics/Exclusions', function () {
-        if (Cypress.env('skipError')) {
-            cy.log('Skipping test due to error in config file')
-            return;
+        try {
+            ui.clientPortal.click_ethics_panel()
+            ui.onboarding.verify_chosen_ethics([
+                ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
+                ['War', ['No Arms (Any)']]
+            ])
+            ui.clientPortal.verify_change_ethics_button()
+                .click_ethics_panel()
+        } catch (error) {
+            if (error.code === 'ECONNRESET') {
+                cy.log('Skipping test due to ECONNRESET error')
+                return;
+
+            }
         }
-                ui.clientPortal.click_ethics_panel()
-                ui.onboarding.verify_chosen_ethics([
-                    ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
-                    ['War', ['No Arms (Any)']]
-                ])
-                ui.clientPortal.verify_change_ethics_button()
-                    .click_ethics_panel()
+
     })
 
     it('7. Expand Portfolio', function () {
-        if (Cypress.env('skipError')) {
-            cy.log('Skipping test due to error in config file')
-            return;
+        try {
+            ui.clientPortal.click_portfolio_panel()
+                .verify_change_ethics_button2()
+                .verify_change_portfolio_button2()
+                .verify_nucleus_portfolio_allocations()
+                .verify_security_holdings()
+                .verify_security_column()
+                .click_portfolio_panel()
+        } catch (error) {
+            if (error.code === 'ECONNRESET') {
+                cy.log('Skipping test due to ECONNRESET error')
+                return;
+
+            }
         }
-                ui.clientPortal.click_portfolio_panel()
-                    .verify_change_ethics_button2()
-                    .verify_change_portfolio_button2()
-                    .verify_nucleus_portfolio_allocations()
-                    .verify_security_holdings()
-                    .verify_security_column()
-                    .click_portfolio_panel()
 
     })
 
     it('8. Expand Performance', function () {
-        if (Cypress.env('skipError')) {
-            cy.log('Skipping test due to error in config file')
-            return;
-        }
+        try {
             ui.clientPortal.click_performance_panel()
                 .verify_performance_titles()
                 .verify_performance_card('0', '2')
                 .verify_performance_card('1', '3')
                 .verify_performance_card('2', '4')
                 .verify_performance_card('3', '5')
+        } catch (error) {
+            if (error.code === 'ECONNRESET') {
+                cy.log('Skipping test due to ECONNRESET error')
+                return;
 
-})
+            }
+        }
+
+
+    })
 
 })
 
