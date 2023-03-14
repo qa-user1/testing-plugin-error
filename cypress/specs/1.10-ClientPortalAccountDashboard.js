@@ -27,12 +27,22 @@ context('Client Portal - Account Dashboard', () => {
 
     it.only('1. Direct user to “Your Accounts” page', function () {
         function runTest() {
-            ui.login.open_base_url()
-                .verify_login_menu(D.user)
-            ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-            ui.clientPortal.click_your_accounts_link()
-                .verify_your_accounts_page()
-            ui.clientPortal.verify_your_accounts_page()
+            return new Promise((resolve,reject) => {
+                ui.login.open_base_url()
+                    .verify_login_menu(D.user)
+                ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+                ui.clientPortal.click_your_accounts_link()
+                    .verify_your_accounts_page()
+                ui.clientPortal.verify_your_accounts_page()
+                cy.saveLocalStorage()
+                    .then(() => {
+                        resolve();
+                    })
+                    .catche((error) => {
+                        reject(error);
+                    })
+            })
+
         }
 
         function runTestWithRetry() {
@@ -40,10 +50,11 @@ context('Client Portal - Account Dashboard', () => {
                 if (error.message.includes('ECONNRESET')) {
                     runTestWithRetry();
                 }
+                throw error;
             });
         }
 
-        runTestWithRetry();
+        return runTestWithRetry();
     })
 
 
