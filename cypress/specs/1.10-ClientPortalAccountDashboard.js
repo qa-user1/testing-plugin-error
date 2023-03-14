@@ -38,7 +38,7 @@ context('Client Portal - Account Dashboard', () => {
                     .then(() => {
                         resolve();
                     })
-                    .catche((error) => {
+                    .catch((error) => {
                         reject(error);
                     })
             })
