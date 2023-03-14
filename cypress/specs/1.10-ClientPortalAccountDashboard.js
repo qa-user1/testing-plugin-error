@@ -38,23 +38,28 @@ context('Client Portal - Account Dashboard', () => {
                     .then(() => {
                         resolve();
                     })
-                    .catch((error) => {
+                    /*.catch((error) => {
                         reject(error);
-                    })
-            })
+                    });*/
+            });
 
         }
 
-        function runTestWithRetry() {
-            runTest().catch((error) => {
+
+
+        function runTestWithRetry(retries = 3) {
+            if (retries <= 0) {
+                throw new Error('Maximum number of retries reached');
+            }
+            return runTest().catch((error) => {
                 if (error.message.includes('ECONNRESET')) {
-                    runTestWithRetry();
+                    return runTestWithRetry(retries - 1);
+                } else {
+                    throw error;
                 }
-                throw error;
             });
         }
 
-        return runTestWithRetry();
     })
 
 
