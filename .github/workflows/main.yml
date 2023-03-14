@@ -30,7 +30,7 @@ jobs:
       - run: npm i
       - run: npm run clearGmail
 
-  
+
 env:
   #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
   CYPRESS_RECORD_KEY: fbcb11db-f2de-4d9a-8e4d-f90d60d6902c
