@@ -32,16 +32,15 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
             ui.clientPortal.click_your_accounts_link()
                 .verify_your_accounts_page()
-
         } catch (error) {
-            if (error.code === 'ECONNRESET') {
+            if (error.code === 'read ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
             }
         }
-
     })
+
 
 
     it('2. Direct user to “Ethical Overlay”', function () {
@@ -50,13 +49,12 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             ui.onboarding.verify_ethical_overlay_page2()
 
         } catch (error) {
-            if (error.code === 'ECONNRESET') {
+            if (error.code === 'read ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
             }
         }
-
     })
 
 

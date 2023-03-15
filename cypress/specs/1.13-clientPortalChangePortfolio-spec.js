@@ -30,14 +30,14 @@ context('Client Portal - Change Portfolio', () => {
             ui.clientPortal.click_your_accounts_link()
                 .verify_your_accounts_page()
         } catch (error) {
-            if (error.code === 'ECONNRESET') {
+            if (error.code === 'read ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
             }
         }
-
     })
+
 
 
     it('2. Direct user to “Investment Choice”', function () {
@@ -46,14 +46,14 @@ context('Client Portal - Change Portfolio', () => {
             ui.onboarding.go_through_tour_steps(C.stepMessages)
             ui.clientPortal.verify_investment_choice_link()
         } catch (error) {
-            if (error.code === 'ECONNRESET') {
+            if (error.code === 'read ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
             }
         }
-
     })
+
 
 
 
