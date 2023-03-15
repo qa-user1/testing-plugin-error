@@ -33,7 +33,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             ui.clientPortal.click_your_accounts_link()
                 .verify_your_accounts_page()
         } catch (error) {
-            if (error.code === 'read ECONNRESET') {
+            if (error.code === 'ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
@@ -49,7 +49,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             ui.onboarding.verify_ethical_overlay_page2()
 
         } catch (error) {
-            if (error.code === 'read ECONNRESET') {
+            if (error.code === 'ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 

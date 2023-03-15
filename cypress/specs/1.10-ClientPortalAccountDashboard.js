@@ -22,7 +22,7 @@ context('Client Portal - Account Dashboard', () => {
                 .verify_your_accounts_page()
             ui.clientPortal.verify_your_accounts_page()
         } catch (error) {
-            if (error.code === 'read ECONNRESET') {
+            if (error.code === 'ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
@@ -35,7 +35,7 @@ context('Client Portal - Account Dashboard', () => {
         try {
             ui.clientPortal.verify_overall_asset_summary_panel('0')
         } catch (error) {
-            if (error.code === 'read ECONNRESET') {
+            if (error.code === 'ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
 
