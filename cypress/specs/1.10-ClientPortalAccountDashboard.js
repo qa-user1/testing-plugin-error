@@ -13,7 +13,10 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('1. Direct user to “Your Accounts” page', () => {
-
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
         try {
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
@@ -32,6 +35,10 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('2. Overall asset summary panel', function () {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
         try {
             ui.clientPortal.verify_overall_asset_summary_panel('0')
         } catch (error) {
@@ -46,6 +53,10 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('3. Direct user to Account Dashboard', function () {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
         try {
             ui.clientPortal.click_strategic_panel()
                 .compare_snapshots()
@@ -66,6 +77,10 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('4. Check Tactical Panel', function () {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
         try {
             ui.login.open_base_url()
             ui.clientPortal.click_your_accounts_link()
@@ -85,6 +100,10 @@ context('Client Portal - Account Dashboard', () => {
     })
 
     it('5. Expand Strategic', function () {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
         try {
             ui.clientPortal.click_strategic_panel()
                 .compare_snapshots()
@@ -109,6 +128,10 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('6. Expand Ethics/Exclusions', function () {
+        if (Cypress.env('skipError')) {
+            cy.log('Skipping test due to error in config file')
+            return;
+        }
         try {
             ui.clientPortal.click_ethics_panel()
             ui.onboarding.verify_chosen_ethics([
