@@ -58,10 +58,11 @@ context('Client Portal - Account Dashboard', () => {
             return;
         }
         try {
-            ui.clientPortal.click_strategic_panel()
-                .compare_snapshots()
-                .verify_change_portfolio_button()
-                .click_strategic_panel();
+            ui.clientPortal.check_investment_account_panel()
+                .verify_target_weight_total()
+                .verify_content_of_investment_account_panel()
+                .click_view_account_details()
+                .verify_account_dashboard()
         } catch (error) {
             if (error.message.includes('read ECONNRESET')) {
                 cy.log('Caught "read ECONNRESET" error')
