@@ -18,8 +18,7 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run clearGmail
-      - run: npm run e2e-tests-1-10-13-14 || npm run e2e-tests-1-10-13-14 || npm run e2e-tests-1-10-13-14
-
+      - run: npm run e2e-tests-1-10-13-14 || ( [[ "${?}" -eq 1 ]] && grep -q "ECONNRESET" "${GITHUB_WORKSPACE}/logs/test.log" && npm run e2e-tests-1-10-13-14 || exit "${?}" )
   Run-Clear-Gmail:
     name: Clear Gmail
     if: success() || failure()
@@ -29,6 +28,13 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run clearGmail
+
+  Create-log-directory:
+    name: Create logs directory
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+      - run: mkdir $GITHUB_WORKSPACE/logs
 
 
 env:

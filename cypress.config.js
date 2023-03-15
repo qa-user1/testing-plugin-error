@@ -18,6 +18,7 @@ module.exports = defineConfig({
   watchForFileChanges: false,
   chromeWebSecurity: false,
   screenshotOnRunFailure: true,
+  logFile: "${workspaceFolder}/logs/test.log",
 
   env: {
     allureResultsPath: 'report/allure-results',
@@ -145,6 +146,7 @@ module.exports = defineConfig({
     excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
     cacheAcrossSpecs: false,
     cache: false,
-    testIsolation: false
+    testIsolation: false,
+
   },
 })
