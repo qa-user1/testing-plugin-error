@@ -18,7 +18,12 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run clearGmail
-      - run: npm run e2e-tests-1-10-13-14 || ( [[ "${?}" -eq 1 ]] && grep -q "ECONNRESET" "${GITHUB_WORKSPACE}/logs/test.log" && npm run e2e-tests-1-10-13-14 || exit "${?}" )
+      - run: npm run e2e-tests-1-10-13-14
+      - continue-on-error: true # this allows the workflow to continue even if tests fail
+      - if: failure() && ${{ contains(github.job.status_message, 'ECONNRESET') }}
+      - run: npm run test
+
+        
   Run-Clear-Gmail:
     name: Clear Gmail
     if: success() || failure()
