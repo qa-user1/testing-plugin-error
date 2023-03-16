@@ -24,8 +24,8 @@ context('Client Portal - Account Dashboard', () => {
             cy.log('ACCOUNT NUMBER ' + text)
             accountNo = text.match('Account (' + "(.*)" + ')')[1];
 
-        cy.saveLocalStorage()
-
+            cy.saveLocalStorage()
+        })
     })
 
     it('1. Direct user to “Your Accounts” page', () => {
