@@ -13,19 +13,16 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 120
-    continue-on-error: true
+   # continue-on-error: true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run clearGmail
-      - name: Run Cypress Test
-        run: npm run e2e-tests-1-10-13-14 || echo "Cypress failed with error code $?"
-        shell: bash
-        env:
-          NODE_OPTIONS: --max-old-space-size=4096
-      - name: Rerun Cypress Test if ECONNRESET
-        if: ${{ failure() && contains(github.job.output, 'ECONNRESET') }}
+      - run: npm run e2e-tests-1-10-13-14
+      - if: ${{ failure() && contains(github.job.status_message, 'ECONNRESET') }}
+        run: npm run e2e-tests-1-10-13-14
+      - if: ${{ failure() && contains(github.job.status_message, 'The operation was canceled.') }}
         run: npm run e2e-tests-1-10-13-14
 
 
