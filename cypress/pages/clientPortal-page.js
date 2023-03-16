@@ -281,14 +281,14 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    click_ethics_section() {
-        cy.task('loadData').then(accountNo => {
+    click_ethics_section(accountNo) {
+    //    cy.task('loadData').then(accountNo => {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .within(() => {
                     cy.get('[class="ant-btn css-86j49d ant-btn-default ant-btn-lg ant-btn-block"]').eq(1).click()
                 });
-        })
+       // })
     }
 
     verify_content_of_investment_account_panel(accountNo) {

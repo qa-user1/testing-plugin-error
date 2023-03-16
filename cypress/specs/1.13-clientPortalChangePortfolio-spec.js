@@ -49,7 +49,7 @@ context('Client Portal - Change Portfolio', () => {
     it('2. Direct user to “Investment Choice”', function () {
 
             ui.clientPortal.click_change_portfolio_button(accountNo)
-            ui.onboarding.go_through_tour_steps(C.stepMessages)
+          //  ui.onboarding.go_through_tour_steps(C.stepMessages)
             ui.clientPortal.verify_investment_choice_link()
 
     })

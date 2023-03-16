@@ -5,8 +5,8 @@ const C = require('../fixtures/constants');
 
 context('Client Portal - Change Ethics/Exclusions', () => {
 
-
-    beforeEach(function () {
+    let accountNo;
+    /*beforeEach(function () {
         Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
@@ -21,61 +21,51 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )
+    })*/
+
+    it('1. Validate login credentials', function () {
+        ui.login.open_base_url()
+            .verify_login_menu(D.user)
+            .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+            .redirect_user_to_the_create_a_new_account_page()
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5538/success')
+        // ui.onboarding.store_current_account_number(accountNo)
+        cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
+            cy.log('ACCOUNT NUMBER ' + text)
+            accountNo = text.match('Account (' + "(.*)" + ')')[1];
+            cy.saveLocalStorage()
+        })
     })
 
-
-
     it('1. Direct user to “Your Account(s)” page', function () {
-        try {
+
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
             ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
             ui.clientPortal.click_your_accounts_link()
                 .verify_your_accounts_page()
-        } catch (error) {
-            if (error.code === 'ECONNRESET') {
-                cy.log('Skipping test due to ECONNRESET error')
-                return;
-
-            }
-        }
     })
 
 
 
     it('2. Direct user to “Ethical Overlay”', function () {
-        try {
-            ui.clientPortal.click_ethics_section()
+
+            ui.clientPortal.click_ethics_section(accountNo)
             ui.onboarding.verify_ethical_overlay_page2()
 
-        } catch (error) {
-            if (error.code === 'ECONNRESET') {
-                cy.log('Skipping test due to ECONNRESET error')
-                return;
-
-            }
-        }
     })
 
 
     it('3. Complete Ethical Overlay', function () {
-        try {
+
             ui.clientPortal.check_or_uncheck_nuclear_power()
             ui.onboarding.click_Save_and_Continue_button()
-
-        } catch (error) {
-            if (error.code === 'ECONNRESET') {
-                cy.log('Skipping test due to ECONNRESET error')
-                return;
-
-            }
-        }
 
     })
 
 
     it('4. Check Final Review', function () {
-        try {
+
             ui.clientPortal.verify_final_review_page()
                 .expand_current_ethics()
                 .expand_new_ethics()
@@ -87,21 +77,12 @@ context('Client Portal - Change Ethics/Exclusions', () => {
                 'Praemium SMA PDS and Investment Guide extract'
             ])
 
-
-        } catch (error) {
-            if (error.code === 'ECONNRESET') {
-                cy.log('Skipping test due to ECONNRESET error')
-                return;
-
-            }
-        }
-
     })
 
 
 
     it('5. Submit Change', function () {
-        try {
+
             if (Cypress.env('cypressRunnerLocal') === true) {
                 ui.app.clear_gmail_inbox()
             }
@@ -110,14 +91,6 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             //  cy.wait(55000)
             //  ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.changeEthics)
 
-
-        } catch (error) {
-            if (error.code === 'ECONNRESET') {
-                cy.log('Skipping test due to ECONNRESET error')
-                return;
-
-            }
-        }
 
     })
 
