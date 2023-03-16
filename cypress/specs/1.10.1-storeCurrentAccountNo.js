@@ -3,36 +3,30 @@ const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 
 context('Client Portal - Account Dashboard', () => {
+    let accountNo;
 
-
-    before(function () {
+    beforeEach(function () {
         cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()
 
+    })
+
+
+    it('1. Validate login credentials', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
             .redirect_user_to_the_create_a_new_account_page()
         cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5533/success')
-        ui.onboarding.store_current_account_number()
+        ui.onboarding.store_current_account_number(accountNo)
         cy.saveLocalStorage()
-    })
-
-    xit('1. Validate login credentials', function () {
-
 
     })
 
     it('1. Direct user to “Your Accounts” page', () => {
-        ui.login.open_base_url()
-            .verify_login_menu(D.user)
-            .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-            .redirect_user_to_the_create_a_new_account_page()
-        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5533/success')
-        ui.onboarding.store_current_account_number()
-        cy.saveLocalStorage()
-        
+
+
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
             ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
@@ -50,7 +44,7 @@ context('Client Portal - Account Dashboard', () => {
     it('3. Direct user to Account Dashboard', function () {
 
             ui.clientPortal.check_investment_account_panel()
-                .verify_target_weight_total()
+                .verify_target_weight_total(accountNo)
                 .verify_content_of_investment_account_panel()
                 .click_view_account_details()
                 .verify_account_dashboard()
