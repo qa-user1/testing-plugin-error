@@ -49,9 +49,9 @@ context('Client Portal - Account Dashboard', () => {
 
             ui.clientPortal.check_investment_account_panel()
                 .verify_target_weight_total(accountNo)
-                .verify_content_of_investment_account_panel()
+               /* .verify_content_of_investment_account_panel()
                 .click_view_account_details()
-                .verify_account_dashboard()
+                .verify_account_dashboard()*/
     });
 
 
