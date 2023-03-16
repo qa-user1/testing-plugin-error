@@ -21,9 +21,9 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
             )*/
-        cy.clearAllLocalStorage()
+        /*cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()
+        cy.clearAllSessionStorage()*/
 
     })
 

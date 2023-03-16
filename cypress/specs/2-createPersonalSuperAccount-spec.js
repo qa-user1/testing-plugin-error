@@ -28,9 +28,9 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
              '__Secure-next-auth.session-token',
              '__Host-next-auth.csrf-token',
          )*/
-         cy.clearAllLocalStorage()
+        /* cy.clearAllLocalStorage()
          cy.clearAllCookies()
-         cy.clearAllSessionStorage()
+         cy.clearAllSessionStorage()*/
      })
 
     it('1. Validate login credentials', function () {
