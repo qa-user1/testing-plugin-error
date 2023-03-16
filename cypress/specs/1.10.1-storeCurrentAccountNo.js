@@ -5,13 +5,10 @@ const C = require('../fixtures/constants');
 context('Client Portal - Account Dashboard', () => {
 
 
-    beforeEach(function () {
+    before(function () {
         cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()
-    })
-
-    it('1. Validate login credentials', function () {
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -20,6 +17,11 @@ context('Client Portal - Account Dashboard', () => {
         cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5533/success')
         ui.onboarding.store_current_account_number()
         cy.saveLocalStorage()
+    })
+
+    xit('1. Validate login credentials', function () {
+
+
     })
 
     it('1. Direct user to “Your Accounts” page', () => {

@@ -1298,12 +1298,11 @@ class OnboardingPage extends BasePage {
         })
     } */
 
-    store_current_account_number(){
+    store_current_account_number() {
         individualAccountNumber().invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
             const accountNo = text.match('Account (' + "(.*)" + ')')[1];
             cy.wrap(accountNo).as('accountNumber')
-            //cy.task('saveData', accountNo)
         })
     }
 
