@@ -49,14 +49,14 @@ context('Client Portal - Account Dashboard', () => {
 
             ui.clientPortal.check_investment_account_panel()
                 .verify_target_weight_total(accountNo)
-               /* .verify_content_of_investment_account_panel()
-                .click_view_account_details()
-                .verify_account_dashboard()*/
+                .verify_content_of_investment_account_panel(accountNo)
+                .click_view_account_details(accountNo)
+                .verify_account_dashboard()
     });
 
 
 
-    xit('4. Check Tactical Panel', function () {
+    it('4. Check Tactical Panel', function () {
 
             ui.login.open_base_url()
             ui.clientPortal.click_your_accounts_link()
@@ -68,7 +68,7 @@ context('Client Portal - Account Dashboard', () => {
                 .enter_cash_and_own_home_values(D.tacticalAdditionalAssets)
     })
 
-    xit('5. Expand Strategic', function () {
+    it('5. Expand Strategic', function () {
 
             ui.clientPortal.click_strategic_panel()
                 .compare_snapshots()
@@ -78,7 +78,7 @@ context('Client Portal - Account Dashboard', () => {
     })
 
 
-    xit('6. Expand Ethics/Exclusions', function () {
+    it('6. Expand Ethics/Exclusions', function () {
 
             ui.clientPortal.click_ethics_panel()
             ui.onboarding.verify_chosen_ethics([
@@ -91,7 +91,7 @@ context('Client Portal - Account Dashboard', () => {
 
     })
 
-    xit('7. Expand Portfolio', function () {
+    it('7. Expand Portfolio', function () {
 
             ui.clientPortal.click_portfolio_panel()
                 .verify_change_ethics_button2()
@@ -103,7 +103,7 @@ context('Client Portal - Account Dashboard', () => {
 
     })
 
-    xit('8. Expand Performance', function () {
+    it('8. Expand Performance', function () {
 
             ui.clientPortal.click_performance_panel()
                 .verify_performance_titles()

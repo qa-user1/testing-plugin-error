@@ -290,8 +290,8 @@ export default class LoginPage extends BasePage {
         })
     }
 
-    verify_content_of_investment_account_panel() {
-        cy.task('loadData').then(accountNo => {
+    verify_content_of_investment_account_panel(accountNo) {
+       // cy.task('loadData').then(accountNo => {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .within(() => {
@@ -311,7 +311,7 @@ export default class LoginPage extends BasePage {
 
                 })
 
-        })
+       // })
         return this;
     }
 
@@ -376,14 +376,14 @@ export default class LoginPage extends BasePage {
 
 
 
-    click_view_account_details() {
-        cy.task('loadData').then(accountNo => {
+    click_view_account_details(accountNo) {
+      //  cy.task('loadData').then(accountNo => {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .within(() => {
                     cy.contains('View Account Details').click()
                 });
-        })
+       // })
         return this;
     }
 
