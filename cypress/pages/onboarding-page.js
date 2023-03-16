@@ -1302,6 +1302,7 @@ class OnboardingPage extends BasePage {
         individualAccountNumber().invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
             const accountNo = text.match('Account (' + "(.*)" + ')')[1];
+            cy.wrap(accountNo).as('accountNumber')
             //cy.task('saveData', accountNo)
         })
     }
