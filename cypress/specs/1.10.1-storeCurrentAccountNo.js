@@ -18,7 +18,7 @@ context('Client Portal - Account Dashboard', () => {
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
             .redirect_user_to_the_create_a_new_account_page()
-        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5533/success')
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5538/success')
        // ui.onboarding.store_current_account_number(accountNo)
         cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
