@@ -16,18 +16,133 @@ context('Client Portal - Account Dashboard', () => {
     it('1. Validate login credentials', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
+            .enter_wrong_credentials_and_click_Sign_In(D.user.username, 'wrongPass')
+            .verify_error_message()
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
             .redirect_user_to_the_create_a_new_account_page()
-        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5538/success')
+        ui.onboarding.verify_account_selection()
+        //cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5538/success')
         // ui.onboarding.store_current_account_number(accountNo)
         cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
             accountNo = text.match('Account (' + "(.*)" + ')')[1];
-
             cy.saveLocalStorage()
         })
     })
 
+    it('3. Create new Individual investment account', function () {
+        ui.onboarding.click_create_new_investment_account()
+            .click_non_super_type()
+            .select_individual_non_super_subtype()
+            .click_create_investment_account()
+            .go_through_tour_steps(C.stepMessages)
+        //cy.saveLocalStorage()
+    })
+
+
+
+    it('5. Navigate to Build Your Portfolio Page from Investment Choice', function () {
+        ui.onboarding.click_self_directed_button()
+        ui.onboarding.select_all_checkboxes(5)
+            .click_Save_and_Continue_button()
+    })
+
+    it('6. Complete Build Your Portfolio', function () {
+        ui.onboarding.clear_values_on_BYP_input_fields()
+        ui.onboarding.enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
+            .click_Save_and_Continue_button()
+
+    })
+
+    it('7. Complete Ethical Overlay', function () {
+        //cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4146/ethical-overlay')
+        ui.onboarding.click_climate_change_button()
+            .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
+            .select_checkbox_based_on_label('No Fossil Fuels (Any)')
+            .click_war_button()
+            .select_checkbox_based_on_label('No Arms (Any)')
+            .click_Save_and_Continue_button()
+    })
+
+    it('8. Review Review Page', function () {
+        // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4150/review')
+        ui.onboarding
+            .click_Save_and_Continue_button()
+    })
+
+    it('9. Navigate to Risk Profile', function () {
+        ui.onboarding.click_sidebar_option('Investment Choice')
+            .click_limited_advice_button()
+            .go_through_tour_steps(C.stepMessages)
+            .select_all_checkboxes(6)
+            .click_Save_and_Continue_button()
+
+    })
+
+    it('10. Complete Risk Profile and navigate to Review', function () {
+        // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4151/risk-profile')
+        ui.onboarding
+            .click_Save_and_Continue_button()
+            .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
+            .answerAllQuestionsWithSameOption(13, 2)
+            .enter_financial_info(d)
+            .click_Save_and_Continue_button()
+            .click_Save_and_Continue_button()
+    })
+
+
+    it('11. Scrape results from Review and navigate to Applicants', function () {
+        ui.onboarding
+
+            .click_Save_and_Continue_button()
+
+    })
+
+    it('12. Complete Applicants', function () {
+        //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4153/applicants')
+        ui.onboarding.remove_existing_applicant()
+
+        ui.onboarding.add_new_applicant()
+
+            .click_submit_applicant_button()
+
+    });
+
+    it('12. Complete Applicants', function () {
+        ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+            .click_submit_applicant_button()
+
+            .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
+
+    });
+
+    it('12. Complete Applicants', function () {
+        ui.onboarding.upload_and_submit_document_for_verification(D.documentType.waterBill)
+            .click_Save_and_Continue_button()
+
+    });
+
+    it('13. Complete Bank Details', function () {
+        ui.onboarding.click_Save_and_Continue_button()
+            .enter_Bank_Details(D.bankDetails)
+            .click_Save_and_Continue_button()
+
+    });
+
+    it('14. Complete Final Review', function () {
+
+        ui.onboarding.click_Submit_Application_button()
+        ui.onboarding.verify_Documents_available_for_download([
+            'Investment and Fee Summary',
+            'Statement of Advice',
+            'Praemium SMA PDS and Investment Guide extract',
+        ])
+            .click_Agree_checkbox()
+            .click_Submit_Application_button()
+
+        ui.onboarding.store_current_account_number()
+    });
+    
     it('1. Direct user to “Your Accounts” page', () => {
 
 
