@@ -316,7 +316,7 @@ export default class LoginPage extends BasePage {
     }
 
      verify_target_weight_total() {
-        // cy.task('loadData').then(accountNo => {
+         // cy.task('loadData').then(accountNo => {
          cy.get('@accountNumber').then(accountNo => {
              cy.contains(accountNo).parents('.ant-card-body')
                  .should('exist')
@@ -331,8 +331,9 @@ export default class LoginPage extends BasePage {
                          })
                      })
                  })
-       //  })
-         return this;
+             //  })
+             return this;
+         })
      }
 
     /*verify_target_weight_total() {
