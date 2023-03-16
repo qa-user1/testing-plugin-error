@@ -13,7 +13,7 @@ context('Client Portal - Account Dashboard', () => {
     })
 
 
-    it('1. Validate login credentials', function () {
+    it.only('1. Validate login credentials', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
@@ -28,7 +28,7 @@ context('Client Portal - Account Dashboard', () => {
         })
     })
 
-    it('1. Direct user to “Your Accounts” page', () => {
+    it.only('1. Direct user to “Your Accounts” page', () => {
 
 
             ui.login.open_base_url()
@@ -45,7 +45,7 @@ context('Client Portal - Account Dashboard', () => {
     })
 
 
-    it('3. Direct user to Account Dashboard', function () {
+    it.only('3. Direct user to Account Dashboard', function () {
 
             ui.clientPortal.check_investment_account_panel()
                 .verify_target_weight_total(accountNo)
