@@ -20,6 +20,7 @@ context('Client Portal - Account Dashboard', () => {
             .redirect_user_to_the_create_a_new_account_page()
         cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5533/success')
         ui.onboarding.store_current_account_number(accountNo)
+
         cy.saveLocalStorage()
 
     })
