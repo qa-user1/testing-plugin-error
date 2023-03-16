@@ -28,7 +28,6 @@ context('Client Portal - Account Dashboard', () => {
             if (error.code === 'ECONNRESET') {
                 cy.log('Skipping test due to ECONNRESET error')
                 return;
-
             }
         }
     })
