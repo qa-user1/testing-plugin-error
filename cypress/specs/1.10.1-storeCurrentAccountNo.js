@@ -25,7 +25,14 @@ context('Client Portal - Account Dashboard', () => {
     })
 
     it('1. Direct user to “Your Accounts” page', () => {
-
+        ui.login.open_base_url()
+            .verify_login_menu(D.user)
+            .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+            .redirect_user_to_the_create_a_new_account_page()
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5533/success')
+        ui.onboarding.store_current_account_number()
+        cy.saveLocalStorage()
+        
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
             ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
