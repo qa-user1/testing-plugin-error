@@ -11,7 +11,7 @@ context('Client Portal - Account Dashboard', () => {
         cy.clearAllSessionStorage()
     })
 
-    it.only('1. Validate login credentials', function () {
+    it('1. Validate login credentials', function () {
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
