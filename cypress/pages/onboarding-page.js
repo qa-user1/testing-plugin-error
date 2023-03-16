@@ -875,6 +875,7 @@ class OnboardingPage extends BasePage {
     }
 
     expand_question_responses_panel() {
+        this.pause(3)
         cy.get('body').invoke('text').then(function (text) {
             if (!text.includes('How would you describe your current investment experience?')) {
                 questionResponsesPanel().click();
