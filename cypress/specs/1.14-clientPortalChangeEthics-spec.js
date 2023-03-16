@@ -1,11 +1,12 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
-
+const d = D.scenarios[0]
 
 context('Client Portal - Change Ethics/Exclusions', () => {
 
     let accountNo;
+
     /*beforeEach(function () {
         Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
@@ -23,18 +24,70 @@ context('Client Portal - Change Ethics/Exclusions', () => {
         )
     })*/
 
-    it('1. Validate login credentials', function () {
+    it('Precondition part 1', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
             .redirect_user_to_the_create_a_new_account_page()
-        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5538/success')
-        // ui.onboarding.store_current_account_number(accountNo)
+            .click_create_new_investment_account()
+            .click_non_super_type()
+            .select_individual_non_super_subtype()
+            .click_create_investment_account()
+            .go_through_tour_steps(C.stepMessages)
+        cy.saveLocalStorage()
+        ui.onboarding.click_self_directed_button()
+            .select_all_checkboxes(5)
+            .click_Save_and_Continue_button()
+            .enter_values_on_BYP_input_fields(D.buildYouPortfolioFields)
+            .clear_values_on_BYP_input_fields()
+            .enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
+            .click_Save_and_Continue_button()
+            .click_climate_change_button()
+            .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
+            .select_checkbox_based_on_label('No Fossil Fuels (Any)')
+            .click_war_button()
+            .select_checkbox_based_on_label('No Arms (Any)')
+            .click_Save_and_Continue_button()
+            .click_Save_and_Continue_button()
+    })
+
+
+    it('Precondition part 2', function () {
+
+        ui.onboarding.click_sidebar_option('Investment Choice')
+            .click_limited_advice_button()
+            .go_through_tour_steps(C.stepMessages)
+            .select_all_checkboxes(6)
+            .click_Save_and_Continue_button()
+            .click_Save_and_Continue_button()
+            .answerAllQuestionsWithSameOption(13, 2)
+            .enter_financial_info(d)
+            .click_Save_and_Continue_button()
+            .click_Save_and_Continue_button()
+            .click_Save_and_Continue_button()
+            .click_Save_and_Continue_button()
+            .remove_existing_applicant()
+            .add_new_applicant()
+            .click_submit_applicant_button()
+            .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+            .click_submit_applicant_button()
+            .verify_your_identity()
+            .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
+            .upload_and_submit_document_for_verification(D.documentType.waterBill)
+            .click_Save_and_Continue_button()
+            .click_Save_and_Continue_button()
+            .enter_Bank_Details(D.bankDetails)
+            .click_Save_and_Continue_button()
+            .click_Submit_Application_button()
+            .click_Agree_checkbox()
+            .click_Submit_Application_button()
+            .verify_success_page()
         cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
             accountNo = text.match('Account (' + "(.*)" + ')')[1];
             cy.saveLocalStorage()
         })
+
     })
 
     it('1. Direct user to “Your Account(s)” page', function () {
@@ -88,8 +141,8 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             }
             ui.clientPortal.click_submit_changes_button()
                 .verify_account_dashboard()
-            //  cy.wait(55000)
-            //  ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.changeEthics)
+              cy.wait(55000)
+              ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.changeEthics)
 
 
     })

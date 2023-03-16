@@ -441,7 +441,9 @@ class OnboardingPage extends BasePage {
     }
 
     upload_and_submit_document_for_verification(type) {
+        this.pause(3)
         this.select_id_option()
+            this.pause(2)
             .select_document_type(type)
         this.upload_file('1',D.documentType.id)
             .click_Upload_and_Submit_button()
@@ -610,7 +612,7 @@ class OnboardingPage extends BasePage {
     click_Save_and_Continue_button() {
         this.pause(3)
         this.scroll_and_click(saveContinueButton)
-        this.pause(2)
+        this.pause(4)
         return this;
     }
 
@@ -663,6 +665,7 @@ class OnboardingPage extends BasePage {
     }
 
     select_document_type(option) {
+        this.pause(2)
         documentType().select(option);
         return this;
     }
