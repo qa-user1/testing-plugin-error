@@ -178,6 +178,7 @@ export default class LoginPage extends BasePage {
     click_your_accounts_link() {
         yourAccountLink().should('be.visible');
         yourAccountLink().click();
+        this.pause(5)
         return this;
     }
 

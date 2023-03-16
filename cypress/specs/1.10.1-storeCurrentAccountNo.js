@@ -60,7 +60,7 @@ context('Client Portal - Account Dashboard', () => {
 
             ui.login.open_base_url()
             ui.clientPortal.click_your_accounts_link()
-                .click_view_account_details()
+                .click_view_account_details(accountNo)
             ui.clientPortal.click_tactical_panel()
                 .verify_tactical_headings()
                 .click_additional_assets()
