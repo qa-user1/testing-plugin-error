@@ -142,7 +142,7 @@ context('Client Portal - Account Dashboard', () => {
 
         ui.onboarding.store_current_account_number()
     });
-    
+
     it('1. Direct user to “Your Accounts” page', () => {
 
 

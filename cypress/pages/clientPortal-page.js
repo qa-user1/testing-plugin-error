@@ -364,14 +364,14 @@ export default class LoginPage extends BasePage {
 
 
 
-    click_change_portfolio_button() {
-         cy.task('loadData').then(accountNo => {
+    click_change_portfolio_button(accountNo) {
+        // cy.task('loadData').then(accountNo => {
             cy.contains(accountNo).parents('.ant-card-body')
                 .should('exist')
                 .within(() => {
                     cy.contains('Change Portfolio').click()
                 });
-        });
+    //    });
          return this;
      }
 
