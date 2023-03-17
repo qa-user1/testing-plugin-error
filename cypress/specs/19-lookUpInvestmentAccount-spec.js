@@ -31,7 +31,7 @@ context('Look Up Investment Account', () => {
 
     it('1. Log in using manager login', function () {
         ui.login.open_base_url()
-            .verify_login_menu()
+            .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.managerUser.username, D.managerUser.password)
         ui.admin.verify_admin_homepage()
     })

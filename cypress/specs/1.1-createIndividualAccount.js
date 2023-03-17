@@ -7,7 +7,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
 
 
 
-    beforeEach(function () {
+    before(function () {
         /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',

@@ -8,7 +8,7 @@ context('Admin Portal - Check details', () => {
 
 
 
-    beforeEach(function () {
+    before(function () {
        /* Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',

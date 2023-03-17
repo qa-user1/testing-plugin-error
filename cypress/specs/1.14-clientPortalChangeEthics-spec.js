@@ -7,32 +7,16 @@ context('Client Portal - Change Ethics/Exclusions', () => {
 
     let accountNo;
 
-    beforeEach(function () {
-       /* Cypress.Cookies.debug(true)
-        cy.preserveCookieOnce(
-            'secure',
-            'ntercom',
-            'XSRF-TOKEN',
-            '__hssc',
-            'hubspotutk',
-            '__hstc',
-            '_fbp',
-            'cognito',
-            '__Secure-next-auth.callback-url',
-            '__Secure-next-auth.session-token',
-            '__Host-next-auth.csrf-token',
-        )*/
+    before(function () {
         cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()
-    })
 
-    it('Precondition part 1', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
             .redirect_user_to_the_create_a_new_account_page()
-            ui.onboarding.click_create_new_investment_account()
+        ui.onboarding.click_create_new_investment_account()
             .click_non_super_type()
             .select_individual_non_super_subtype()
             .click_create_investment_account()
@@ -52,10 +36,6 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .select_checkbox_based_on_label('No Arms (Any)')
             .click_Save_and_Continue_button()
             .click_Save_and_Continue_button()
-    })
-
-
-    it('Precondition part 2', function () {
 
         ui.onboarding.click_sidebar_option('Investment Choice')
             .click_limited_advice_button()

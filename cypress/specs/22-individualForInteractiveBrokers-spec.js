@@ -6,7 +6,7 @@ const d = D.scenarios[0]
 context('Individual Onboarding for Interactive Brokers', () => {
 
 
-    beforeEach(function () {
+    before(function () {
         /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',

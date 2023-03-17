@@ -87,7 +87,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
 
     })
 
-    xit('7. Review Review Page', function () {
+    it('7. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestions, D.reviewResponses)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -107,7 +107,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
 
     it('7. Review Review Page', function () {
         ui.onboarding
-         //   .save_final_JSON_report('personal_super_')
+            .save_final_JSON_report('personal_super_')
            .click_Save_and_Continue_button()
            .verify_applicants_page()
     })
