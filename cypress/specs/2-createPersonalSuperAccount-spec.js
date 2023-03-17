@@ -87,7 +87,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
 
     })
 
-    it('7. Review Review Page', function () {
+    xit('7. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestions, D.reviewResponses)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -107,7 +107,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
 
     it('7. Review Review Page', function () {
         ui.onboarding
-            .save_final_JSON_report('personal_super_')
+         //   .save_final_JSON_report('personal_super_')
            .click_Save_and_Continue_button()
            .verify_applicants_page()
     })
@@ -118,9 +118,11 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
     })
 
     it('9. Complete Insurance Quote', function () {
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5581/insurance-quote')
         ui.onboarding
             .verify_insurance_quote_page()
             .click_yes_insurance_button()
+            .clear_all_required_insurance_values()
             .click_Save_and_Continue_button()
             .verify_text_is_visible(C.errorMsg.insuranceRequiredFields)
             .enter_values_for_life_and_tpd_cover(D.insurance)

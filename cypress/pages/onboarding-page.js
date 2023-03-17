@@ -967,6 +967,12 @@ class OnboardingPage extends BasePage {
         return this;
     }
 
+    clear_all_required_insurance_values() {
+        occupation().clear();
+        height().clear();
+        weight().clear();
+        return this;
+    }
     enter_values_for_life_and_tpd_cover(data) {
         lifeCoverInputField().type(data.lifeCover);
         TPDCoverInputField().type(data.tpdCover);

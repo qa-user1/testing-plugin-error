@@ -6,7 +6,7 @@ context('Company Account', () => {
 
 
 
-    beforeEach(function () {
+    before(function () {
         /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',

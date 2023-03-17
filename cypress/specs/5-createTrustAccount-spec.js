@@ -6,7 +6,7 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
 
 
 
-    beforeEach(function () {
+    before(function () {
         /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
