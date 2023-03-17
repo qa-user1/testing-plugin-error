@@ -7,7 +7,7 @@ const {currentDate} = require("../support/e2e-helper");
 context('Look Up Investment Account', () => {
 
 
-   /* beforeEach(function () {
+    beforeEach(function () {
         Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
@@ -22,7 +22,10 @@ context('Look Up Investment Account', () => {
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )
-    })*/
+         cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
+    })
 
 
 

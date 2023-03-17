@@ -8,7 +8,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
 
 
     beforeEach(function () {
-        Cypress.Cookies.debug(true)
+        /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -21,7 +21,10 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
+        )*/
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
     })
 
     xit('1. Validate login credentials', function () {

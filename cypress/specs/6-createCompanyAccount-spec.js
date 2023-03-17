@@ -22,9 +22,9 @@ context('Company Account', () => {
             '__Host-next-auth.csrf-token',
         )*/
 
-       /* cy.clearAllLocalStorage()
+        cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
+        cy.clearAllSessionStorage()
     })
 
 

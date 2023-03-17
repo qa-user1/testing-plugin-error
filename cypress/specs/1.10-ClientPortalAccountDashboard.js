@@ -6,12 +6,12 @@ const d = D.scenarios[0]
 context('Client Portal - Account Dashboard', () => {
     let accountNo;
 
-    /*beforeEach(function () {
-        /!*   cy.clearAllLocalStorage()
+    beforeEach(function () {
+           cy.clearAllLocalStorage()
            cy.clearAllCookies()
-           cy.clearAllSessionStorage()*!/
+           cy.clearAllSessionStorage()
 
-    })*/
+    })
 
 
     it('Precondition part 1', function () {

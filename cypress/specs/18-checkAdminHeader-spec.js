@@ -9,7 +9,7 @@ context('Check Admin header', () => {
 
 
     beforeEach(function () {
-        Cypress.Cookies.debug(true)
+       /* Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -22,7 +22,10 @@ context('Check Admin header', () => {
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
+        )*/
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
     })
 
 

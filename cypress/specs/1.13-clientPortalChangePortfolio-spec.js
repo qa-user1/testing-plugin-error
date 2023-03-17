@@ -6,8 +6,8 @@ const d = D.scenarios[0]
 context('Client Portal - Change Portfolio', () => {
     let accountNo;
 
-    /* beforeEach(function () {
-       /!*  Cypress.Cookies.debug(true)
+     beforeEach(function () {
+       /*/!*  Cypress.Cookies.debug(true)
          cy.preserveCookieOnce(
              'secure',
              'ntercom',
@@ -20,8 +20,11 @@ context('Client Portal - Change Portfolio', () => {
              '__Secure-next-auth.callback-url',
              '__Secure-next-auth.session-token',
              '__Host-next-auth.csrf-token',
-         )*!/
-     })*/
+         )*!/*/
+         cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
+     })
 
     it('Precondition part 1', function () {
         ui.login.open_base_url()

@@ -7,7 +7,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
 
     beforeEach(function () {
-        Cypress.Cookies.debug(true)
+        /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -20,7 +20,10 @@ context('Individual Onboarding for Interactive Brokers', () => {
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
+        )*/
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
     })
 
     it('1. Log into user with IB access', function () {
