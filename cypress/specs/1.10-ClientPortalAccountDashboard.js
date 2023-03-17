@@ -7,9 +7,9 @@ context('Client Portal - Account Dashboard', () => {
     let accountNo;
 
     before(function () {
-          /* cy.clearAllLocalStorage()
+           cy.clearAllLocalStorage()
            cy.clearAllCookies()
-           cy.clearAllSessionStorage()*/
+           cy.clearAllSessionStorage()
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
