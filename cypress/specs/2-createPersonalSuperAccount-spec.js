@@ -13,7 +13,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
         })
     });*/
 
-     beforeEach(function () {
+     before(function () {
         /* Cypress.Cookies.debug(true)
          cy.preserveCookieOnce(
              'secure',
