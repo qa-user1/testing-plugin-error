@@ -7,8 +7,8 @@ context('Client Portal - Change Ethics/Exclusions', () => {
 
     let accountNo;
 
-    /*beforeEach(function () {
-        Cypress.Cookies.debug(true)
+    beforeEach(function () {
+       /* Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -21,8 +21,11 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
-    })*/
+        )*/
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
+    })
 
     it('Precondition part 1', function () {
         ui.login.open_base_url()
