@@ -855,6 +855,7 @@ class OnboardingPage extends BasePage {
     }
 
     verify_two_applicants_are_visible() {
+        this.pause(3)
         userCardFirst().should('be.visible');
         userCardLast().should('be.visible');
         return this;

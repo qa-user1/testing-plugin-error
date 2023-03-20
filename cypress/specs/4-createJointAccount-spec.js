@@ -7,7 +7,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
 
 
     beforeEach(function () {
-        /*Cypress.Cookies.debug(true)
+        Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -20,11 +20,11 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )*/
+        )
 
-        cy.clearAllLocalStorage()
+       /* cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()
+        cy.clearAllSessionStorage()*/
     })
 
 
@@ -102,7 +102,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     })
 
     it('7. Complete Applicants', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5503/applicants')
+       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5609/applicants')
         ui.onboarding
             .verify_2_investitors_required_message()
             .remove_existing_applicant()
@@ -110,7 +110,6 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .add_new_applicant()
             .verify_add_new_applicant_page()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
-            .click_submit_applicant_button()
             .click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
@@ -144,6 +143,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     });
 
     it('11. Add another investor in Applicants', function () {
+       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5609/applicants')
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)

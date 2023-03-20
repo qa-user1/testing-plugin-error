@@ -317,10 +317,10 @@ D.smsfDetailsValidationMessages = {
 D.insurance = {
     lifeCover: '100000',
     tpdCover: '100000',
-    steppedLifeCoverAmount: '$0',
-    steppedTPDAmount: '$0',
-    levelTo65LifeCoverAmount: '$0',
-    levelTo65TPDCoverAmount: '$0',
+    steppedLifeCoverAmount: '$55',
+    steppedTPDAmount: '$55',
+    levelTo65LifeCoverAmount: '$55',
+    levelTo65TPDCoverAmount: '$55',
     weight: '5',
     height: '10',
     occupation: 'test'

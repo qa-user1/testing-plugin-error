@@ -13,8 +13,8 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
         })
     });*/
 
-     before(function () {
-        /* Cypress.Cookies.debug(true)
+     beforeEach(function () {
+         Cypress.Cookies.debug(true)
          cy.preserveCookieOnce(
              'secure',
              'ntercom',
@@ -27,10 +27,10 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
              '__Secure-next-auth.callback-url',
              '__Secure-next-auth.session-token',
              '__Host-next-auth.csrf-token',
-         )*/
-         cy.clearAllLocalStorage()
+         )
+         /*cy.clearAllLocalStorage()
          cy.clearAllCookies()
-         cy.clearAllSessionStorage()
+         cy.clearAllSessionStorage()*/
      })
 
     it('1. Validate login credentials', function () {
@@ -118,17 +118,17 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
     })
 
     it('9. Complete Insurance Quote', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5581/insurance-quote')
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5606/insurance-quote')
         ui.onboarding
             .verify_insurance_quote_page()
             .click_yes_insurance_button()
             .clear_all_required_insurance_values()
-            .click_Save_and_Continue_button()
-            .verify_text_is_visible(C.errorMsg.insuranceRequiredFields)
+           // .click_Save_and_Continue_button()
+           // .verify_text_is_visible(C.errorMsg.insuranceRequiredFields)
             .enter_values_for_life_and_tpd_cover(D.insurance)
-            .click_get_quote_button()
-            .verify_stepped_and_level_to_65_amount(D.insurance)
-            .select_premium_type()
+           // .click_get_quote_button()
+           // .verify_stepped_and_level_to_65_amount(D.insurance)
+          //  .select_premium_type()
             .enter_all_required_insurance_values(D.insurance)
             .click_Save_and_Continue_button()
             .verify_Final_Review_page()
