@@ -6,10 +6,27 @@ const d = D.scenarios[0]
 context('Client Portal - Change Portfolio', () => {
     let accountNo;
 
+    beforeEach(function () {
+        Cypress.Cookies.debug(true)
+        cy.preserveCookieOnce(
+            'secure',
+            'ntercom',
+            'XSRF-TOKEN',
+            '__hssc',
+            'hubspotutk',
+            '__hstc',
+            '_fbp',
+            'cognito',
+            '__Secure-next-auth.callback-url',
+            '__Secure-next-auth.session-token',
+            '__Host-next-auth.csrf-token',
+        )
+    })
+
     before(function () {
-        cy.clearAllLocalStorage()
+      /*  cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()
+        cy.clearAllSessionStorage()*/
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -45,8 +62,7 @@ context('Client Portal - Change Portfolio', () => {
             .answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(d)
             .click_Save_and_Continue_button()
-            .click_Save_and_Continue_button()
-            .click_Save_and_Continue_button()
+            .verify_review_page()
             .click_Save_and_Continue_button()
             .remove_existing_applicant()
             .add_new_applicant()
@@ -69,7 +85,6 @@ context('Client Portal - Change Portfolio', () => {
             accountNo = text.match('Account (' + "(.*)" + ')')[1];
             cy.saveLocalStorage()
         })
-
     })
 
     it('1. Direct user to “Your Account(s)” page', function () {

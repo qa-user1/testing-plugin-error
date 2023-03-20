@@ -76,7 +76,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     pageTitle2 = e => cy.get('[data-test="clientPortal-ethicalOverlay-title"]', {timeout: 55000}),
     selectedMenuOption = e => cy.get('.ant-menu-item-selected'),
     applicantsTabSideMenu = e => cy.get('[data-test="navigation-Applicants-link"]'),
-    climateChangeButton = e => cy.get(':nth-child(1) > .ant-radio-button-wrapper'),
+    //climateChangeButton = e => cy.get(':nth-child(1) > .ant-radio-button-wrapper'),
+    climateChangeButton = e => cy.get('[class="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-lg-6 css-86j49d"]').eq(0),
     ethicalOverlayBox = e => cy.get('.ant-collapse-content-box').first(),
     ethicalOverlayForm = e => cy.get('#ethical-overlay-form'),
     chosenEthicsContainer = ethicsTitle => cy.contains(ethicsTitle).parents('.ant-row'),
@@ -612,7 +613,7 @@ class OnboardingPage extends BasePage {
     click_Save_and_Continue_button() {
         this.pause(3)
         this.scroll_and_click(saveContinueButton)
-        this.pause(4)
+        this.pause(7)
         return this;
     }
 

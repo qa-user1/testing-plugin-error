@@ -6,10 +6,26 @@ const d = D.scenarios[0]
 context('Client Portal - Account Dashboard', () => {
     let accountNo;
 
+    beforeEach(function () {
+        Cypress.Cookies.debug(true)
+        cy.preserveCookieOnce(
+            'secure',
+            'ntercom',
+            'XSRF-TOKEN',
+            '__hssc',
+            'hubspotutk',
+            '__hstc',
+            '_fbp',
+            'cognito',
+            '__Secure-next-auth.callback-url',
+            '__Secure-next-auth.session-token',
+            '__Host-next-auth.csrf-token',
+        )
+    })
     before(function () {
-           cy.clearAllLocalStorage()
+          /* cy.clearAllLocalStorage()
            cy.clearAllCookies()
-           cy.clearAllSessionStorage()
+           cy.clearAllSessionStorage()*/
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -28,6 +44,7 @@ context('Client Portal - Account Dashboard', () => {
             .clear_values_on_BYP_input_fields()
             .enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
             .click_Save_and_Continue_button()
+            .verify_ethical_overlay_page()
             .click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -45,8 +62,7 @@ context('Client Portal - Account Dashboard', () => {
             .answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(d)
             .click_Save_and_Continue_button()
-            .click_Save_and_Continue_button()
-            .click_Save_and_Continue_button()
+            .verify_review_page()
             .click_Save_and_Continue_button()
             .remove_existing_applicant()
             .add_new_applicant()
