@@ -65,7 +65,7 @@ let
     performanceButton = e => cy.contains('Performance'),
     contactUsButton = e => cy.contains('Contact us to change your details'),
     generalDetails = e => cy.contains('General Details'),
-    uploadNewDocument = e => cy.contains('Upload New Document'),
+    uploadNewDocument = e => cy.contains('Upload Document'),
     uploadVerificationDocuments = e => cy.contains('Upload Verification Documents'),
     thirdPartyAuthorities = e => cy.contains('Third Party Authorities'),
     searchForLostSuper = e => cy.contains('Search for Lost Super'),

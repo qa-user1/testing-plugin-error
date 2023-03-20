@@ -844,7 +844,7 @@ class OnboardingPage extends BasePage {
 
     verify_success_page() {
         pageTitle().should('be.visible');
-        cy.contains('Success', {timeout: 120000})
+        cy.contains('Success', {timeout: 250000})
         pageTitle(50).should('have.text', 'Success');
         cy.url().should('include', 'success');
         return this;

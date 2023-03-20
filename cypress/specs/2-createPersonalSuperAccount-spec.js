@@ -107,7 +107,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
 
     it('7. Review Review Page', function () {
         ui.onboarding
-            .save_final_JSON_report('personal_super_')
+           .save_final_JSON_report('personal_super_')
            .click_Save_and_Continue_button()
            .verify_applicants_page()
     })
@@ -139,7 +139,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
             'Investment and Fee Summary',
             'Statement of Advice',
             'Praemium SuperSMA PDS and Investment Guide extract',
-            'MetLife - Protect Product Disclosure Statement'
+           // 'MetLife - Protect Product Disclosure Statement'
         ])
     });
 

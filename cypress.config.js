@@ -18,7 +18,7 @@ module.exports = defineConfig({
   watchForFileChanges: false,
   chromeWebSecurity: false,
   screenshotOnRunFailure: true,
-  logFile: "${workspaceFolder}/logs/test.log",
+
 
   env: {
     allureResultsPath: 'report/allure-results',

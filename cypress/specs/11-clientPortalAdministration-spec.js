@@ -6,7 +6,7 @@ context('Client Portal - Administration', () => {
 
 
 
-    before(function () {
+    beforeEach(function () {
         Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
