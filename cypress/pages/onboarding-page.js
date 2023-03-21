@@ -628,7 +628,9 @@ class OnboardingPage extends BasePage {
     }
 
     remove_existing_applicant() {
+        this.pause(6)
         applicantCardMenuButton().click();
+        this.pause(3)
         removeApplicantButton().click();
         popUpWindowRemoveApplicant().click();
         return this;
