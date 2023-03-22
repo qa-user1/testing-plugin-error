@@ -114,7 +114,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     surnameInputField = e => cy.get('#surname'),
     emailInputField = e => cy.get('#email'),
     mobileInputField = e => cy.get('#phone'),
-    dateInputField = e => cy.get('.ant-picker').eq(0),
+    dateInputField = e => cy.get('.ant-picker'),
     dateInputField2 = e => cy.get('[data-test="applicants-dob-input"]'),
     driverLicenseExpiry = e => cy.get('#theForm_driver_license_expiry'),
     yearInputField = e => cy.get('.ant-picker-year-btn'),

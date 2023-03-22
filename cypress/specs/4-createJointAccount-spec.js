@@ -102,21 +102,22 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     })
 
     it.only('7. Complete Applicants', function () {
-        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5697/applicants')
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5711/applicants')
         ui.onboarding
-            /*.verify_2_investitors_required_message()
+            .verify_2_investitors_required_message()
             .remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
-            .verify_add_new_applicant_page()*/
+            .verify_add_new_applicant_page()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
             .upload_and_submit_document_for_verification(D.documentType.waterBill)
-            .click_Save_and_Continue_button()
             .verify_applicants_page()
+            .click_Save_and_Continue_button()
+
 
     });
 
