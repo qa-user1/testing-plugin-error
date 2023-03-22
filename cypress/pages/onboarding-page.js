@@ -444,9 +444,11 @@ class OnboardingPage extends BasePage {
     upload_and_submit_document_for_verification(type) {
         this.pause(3)
         this.select_id_option()
-            this.pause(2)
+            this.pause(3)
             .select_document_type(type)
+        this.pause(3)
         this.upload_file('1',D.documentType.id)
+            this.pause(3)
             .click_Upload_and_Submit_button()
         return this;
     }

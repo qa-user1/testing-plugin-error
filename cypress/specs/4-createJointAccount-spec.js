@@ -162,7 +162,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
           //  .verify_two_applicants_are_visible()
         ui.onboarding.verify_Bank_Details_page()
          .click_Save_and_Continue_button()
-         
+
          //   .click_Save_and_Continue_button()
          //   .verify_Final_Review_page()
     });

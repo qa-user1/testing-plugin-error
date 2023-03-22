@@ -26,7 +26,7 @@ module.exports = defineConfig({
     failSilently: false,
     failOnSnapshotDiff: true,
     cypressRunnerLocal: true,
-    skipError: true
+  //skipError: true
   },
   retries: 0,
   projectId: 'dij6ho',
@@ -144,9 +144,9 @@ module.exports = defineConfig({
     },
     specPattern: './cypress/specs/**/*.{js,jsx,ts,tsx}',
     excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*'],
-    cacheAcrossSpecs: false,
-    cache: false,
-    testIsolation: false,
+    //cacheAcrossSpecs: false,
+   // cache: false,
+    //testIsolation: false,
 
   },
 })
