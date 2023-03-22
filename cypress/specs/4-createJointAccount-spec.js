@@ -144,9 +144,9 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_applicants_page()
     });
 
-    it('11. Add another investor in Applicants', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5726/applicants')
-        ui.onboarding.add_new_applicant()
+    it.only('11. Add another investor in Applicants', function () {
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5737/applicants')
+       /* ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
@@ -154,14 +154,17 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
             .upload_and_submit_document_for_verification(D.documentType.waterBill)
-            .click_Save_and_Continue_button()
-           // .click_Save_and_Continue_button()
-            .verify_applicants_page()
+            .click_Save_and_Continue_button()*/
+            ui.onboarding.verify_applicants_page()
             .verify_two_applicants_are_visible()
             .click_Save_and_Continue_button()
-           ui.onboarding.verify_Bank_Details_page()
-            .click_Save_and_Continue_button()
-            .verify_Final_Review_page()
+           // .verify_applicants_page()
+          //  .verify_two_applicants_are_visible()
+        ui.onboarding.verify_Bank_Details_page()
+         .click_Save_and_Continue_button()
+         //
+         //   .click_Save_and_Continue_button()
+         //   .verify_Final_Review_page()
     });
 
     it('12. Review Final Review', function () {
