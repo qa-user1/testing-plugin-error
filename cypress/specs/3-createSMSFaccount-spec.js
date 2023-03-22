@@ -6,8 +6,8 @@ const d = D.scenarios[0]
 context('Log in to the Nucleus Wealth portal, create an SMSF Account and complete the onboarding portal', () => {
 
 
-    before(function () {
-        /*Cypress.Cookies.debug(true)
+    beforeEach(function () {
+        Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -21,10 +21,10 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )
-*/
-        cy.clearAllLocalStorage()
+
+       /* cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()
+        cy.clearAllSessionStorage()*/
     })
 
 

@@ -76,7 +76,9 @@ context('Nucleus Wealth Wordpress Site', () => {
     it('9. Visit Get Started', function () {
         ui.production.click_option_from_navbar('Get Started')
         cy.wait(5000)
-        ui.login.verify_sign_up_login_menu()
+        ui.login.verify_login_menu()
+            .click_sign_up_button()
+            .verify_sign_up_login_menu(D.newUser)
     })
 
     it('10. Check wordpress image uploaded date', function () {
