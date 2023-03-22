@@ -67,7 +67,7 @@ C.emailTemplates = {
 
     uploadedDocument: {
         from: `Nucleus Wealth <dev@nucleuswealth.com>`,
-        subject: 'Document Uploaded by tesf14cb@nucleuswealth.com for NW4126',
+        subject: 'Document Uploaded by tesf14cb@nucleuswealth.com for NW5684',
         content: 'driver_license has been uploaded by test test!',
         attachments: []
     },

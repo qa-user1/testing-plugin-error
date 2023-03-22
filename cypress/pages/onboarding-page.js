@@ -767,6 +767,7 @@ class OnboardingPage extends BasePage {
     }
 
     verify_applicants_page() {
+        this.pause(6)
         applicantCardMenuButton().should('be.visible')
         cy.url().should('include', 'applicants');
         pageTitle().should('have.text', 'Applicants');
