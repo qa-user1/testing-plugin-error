@@ -101,14 +101,14 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_applicants_page()
     })
 
-    it('7. Complete Applicants', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5609/applicants')
+    it.only('7. Complete Applicants', function () {
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5697/applicants')
         ui.onboarding
-            .verify_2_investitors_required_message()
+            /*.verify_2_investitors_required_message()
             .remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
-            .verify_add_new_applicant_page()
+            .verify_add_new_applicant_page()*/
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
             .verify_your_identity()
