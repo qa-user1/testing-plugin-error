@@ -154,7 +154,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
             .upload_and_submit_document_for_verification(D.documentType.waterBill)
-            .click_Save_and_Continue_button()
+          //  .click_Save_and_Continue_button()
             ui.onboarding.verify_applicants_page()
             .verify_two_applicants_are_visible()
             .click_Save_and_Continue_button()
