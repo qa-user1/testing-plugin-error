@@ -76,7 +76,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     })
 
     it('6. Review Review Page', function () {
-        
+
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestionsSMSF, D.reviewResponsesSMSF)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -103,7 +103,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     })
 
     it('7. Complete Applicants', function () {
-     //   cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5711/applicants')
+    //    cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5726/applicants')
         ui.onboarding
             .verify_2_investitors_required_message()
             .remove_existing_applicant()
@@ -145,7 +145,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     });
 
     it('11. Add another investor in Applicants', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5609/applicants')
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5726/applicants')
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
@@ -155,7 +155,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
             .upload_and_submit_document_for_verification(D.documentType.waterBill)
             .click_Save_and_Continue_button()
-            .click_Save_and_Continue_button()
+           // .click_Save_and_Continue_button()
             .verify_applicants_page()
             .verify_two_applicants_are_visible()
             .click_Save_and_Continue_button()
