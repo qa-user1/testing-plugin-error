@@ -6,7 +6,7 @@ context('Client Portal - Home', () => {
 
 
 
-    beforeEach(function () {
+  /*  beforeEach(function () {
         Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
@@ -21,10 +21,10 @@ context('Client Portal - Home', () => {
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )
-       /* cy.clearAllLocalStorage()
+       /!* cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
-    })
+        cy.clearAllSessionStorage()*!/
+    })*/
 
 
 
