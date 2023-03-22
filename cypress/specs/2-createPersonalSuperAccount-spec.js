@@ -139,7 +139,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
             'Investment and Fee Summary',
             'Statement of Advice',
             'Praemium SuperSMA PDS and Investment Guide extract',
-           // 'MetLife - Protect Product Disclosure Statement'
+            'MetLife - Protect Product Disclosure Statement'
         ])
     });
 
