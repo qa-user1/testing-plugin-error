@@ -60,8 +60,8 @@ C.emailTemplates = {
         attachments: [
             'Nucleus Wealth- Financial Services Guide.pdf',
             'Praemium SMA - Product Disclosure Statement and Investment Menu extract.pdf',
-           // 'Nucleus Wealth - Statement of Advice.pdf'
-            'Nucleus Wealth - Record of Engagement.pdf'
+            'Nucleus Wealth - Statement of Advice.pdf'
+           // 'Nucleus Wealth - Record of Engagement.pdf'
         ]
     },
 
