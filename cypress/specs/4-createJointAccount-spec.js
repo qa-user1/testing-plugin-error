@@ -22,11 +22,10 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             '__Host-next-auth.csrf-token',
         )
 
-       /* cy.clearAllLocalStorage()
-        cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
+        /* cy.clearAllLocalStorage()
+         cy.clearAllCookies()
+         cy.clearAllSessionStorage()*/
     })
-
 
 
     it('1. Validate login credentials', function () {
@@ -52,7 +51,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
 
     it('3. Complete Investment Choice', function () {
         ui.onboarding.click_limited_advice_button()
-        .select_all_checkboxes(6)
+            .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
     })
@@ -103,7 +102,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     })
 
     it('7. Complete Applicants', function () {
-    //    cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5726/applicants')
+        //    cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5726/applicants')
         ui.onboarding
             .verify_2_investitors_required_message()
             .remove_existing_applicant()
@@ -145,7 +144,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     });
 
     it('11. Add another investor in Applicants', function () {
-     //   cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5737/applicants')
+        //   cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5737/applicants')
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
@@ -154,17 +153,11 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
             .upload_and_submit_document_for_verification(D.documentType.waterBill)
-          //  .click_Save_and_Continue_button()
-            ui.onboarding.verify_applicants_page()
+            .verify_applicants_page()
             .verify_two_applicants_are_visible()
             .click_Save_and_Continue_button()
-           // .verify_applicants_page()
-          //  .verify_two_applicants_are_visible()
-        ui.onboarding.verify_Bank_Details_page()
-         .click_Save_and_Continue_button()
-
-         //   .click_Save_and_Continue_button()
-         //   .verify_Final_Review_page()
+            .verify_Bank_Details_page()
+            .click_Save_and_Continue_button()
     });
 
     it('12. Review Final Review', function () {
