@@ -10,6 +10,12 @@ const getIframeBody = () => {
         .its('0.contentDocument.body').should('not.be.empty')
         .then(cy.wrap)
 }
+const getIframeBody2 = () => {
+    return cy
+        .get('iframe[data-test-id="chat-widget-iframe"]')
+        .its('0.contentDocument.body').should('not.be.empty')
+        .then(cy.wrap)
+}
 
 let
     header = e => cy.get('#masthead'),
@@ -65,8 +71,18 @@ export default class ProductionPage extends BasePage {
     }
 
     verify_calculator_page() {
+        this.pause(7)
         cy.url().should('include', 'investment-suitability-calculator');
         calculatorWrapper().should('be.visible');
+
+        getIframeBody2()
+            .find('[class="VizExIconButton__AbstractVizExIconButton-ke00t7-0 hjgupH InitialMessageBubble__CloseButton-svakjv-1 ibmhJz"]')
+            .then($btn => {
+                if ($btn.is(':visible')) {
+                    $btn.trigger("click");
+                }
+            });
+
         return this;
     }
 
@@ -122,6 +138,15 @@ export default class ProductionPage extends BasePage {
         cy.url().should('include', 'ethical-investment-calculator');
         ethicsGroups().should('be.visible');
         ethicsPageTitle().should('have.text', 'How do your ethics compare?')
+
+        getIframeBody2()
+            .find('[class="VizExIconButton__AbstractVizExIconButton-ke00t7-0 hjgupH InitialMessageBubble__CloseButton-svakjv-1 ibmhJz"]')
+            .then($btn => {
+                if ($btn.is(':visible')) {
+                    $btn.trigger("click");
+                }
+            });
+
         return this;
     }
 
