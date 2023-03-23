@@ -127,8 +127,8 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .verify_number_of_selected_options_is_different_in_Current_and_New_Ethics()
             .verify_download_button_for_documents(2)
         ui.onboarding.verify_Documents_available_for_download([
-           // 'Statement of Advice',
-            'Record of Engagement',
+            'Statement of Advice',
+           // 'Record of Engagement',
             'Praemium SMA PDS and Investment Guide extract'
         ])
 
