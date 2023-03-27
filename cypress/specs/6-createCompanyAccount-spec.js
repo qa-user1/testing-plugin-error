@@ -7,21 +7,6 @@ context('Company Account', () => {
 
 
     before(function () {
-        /*Cypress.Cookies.debug(true)
-        cy.preserveCookieOnce(
-            'secure',
-            'ntercom',
-            'XSRF-TOKEN',
-            '__hssc',
-            'hubspotutk',
-            '__hstc',
-            '_fbp',
-            'cognito',
-            '__Secure-next-auth.callback-url',
-            '__Secure-next-auth.session-token',
-            '__Host-next-auth.csrf-token',
-        )*/
-
         cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()
@@ -60,21 +45,18 @@ context('Company Account', () => {
 
     it('4. Complete Build Your Portfolio', function () {
         D.buildYouPortfolioFields.coreInternational = '100'
-        ui.onboarding
-            .enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
+        ui.onboarding.enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
     })
 
     it('5. Complete Ethical Overlay', function () {
-        ui.onboarding
-            .click_Save_and_Continue_button()
+        ui.onboarding.click_Save_and_Continue_button()
             .verify_review_page()
     })
 
     it('6. Review Review Page', function () {
-        ui.onboarding
-            .expand_ethical_overlay_panel()
+        ui.onboarding.expand_ethical_overlay_panel()
             .verify_no_ethics_selected_message()
             .save_data_object_for_Your_Portfolio_Trust_Profile()
             .save_data_object_for_Strategic_Asset_Allocation()
@@ -86,8 +68,7 @@ context('Company Account', () => {
     })
 
     it('6. Review Review Page', function () {
-        ui.onboarding
-            .save_final_JSON_report('company_')
+        ui.onboarding.save_final_JSON_report('company_')
             .click_Save_and_Continue_button()
             .verify_company_details_page()
     })

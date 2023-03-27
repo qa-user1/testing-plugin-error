@@ -5,7 +5,6 @@ const C = require('../fixtures/constants');
 context(' Log in to the Nucleus Wealth portal, create a Trust Account and complete the onboarding portal', () => {
 
 
-
     before(function () {
         /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
@@ -26,7 +25,6 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
         cy.clearAllSessionStorage()
 
     })
-
 
 
     it('1. Validate login credentials', function () {
@@ -59,21 +57,18 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
 
     it('4. Complete Build Your Portfolio', function () {
         D.buildYouPortfolioFields.coreInternational = '100'
-        ui.onboarding
-            .enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
+        ui.onboarding.enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
     })
 
     it('5. Complete Ethical Overlay', function () {
-        ui.onboarding
-            .click_Save_and_Continue_button()
+        ui.onboarding.click_Save_and_Continue_button()
             .verify_review_page()
     })
 
     it('6. Review Review Page', function () {
-        ui.onboarding
-            .expand_ethical_overlay_panel()
+        ui.onboarding.expand_ethical_overlay_panel()
             .verify_no_ethics_selected_message()
             .save_data_object_for_Your_Portfolio_Trust_Profile()
             .save_data_object_for_Strategic_Asset_Allocation()
@@ -85,8 +80,7 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
     })
 
     it('6. Review Review Page', function () {
-        ui.onboarding
-            .save_final_JSON_report('trust_')
+        ui.onboarding.save_final_JSON_report('trust_')
             .click_Save_and_Continue_button()
             .verify_trust_details_page()
     })

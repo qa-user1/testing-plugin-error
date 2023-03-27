@@ -23,10 +23,6 @@ context('Client Portal - Account Dashboard', () => {
         )
     })
     before(function () {
-          /* cy.clearAllLocalStorage()
-           cy.clearAllCookies()
-           cy.clearAllSessionStorage()*/
-
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
@@ -89,14 +85,12 @@ context('Client Portal - Account Dashboard', () => {
     })
 
 
-
-
     it('1. Direct user to “Your Accounts” page', () => {
 
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
-        ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+            .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
         ui.clientPortal.click_your_accounts_link()
             .verify_your_accounts_page()
     })
@@ -109,7 +103,6 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('3. Direct user to Account Dashboard', function () {
-
         ui.clientPortal.check_investment_account_panel()
             .verify_target_weight_total(accountNo)
             .verify_content_of_investment_account_panel(accountNo)
@@ -123,7 +116,7 @@ context('Client Portal - Account Dashboard', () => {
         ui.login.open_base_url()
         ui.clientPortal.click_your_accounts_link()
             .click_view_account_details(accountNo)
-        ui.clientPortal.click_tactical_panel()
+            .click_tactical_panel()
             .verify_tactical_headings()
             .click_additional_assets()
             .verify_additional_assets_input_fields()
@@ -131,7 +124,6 @@ context('Client Portal - Account Dashboard', () => {
     })
 
     it('5. Expand Strategic', function () {
-
         ui.clientPortal.click_strategic_panel()
             .compare_snapshots()
             .verify_change_portfolio_button()
@@ -141,7 +133,6 @@ context('Client Portal - Account Dashboard', () => {
 
 
     it('6. Expand Ethics/Exclusions', function () {
-
         ui.clientPortal.click_ethics_panel()
         ui.onboarding.verify_chosen_ethics([
             ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
@@ -154,7 +145,6 @@ context('Client Portal - Account Dashboard', () => {
     })
 
     it('7. Expand Portfolio', function () {
-
         ui.clientPortal.click_portfolio_panel()
             .verify_change_ethics_button2()
             .verify_change_portfolio_button2()
@@ -166,7 +156,6 @@ context('Client Portal - Account Dashboard', () => {
     })
 
     it('8. Expand Performance', function () {
-
         ui.clientPortal.click_performance_panel()
             .verify_performance_titles()
             .verify_performance_card('0', '2')

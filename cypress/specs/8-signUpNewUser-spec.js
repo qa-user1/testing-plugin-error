@@ -8,20 +8,6 @@ context('Sign Up new user', () => {
 
 
     beforeEach(function () {
-        /*Cypress.Cookies.debug(true)
-        cy.preserveCookieOnce(
-            'secure',
-            'ntercom',
-            'XSRF-TOKEN',
-            '__hssc',
-            'hubspotutk',
-            '__hstc',
-            '_fbp',
-            'cognito',
-            '__Secure-next-auth.callback-url',
-            '__Secure-next-auth.session-token',
-            '__Host-next-auth.csrf-token',
-        )*/
         cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()

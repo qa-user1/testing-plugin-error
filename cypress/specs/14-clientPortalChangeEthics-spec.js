@@ -25,9 +25,9 @@ context('Client Portal - Change Ethics/Exclusions', () => {
     })
 
     before(function () {
-       // cy.clearAllLocalStorage()
-       // cy.clearAllCookies()
-      //  cy.clearAllSessionStorage()*/
+        // cy.clearAllLocalStorage()
+        // cy.clearAllCookies()
+        //  cy.clearAllSessionStorage()*/
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -59,7 +59,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .go_through_tour_steps(C.stepMessages)
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
-           .answerAllQuestionsWithSameOption(13, 2)
+            .answerAllQuestionsWithSameOption(13, 2)
         ui.onboarding.enter_financial_info(d)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
@@ -91,33 +91,27 @@ context('Client Portal - Change Ethics/Exclusions', () => {
     })
 
     it('1. Direct user to “Your Account(s)” page', function () {
-
         ui.login.open_base_url()
             .verify_login_menu(D.user)
-        ui.login.enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+            .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
         ui.clientPortal.click_your_accounts_link()
             .verify_your_accounts_page()
     })
 
 
     it('2. Direct user to “Ethical Overlay”', function () {
-
         ui.clientPortal.click_ethics_section(accountNo)
         ui.onboarding.verify_ethical_overlay_page2()
-
     })
 
 
     it('3. Complete Ethical Overlay', function () {
-
         ui.clientPortal.check_or_uncheck_nuclear_power()
         ui.onboarding.click_Save_and_Continue_button()
-
     })
 
 
     it('4. Check Final Review', function () {
-
         ui.clientPortal.verify_final_review_page()
             .expand_current_ethics()
             .expand_new_ethics()
@@ -125,15 +119,13 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .verify_download_button_for_documents(2)
         ui.onboarding.verify_Documents_available_for_download([
             'Statement of Advice',
-           // 'Record of Engagement',
+            // 'Record of Engagement',
             'Praemium SMA PDS and Investment Guide extract'
         ])
-
     })
 
 
     it('5. Submit Change', function () {
-
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }
@@ -141,8 +133,6 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .verify_account_dashboard()
         cy.wait(55000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.changeEthics)
-
-
     })
 
 

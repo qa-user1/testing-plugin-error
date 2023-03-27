@@ -6,30 +6,30 @@ const d = D.scenarios[0]
 context('Log in to the Nucleus Wealth portal, create a Personal Super Account and complete the onboarding portal', () => {
 
 
-   /* beforeEach(function () {
-        Cypress.Cookies.debug(true)
-        Cypress.Cookies.defaults({
-            preserve: /secure|ntercom|XSRF-TOKEN|__hssc|hubspotutk|__hstc|_fbp|cognito|__Secure-next-auth.callback-url|__Secure-next-auth.session-token|__Host-next-auth.csrf-token/,
-        })
-    });*/
-
-     beforeEach(function () {
+    /* beforeEach(function () {
          Cypress.Cookies.debug(true)
-         cy.preserveCookieOnce(
-             'secure',
-             'ntercom',
-             'XSRF-TOKEN',
-             '__hssc',
-             'hubspotutk',
-             '__hstc',
-             '_fbp',
-             'cognito',
-             '__Secure-next-auth.callback-url',
-             '__Secure-next-auth.session-token',
-             '__Host-next-auth.csrf-token',
-         )
+         Cypress.Cookies.defaults({
+             preserve: /secure|ntercom|XSRF-TOKEN|__hssc|hubspotutk|__hstc|_fbp|cognito|__Secure-next-auth.callback-url|__Secure-next-auth.session-token|__Host-next-auth.csrf-token/,
+         })
+     });*/
 
-     })
+    beforeEach(function () {
+        Cypress.Cookies.debug(true)
+        cy.preserveCookieOnce(
+            'secure',
+            'ntercom',
+            'XSRF-TOKEN',
+            '__hssc',
+            'hubspotutk',
+            '__hstc',
+            '_fbp',
+            'cognito',
+            '__Secure-next-auth.callback-url',
+            '__Secure-next-auth.session-token',
+            '__Host-next-auth.csrf-token',
+        )
+
+    })
 
     it('1. Validate login credentials', function () {
         ui.login.open_base_url()
@@ -79,7 +79,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
     it('6. Complete Super Fund Entry', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_messages_for_fund_entry_input_fields(D.fundEntryValidationMessages)
-        ui.onboarding.enter_values_on_super_fund_entry_input_fields(D.fundEntryInputFields)
+            .enter_values_on_super_fund_entry_input_fields(D.fundEntryInputFields)
             .click_Save_and_Continue_button()
             .verify_review_page()
 
@@ -104,10 +104,9 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
     })
 
     it('7. Review Review Page', function () {
-        ui.onboarding
-           .save_final_JSON_report('personal_super_')
-           .click_Save_and_Continue_button()
-           .verify_applicants_page()
+        ui.onboarding.save_final_JSON_report('personal_super_')
+            .click_Save_and_Continue_button()
+            .verify_applicants_page()
     })
 
     it('8. Navigate to Insurance Quote', function () {
@@ -116,8 +115,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
     })
 
     it('9. Complete Insurance Quote', function () {
-        ui.onboarding
-            .verify_insurance_quote_page()
+        ui.onboarding.verify_insurance_quote_page()
             .click_yes_insurance_button()
             .clear_all_required_insurance_values()
             .enter_values_for_life_and_tpd_cover(D.insurance)

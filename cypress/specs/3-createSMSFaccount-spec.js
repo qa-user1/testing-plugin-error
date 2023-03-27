@@ -24,7 +24,6 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
     })
 
 
-
     it('1. Validate login credentials', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -89,15 +88,13 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
     })
 
     it('6. Review Review Page', function () {
-        ui.onboarding
-           .save_final_JSON_report('smsf_')
+        ui.onboarding.save_final_JSON_report('smsf_')
             .click_Save_and_Continue_button()
             .verify_SMSF_page()
     })
 
     it('7. Complete In SMSF Details', function () {
-        ui.onboarding
-            .enter_address(D.SMSFDetails)
+        ui.onboarding.enter_address(D.SMSFDetails)
             .click_Save_and_Continue_button()
             .verify_validation_messages_for_SMSF_details(D.smsfDetailsValidationMessages)
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)

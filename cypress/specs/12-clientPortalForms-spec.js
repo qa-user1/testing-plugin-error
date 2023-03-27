@@ -5,7 +5,6 @@ const C = require('../fixtures/constants');
 context('Client Portal - Forms', () => {
 
 
-
     beforeEach(function () {
         Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
@@ -21,11 +20,7 @@ context('Client Portal - Forms', () => {
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )
-       /* cy.clearAllLocalStorage()
-        cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
     })
-
 
 
     it('1. Direct user to “Forms” page', function () {
@@ -41,7 +36,7 @@ context('Client Portal - Forms', () => {
     })
 
     it('3. Expand Superannuation Forms', function () {
-       ui.clientPortal.expand_superannuation_forms()
+        ui.clientPortal.expand_superannuation_forms()
             .verify_text_on_visit_download_page_of_SuperAnnuationForms(D.superannuationForms)
             .verify_number_of_documents(7)
             .collapse_superannuation_forms()

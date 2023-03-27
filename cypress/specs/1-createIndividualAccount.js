@@ -6,7 +6,6 @@ const d = D.scenarios[0]
 context('Log in to the Nucleus Wealth portal, create an individual account, and complete the onboarding portal', () => {
 
 
-
     before(function () {
         /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
@@ -28,7 +27,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('1. Validate login credentials', function () {
-
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_wrong_credentials_and_click_Sign_In(D.user.username, 'wrongPass')
@@ -40,7 +38,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
 
     it('2.Disclaimer Alert is present', function () {
         ui.onboarding.verify_disclaimer_in_the_footer()
-
     })
 
     it('3. Create new Individual investment account', function () {
@@ -70,7 +67,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .verify_acknowledgment_and_agreement_appear()
             .click_Save_and_Continue_button()
             .verify_text_is_visible(C.errorMsg.checkAllBoxes)
-        ui.onboarding.select_all_checkboxes(5)
+            .select_all_checkboxes(5)
             .click_Save_and_Continue_button()
             .verify_build_your_portfolio_page()
     })
@@ -80,7 +77,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .enter_values_on_BYP_input_fields(D.buildYouPortfolioFields)
             .verify_validation_messages_for_BYP_input_fields(D.buildYouPortfolioValidationMessages)
             .clear_values_on_BYP_input_fields()
-        ui.onboarding.enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
+            .enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
     })
@@ -117,8 +114,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('10. Complete Risk Profile and navigate to Review', function () {
-        ui.onboarding
-            .click_Save_and_Continue_button()
+        ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
             .answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(d)
@@ -157,7 +153,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     it('12. Complete Applicants', function () {
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
-        ui.onboarding.add_new_applicant()
+            .add_new_applicant()
             .verify_add_new_applicant_page()
             .click_submit_applicant_button()
             .verify_validation_messages_for_create_new_applicant_input_fields(D.applicantsProfileValidationMessages)
@@ -191,17 +187,17 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
         }
         ui.onboarding.click_Submit_Application_button()
             .verify_validation_message_for_agree_checkbox(D.finalReviewValidationMessage)
-        ui.onboarding.verify_Documents_available_for_download([
-            'Investment and Fee Summary',
-            'Statement of Advice',
-            'Praemium SMA PDS and Investment Guide extract',
-        ])
+            .verify_Documents_available_for_download([
+                'Investment and Fee Summary',
+                'Statement of Advice',
+                'Praemium SMA PDS and Investment Guide extract',
+            ])
             .click_Agree_checkbox()
             .click_Submit_Application_button()
-        ui.onboarding.verify_success_page()
+            .verify_success_page()
         cy.wait(55000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individualAccountCreated)
-        ui.onboarding.store_current_account_number()
+            .store_current_account_number()
     });
 })
 

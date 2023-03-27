@@ -101,8 +101,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
     })
 
     it('8. Check Review Page', function () {
-        ui.onboarding
-            .save_final_JSON_report('individual_ib_')
+        ui.onboarding.save_final_JSON_report('individual_ib_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
@@ -174,8 +173,8 @@ context('Individual Onboarding for Interactive Brokers', () => {
         ui.app.pause(3)
         ui.onboarding.click_Save_and_Continue_button()
         ui.app.pause(3)
-            ui.onboarding.verify_your_portfolio_content_not_exist('Tactical Growth')
-        ui.onboarding.click_Save_and_Continue_button()
+        ui.onboarding.verify_your_portfolio_content_not_exist('Tactical Growth')
+            .click_Save_and_Continue_button()
 
 
     });
