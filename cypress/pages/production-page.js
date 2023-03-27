@@ -71,6 +71,7 @@ export default class ProductionPage extends BasePage {
     }
 
     verify_calculator_page() {
+        let self = this
         this.pause(7)
         cy.url().should('include', 'investment-suitability-calculator');
         calculatorWrapper().should('be.visible');
@@ -81,6 +82,7 @@ export default class ProductionPage extends BasePage {
                 if ($btn.is(':visible')) {
                     $btn.trigger("click");
                 }
+                else {self.verify_calculator_page()}
             });
 
         return this;
@@ -135,6 +137,7 @@ export default class ProductionPage extends BasePage {
     }
 
     verify_ethical_calculator_page() {
+        let self = this
         cy.url().should('include', 'ethical-investment-calculator');
         ethicsGroups().should('be.visible');
         ethicsPageTitle().should('have.text', 'How do your ethics compare?')
@@ -144,6 +147,8 @@ export default class ProductionPage extends BasePage {
             .then($btn => {
                 if ($btn.is(':visible')) {
                     $btn.trigger("click");
+                }
+                else { self.verify_ethical_calculator_page()
                 }
             });
 

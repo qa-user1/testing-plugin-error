@@ -365,28 +365,35 @@ class OnboardingPage extends BasePage {
 
     enter_values_at_create_new_applicant_input_fields(data) {
         titleInputField().click()
+        this.pause(2)
         cy.contains('Miss').click()
         nameInputField().type(data.nameInput);
         surnameInputField().type(data.surnameInput);
         emailInputField().type(data.emailInput);
         mobileInputField().type(data.mobileInput);
         genderInputField().click();
+        this.pause(2)
         genderInputField().type(data.genderInput)
         dateInputField().click();
+        this.pause(2)
         todayButton().click()
         citizenshipInputField().click({force: true})
+        this.pause(2)
         citizenshipInputField().type(data.citizenshipInput)
         employmentInputField().click();
         this.pause(3)
         employmentTypeOption(data.employmentType).click()
         occupationInputField().click();
+        this.pause(2)
         occupationInputField().type(data.occupation);
         employerNameInputField().type(data.employerName);
         employerAddressInputField().type(data.employerAddress);
         employerBusinessInputField().click();
+        this.pause(2)
         employerBusinessInputField().type(data.employerBusiness);
         taxInputField().type(data.taxInput)
         residentialAddressInputField().click();
+        this.pause(2)
         residentialAddressInputField().type('Ter');
         this.pause(1)
         cy.contains('Terminal 3 & Terminal 4, Perth Airport WA, Australia').click()
