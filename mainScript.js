@@ -26,7 +26,7 @@ if (fs.existsSync("report/allure-results")) {
 //        // 'cypress/specs/12-clientPortalForms-spec.js',
 //        // 'cypress/specs/15-2factorLogin-spec.js',
 //        // 'cypress/specs/16-testNucleusWealthWordpressSite-spec.js',
-//        // 'cypress/specs/17-createTestUserOnLivePortal-spec.js',
+//        // 'cypress/specs/17.0-createTestUserOnLivePortal-spec.js',
 //        // 'cypress/specs/18-checkAdminHeader-spec.js',
 //        // 'cypress/specs/19-lookUpInvestmentAccount-spec.js',
 //        // 'cypress/specs/20-adminPortalCheckDetails-spec.js',

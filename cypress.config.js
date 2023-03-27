@@ -29,7 +29,7 @@ module.exports = defineConfig({
   //skipError: true
   },
   retries: 0,
-  projectId: 'npy1p3',
+  projectId: 'd7nm8k',
   /*e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
