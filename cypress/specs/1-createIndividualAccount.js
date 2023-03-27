@@ -86,7 +86,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('7. Complete Ethical Overlay', function () {
-        //cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4146/ethical-overlay')
         ui.onboarding.click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -97,7 +96,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('8. Review Review Page', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4150/review')
         ui.onboarding.expand_ethical_overlay_panel()
             .verify_chosen_ethics([
                 ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
@@ -119,7 +117,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('10. Complete Risk Profile and navigate to Review', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4151/risk-profile')
         ui.onboarding
             .click_Save_and_Continue_button()
             .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
@@ -158,7 +155,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('12. Complete Applicants', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4153/applicants')
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()

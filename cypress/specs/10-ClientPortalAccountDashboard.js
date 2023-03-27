@@ -57,8 +57,6 @@ context('Client Portal - Account Dashboard', () => {
             .go_through_tour_steps(C.stepMessages)
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
-            //  .click_Save_and_Continue_button()
-
             .answerAllQuestionsWithSameOption(13, 2)
         //cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5630/risk-profile')
         ui.onboarding.enter_financial_info(d)

@@ -73,7 +73,6 @@ context('Company Account', () => {
     })
 
     it('6. Review Review Page', function () {
-       // cy.visit('testwebserver.nucleuswealth.com/onboarding/5477/review')
         ui.onboarding
             .expand_ethical_overlay_panel()
             .verify_no_ethics_selected_message()
@@ -94,7 +93,6 @@ context('Company Account', () => {
     })
 
     it('7. Complete In Company Details', function () {
-        //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3025/trust-details')
         ui.onboarding.enter_address(D.TrustDetails)
             .click_Save_and_Continue_button()
             .verify_validation_messages_for_company_details(D.companyDetailsValidationMsg)

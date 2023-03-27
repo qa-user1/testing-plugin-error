@@ -92,7 +92,6 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
     })
 
     it('7. Complete In Trust Details', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4161/trust-details')
         ui.onboarding.enter_address(D.TrustDetails)
             .click_Save_and_Continue_button()
             .verify_validation_messages_for_trust_details(D.TrustDetailsValidationMsg)

@@ -21,10 +21,6 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )
-
-       /* cy.clearAllLocalStorage()
-        cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
     })
 
 
