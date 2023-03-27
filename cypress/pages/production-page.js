@@ -71,20 +71,24 @@ export default class ProductionPage extends BasePage {
     }
 
     verify_calculator_page() {
-        let self = this
         this.pause(7)
-        cy.url().should('include', 'investment-suitability-calculator');
-        calculatorWrapper().should('be.visible');
-
-        getIframeBody2()
-            .find('[class="VizExIconButton__AbstractVizExIconButton-ke00t7-0 hjgupH InitialMessageBubble__CloseButton-svakjv-1 ibmhJz"]')
-            .then($btn => {
-                if ($btn.is(':visible')) {
-                    $btn.trigger("click");
-                }
-                else {self.verify_calculator_page()}
-            });
-
+        cy.get('.ant-layout-content').invoke('text').then(function (text) {
+            //need to adjust text related to chat
+            if (text.includes('Chat')) {
+                cy.url().should('include', 'investment-suitability-calculator');
+                calculatorWrapper().should('be.visible');
+                getIframeBody2()
+                    .find('[class="VizExIconButton__AbstractVizExIconButton-ke00t7-0 hjgupH InitialMessageBubble__CloseButton-svakjv-1 ibmhJz"]')
+                    .then($btn => {
+                        if ($btn.is(':visible')) {
+                            $btn.trigger("click");
+                        } else {
+                            cy.url().should('include', 'investment-suitability-calculator');
+                            calculatorWrapper().should('be.visible');
+                        }
+                    })
+            }
+        })
         return this;
     }
 
@@ -137,25 +141,33 @@ export default class ProductionPage extends BasePage {
     }
 
     verify_ethical_calculator_page() {
-        let self = this
-        cy.url().should('include', 'ethical-investment-calculator');
-        ethicsGroups().should('be.visible');
-        ethicsPageTitle().should('have.text', 'How do your ethics compare?')
 
-        getIframeBody2()
-            .find('[class="VizExIconButton__AbstractVizExIconButton-ke00t7-0 hjgupH InitialMessageBubble__CloseButton-svakjv-1 ibmhJz"]')
-            .then($btn => {
-                if ($btn.is(':visible')) {
-                    $btn.trigger("click");
-                }
-                else { self.verify_ethical_calculator_page()
-                }
-            });
-
+        cy.wait(1000)
+        cy.get('.ant-layout-content').invoke('text').then(function (text) {
+            //need to adjust text related to chat
+            if (text.includes('Chat')) {
+                ethicsGroups().should('be.visible')
+                ethicsPageTitle().should('have.text', 'How do your ethics compare?')
+                getIframeBody2().then($iframeBody => {
+                    const $button = $iframeBody.find('[class="VizExIconButton__AbstractVizExIconButton-ke00t7-0 hjgupH InitialMessageBubble__CloseButton-svakjv-1 ibmhJz"]')
+                    if ($button.is(':visible')) {
+                        $button.click()
+                    }
+                    else {
+                        cy.url().should('include', 'ethical-investment-calculator');
+                        ethicsGroups().should('be.visible');
+                        ethicsPageTitle().should('have.text', 'How do your ethics compare?')
+                    }
+            } )
+        }
+    })
         return this;
     }
 
-    click_OK_on_Calculator_wizard() {
+
+
+
+click_OK_on_Calculator_wizard() {
         getIframeBody()
             .find('[data-qa-focused="true"]')
             .find('[data-qa="ok-button-visible deep-purple-ok-button-visible"]').click()
