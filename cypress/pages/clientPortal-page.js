@@ -254,7 +254,6 @@ export default class LoginPage extends BasePage {
         uploadNewDocument().click();
         documentTypeList().click();
         documentTypeList().type('Driver License{enter}');
-        //uploadDocumentField().click();
         uploadFileInput('0').attachFile(D.documentType.id);
         uploadFileInput('1').attachFile(D.documentType.id);
         driverLicenceExpiry().click();
@@ -337,31 +336,6 @@ export default class LoginPage extends BasePage {
 
          return this;
      }
-
-    /*verify_target_weight_total() {
-        cy.task('loadData').then(accountNo => {
-            cy.contains(accountNo).parents('.ant-card-body')
-                .should('exist')
-                .within(() => {
-                    cy.get('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
-                        return cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
-                            return cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
-                                const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
-                                cy.log(targetWeight);
-                                expect(targetWeight).to.eq(100);
-                            });
-                        });
-                    });
-                });
-        });
-        return this;
-    }*/
-
-
-
-
-
-
 
 
     click_change_portfolio_button(accountNo) {

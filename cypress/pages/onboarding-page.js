@@ -438,13 +438,13 @@ class OnboardingPage extends BasePage {
         this.pause(3)
         submitApplicantButton().should('be.visible');
         this.pause(3)
-       //  cy.contains('Submit Applicant').click().click();
         submitApplicantButton().click().click();
         this.pause(5)
         return this;
     }
 
     verify_your_identity() {
+        this.pause(7)
         identity().should('be.visible');
         return this;
     }
