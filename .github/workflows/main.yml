@@ -7,6 +7,8 @@ on:
   #  - cron: '0 4 * * *'
   [ push ]
 
+permissions: write-all
+
 jobs:
   Run-Cypress-Test1:
     name: Cypress Test 1
