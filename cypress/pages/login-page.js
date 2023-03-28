@@ -179,7 +179,7 @@ confirmAccount().click()
     }
 
     verify_error_message() {
-        loginErrorMsg().should('have.text', 'Incorrect username or password.');
+        loginErrorMsg().should('have.text', 'Incorrect username or password...');
         return this;
     }
 
