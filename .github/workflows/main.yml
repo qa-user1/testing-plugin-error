@@ -51,6 +51,11 @@ jobs:
           path: gh-pages
 
   Reports:
+    name: Reports
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
         if: always()
