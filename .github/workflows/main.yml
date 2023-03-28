@@ -30,6 +30,27 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+
+  Run-Cypress-Test10:
+    name: Cypress Test 10
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test10
+
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+  Reports:
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
         if: always()
@@ -48,8 +69,6 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
-
-
 
 env:
   #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
