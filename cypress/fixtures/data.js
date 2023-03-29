@@ -483,21 +483,24 @@ D.scenarios = [
     {
         platform: "ib",
         accountType: "Individual",
-        investmentChoice: "Self-Directed",
+        investmentChoice: {
+            choice1: "Self-Directed",
+            choice2: "Limited Advice"
+        },
         questionResponse: [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
             {
                 investmentTotal: 100000,
                 netWorth: 200000,
@@ -507,46 +510,61 @@ D.scenarios = [
         ],
         buildYourPortfolio: {
             "Tactical Growth": {
-                amount: "$50,000",
-                percent: "50%"
+                percent: "100%"
             },
-            "Core International": {
-                amount: "$50,000",
-                percent: "50%"
-            }
-        },
-        ethicalOverlay: {
-            climateChange: [
-                "noFossilFuelsWorstOffenders"
-            ]
         },
         review: {
-            indicativePortfolio: {
-                "Cash(AUDCASH)": "1,330",
-                "AGBApr-2025(GSBG25)": "540",
-                "AGBApr-2029(GSBG29)": "855"
+            questionResponses: {
+                "NetWorth": "$200,000",
+                "Annual Net Income": "$70,000",
+                "Liquid Net Worth": "$110,000"
             },
-            indicativePortfolioSecurity: {
-                "Volkswagen(VOW3)": "NoArms(Any)",
-                "L3HarrisTechnologies(LHX)": "NoArms(Any)"
+        },
+        applicants: {
+            inputFields: {
+                "taxInput": "11111111",
+                "titleInput": "Mr",
+                "nameInput": "Test name",
+                "surnameInput": "Test surname",
+                "emailInput": "email@test.com",
+                "mobileInput": "123456",
+                "genderInput": "Female",
+                "citizenshipInput": "Australia",
+                "employmentType": "Employed",
+                "employmentType2": "Unemployed",
+                "employmentInput": "Employed",
+                "occupation": "Analyst",
+                "employerName": "Test test",
+                "employerAddress": "Angola",
+                "employerBusiness": "Computer/Information Technology",
+                "residentialAddress": "Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia"
             },
-            feesAndCharges: {
-                "On Going Fees": {
-                    "Investment Management Fee": "$216",
-                    "Platform Administration Fee": "$444",
-                    "Advice Fee": "$0"
-                },
-                "Embedded Fees": {
-                    ETFFees: "$0"
-                },
-                "Initial Costs": {
-                    "Initial Transaction Costs (estimated)": "$189-$252",
-                    "Advice Fee": "$0"
-                }
-            }
+            investmentExperience: {
+                "knowledgeLevel": "None",
+                "tradesPerYear": "4",
+                "numberOfYearsTrading": "2"
+            },
+            documents: {
+                "telephoneBill": "Telephone Bill",
+                "waterBill": "Water Bill"
+            },
+        },
+        bankDetails: {
+            "bsb": "123456",
+            "accountNumber": "3456",
+            "financialInstitution": "test",
+            "accountName": 'test'
+        },
+        compliancePageInputFields: {
+            "statementOfInquiry": "Test",
+            "percentage": "100"
+        },
+        finalReview: {
+            "document1": "Investment and Fee Summary",
+            "document2": "MDA Brochure and Agreement",
+            "document3": "Statement of Advice MDA",
         }
-    },
-    {}
+    }
 ]
 
 module.exports = D;

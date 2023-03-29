@@ -487,7 +487,7 @@ class OnboardingPage extends BasePage {
             this.click_non_super_type()
             this.select_individual_non_super_subtype()
         }
-        /*  else if(option.includes('Company')){
+          /*else if(option.includes('Company')){
 
           }*/
         return this;
@@ -498,12 +498,16 @@ class OnboardingPage extends BasePage {
             this.click_self_directed_button()
                 .select_all_checkboxes(6)
         }
+       if(option.includes('Limited Advice')){
+this.click_limited_advice_button()
+    .select_all_checkboxes(6)
+        }
         return this;
     }
 
-    answer_questions_with_first_option(option) {
-        if (option.includes(1)) {
-            this.answerAllQuestionsWithSameOption(13,1)
+    answer_questions_with_third_option(option) {
+        if (option.includes(3)) {
+            this.answerAllQuestionsWithSameOption(13,3)
         }
         return this;
     }
@@ -521,9 +525,6 @@ class OnboardingPage extends BasePage {
         if (data.buildYourPortfolio['Tactical Growth']) {
             tacticalGrowthField().type(data.buildYourPortfolio['Tactical Growth'].percent);
         }
-        if (data.buildYourPortfolio['Core International']) {
-            coreInternationalField().type(data.buildYourPortfolio['Core International'].percent);
-        }
         return this;
     }
 
@@ -538,6 +539,71 @@ class OnboardingPage extends BasePage {
     review_indicative_portfolio_data(data) {
         if (data.review.indicativePortfolio["Cash(AUDCASH)"]) {
             this.review_indicative_portfolio(D.indicativePortfolio)
+        }
+        return this;
+    }
+
+    review_net_worth_annual_net_income_liquid_net_worth(data) {
+        // Is it enough to "call" only 'netWorth' to be reason for if statement, or I should call all the three rows from data
+        if (data.review.questionResponses["NetWorth"]) {
+            this.verify_net_worth_annual_net_income_liquid_net_worth()
+        }
+        return this;
+    }
+
+    enter_ib_applicant_values(data) {
+        if (data.applicants.inputFields["taxInput"]) {
+            this.enter_values_at_create_new_ib_applicant_input_fields(D.applicantsProfileFields)
+        }
+        return this;
+    }
+
+    enter_applicant_investment_experience(data) {
+        if (data.applicants.investmentExperience["knowledgeLevel"]) {
+            this.enter_investment_experience_values(D.investmentExperience)
+                .upload_file('0', D.documentType.id)
+                .upload_file('1', D.documentType.id)
+        }
+        return this;
+    }
+
+    upload_documents(data) {
+        if (data.applicants.documents["telephoneBill"]) {
+            this.upload_and_submit_document_for_verification(D.documentType.telephoneBill)
+                .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
+                .upload_and_submit_document_for_verification(D.documentType.waterBill)
+        }
+        return this;
+    }
+
+    enter_values_for_bank_details(data) {
+        if (data.bankDetails["bsb"]) {
+            this.enter_Bank_Details(D.bankDetails)
+        }
+        return this;
+    }
+
+    enter_values_on_compliance_input_fields(data) {
+        if (data.compliancePageInputFields["statementOfInquiry"]) {
+            this.enter_compliance_values(D.compliancePageInputFields)
+        }
+        return this;
+    }
+
+    verify_documents_on_final_review_page(data) {
+        if (data.finalReview["document1"]) {
+        this.verify_Documents_available_for_download([
+                'Investment and Fee Summary',
+                'MDA Brochure and Agreement',
+                'Statement of Advice MDA',
+            ])
+        }
+        return this;
+    }
+
+    verify_number_of_all_documents(data) {
+        if (data.finalReview["numberOfAllDocuments"]) {
+            this.verify_download_button_for_documents(32)
         }
         return this;
     }
