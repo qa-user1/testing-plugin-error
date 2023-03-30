@@ -56,7 +56,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
         ui.onboarding.click_limited_advice_button()
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
-            .verify_risk_profile_page_personal_super_account()
+            .verify_risk_profile_page()
     })
 
     it('4. Complete Risk Profile', function () {

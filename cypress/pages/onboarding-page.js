@@ -1,5 +1,7 @@
 import BasePage from "./base-page";
 import D from "../fixtures/data";
+import ui from "./ui-spec";
+import C from "../fixtures/constants";
 
 // *************************** ELEMENTS ***************************
 
@@ -119,7 +121,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     driverLicenseExpiry = e => cy.get('#theForm_driver_license_expiry'),
     yearInputField = e => cy.get('.ant-picker-year-btn'),
     todayButton = e => cy.get('.ant-picker-today-btn'),
-    employmentTypeOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option +'"]'),
+    employmentTypeOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
     employmentInputField = e => cy.get('#theForm_employmentDetail_employmentTypeId'),
     occupationInputField = e => cy.get('#theForm_employmentDetail_occupation'),
     employerNameInputField = e => cy.get('#theForm_employmentDetail_employerName'),
@@ -210,10 +212,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     companyAustralianTaxFileNumberInputField = e => cy.get('#company-details-form_investment_account_identifier_tax_file_number'),
     companyAustralianTaxFileNumberValidationMsg = e => cy.contains('Company Australian Tax File Number').parent().parent().find('[role="alert"]')
 
-export
-default
-
-class OnboardingPage extends BasePage {
+export default class OnboardingPage extends BasePage {
 
     constructor() {
         super()
@@ -340,7 +339,7 @@ class OnboardingPage extends BasePage {
         return this;
     }
 
-    verify_validation_messages_for_compliance_page_fields(data){
+    verify_validation_messages_for_compliance_page_fields(data) {
         this.verify_text_on_multiple_elements([
             [statementOfInquiryValidationMessage, data.statementOfInquiry],
             [sourceTypeValidationMessage, data.sourceType],
@@ -435,11 +434,12 @@ class OnboardingPage extends BasePage {
     }
 
     click_submit_applicant_button() {
-        this.pause(3)
+        //  this.pause(3)
         submitApplicantButton().should('be.visible');
-        this.pause(3)
+        // this.pause(3)
         submitApplicantButton().click().click();
-        this.pause(5)
+        submitApplicantButton().should('not.be.visible');
+        // this.pause(5)
         return this;
     }
 
@@ -450,13 +450,13 @@ class OnboardingPage extends BasePage {
     }
 
     upload_and_submit_document_for_verification(type) {
-        this.pause(3)
+        this.pause(1)
         this.select_id_option()
-            this.pause(3)
+        this.pause(1)
             .select_document_type(type)
-        this.pause(3)
-        this.upload_file('1',D.documentType.id)
-            this.pause(3)
+        this.pause(1)
+        this.upload_file('1', D.documentType.id)
+        this.pause(1)
             .click_Upload_and_Submit_button()
         return this;
     }
@@ -486,10 +486,10 @@ class OnboardingPage extends BasePage {
         if (option.includes('Individual')) {
             this.click_non_super_type()
             this.select_individual_non_super_subtype()
+        } else if (option.includes('Personal Super')) {
+            this.click_super_type()
+                .click_personal_super_subtype()
         }
-          /*else if(option.includes('Company')){
-
-          }*/
         return this;
     }
 
@@ -498,26 +498,26 @@ class OnboardingPage extends BasePage {
             this.click_self_directed_button()
                 .select_all_checkboxes(6)
         }
-       if(option.includes('Limited Advice')){
-this.click_limited_advice_button()
-    .select_all_checkboxes(6)
+        if (option.includes('Limited Advice')) {
+            this.click_limited_advice_button()
+                .select_all_checkboxes(6)
         }
         return this;
     }
 
     answer_questions_with_third_option(option) {
         if (option.includes(3)) {
-            this.answerAllQuestionsWithSameOption(13,3)
+            this.answerAllQuestionsWithSameOption(13, 3)
         }
         return this;
     }
 
     enter_financial_info(data) {
         investmentTotal().clear()
-        investmentTotal().type(data.questionResponse[13].investmentTotal);
-        netWorth().type(data.questionResponse[13].netWorth);
-        annualNetIncome().type(data.questionResponse[13].annualNetIncome);
-        liquidNetWorth().type(data.questionResponse[13].liquidNetWorth);
+        investmentTotal().type(data.investmentTotal);
+        netWorth().type(data.netWorth);
+        annualNetIncome().type(data.annualNetIncome);
+        liquidNetWorth().type(data.liquidNetWorth);
         return this;
     }
 
@@ -592,7 +592,7 @@ this.click_limited_advice_button()
 
     verify_documents_on_final_review_page(data) {
         if (data.finalReview["document1"]) {
-        this.verify_Documents_available_for_download([
+            this.verify_Documents_available_for_download([
                 'Investment and Fee Summary',
                 'MDA Brochure and Agreement',
                 'Statement of Advice MDA',
@@ -629,6 +629,7 @@ this.click_limited_advice_button()
 
     click_create_investment_account() {
         createInvestmentButton().click()
+        this.wait_until_loader_disappears()
         return this;
     }
 
@@ -687,14 +688,16 @@ this.click_limited_advice_button()
     }
 
     click_Save_and_Continue_button() {
-        this.pause(3)
+        saveContinueButton().should('not.have.attr', 'disabled')
         this.scroll_and_click(saveContinueButton)
-        this.pause(7)
+        saveContinueButton().should('not.have.attr', 'disabled')
         return this;
     }
 
     click_Submit_Application_button() {
+        submitApplicationButton().should('not.have.attr', 'disabled')
         submitApplicationButton().click()
+        submitApplicationButton().should('not.have.attr', 'disabled')
         return this;
     }
 
@@ -704,9 +707,12 @@ this.click_limited_advice_button()
     }
 
     remove_existing_applicant() {
-        this.pause(6)
+        // this.pause(6)
+        applicantCardMenuButton().should('be.visible');
         applicantCardMenuButton().click();
-        this.pause(3)
+
+        // this.pause(3)
+        removeApplicantButton().should('be.visible');
         removeApplicantButton().click();
         popUpWindowRemoveApplicant().click();
         return this;
@@ -835,6 +841,7 @@ this.click_limited_advice_button()
         this.verify_text_is_present_on_main_container('Vices')
         return this;
     }
+
     verify_ethical_overlay_page2() {
         climateChangeButton().should('be.visible')
         cy.url().should('include', 'ethical-overlay');
@@ -889,12 +896,6 @@ this.click_limited_advice_button()
 
     verify_risk_profile_page() {
         pageTitle().should('not.have.text', 'Review');
-        cy.url().should('include', 'risk-profile');
-        pageTitle().should('have.text', 'Risk Profile');
-        return this;
-    }
-
-    verify_risk_profile_page_personal_super_account() {
         cy.url().should('include', 'risk-profile');
         pageTitle().should('have.text', 'Risk Profile');
         return this;
@@ -1054,6 +1055,7 @@ this.click_limited_advice_button()
         weight().clear();
         return this;
     }
+
     enter_values_for_life_and_tpd_cover(data) {
         lifeCoverInputField().type(data.lifeCover);
         TPDCoverInputField().type(data.tpdCover);
@@ -1077,6 +1079,7 @@ this.click_limited_advice_button()
         cy.get('[type="radio"]').check('individual');
         return this;
     }
+
     enter_all_required_company_details(data) {
         companyNameInputField().type(data.companyName);
         companyAustralianBusinessNumberInputField().type(data.companyAustralianBusinessNumber);
@@ -1131,7 +1134,6 @@ this.click_limited_advice_button()
         return this;
     }
 
-
     answerAllQuestionsWithSameOption(numberOfQuestions, optionToSelect) {
         for (let i = 0; i < numberOfQuestions; i++) {
             answer(i, optionToSelect - 1).click()
@@ -1139,8 +1141,12 @@ this.click_limited_advice_button()
         return this;
     }
 
-
-
+    answerQuestionsWithSpecificOption(numberOfQuestions, arrayOfOptionsToSelect) {
+        for (let i = 0; i < numberOfQuestions; i++) {
+            answer(i, arrayOfOptionsToSelect[i] - 1).click()
+        }
+        return this;
+    }
 
     enter_investment_amount(value) {
         investmentAmountInput().type(value)
@@ -1396,7 +1402,6 @@ this.click_limited_advice_button()
 
         })
     }
-
 
 
     save_report_for_Indicative_Portfolio_Cash() {
@@ -1945,23 +1950,23 @@ this.click_limited_advice_button()
         return this;
     }
 
-    verify_sidebar_content(option){
+    verify_sidebar_content(option) {
         sideBar().should('contain', option);
         return this;
     }
 
-    click_sidebar_option(option){
+    click_sidebar_option(option) {
         sideBar().contains(option).click();
         return this;
     }
 
-    verify_sidebar_content_not_exist(option){
+    verify_sidebar_content_not_exist(option) {
         this.pause(5)
         sideBar().should('not.contain', option);
         return this;
     }
 
-    verify_net_worth_annual_net_income_liquid_net_worth(){
+    verify_net_worth_annual_net_income_liquid_net_worth() {
         questionsOnReviewPage(14).should('have.text', 'Net Worth:');
         answersOnReviewPage(14).should('have.text', '$200,000');
         questionsOnReviewPage(15).should('have.text', 'Annual Net Income:');
@@ -1971,7 +1976,7 @@ this.click_limited_advice_button()
         return this;
     }
 
-    enter_compliance_values(data){
+    enter_compliance_values(data) {
         statementOfInquiry().type(data.statementOfInquiry);
         sourceType().click();
         allowance().click();
@@ -1980,14 +1985,14 @@ this.click_limited_advice_button()
         return this;
     }
 
-    verify_your_portfolio_content_not_exist(option){
+    verify_your_portfolio_content_not_exist(option) {
         this.pause(3)
         cy.get('[class="ant-collapse-content ant-collapse-content-active"]').should('not.contain', option);
         return this;
     }
 
-    go_through_tour_steps(data){
-        this.pause(3)
+    go_through_tour_steps(data) {
+        // this.pause(3)
         tourWindow().should('be.visible');
         this.verify_text_is_visible(data.step1)
         nextButtonTourWindow().click()
@@ -2009,12 +2014,12 @@ this.click_limited_advice_button()
         return this;
     }
 
-    verify_modal_window(){
+    verify_modal_window() {
         modalWindow().should('be.visible');
         return this;
     }
 
-    click_and_verify_each_modal_step(){
+    click_and_verify_each_modal_step() {
         this.verify_text_is_visible('Video Tutorial');
         videoTutorial().should('be.visible');
         this.verify_text_is_visible('Chat with us');
@@ -2026,8 +2031,37 @@ this.click_limited_advice_button()
         return this;
     }
 
-    click_done_button(){
+    click_done_button() {
         cy.contains('Done').click();
+        return this;
+    }
+
+    complete_flow_for_creating_new_account(data) {
+        let type = data.accountType
+
+        this.click_create_new_investment_account()
+            .select_account_type(type)
+            .click_create_investment_account()
+            .go_through_tour_steps(C.stepMessages)
+            .verify_investment_choice_page()
+            .select_investment_choice(data.investmentChoice)
+            .click_Save_and_Continue_button()
+            .verify_risk_profile_page()
+
+        if (type === 'Individual') {
+            this.answerQuestionsWithSpecificOption(13, data.questionResponse)
+                .enter_financial_info(data.questionResponse[13])
+                .click_Save_and_Continue_button()
+                .verify_build_your_portfolio_page()
+        }
+        else if (type === 'Personal Super') {
+            this.answerQuestionsWithSpecificOption(12, data.questionResponse)
+                .enter_financial_info(data.questionResponse[12])
+                .click_Save_and_Continue_button()
+                .verify_ethical_overlay_page()
+        }
+
+
         return this;
     }
 

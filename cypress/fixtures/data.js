@@ -481,15 +481,13 @@ D.personalInvestmentForms = [
 
 D.scenarios = [
     {
+        name: 'Scenario 22',
         platform: "ib",
         accountType: "Individual",
-        investmentChoice: {
-            choice1: "Self-Directed",
-            choice2: "Limited Advice"
-        },
+        investmentChoice: "Self-Directed",
         questionResponse: [
-            3,
-            3,
+            1,
+            2,
             3,
             3,
             3,
@@ -564,6 +562,32 @@ D.scenarios = [
             "document2": "MDA Brochure and Agreement",
             "document3": "Statement of Advice MDA",
         }
+    },
+    {
+        name: 'Scenario 2',
+        platform: "ib",
+        accountType: "Personal Super",
+        investmentChoice: "Limited Advice",
+        questionResponse: [
+            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            {
+                investmentTotal: 100000,
+                netWorth: 200000,
+                annualNetIncome: 70000,
+                liquidNetWorth: 110000
+            }
+        ],
     }
 ]
 

@@ -4,6 +4,7 @@ const D = require('../fixtures/data')
 
 let
     mainContainer = e => cy.get('.ant-collapse-content-box > .ant-row-middle'),
+    loader = e => cy.get('[data-test="loading-animation"]'),
     mainContainer2 = e => cy.get(':nth-child(2) > :nth-child(1) > :nth-child(1) > :nth-child(5)'),
     validationMessage = e => cy.get('.form-error'),
     uploadFileInput = index => cy.get('input[type=file]').eq(index),
@@ -217,8 +218,14 @@ export default class BasePage {
         return this;
     }
 
-
-
+    wait_until_loader_disappears(element) {
+        cy.get('body').then(($body) => {
+            if ($body.text().includes('Loading...')) {
+                loader().should('not.be.visible')
+            }
+        })
+        return this;
+    }
     wait_input_filed_to_have_value(element) {
         element().invoke('val').should('not.be.empty');
         return this;
