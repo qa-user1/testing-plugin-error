@@ -483,7 +483,9 @@ D.scenarios = [
     {
         name: 'Scenario 22',
         platform: "ib",
-        accountType: "Individual",
+        username: 'testing+ib@nucleuswealth.com',
+        password: 'Testing1234!',
+        accountType: "Individual-IB",
         investmentChoice: "Self-Directed",
         questionResponse: [
             1,
@@ -566,6 +568,8 @@ D.scenarios = [
     {
         name: 'Scenario 2',
         platform: "ib",
+        username: 'testing@nucleuswealth.com',
+        password: 'Testing123!',
         accountType: "Personal Super",
         investmentChoice: "Limited Advice",
         questionResponse: [

@@ -483,7 +483,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_account_type(option) {
-        if (option.includes('Individual')) {
+        if (option.includes('Individual-IB')) {
             this.click_non_super_type()
             this.select_individual_non_super_subtype()
         } else if (option.includes('Personal Super')) {
@@ -2040,7 +2040,7 @@ export default class OnboardingPage extends BasePage {
         let type = data.accountType
 
         this.click_create_new_investment_account()
-            .select_account_type(type)
+   /*         .select_account_type(type)
             .click_create_investment_account()
             .go_through_tour_steps(C.stepMessages)
             .verify_investment_choice_page()
@@ -2048,7 +2048,7 @@ export default class OnboardingPage extends BasePage {
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
 
-        if (type === 'Individual') {
+        if (type === 'Individual-IB') {
             this.answerQuestionsWithSpecificOption(13, data.questionResponse)
                 .enter_financial_info(data.questionResponse[13])
                 .click_Save_and_Continue_button()
@@ -2061,8 +2061,10 @@ export default class OnboardingPage extends BasePage {
                 .verify_ethical_overlay_page()
         }
 
-
+*/
         return this;
     }
+
+
 
 }

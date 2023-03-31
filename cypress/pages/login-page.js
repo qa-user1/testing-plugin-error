@@ -1,5 +1,6 @@
 import BasePage from "./base-page";
 import S from "../fixtures/settings";
+import D from "../fixtures/data";
 
 // *************************** ELEMENTS ***************************
 let
@@ -44,6 +45,20 @@ export default class LoginPage extends BasePage {
         this.check_for_Cognito_message_and_perform_login(user)
         return this;
     }
+
+    enter_credentials_for_sign_in(d1,d2) {
+      //  let type = data.accountType
+        if (d1.accountType === 'Individual-IB') {
+            this.enter_credentials_and_click_Sign_In(d1.username, d1.password)
+        }
+        else if (d2.accountType === 'Personal Super') {
+            this.enter_credentials_and_click_Sign_In(d2.username, d2.password)
+        }
+        return this;
+    }
+
+
+
 
     enter_wrong_credentials_and_click_Sign_In(username, pass) {
         let user = {
