@@ -584,7 +584,7 @@ export default class OnboardingPage extends BasePage {
             this.enter_values_at_create_new_ib_applicant_input_fields(data.applicants.inputFields)
         }
         if(data.accountType === 'Individual') {
-
+        this.enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields)
         }
         return this;
     }
@@ -599,10 +599,10 @@ export default class OnboardingPage extends BasePage {
     }
 
     upload_documents(data) {
-        if (data.applicants.documents["telephoneBill"]) {
-            this.upload_and_submit_document_for_verification(data.documentType.telephoneBill)
+        if (data.applicants.documents.telephoneBill) {
+            this.upload_and_submit_document_for_verification(data.applicants.documents.telephoneBill)
                 .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
-                .upload_and_submit_document_for_verification(data.documentType.waterBill)
+                .upload_and_submit_document_for_verification(data.applicants.documents.waterBill)
         }
         return this;
     }
@@ -622,11 +622,18 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_documents_on_final_review_page(data) {
-        if (data.finalReview["document1"]) {
+        if (data.accountType === 'Individual-IB') {
             this.verify_Documents_available_for_download([
                 'Investment and Fee Summary',
                 'MDA Brochure and Agreement',
                 'Statement of Advice MDA',
+            ])
+        }
+        else if (data.accountType === 'Individual') {
+            this.verify_Documents_available_for_download([
+                'Investment and Fee Summary',
+                'Statement of Advice',
+                'Praemium SMA PDS and Investment Guide extract',
             ])
         }
         return this;
@@ -2142,7 +2149,7 @@ export default class OnboardingPage extends BasePage {
                     ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
                     ['War', ['No Arms (Any)']]
                 ])
-             //   .review_portfolio_data(data)
+                .review_portfolio_data(data)
 
                 .click_sidebar_option('Investment Choice')
                 .click_limited_advice_button()
@@ -2151,7 +2158,6 @@ export default class OnboardingPage extends BasePage {
 
                 .click_Save_and_Continue_button()
                 .verify_risk_profile_page()
-                .click_Save_and_Continue_button()
                 .answerQuestionsWithSpecificOption(13, data.questionResponse)
                 .enter_financial_info(data.questionResponse[13])
                 .click_Save_and_Continue_button()
@@ -2162,16 +2168,19 @@ export default class OnboardingPage extends BasePage {
                 .verify_applicants_page()
                 .remove_existing_applicant()
                 .add_new_applicant()
-                .enter_applicant_values(data)
-                .enter_values_at_create_new_applicant_input_fields(data)
+                .enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields)
+                //.enter_applicant_values(data)
                 .click_submit_applicant_button()
-               /* .upload_documents(data)
+                .upload_documents(data)
                 .click_Save_and_Continue_button()
                 .verify_Bank_Details_page()
                 .enter_values_for_bank_details(data)
                 .click_Save_and_Continue_button()
-                .verify_Final_Review_page()*/
-
+                .verify_Final_Review_page()
+                .verify_documents_on_final_review_page(data)
+                .click_Agree_checkbox()
+                .click_Submit_Application_button()
+                .verify_success_page()
         }
         return this;
     }

@@ -650,8 +650,8 @@ D.scenarios = [
                 "numberOfYearsTrading": "2"
             },
             documents: {
-                "telephoneBill": "Telephone Bill",
-                "waterBill": "Water Bill"
+                telephoneBill: "Telephone Bill",
+                waterBill: "Water Bill"
             },
         },
         bankDetails: {
@@ -666,8 +666,8 @@ D.scenarios = [
         },
         finalReview: {
             "document1": "Investment and Fee Summary",
-            "document2": "MDA Brochure and Agreement",
-            "document3": "Statement of Advice MDA",
+            "document2": "Statement of Advice",
+            "document3": "Praemium SMA PDS and Investment Guide extract",
         }
     },
     {
