@@ -490,16 +490,25 @@ export default class OnboardingPage extends BasePage {
             this.click_super_type()
                 .click_personal_super_subtype()
         }
+        else if (option.includes('Individual')) {
+            this.click_non_super_type()
+            this.select_individual_non_super_subtype()
+        }
         return this;
     }
 
-    select_investment_choice(option) {
-        if (option.includes('Self-Directed')) {
+    select_investment_choice(data) {
+        let type = data.accountType
+        if (type === 'Individual') {
+            this.click_self_directed_button()
+                .select_all_checkboxes(5)
+        }
+        else if (type === 'Individual-IB') {
             this.click_self_directed_button()
                 .select_all_checkboxes(6)
         }
-        if (option.includes('Limited Advice')) {
-            this.click_limited_advice_button()
+        else if (type === 'Personal Super') {
+            this.click_self_directed_button()
                 .select_all_checkboxes(6)
         }
         return this;
@@ -522,24 +531,43 @@ export default class OnboardingPage extends BasePage {
     }
 
     enter_Portfolio_values(data) {
-        if (data.buildYourPortfolio['Tactical Growth']) {
+        if (data.buildYourPortfolio.tacticalGrowth === '50%')
+        {
+            investmentTotalField().type(data.buildYourPortfolio.investmentTotal);
+            tacticalGrowthField().type(data.buildYourPortfolio.tacticalGrowth);
+            coreInternationalField().type(data.buildYourPortfolio.coreInternational);
+        }
+       /* if (data.buildYourPortfolio['Tactical Growth']) {
             tacticalGrowthField().type(data.buildYourPortfolio['Tactical Growth'].percent);
         }
+        else if (data.buildYourPortfolio['Core International']) {
+            tacticalGrowthField().type(data.buildYourPortfolio['Tactical Growth'].percent);
+            coreInternationalField().type(data.buildYourPortfolio['Core International'].percent);
+        }*/
         return this;
     }
 
     select_climate_change_option(data) {
-        if (data.ethicalOverlay.climateChange[0]) {
+        if (data.ethicalOverlay['climateChange1']) {
             this.select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
+                .select_checkbox_based_on_label('No Fossil Fuels (Any)')
+                .click_war_button()
+                .select_checkbox_based_on_label('No Arms (Any)')
         }
 
         return this;
     }
 
-    review_indicative_portfolio_data(data) {
-        if (data.review.indicativePortfolio["Cash(AUDCASH)"]) {
-            this.review_indicative_portfolio(D.indicativePortfolio)
+    review_portfolio_data(data) {
+        //if the value isn't this it will skip this part?
+        if (data.review.indicativePortfolio["AAA Cash ETF"] === '5,305') {
+            this.review_indicative_portfolio(data.review.indicativePortfolio)
+            this.verify_your_portfolio_panel(data.review.yourPortfolioValues)
+            this.review_indicative_portfolio_security(data.review.indicativePortfolioSecurity)
         }
+       /* if (data.review.indicativePortfolio["AAA Cash ETF"]) {
+            this.review_indicative_portfolio(data.review.indicativePortfolio)
+        }*/
         return this;
     }
 
@@ -551,9 +579,12 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    enter_ib_applicant_values(data) {
-        if (data.applicants.inputFields["taxInput"]) {
-            this.enter_values_at_create_new_ib_applicant_input_fields(D.applicantsProfileFields)
+    enter_applicant_values(data) {
+        if (data.accountType === 'Individual-IB'){
+            this.enter_values_at_create_new_ib_applicant_input_fields(data.applicants.inputFields)
+        }
+        if(data.accountType === 'Individual') {
+
         }
         return this;
     }
@@ -569,16 +600,16 @@ export default class OnboardingPage extends BasePage {
 
     upload_documents(data) {
         if (data.applicants.documents["telephoneBill"]) {
-            this.upload_and_submit_document_for_verification(D.documentType.telephoneBill)
+            this.upload_and_submit_document_for_verification(data.documentType.telephoneBill)
                 .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
-                .upload_and_submit_document_for_verification(D.documentType.waterBill)
+                .upload_and_submit_document_for_verification(data.documentType.waterBill)
         }
         return this;
     }
 
     enter_values_for_bank_details(data) {
         if (data.bankDetails["bsb"]) {
-            this.enter_Bank_Details(D.bankDetails)
+            this.enter_Bank_Details(data.bankDetails)
         }
         return this;
     }
@@ -2040,28 +2071,108 @@ export default class OnboardingPage extends BasePage {
         let type = data.accountType
 
         this.click_create_new_investment_account()
-   /*         .select_account_type(type)
+            .select_account_type(type)
             .click_create_investment_account()
             .go_through_tour_steps(C.stepMessages)
             .verify_investment_choice_page()
-            .select_investment_choice(data.investmentChoice)
+            .select_investment_choice(data)
             .click_Save_and_Continue_button()
-            .verify_risk_profile_page()
+         //   .verify_risk_profile_page()
 
         if (type === 'Individual-IB') {
             this.answerQuestionsWithSpecificOption(13, data.questionResponse)
-                .enter_financial_info(data.questionResponse[13])
+               /* .enter_financial_info(data.questionResponse[13])
                 .click_Save_and_Continue_button()
                 .verify_build_your_portfolio_page()
+                .enter_Portfolio_values(data)
+                .click_Save_and_Continue_button()
+                .verify_ethical_overlay_page()
+                .click_Save_and_Continue_button()
+                .verify_review_page()
+                .click('Question Responses')
+                     .review_net_worth_annual_net_income_liquid_net_worth(data)
+                .click_Save_and_Continue_button()
+                     .verify_applicants_page()
+                .remove_existing_applicant()
+           .add_new_applicant()
+                     .enter_applicant_values(data)
+                     .enter_applicant_investment_experience(data)
+                     .click_submit_applicant_button()
+                     .upload_documents(data)
+                     .click_Save_and_Continue_button()
+                     .verify_Bank_Details_page()
+                .enter_values_for_bank_details(data)
+                     .click_Save_and_Continue_button()
+                     .verify_compliance_page()
+                .enter_values_on_compliance_input_fields(data)
+                     .click_Save_and_Continue_button()
+                     .verify_Final_Review_page()
+                .verify_documents_on_final_review_page(data)
+                .click_sidebar_option('Investment Choice')
+                     .go_through_tour_steps(C.stepMessages)
+                     .verify_investment_choice_page()
+                     .select_investment_choice(data.investmentChoice2)
+                     .click_Save_and_Continue_button()
+                     .verify_risk_profile_page()
+                     .click_Save_and_Continue_button()
+                .click_sidebar_option('Final Review')
+                     .verify_Final_Review_page()
+                     .click_Save_and_Continue_button()
+                     .click_Agree_checkbox()
+                     .click_Submit_Application_button()
+                .verify_success_page()*/
         }
-        else if (type === 'Personal Super') {
+        /*else if (type === 'Personal Super') {
             this.answerQuestionsWithSpecificOption(12, data.questionResponse)
                 .enter_financial_info(data.questionResponse[12])
                 .click_Save_and_Continue_button()
                 .verify_ethical_overlay_page()
-        }
+        }*/
 
-*/
+        else if (type === 'Individual') {
+            this.verify_build_your_portfolio_page()
+                .enter_Portfolio_values(data)
+                .click_Save_and_Continue_button()
+                .verify_ethical_overlay_page()
+                .select_climate_change_option(data)
+                .click_Save_and_Continue_button()
+                .verify_review_page()
+                .expand_ethical_overlay_panel()
+                .verify_chosen_ethics([
+                    ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
+                    ['War', ['No Arms (Any)']]
+                ])
+             //   .review_portfolio_data(data)
+
+                .click_sidebar_option('Investment Choice')
+                .click_limited_advice_button()
+                .go_through_tour_steps(C.stepMessages)
+                .select_all_checkboxes(6)
+
+                .click_Save_and_Continue_button()
+                .verify_risk_profile_page()
+                .click_Save_and_Continue_button()
+                .answerQuestionsWithSpecificOption(13, data.questionResponse)
+                .enter_financial_info(data.questionResponse[13])
+                .click_Save_and_Continue_button()
+                .verify_ethical_overlay_page()
+                .click_Save_and_Continue_button()
+                .verify_review_page()
+                .click_Save_and_Continue_button()
+                .verify_applicants_page()
+                .remove_existing_applicant()
+                .add_new_applicant()
+                .enter_applicant_values(data)
+                .enter_values_at_create_new_applicant_input_fields(data)
+                .click_submit_applicant_button()
+               /* .upload_documents(data)
+                .click_Save_and_Continue_button()
+                .verify_Bank_Details_page()
+                .enter_values_for_bank_details(data)
+                .click_Save_and_Continue_button()
+                .verify_Final_Review_page()*/
+
+        }
         return this;
     }
 

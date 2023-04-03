@@ -46,13 +46,13 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    enter_credentials_for_sign_in(d1,d2) {
-      //  let type = data.accountType
-        if (d1.accountType === 'Individual-IB') {
-            this.enter_credentials_and_click_Sign_In(d1.username, d1.password)
+    enter_credentials_for_sign_in(data) {
+        let type = data.accountType
+        if (type === 'Individual-IB') {
+            this.enter_credentials_and_click_Sign_In(data.username, data.password)
         }
-        else if (d2.accountType === 'Personal Super') {
-            this.enter_credentials_and_click_Sign_In(d2.username, d2.password)
+        else if (type === 'Personal Super' || type === 'Individual') {
+            this.enter_credentials_and_click_Sign_In(data.username, data.password)
         }
         return this;
     }

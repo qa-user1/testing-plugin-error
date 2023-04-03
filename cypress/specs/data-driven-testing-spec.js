@@ -5,7 +5,7 @@ const d1 = D.scenarios[0];
 const d2 = D.scenarios[1];
 
 
-D.scenarios.forEach(scenario => {
+D.scenarios.forEach(data => {
 
         beforeEach(function () {
                 cy.clearAllLocalStorage()
@@ -14,14 +14,13 @@ D.scenarios.forEach(scenario => {
 
         })
 
-        it(scenario.name +  '___ ', () => {
+        it(data.name +  '___ ', () => {
                 ui.login.open_base_url()
                     .verify_login_menu(D.user)
-                    .enter_credentials_for_sign_in(d1,d2)
-                   // .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+                    .enter_credentials_for_sign_in(data)
                     .redirect_user_to_the_create_a_new_account_page()
                 ui.onboarding.verify_account_selection()
-                ui.onboarding.complete_flow_for_creating_new_account(d1)
+                ui.onboarding.complete_flow_for_creating_new_account(data)
 
             })
 
