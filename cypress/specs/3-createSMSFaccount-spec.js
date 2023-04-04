@@ -53,7 +53,7 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
 
     it('4. Complete Risk Profile', function () {
         ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
-            .enter_financial_info(d)
+            .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
     })
@@ -88,7 +88,8 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
     })
 
     it('6. Review Review Page', function () {
-        ui.onboarding.save_final_JSON_report('smsf_')
+        ui.onboarding
+            .save_final_JSON_report('smsf_')
             .click_Save_and_Continue_button()
             .verify_SMSF_page()
     })

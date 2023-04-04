@@ -457,6 +457,13 @@ D.tacticalAdditionalAssets = {
     ownHome: '100000'
 }
 
+D.financialInfo = {
+    investmentTotal: '100000',
+    netWorth: '200000',
+    annualNetIncome: '70000',
+    liquidNetWorth: '110000'
+}
+
 
 D.visitDownloadPageLinksText = {
     noticeOfIntentToClaimATOs: 'Visit this link and then for the Praemium Managed Accounts Superannuation section, click on the Forms tab and download the "Notice of Intent to Claim ATO s.290-170.pdf"',
@@ -731,6 +738,103 @@ D.scenarios = [
             'You would like more visibility over your investments within superannuation',
             'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.'
         ],
+        insurance: {
+            lifeCover: '100000',
+            tpdCover: '100000',
+            steppedLifeCoverAmount: '$55',
+            steppedTPDAmount: '$55',
+            levelTo65LifeCoverAmount: '$55',
+            levelTo65TPDCoverAmount: '$55',
+            weight: '5',
+            height: '10',
+            occupation: 'test'
+        },
+        finalReview: {
+            "document1": "Investment and Fee Summary",
+            "document2": "Statement of Advice",
+            "document3": "PraemiumSMA PDS and Investment Guide extract",
+            "document4": 'MetLife - Protect Product Disclosure Statement'
+        }
+    },
+    {
+        name: 'Scenario 3',
+        username: 'testing@nucleuswealth.com',
+        password: 'Testing123!',
+        accountType: "SMSF",
+        investmentChoice: "Limited Advice",
+        questionResponse: [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            {
+                investmentTotal: 100000,
+                netWorth: 200000,
+                annualNetIncome: 70000,
+                liquidNetWorth: 110000
+            }
+        ],
+        buildYourPortfolio: {
+            tacticalGrowth: "50%",
+            coreInternational: "50%",
+            investmentTotal: "100000"
+        },
+        ethicalOverlay: {
+            "climateChange1": "No Fossil Fuels (Worst Offenders)",
+            "climateChange2": "No Fossil Fuels (Any)",
+            "war": "No Arms (Any)"
+        },
+        reviewQuestionsSMSF: [
+            'How would you describe your current investment experience?',
+            'What do you want to achieve from your investment with Nucleus?',
+            'When will you need to withdraw more than 30% of the investment?',
+            'When you think of the word "risk" in a financial context, which of the following words comes to mind first?',
+            'What degree of risk have you taken with your financial decisions in the past?',
+            'Have you ever borrowed money to make an investment (other than for residential property)?',
+            'Investments can go up or down in value and experts often say you should be prepared to weather a downturn. By how much could the total value of all your investments go down in 3 months before you would begin to feel uncomfortable?',
+            'How would you react if the value of your portfolio fell by more than 20% in any year?',
+            'Which one of the following best describes your attitude to market volatility when choosing an investment?',
+            'Imagine you just received a $50,000 windfall - what would you look to immediately do with it?',
+            'What is the source of the majority of the funds you would like to invest with us?',
+            'You have identified the following reasons for your interest in investing in our models:',
+            'When deciding on your investment composition would you like:'
+        ],
+        reviewResponsesSMSF: [
+            'I have dabbled in some Aussie stocks but mainly have managed investments',
+            'My priority is to generate income. However, I would like to see my initial investment grow over time',
+            '2 - 4 years',
+            'Uncertainty',
+            'Medium',
+            'Yes',
+            '10%',
+            'I would be concerned and consider changing my investment strategy',
+            'I prefer investments with a low risk of volatility; however, I am happy to have a small portion of my portfolio invested in assets with potentially higher levels of short-term capital fluctuation',
+            'Leave a portion in cash, say $10,000, and look to invest the rest in a term deposit',
+            'Investment income',
+            'You want a portfolio tailored to your ethical values',
+            'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.'
+        ],
+        SMSFDetails: {
+            superFundName: 'test fund name',
+            SMSFAustralianBusinessNumber: '5555',
+            SMSFAustralianTaxFileNumber: '11111111',
+            address: 'Tesselaar Flower Farm, 357 Monbulk Rd, Silvan VIC 3795, Australia',
+        },
+        bankDetails: {
+            "bsb": "123456",
+            "accountNumber": "3456",
+            "financialInstitution": "test",
+            "accountName": 'test'
+        },
         insurance: {
             lifeCover: '100000',
             tpdCover: '100000',
