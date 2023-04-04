@@ -644,11 +644,6 @@ D.scenarios = [
                 employerBusiness: 'Computer/Information Technology{enter}',
                 residentialAddress: 'Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia{enter}'
             },
-            investmentExperience: {
-                "knowledgeLevel": "None",
-                "tradesPerYear": "4",
-                "numberOfYearsTrading": "2"
-            },
             documents: {
                 telephoneBill: "Telephone Bill",
                 waterBill: "Water Bill"
@@ -660,14 +655,98 @@ D.scenarios = [
             "financialInstitution": "test",
             "accountName": 'test'
         },
-        compliancePageInputFields: {
-            "statementOfInquiry": "Test",
-            "percentage": "100"
-        },
         finalReview: {
             "document1": "Investment and Fee Summary",
             "document2": "Statement of Advice",
             "document3": "Praemium SMA PDS and Investment Guide extract",
+        }
+    },
+    {
+        name: 'Scenario 2',
+        username: 'testing@nucleuswealth.com',
+        password: 'Testing123!',
+        accountType: "Personal Super",
+        investmentChoice: "Limited Advice",
+        questionResponse: [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            {
+                investmentTotal: 100000,
+                netWorth: 200000,
+                annualNetIncome: 70000,
+                liquidNetWorth: 110000
+            }
+        ],
+        buildYourPortfolio: {
+            tacticalGrowth: "50%",
+            coreInternational: "50%",
+            investmentTotal: "100000"
+        },
+        ethicalOverlay: {
+            "climateChange1": "No Fossil Fuels (Worst Offenders)",
+            "climateChange2": "No Fossil Fuels (Any)",
+            "war": "No Arms (Any)"
+        },
+        fundEntryInputFields: {
+            fundName1: 'Other',
+            fundName2: 'AustralianSuper{enter}',
+            transferAmount: '100000',
+            memberNumber: '5'
+        },
+        reviewQuestions: [
+            'How would you describe your current investment experience?',
+            'What do you want to achieve from your investment with Nucleus?',
+            'When you think of the word "risk" in a financial context, which of the following words comes to mind first?',
+            'What degree of risk have you taken with your financial decisions in the past?',
+            'Have you ever borrowed money to make an investment (other than for residential property)?',
+            'Investments can go up or down in value and experts often say you should be prepared to weather a downturn. By how much could the total value of all your investments go down in 3 months before you would begin to feel uncomfortable?',
+            'How would you react if the value of your portfolio fell by more than 20% in any year?',
+            'Which one of the following best describes your attitude to market volatility when choosing an investment?',
+            'Imagine you just received a $50,000 windfall - what would you look to immediately do with it?',
+            'When will you need to withdraw more than 30% of your superannuation account? For most people this will be age 60 and above.',
+            'What is your primary objective for investing your superannuation with Nucleus Wealth?',
+            'When deciding on your investment composition would you like:'
+        ],
+        reviewResponses: [
+            'I have dabbled in some Aussie stocks but mainly have managed investments',
+            'My priority is to generate income. However, I would like to see my initial investment grow over time',
+            'Uncertainty',
+            'Medium',
+            'Yes',
+            '10%',
+            'I would be concerned and consider changing my investment strategy',
+            'I prefer investments with a low risk of volatility; however, I am happy to have a small portion of my portfolio invested in assets with potentially higher levels of short-term capital fluctuation',
+            'Leave a portion in cash, say $10,000, and look to invest the rest in a term deposit',
+            '2 - 4 years',
+            'You would like more visibility over your investments within superannuation',
+            'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.'
+        ],
+        insurance: {
+            lifeCover: '100000',
+            tpdCover: '100000',
+            steppedLifeCoverAmount: '$55',
+            steppedTPDAmount: '$55',
+            levelTo65LifeCoverAmount: '$55',
+            levelTo65TPDCoverAmount: '$55',
+            weight: '5',
+            height: '10',
+            occupation: 'test'
+        },
+        finalReview: {
+            "document1": "Investment and Fee Summary",
+            "document2": "Statement of Advice",
+            "document3": "PraemiumSMA PDS and Investment Guide extract",
+            "document4": 'MetLife - Protect Product Disclosure Statement'
         }
     },
     {
@@ -756,34 +835,7 @@ D.scenarios = [
             "document3": "Statement of Advice MDA",
         }
     },
-    {
-        name: 'Scenario 2',
-        platform: "ib",
-        username: 'testing@nucleuswealth.com',
-        password: 'Testing123!',
-        accountType: "Personal Super",
-        investmentChoice: "Limited Advice",
-        questionResponse: [
-            1,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            {
-                investmentTotal: 100000,
-                netWorth: 200000,
-                annualNetIncome: 70000,
-                liquidNetWorth: 110000
-            }
-        ],
-    },
+
 
 ]
 

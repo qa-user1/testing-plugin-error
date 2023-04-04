@@ -508,9 +508,17 @@ export default class OnboardingPage extends BasePage {
                 .select_all_checkboxes(6)
         }
         else if (type === 'Personal Super') {
-            this.click_self_directed_button()
+            this.click_limited_advice_button()
                 .select_all_checkboxes(6)
         }
+        return this;
+    }
+
+    complete_insurance_quote(data){
+    this.click_yes_insurance_button()
+            .clear_all_required_insurance_values()
+            .enter_values_for_life_and_tpd_cover(data.insurance)
+            .enter_all_required_insurance_values(data.insurance)
         return this;
     }
 
@@ -547,7 +555,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    select_climate_change_option(data) {
+    select_ethical_option(data) {
         if (data.ethicalOverlay['climateChange1']) {
             this.select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
                 .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -634,6 +642,14 @@ export default class OnboardingPage extends BasePage {
                 'Investment and Fee Summary',
                 'Statement of Advice',
                 'Praemium SMA PDS and Investment Guide extract',
+            ])
+        }
+        else if (data.accountType === 'Personal Super') {
+            this.verify_Documents_available_for_download([
+                'Investment and Fee Summary',
+                'Statement of Advice',
+                'Praemium SuperSMA PDS and Investment Guide extract',
+                'MetLife - Protect Product Disclosure Statement'
             ])
         }
         return this;
@@ -2084,7 +2100,7 @@ export default class OnboardingPage extends BasePage {
             .verify_investment_choice_page()
             .select_investment_choice(data)
             .click_Save_and_Continue_button()
-         //   .verify_risk_profile_page()
+
 
         if (type === 'Individual-IB') {
             this.answerQuestionsWithSpecificOption(13, data.questionResponse)
@@ -2129,19 +2145,36 @@ export default class OnboardingPage extends BasePage {
                      .click_Submit_Application_button()
                 .verify_success_page()*/
         }
-        /*else if (type === 'Personal Super') {
-            this.answerQuestionsWithSpecificOption(12, data.questionResponse)
+        else if (type === 'Personal Super') {
+        this.verify_risk_profile_page()
+            .answerQuestionsWithSpecificOption(12, data.questionResponse)
                 .enter_financial_info(data.questionResponse[12])
                 .click_Save_and_Continue_button()
                 .verify_ethical_overlay_page()
-        }*/
+            .select_ethical_option(data)
+            .click_Save_and_Continue_button()
+            .verify_super_fund_entry_page()
+            .enter_values_on_super_fund_entry_input_fields(data.fundEntryInputFields)
+            .click_Save_and_Continue_button()
+            .verify_review_page()
+            .expand_question_responses_panel()
+            .verify_question_responses(data.reviewQuestions, data.reviewResponses)
+            .click_Save_and_Continue_button()
+            .verify_applicants_page()
+            .click_Save_and_Continue_button()
+            .verify_insurance_quote_page()
+            .complete_insurance_quote(data)
+            .click_Save_and_Continue_button()
+            .verify_Final_Review_page()
+            .verify_documents_on_final_review_page(data)
+        }
 
         else if (type === 'Individual') {
             this.verify_build_your_portfolio_page()
                 .enter_Portfolio_values(data)
                 .click_Save_and_Continue_button()
                 .verify_ethical_overlay_page()
-                .select_climate_change_option(data)
+                .select_ethical_option(data)
                 .click_Save_and_Continue_button()
                 .verify_review_page()
                 .expand_ethical_overlay_panel()

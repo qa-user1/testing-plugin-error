@@ -1,8 +1,7 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 //const d = D.scenarios[0]
-const d1 = D.scenarios[0];
-const d2 = D.scenarios[1];
+
 
 
 D.scenarios.forEach(data => {
