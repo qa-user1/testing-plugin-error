@@ -60,7 +60,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .answerAllQuestionsWithSameOption(13, 2)
-        ui.onboarding.enter_financial_info(d)
+        ui.onboarding.enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
             .click_Save_and_Continue_button()

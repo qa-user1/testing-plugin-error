@@ -221,7 +221,11 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run clearGmail
-      - run: npm run e2e-test17
+      - run: npm run e2e-test17.0
+      - run: npm run clearGmail
+      - run: npm run e2e-test17.1
+      - run: npm run clearGmail
+      - run: npm run e2e-test17.2
 
   Run-Cypress-Test18:
     name: Cypress Test 18

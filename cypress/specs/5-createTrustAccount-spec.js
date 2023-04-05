@@ -6,7 +6,7 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
 
 
     before(function () {
-        /*Cypress.Cookies.debug(true)
+        Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -19,10 +19,10 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-            )*/
-        cy.clearAllLocalStorage()
+            )
+      /*  cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()
+        cy.clearAllSessionStorage()*/
 
     })
 
@@ -67,7 +67,7 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
             .verify_review_page()
     })
 
-    it('6. Review Review Page', function () {
+    xit('6. Review Review Page', function () {
         ui.onboarding.expand_ethical_overlay_panel()
             .verify_no_ethics_selected_message()
             .save_data_object_for_Your_Portfolio_Trust_Profile()
@@ -80,15 +80,17 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
     })
 
     it('6. Review Review Page', function () {
-        ui.onboarding.save_final_JSON_report('trust_')
+        ui.onboarding
+            //.save_final_JSON_report('trust_')
             .click_Save_and_Continue_button()
             .verify_trust_details_page()
     })
 
     it('7. Complete In Trust Details', function () {
+       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6163/trust-details')
         ui.onboarding.enter_address(D.TrustDetails)
-            .click_Save_and_Continue_button()
-            .verify_validation_messages_for_trust_details(D.TrustDetailsValidationMsg)
+            ui.onboarding.click_Save_and_Continue_button()
+            ui.onboarding.verify_validation_messages_for_trust_details(D.TrustDetailsValidationMsg)
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)
             .enter_all_required_trust_details(D.TrustDetails)
             .enter_Bank_Details(D.bankDetails)

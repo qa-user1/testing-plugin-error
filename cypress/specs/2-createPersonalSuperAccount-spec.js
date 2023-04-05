@@ -61,7 +61,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
 
     it('4. Complete Risk Profile', function () {
         ui.onboarding.answerAllQuestionsWithSameOption(12, 2)
-            .enter_financial_info(d)
+            .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
     })

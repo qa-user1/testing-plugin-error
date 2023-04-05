@@ -60,7 +60,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
     it('5. Complete Risk Profile', function () {
         ui.onboarding.answerAllQuestionsWithSameOption(13, 3)
-            .enter_financial_info(d)
+            .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_build_your_portfolio_page()
 

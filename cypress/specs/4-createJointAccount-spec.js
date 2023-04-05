@@ -55,7 +55,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
 
     it('4. Complete Risk Profile', function () {
         ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
-            .enter_financial_info(d)
+            .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
     })
@@ -70,7 +70,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_review_page()
     })
 
-    xit('6. Review Review Page', function () {
+    it('6. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestionsSMSF, D.reviewResponsesSMSF)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -91,7 +91,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
 
     it('6. Review Review Page', function () {
         ui.onboarding
-         //   .save_final_JSON_report('joint_')
+            .save_final_JSON_report('joint_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })

@@ -1066,6 +1066,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_validation_messages_for_trust_details(data) {
+        this.pause(4)
         this.verify_text_on_multiple_elements([
             [trustNameValidationMsg, data.trustName],
             [trustTypeValidationMsg2, data.trustType],
