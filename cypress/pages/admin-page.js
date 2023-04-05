@@ -10,7 +10,7 @@ let
     adminHeader = e => cy.get('[data-testid="nucleus-header-navbar"]'),
     kanbanMenu = e => cy.get('[role="menu"]').find(),
     kanbans = e => cy.contains('Kanbans'),
-    states = e => cy.contains('States'),
+    stats = e => cy.contains('Stats'),
     sales = e => cy.contains('Sales'),
     trading = e => cy.contains('Trading'),
     data = e => cy.contains('Data'),
@@ -89,8 +89,8 @@ export default class AdminPage extends BasePage {
         return this;
     }
 
-    click_states_submenu() {
-        states().click();
+    click_stats_submenu() {
+        stats().click();
         this.pause(2)
         return this;
     }

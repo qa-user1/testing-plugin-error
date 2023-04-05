@@ -73,7 +73,7 @@ context('Check Admin header', () => {
             .verify_admin_navbar()
 
         ui.admin.click_CRM_on_header()
-            .click_states_submenu()
+            .click_stats_submenu()
             .click_call_stats('[href="/crm/call-stats"]')
             .verify_link('crm', 'call-stats')
             .verify_admin_navbar()
@@ -85,13 +85,13 @@ context('Check Admin header', () => {
         .verify_text_is_visible('Detailed Call Stats - Last 2 Months')*/
 
         ui.admin.click_CRM_on_header()
-            .click_states_submenu()
+            .click_stats_submenu()
             .click_marketing_stats()
             .verify_link('crm', 'marketing-stats')
             .verify_admin_navbar()
 
         ui.admin.click_CRM_on_header()
-            .click_states_submenu()
+            .click_stats_submenu()
             .click_signup_stats()
             .verify_link('crm', 'signup-stats')
             .verify_admin_navbar()
