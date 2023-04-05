@@ -835,17 +835,6 @@ D.scenarios = [
             "financialInstitution": "test",
             "accountName": 'test'
         },
-        insurance: {
-            lifeCover: '100000',
-            tpdCover: '100000',
-            steppedLifeCoverAmount: '$55',
-            steppedTPDAmount: '$55',
-            levelTo65LifeCoverAmount: '$55',
-            levelTo65TPDCoverAmount: '$55',
-            weight: '5',
-            height: '10',
-            occupation: 'test'
-        },
         finalReview: {
             "document1": "Investment and Fee Summary",
             "document2": "Statement of Advice",
