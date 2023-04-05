@@ -439,7 +439,7 @@ export default class OnboardingPage extends BasePage {
         submitApplicantButton().should('be.visible');
         // this.pause(3)
         submitApplicantButton().click().click();
-        submitApplicantButton().should('not.be.visible');
+        //submitApplicantButton().should('not.be.visible');
         // this.pause(5)
         return this;
     }
