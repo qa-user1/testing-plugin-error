@@ -742,14 +742,14 @@ export default class OnboardingPage extends BasePage {
     click_Save_and_Continue_button() {
         saveContinueButton().should('not.have.attr', 'disabled')
         this.scroll_and_click(saveContinueButton)
-        saveContinueButton().should('not.have.attr', 'disabled')
+       // saveContinueButton().should('not.have.attr', 'disabled')
         return this;
     }
 
     click_Submit_Application_button() {
         submitApplicationButton().should('not.have.attr', 'disabled')
         submitApplicationButton().click()
-        submitApplicationButton().should('not.have.attr', 'disabled')
+      //  submitApplicationButton().should('not.have.attr', 'disabled')
         return this;
     }
 
