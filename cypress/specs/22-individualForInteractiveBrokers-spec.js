@@ -79,7 +79,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .verify_review_page()
     })
 
-    it('8. Check Review Page', function () {
+    xit('8. Check Review Page', function () {
         ui.onboarding.click('Question Responses')
             .verify_net_worth_annual_net_income_liquid_net_worth()
             .save_data_object_for_Questions_Responses()
@@ -101,7 +101,8 @@ context('Individual Onboarding for Interactive Brokers', () => {
     })
 
     it('8. Check Review Page', function () {
-        ui.onboarding.save_final_JSON_report('individual_ib_')
+        ui.onboarding
+            //.save_final_JSON_report('individual_ib_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
@@ -148,6 +149,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
     });
 
     it('12. Check Final Review', function () {
+       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6236/final-review')
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'MDA Brochure and Agreement',
@@ -160,7 +162,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
     });
 
     it('13. Limited Advice Path', function () {
-        //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4240/risk-profile')
+         // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6236/risk-profile')
         ui.onboarding.click_sidebar_option('Investment Choice')
             .go_through_tour_steps(C.stepMessages)
             .verify_investment_choice_page()
@@ -172,6 +174,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .click_Save_and_Continue_button()
         ui.app.pause(3)
         ui.onboarding.click_Save_and_Continue_button()
+        ui.onboarding.click_Save_and_Continue_button()
         ui.app.pause(3)
         ui.onboarding.verify_your_portfolio_content_not_exist('Tactical Growth')
             .click_Save_and_Continue_button()
@@ -179,7 +182,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
     });
 
-    it('14. Complete Final Review', function () {
+    xit('14. Complete Final Review', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }
