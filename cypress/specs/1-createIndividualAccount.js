@@ -117,7 +117,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
             .answerAllQuestionsWithSameOption(13, 2)
-            .enter_financial_info(d)
+            .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
             .click_Save_and_Continue_button()
