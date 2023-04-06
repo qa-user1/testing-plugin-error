@@ -451,7 +451,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     upload_and_submit_document_for_verification(type) {
-        this.pause(1)
+        this.pause(4)
         this.select_id_option()
         this.pause(1)
             .select_document_type(type)
@@ -463,7 +463,9 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_id_option() {
+        this.pause(3)
         idOptionList().click();
+        this.pause(3)
         cy.contains('Upload an ID document').click();
         return this;
     }
