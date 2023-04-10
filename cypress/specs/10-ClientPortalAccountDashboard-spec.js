@@ -48,7 +48,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_Save_and_Continue_button()
             .click_Save_and_Continue_button()
 
-        
+
         ui.onboarding.click_sidebar_option('Investment Choice')
             .click_limited_advice_button()
             .go_through_tour_steps(C.stepMessages)
