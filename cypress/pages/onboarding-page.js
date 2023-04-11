@@ -498,6 +498,9 @@ export default class OnboardingPage extends BasePage {
         } else if (option.includes('SMSF')) {
             this.click_super_type()
             this.click_SMSF_super_subtype()
+        } else if (option.includes('Joint')) {
+            this.click_non_super_type()
+                .select_joint_non_super_subtype()
         }
         return this;
     }
@@ -510,7 +513,7 @@ export default class OnboardingPage extends BasePage {
         } else if (type === 'Individual-IB') {
             this.click_self_directed_button()
                 .select_all_checkboxes(6)
-        } else if (type === 'Personal Super' || type === 'SMSF') {
+        } else if (type === 'Personal Super' || type === 'SMSF' || type === 'Joint') {
             this.click_limited_advice_button()
                 .select_all_checkboxes(6)
         }
@@ -593,7 +596,7 @@ export default class OnboardingPage extends BasePage {
         if (data.accountType === 'Individual-IB') {
             this.enter_values_at_create_new_ib_applicant_input_fields(data.applicants.inputFields)
         }
-        if (data.accountType === 'Individual') {
+        if (data.accountType === 'Individual' || data.accountType === 'Joint') {
             this.enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields)
         }
         return this;
@@ -638,7 +641,7 @@ export default class OnboardingPage extends BasePage {
                 'MDA Brochure and Agreement',
                 'Statement of Advice MDA',
             ])
-        } else if (data.accountType === 'Individual' || data.accountType === 'SMSF') {
+        } else if (data.accountType === 'Individual' || data.accountType === 'SMSF' || data.accountType === 'Joint') {
             this.verify_Documents_available_for_download([
                 'Investment and Fee Summary',
                 'Statement of Advice',
@@ -744,14 +747,14 @@ export default class OnboardingPage extends BasePage {
     click_Save_and_Continue_button() {
         saveContinueButton().should('not.have.attr', 'disabled')
         this.scroll_and_click(saveContinueButton)
-       // saveContinueButton().should('not.have.attr', 'disabled')
+        // saveContinueButton().should('not.have.attr', 'disabled')
         return this;
     }
 
     click_Submit_Application_button() {
         submitApplicationButton().should('not.have.attr', 'disabled')
         submitApplicationButton().click()
-      //  submitApplicationButton().should('not.have.attr', 'disabled')
+        //  submitApplicationButton().should('not.have.attr', 'disabled')
         return this;
     }
 
@@ -2148,7 +2151,43 @@ export default class OnboardingPage extends BasePage {
                   .click_Submit_Application_button()
              .verify_success_page()*/
         }
-            /*else if (type === 'Personal Super') {
+
+       /* else if (type === 'Joint') {
+            this.verify_risk_profile_page()
+                .answerQuestionsWithSpecificOption(13, data.questionResponse)
+                .enter_financial_info(data.questionResponse[13])
+                .click_Save_and_Continue_button()
+                .verify_ethical_overlay_page()
+                .select_ethical_option(data)
+                .click_Save_and_Continue_button()
+                .verify_review_page()
+                .expand_question_responses_panel()
+                .verify_question_responses(data.reviewQuestionsJoint, data.reviewResponsesJoint)
+                .click_Save_and_Continue_button()
+                .verify_applicants_page()
+                .remove_existing_applicant()
+                .add_new_applicant()
+                .enter_applicant_values(data)
+                .click_submit_applicant_button()
+                .upload_documents(data)
+                .click_Save_and_Continue_button()
+                .enter_values_for_bank_details(data)
+                .click_Save_and_Continue_button()
+                .verify_Final_Review_page()
+                .verify_documents_on_final_review_page(data)
+                .verify_alert_msg_final_review_page()
+                .redirect_to_applicants_page()
+                .verify_applicants_page()
+                .add_new_applicant()
+                .enter_applicant_values(data)
+                .click_submit_applicant_button()
+                .upload_documents(data)
+                .click_Save_and_Continue_button()
+                .verify_Bank_Details_page()
+                .click_Save_and_Continue_button()
+                .verify_no_alert_msg_final_review_page()
+        }*/
+            else if (type === 'Personal Super') {
             this.verify_risk_profile_page()
                 .answerQuestionsWithSpecificOption(12, data.questionResponse)
                     .enter_financial_info(data.questionResponse[12])
@@ -2170,7 +2209,7 @@ export default class OnboardingPage extends BasePage {
                 .click_Save_and_Continue_button()
                 .verify_Final_Review_page()
                 .verify_documents_on_final_review_page(data)
-            }*/
+            }
             /*else if (type === 'SMSF') {
                 this.verify_risk_profile_page()
                     .answerQuestionsWithSpecificOption(13, data.questionResponse)
@@ -2194,7 +2233,9 @@ export default class OnboardingPage extends BasePage {
                     .verify_documents_on_final_review_page(data)*/
         //  }
 
-        else if (type === 'Individual') {
+
+
+        /*else if (type === 'Individual') {
             this.verify_build_your_portfolio_page()
                 .enter_Portfolio_values(data)
                 .click_Save_and_Continue_button()
@@ -2239,7 +2280,7 @@ export default class OnboardingPage extends BasePage {
                 .click_Agree_checkbox()
                 .click_Submit_Application_button()
                 .verify_success_page()
-        }
+        }*/
         return this;
 
     }

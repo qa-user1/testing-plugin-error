@@ -102,8 +102,7 @@ D.dataForExport = {
 
 D.gmailAccount = {
     email: 'protractor.user2@gmail.com',
-    // password: 'Testing123!',
-    password: 'ishvjonsxbzwlcjq',
+    password: 'zmkyxckpdfefnyvi',
     code: '1234',
     newPass: 'Testing' + D.getNewRandomNumber() + '!'
 }
@@ -840,6 +839,104 @@ D.scenarios = [
             "document2": "Statement of Advice",
             "document3": "PraemiumSMA PDS and Investment Guide extract",
             "document4": 'MetLife - Protect Product Disclosure Statement'
+        }
+    },
+    {
+        name: 'Scenario 4',
+        username: 'testing@nucleuswealth.com',
+        password: 'Testing123!',
+        accountType: "Joint",
+        investmentChoice: "Limited Advice",
+        questionResponse: [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            {
+                investmentTotal: 100000,
+                netWorth: 200000,
+                annualNetIncome: 70000,
+                liquidNetWorth: 110000
+            }
+        ],
+        ethicalOverlay: {
+            "climateChange1": "No Fossil Fuels (Worst Offenders)",
+            "climateChange2": "No Fossil Fuels (Any)",
+            "war": "No Arms (Any)"
+        },
+        reviewQuestionsJoint: [
+            'How would you describe your current investment experience?',
+            'What do you want to achieve from your investment with Nucleus?',
+            'When will you need to withdraw more than 30% of the investment?',
+            'When you think of the word "risk" in a financial context, which of the following words comes to mind first?',
+            'What degree of risk have you taken with your financial decisions in the past?',
+            'Have you ever borrowed money to make an investment (other than for residential property)?',
+            'Investments can go up or down in value and experts often say you should be prepared to weather a downturn. By how much could the total value of all your investments go down in 3 months before you would begin to feel uncomfortable?',
+            'How would you react if the value of your portfolio fell by more than 20% in any year?',
+            'Which one of the following best describes your attitude to market volatility when choosing an investment?',
+            'Imagine you just received a $50,000 windfall - what would you look to immediately do with it?',
+            'What is the source of the majority of the funds you would like to invest with us?',
+            'You have identified the following reasons for your interest in investing in our models:',
+            'When deciding on your investment composition would you like:'
+        ],
+        reviewResponsesJoint: [
+            'I have dabbled in some Aussie stocks but mainly have managed investments',
+            'My priority is to generate income. However, I would like to see my initial investment grow over time',
+            '2 - 4 years',
+            'Uncertainty',
+            'Medium',
+            'Yes',
+            '10%',
+            'I would be concerned and consider changing my investment strategy',
+            'I prefer investments with a low risk of volatility; however, I am happy to have a small portion of my portfolio invested in assets with potentially higher levels of short-term capital fluctuation',
+            'Leave a portion in cash, say $10,000, and look to invest the rest in a term deposit',
+            'Investment income',
+            'You want a portfolio tailored to your ethical values',
+            'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.'
+        ],
+        applicants: {
+            inputFields: {
+                titleInput: 'Mr',
+                nameInput: 'Test name',
+                surnameInput: 'Test surname',
+                emailInput: 'email@test.com',
+                mobileInput: '123456',
+                genderInput: 'Female{enter}',
+                citizenshipInput: 'Australia{enter}',
+                employmentType: 'Employed',
+                employmentType2: 'Unemployed',
+                employmentInput: 'Employed{enter}',
+                taxInput: '11111111',
+                occupation: 'Analyst{enter}',
+                employerName: 'Test test',
+                employerAddress: 'Angola{enter}',
+                employerBusiness: 'Computer/Information Technology{enter}',
+                residentialAddress: 'Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia{enter}'
+            },
+            documents: {
+                telephoneBill: "Telephone Bill",
+                waterBill: "Water Bill"
+            },
+            bankDetails: {
+                "bsb": "123456",
+                "accountNumber": "3456",
+                "financialInstitution": "test",
+                "accountName": 'test'
+            },
+            finalReview: {
+                "document1": "Investment and Fee Summary",
+                "document2": "Statement of Advice",
+                "document3": "Praemium SMA PDS and Investment Guide extract"
+            }
         }
     },
     {
