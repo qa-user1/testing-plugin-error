@@ -505,17 +505,14 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    select_investment_choice(data) {
-        let type = data.accountType
-        if (type === 'Individual') {
+    select_investment_choice(option) {
+        if (option === 'Self Directed') {
             this.click_self_directed_button()
                 .select_all_checkboxes(5)
-        } else if (type === 'Individual-IB') {
-            this.click_self_directed_button()
-                .select_all_checkboxes(6)
-        } else if (type === 'Personal Super' || type === 'SMSF' || type === 'Joint') {
+        } else if (option === 'Limited Advice') {
             this.click_limited_advice_button()
                 .select_all_checkboxes(6)
+        } else if (option === 'Full Advice') {
         }
         return this;
     }
@@ -561,7 +558,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_ethical_option(data) {
-        if (data.ethicalOverlay['climateChange1']) {
+        if (data.ethicalOverlay) {
             this.select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
                 .select_checkbox_based_on_label('No Fossil Fuels (Any)')
                 .click_war_button()
@@ -572,15 +569,11 @@ export default class OnboardingPage extends BasePage {
     }
 
     review_portfolio_data(data) {
-        //if the value isn't this it will skip this part?
-        if (data.review.indicativePortfolio["AAA Cash ETF"] === '5,305') {
+        if (data.review.indicativePortfolio) {
             this.review_indicative_portfolio(data.review.indicativePortfolio)
             this.verify_your_portfolio_panel(data.review.yourPortfolioValues)
             this.review_indicative_portfolio_security(data.review.indicativePortfolioSecurity)
         }
-        /* if (data.review.indicativePortfolio["AAA Cash ETF"]) {
-             this.review_indicative_portfolio(data.review.indicativePortfolio)
-         }*/
         return this;
     }
 
@@ -635,13 +628,20 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_documents_on_final_review_page(data) {
-        if (data.accountType === 'Individual-IB') {
+        if (data.accountType === 'Individual-IB' || data.accountType === 'Individual' ) {
+            this.verify_Documents_available_for_download([
+                'Investment and Fee Summary',
+                'Letter of Engagement',
+                'Praemium SMA PDS and Investment Guide extract',
+            ])
+        }
+        if (data.accountType === 'Individual-IB' ) {
             this.verify_Documents_available_for_download([
                 'Investment and Fee Summary',
                 'MDA Brochure and Agreement',
                 'Statement of Advice MDA',
             ])
-        } else if (data.accountType === 'Individual' || data.accountType === 'SMSF' || data.accountType === 'Joint') {
+        } else if (data.accountType === 'SMSF' || data.accountType === 'Joint') {
             this.verify_Documents_available_for_download([
                 'Investment and Fee Summary',
                 'Statement of Advice',
@@ -1091,9 +1091,13 @@ export default class OnboardingPage extends BasePage {
     }
 
 
-    verify_question_responses(arrayOfQuestions, arrayOfResponses) {
+    verify_question_responses(type, arrayOfResponses) {
+        let arrayOfQuestions = D.reviewQuestions
+        if (type === 'SMSF'){
+            arrayOfQuestions = D.reviewQuestionsSMSF
+        }
         this.pause(3)
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < arrayOfResponses.length; i++) {
             questionsOnReviewPage(i).invoke('text').should('contain', arrayOfQuestions[i])
             answersOnReviewPage(i).invoke('text').should('contain', arrayOfResponses[i])
         }
@@ -1201,8 +1205,8 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    answerQuestionsWithSpecificOption(numberOfQuestions, arrayOfOptionsToSelect) {
-        for (let i = 0; i < numberOfQuestions; i++) {
+    answerQuestionsWithSpecificOption(arrayOfOptionsToSelect) {
+        for (let i = 0; i < arrayOfOptionsToSelect.length; i++) {
             answer(i, arrayOfOptionsToSelect[i] - 1).click()
         }
         return this;
@@ -2104,183 +2108,83 @@ export default class OnboardingPage extends BasePage {
             .click_create_investment_account()
             .go_through_tour_steps(C.stepMessages)
             .verify_investment_choice_page()
-            .select_investment_choice(data)
+            .select_investment_choice(data.investmentChoice)
             .click_Save_and_Continue_button()
 
-
-        if (type === 'Individual-IB') {
-            this.answerQuestionsWithSpecificOption(13, data.questionResponse)
-            /* .enter_financial_info(data.questionResponse[13])
-             .click_Save_and_Continue_button()
-             .verify_build_your_portfolio_page()
-             .enter_Portfolio_values(data)
-             .click_Save_and_Continue_button()
-             .verify_ethical_overlay_page()
-             .click_Save_and_Continue_button()
-             .verify_review_page()
-             .click('Question Responses')
-                  .review_net_worth_annual_net_income_liquid_net_worth(data)
-             .click_Save_and_Continue_button()
-                  .verify_applicants_page()
-             .remove_existing_applicant()
-        .add_new_applicant()
-                  .enter_applicant_values(data)
-                  .enter_applicant_investment_experience(data)
-                  .click_submit_applicant_button()
-                  .upload_documents(data)
-                  .click_Save_and_Continue_button()
-                  .verify_Bank_Details_page()
-             .enter_values_for_bank_details(data)
-                  .click_Save_and_Continue_button()
-                  .verify_compliance_page()
-             .enter_values_on_compliance_input_fields(data)
-                  .click_Save_and_Continue_button()
-                  .verify_Final_Review_page()
-             .verify_documents_on_final_review_page(data)
-             .click_sidebar_option('Investment Choice')
-                  .go_through_tour_steps(C.stepMessages)
-                  .verify_investment_choice_page()
-                  .select_investment_choice(data.investmentChoice2)
-                  .click_Save_and_Continue_button()
-                  .verify_risk_profile_page()
-                  .click_Save_and_Continue_button()
-             .click_sidebar_option('Final Review')
-                  .verify_Final_Review_page()
-                  .click_Save_and_Continue_button()
-                  .click_Agree_checkbox()
-                  .click_Submit_Application_button()
-             .verify_success_page()*/
-        }
-
-       /* else if (type === 'Joint') {
-            this.verify_risk_profile_page()
-                .answerQuestionsWithSpecificOption(13, data.questionResponse)
-                .enter_financial_info(data.questionResponse[13])
-                .click_Save_and_Continue_button()
-                .verify_ethical_overlay_page()
-                .select_ethical_option(data)
-                .click_Save_and_Continue_button()
-                .verify_review_page()
-                .expand_question_responses_panel()
-                .verify_question_responses(data.reviewQuestionsJoint, data.reviewResponsesJoint)
-                .click_Save_and_Continue_button()
-                .verify_applicants_page()
-                .remove_existing_applicant()
-                .add_new_applicant()
-                .enter_applicant_values(data)
-                .click_submit_applicant_button()
-                .upload_documents(data)
-                .click_Save_and_Continue_button()
-                .enter_values_for_bank_details(data)
-                .click_Save_and_Continue_button()
-                .verify_Final_Review_page()
-                .verify_documents_on_final_review_page(data)
-                .verify_alert_msg_final_review_page()
-                .redirect_to_applicants_page()
-                .verify_applicants_page()
-                .add_new_applicant()
-                .enter_applicant_values(data)
-                .click_submit_applicant_button()
-                .upload_documents(data)
-                .click_Save_and_Continue_button()
-                .verify_Bank_Details_page()
-                .click_Save_and_Continue_button()
-                .verify_no_alert_msg_final_review_page()
-        }*/
-            else if (type === 'Personal Super') {
-            this.verify_risk_profile_page()
-                .answerQuestionsWithSpecificOption(12, data.questionResponse)
-                    .enter_financial_info(data.questionResponse[12])
-                    .click_Save_and_Continue_button()
-                    .verify_ethical_overlay_page()
-                .select_ethical_option(data)
-                .click_Save_and_Continue_button()
-                .verify_super_fund_entry_page()
-                .enter_values_on_super_fund_entry_input_fields(data.fundEntryInputFields)
-                .click_Save_and_Continue_button()
-                .verify_review_page()
-                .expand_question_responses_panel()
-                .verify_question_responses(data.reviewQuestions, data.reviewResponses)
-                .click_Save_and_Continue_button()
-                .verify_applicants_page()
-                .click_Save_and_Continue_button()
-                .verify_insurance_quote_page()
-                .complete_insurance_quote(data)
-                .click_Save_and_Continue_button()
-                .verify_Final_Review_page()
-                .verify_documents_on_final_review_page(data)
-            }
-            /*else if (type === 'SMSF') {
-                this.verify_risk_profile_page()
-                    .answerQuestionsWithSpecificOption(13, data.questionResponse)
-                    .enter_financial_info(data.questionResponse[13])
-                    .click_Save_and_Continue_button()
-                    .verify_ethical_overlay_page()
-                    .select_ethical_option(data)
-                    .click_Save_and_Continue_button()
-                    .verify_review_page()
-                    .expand_question_responses_panel()
-                    .verify_question_responses(data.reviewQuestionsSMSF, data.reviewResponsesSMSF)
-                    .click_Save_and_Continue_button()
-                    .verify_SMSF_page()
-                    .enter_all_required_SMSF_details(data.SMSFDetails)
-                    .click_Save_and_Continue_button()
-                    .enter_values_for_bank_details(data)
-                    .click_Save_and_Continue_button()
-                    .verify_applicants_page()
-                    .click_Save_and_Continue_button()
-                    .verify_Final_Review_page()
-                    .verify_documents_on_final_review_page(data)*/
-        //  }
-
-
-
-        /*else if (type === 'Individual') {
+        if (type === 'Individual-IB' || type === 'Individual') {
             this.verify_build_your_portfolio_page()
                 .enter_Portfolio_values(data)
                 .click_Save_and_Continue_button()
-                .verify_ethical_overlay_page()
-                .select_ethical_option(data)
+        }
+        else{
+            this.verify_risk_profile_page()
+                .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
+                .enter_financial_info(data.questionResponse)
                 .click_Save_and_Continue_button()
-                .verify_review_page()
-                .expand_ethical_overlay_panel()
-                .verify_chosen_ethics([
-                    ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
-                    ['War', ['No Arms (Any)']]
-                ])
-                .review_portfolio_data(data)
+        }
 
-                .click_sidebar_option('Investment Choice')
-                .click_limited_advice_button()
-                .go_through_tour_steps(C.stepMessages)
-                .select_all_checkboxes(6)
+        this.verify_ethical_overlay_page()
+            .select_ethical_option(data)
+            .click_Save_and_Continue_button()
 
+        if (type === 'Personal Super') {
+            this.verify_super_fund_entry_page()
+                .enter_values_on_super_fund_entry_input_fields(data.fundEntryInputFields)
                 .click_Save_and_Continue_button()
-                .verify_risk_profile_page()
-                .answerQuestionsWithSpecificOption(13, data.questionResponse)
-                .enter_financial_info(data.questionResponse[13])
+        }
+
+        this.verify_review_page()
+
+        if (type === 'Individual-IB') {
+            this.review_net_worth_annual_net_income_liquid_net_worth(data)
+        }
+
+        if (!type.includes('Individual')){
+            this.verify_review_page()
+                .expand_question_responses_panel()
+                .verify_question_responses(type, data.reviewResponses)
+        }
+
+        this.expand_ethical_overlay_panel()
+            .verify_chosen_ethics([
+                ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
+                ['War', ['No Arms (Any)']]
+            ])
+            .review_portfolio_data(data)
+            .click_Save_and_Continue_button()
+
+        if (type === 'SMSF') {
+            this.verify_SMSF_page()
+                .enter_all_required_SMSF_details(data.SMSFDetails)
                 .click_Save_and_Continue_button()
-                .verify_ethical_overlay_page()
-                .click_Save_and_Continue_button()
-                .verify_review_page()
-                .click_Save_and_Continue_button()
-                .verify_applicants_page()
-                .remove_existing_applicant()
-                .add_new_applicant()
-                .enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields)
-                //.enter_applicant_values(data)
-                .click_submit_applicant_button()
-                .upload_documents(data)
-                .click_Save_and_Continue_button()
-                .verify_Bank_Details_page()
                 .enter_values_for_bank_details(data)
                 .click_Save_and_Continue_button()
-                .verify_Final_Review_page()
-                .verify_documents_on_final_review_page(data)
-                .click_Agree_checkbox()
-                .click_Submit_Application_button()
-                .verify_success_page()
-        }*/
+        }
+
+        this.verify_applicants_page()
+            .remove_existing_applicant()
+            .add_new_applicant()
+            .enter_applicant_values(data)
+        if (type === 'Individual-IB') this.enter_applicant_investment_experience(data)
+
+        this.click_submit_applicant_button()
+            .upload_documents(data)
+            .click_Save_and_Continue_button()
+
+
+        if (type === 'Individual-IB' || type === 'Individual' || type === 'Joint') {
+            this.enter_values_for_bank_details(data)
+                .click_Save_and_Continue_button()
+        } else if (type === 'Personal Super') {
+            this.verify_insurance_quote_page()
+                .complete_insurance_quote(data)
+                .click_Save_and_Continue_button()
+        }
+
+        this.verify_Final_Review_page()
+            .verify_documents_on_final_review_page(data)
+
+
         return this;
 
     }
