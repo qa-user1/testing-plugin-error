@@ -542,11 +542,10 @@ export default class OnboardingPage extends BasePage {
     }
 
     enter_Portfolio_values(data) {
-        if (data.buildYourPortfolio.tacticalGrowth === '50%') {
-            investmentTotalField().type(data.buildYourPortfolio.investmentTotal);
-            tacticalGrowthField().type(data.buildYourPortfolio.tacticalGrowth);
-            coreInternationalField().type(data.buildYourPortfolio.coreInternational);
-        }
+            investmentTotalField().type(data.investmentTotal);
+            tacticalGrowthField().type(data.tacticalGrowth);
+            coreInternationalField().type(data.coreInternational);
+
         /* if (data.buildYourPortfolio['Tactical Growth']) {
              tacticalGrowthField().type(data.buildYourPortfolio['Tactical Growth'].percent);
          }
@@ -557,7 +556,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    select_ethical_option(data) {
+    select_ethical_option2(data) {
         if (data.ethicalOverlay) {
             this.select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
                 .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -565,6 +564,14 @@ export default class OnboardingPage extends BasePage {
                 .select_checkbox_based_on_label('No Arms (Any)')
         }
 
+        return this;
+    }
+
+    select_ethical_option(data) {
+            this.select_checkbox_based_on_label(data.climateChange1)
+                .select_checkbox_based_on_label(data.climateChange2)
+                .click_war_button()
+                .select_checkbox_based_on_label(data.war)
         return this;
     }
 
@@ -2113,18 +2120,19 @@ export default class OnboardingPage extends BasePage {
 
         if (type === 'Individual-IB' || type === 'Individual') {
             this.verify_build_your_portfolio_page()
-                .enter_Portfolio_values(data)
+                .enter_Portfolio_values(data.buildYourPortfolio)
                 .click_Save_and_Continue_button()
         }
         else{
-            this.verify_risk_profile_page()
+            this
+                .verify_risk_profile_page()
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
                 .enter_financial_info(data.questionResponse)
-                .click_Save_and_Continue_button()
+               .click_Save_and_Continue_button()
         }
 
         this.verify_ethical_overlay_page()
-            .select_ethical_option(data)
+            .select_ethical_option(data.ethicalOverlay)
             .click_Save_and_Continue_button()
 
         if (type === 'Personal Super') {

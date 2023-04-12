@@ -503,9 +503,9 @@ D.scenarios = [
             investmentTotal: "100000"
         },
         ethicalOverlay: {
-            "climateChange1": "No Fossil Fuels (Worst Offenders)",
-            "climateChange2": "No Fossil Fuels (Any)",
-            "war": "No Arms (Any)"
+            climateChange1: "No Fossil Fuels (Worst Offenders)",
+            climateChange2: "No Fossil Fuels (Any)",
+            war: null
         },
         review: {
             yourPortfolioValues: {

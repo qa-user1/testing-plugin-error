@@ -207,14 +207,16 @@ export default class BasePage {
     };
 
     select_checkbox_based_on_label(label) {
-        cy.wait(500)
-        cy.contains('.animate-row .ant-col-md-22', label)
-            .then($th => $th.index())
-            .then(i => {
-                expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').click()
-                expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').should('be.checked')
-                //cy.get('table tbody td').eq(contactIndex).should('contain', 'Maria Anders')
-            })
+        if (label !== null) {
+            cy.wait(500)
+            cy.contains('.animate-row .ant-col-md-22', label)
+                .then($th => $th.index())
+                .then(i => {
+                    expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').click()
+                    expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').should('be.checked')
+                    //cy.get('table tbody td').eq(contactIndex).should('contain', 'Maria Anders')
+                })
+        }
         return this;
     }
 
