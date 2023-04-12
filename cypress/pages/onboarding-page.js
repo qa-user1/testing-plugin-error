@@ -568,8 +568,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_ethical_option(data) {
-            this.select_checkbox_based_on_label(data.climateChange1)
-                .select_checkbox_based_on_label(data.climateChange2)
+            this.select_checkboxes_based_on_labels(data.climateChange)
                 .click_war_button()
                 .select_checkbox_based_on_label(data.war)
         return this;

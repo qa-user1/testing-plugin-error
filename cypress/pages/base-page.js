@@ -220,6 +220,22 @@ export default class BasePage {
         return this;
     }
 
+    select_checkboxes_based_on_labels(arrayOfLabels) {
+        if (arrayOfLabels) {
+            arrayOfLabels.forEach(label =>{
+            cy.wait(500)
+            cy.contains('.animate-row .ant-col-md-22', label)
+                .then($th => $th.index())
+                .then(i => {
+                    expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').click()
+                    expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').should('be.checked')
+                    //cy.get('table tbody td').eq(contactIndex).should('contain', 'Maria Anders')
+                })
+            })
+        }
+        return this;
+    }
+
     wait_until_loader_disappears(element) {
         cy.get('body').then(($body) => {
             if ($body.text().includes('Loading...')) {
