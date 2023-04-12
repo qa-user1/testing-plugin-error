@@ -506,7 +506,7 @@ D.scenarios = [
             climateChange: [
                 "No Fossil Fuels (Worst Offenders)",
                 "No Fossil Fuels (Any)"],
-            war: null
+            war: 'No Arms (Any)'
         },
         review: {
             yourPortfolioValues: {

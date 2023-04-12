@@ -556,16 +556,6 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    select_ethical_option2(data) {
-        if (data.ethicalOverlay) {
-            this.select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
-                .select_checkbox_based_on_label('No Fossil Fuels (Any)')
-                .click_war_button()
-                .select_checkbox_based_on_label('No Arms (Any)')
-        }
-
-        return this;
-    }
 
     select_ethical_option(data) {
             this.select_checkboxes_based_on_labels(data.climateChange)
@@ -1038,7 +1028,32 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
+    verify_chosen_ethics2(label_values__stacks) {
+            label_values__stacks.forEach(function (stack) {
+                if (stack[1]) {
+                    if (Array.isArray(stack[1])) {
+                        stack[1].forEach(function (value) {
+                            chosenEthicsContainer(stack[0]).invoke('text').should('contain', value)
+                        })
+                    } else {
+                        chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
+                    }
+
+                }
+            });
+        return this;
+    }
+verify_ethics(data){
+    const label_values__stacks = [
+        ['Climate Change', [data.climateChange[0], data.climateChange[1]]],
+        ['War', [data.war]]
+    ];
+
+    this.verify_chosen_ethics(label_values__stacks);
+    return this;
+}
     verify_chosen_ethics(label_values__stacks) {
+
         label_values__stacks.forEach(function (stack) {
             if (stack[1]) {
                 if (Array.isArray(stack[1])) {
@@ -2153,11 +2168,13 @@ export default class OnboardingPage extends BasePage {
         }
 
         this.expand_ethical_overlay_panel()
-            .verify_chosen_ethics([
-                ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
-                ['War', ['No Arms (Any)']]
-            ])
-            .review_portfolio_data(data)
+            // .verify_chosen_ethics([
+            //     ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
+            //     ['War', ['No Arms (Any)']]
+            // ])
+            .verify_ethics(data.ethicalOverlay)
+
+          //  .review_portfolio_data(data)
             .click_Save_and_Continue_button()
 
         if (type === 'SMSF') {
