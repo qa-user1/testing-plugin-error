@@ -585,7 +585,7 @@ export default class OnboardingPage extends BasePage {
         if (data.accountType === 'Individual-IB') {
             this.enter_values_at_create_new_ib_applicant_input_fields(data.applicants.inputFields)
         }
-        if (data.accountType === 'Individual' || data.accountType === 'Joint') {
+        else if (data.accountType === 'Individual') {
             this.enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields)
         }
         return this;
@@ -601,18 +601,18 @@ export default class OnboardingPage extends BasePage {
     }
 
     upload_documents(data) {
-        if (data.applicants.documents.telephoneBill) {
+        //if (data.applicants.documents.telephoneBill) {
             this.upload_and_submit_document_for_verification(data.applicants.documents.telephoneBill)
                 .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
                 .upload_and_submit_document_for_verification(data.applicants.documents.waterBill)
-        }
+      //  }
         return this;
     }
 
     enter_values_for_bank_details(data) {
-        if (data.bankDetails["bsb"]) {
+        //if (data.bankDetails["bsb"]) {
             this.enter_Bank_Details(data.bankDetails)
-        }
+       // }
         return this;
     }
 
@@ -624,7 +624,8 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_documents_on_final_review_page(data) {
-        if (data.accountType === 'Individual-IB' || data.accountType === 'Individual' ) {
+        this.verify_Documents_available_for_download(data.Documents)
+        /*if (data.accountType === 'Individual-IB' || data.accountType === 'Individual' ) {
             this.verify_Documents_available_for_download([
                 'Investment and Fee Summary',
                 'Letter of Engagement',
@@ -650,7 +651,7 @@ export default class OnboardingPage extends BasePage {
                 'Praemium SuperSMA PDS and Investment Guide extract',
                 'MetLife - Protect Product Disclosure Statement'
             ])
-        }
+        }*/
         return this;
     }
 
@@ -1044,6 +1045,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 verify_ethics(data){
+
     const label_values__stacks = [
         ['Climate Change', [data.climateChange[0], data.climateChange[1]]],
         ['War', [data.war]]
@@ -1053,19 +1055,19 @@ verify_ethics(data){
     return this;
 }
     verify_chosen_ethics(label_values__stacks) {
-
-        label_values__stacks.forEach(function (stack) {
-            if (stack[1]) {
-                if (Array.isArray(stack[1])) {
-                    stack[1].forEach(function (value) {
-                        chosenEthicsContainer(stack[0]).invoke('text').should('contain', value)
-                    })
-                } else {
-                    chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
-                }
-
+    label_values__stacks.forEach(function (stack) {
+        if (stack[1]) {
+            if (Array.isArray(stack[1])) {
+                stack[1].forEach(function (value) {
+                    chosenEthicsContainer(stack[0]).invoke('text').should('contain', value)
+                })
+            } else {
+                chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
             }
-        });
+
+        }
+    });
+
         return this;
     }
 
@@ -2168,14 +2170,9 @@ verify_ethics(data){
         }
 
         this.expand_ethical_overlay_panel()
-            // .verify_chosen_ethics([
-            //     ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
-            //     ['War', ['No Arms (Any)']]
-            // ])
             .verify_ethics(data.ethicalOverlay)
-
           //  .review_portfolio_data(data)
-            .click_Save_and_Continue_button()
+            this.click_Save_and_Continue_button()
 
         if (type === 'SMSF') {
             this.verify_SMSF_page()
@@ -2206,7 +2203,7 @@ verify_ethics(data){
         }
 
         this.verify_Final_Review_page()
-            .verify_documents_on_final_review_page(data)
+            .verify_documents_on_final_review_page(data.finalReview)
 
 
         return this;

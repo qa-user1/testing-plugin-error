@@ -640,15 +640,16 @@ D.scenarios = [
             },
         },
         bankDetails: {
-            "bsb": "123456",
-            "accountNumber": "3456",
-            "financialInstitution": "test",
-            "accountName": 'test'
+            bsb: "123456",
+            accountNumber: "3456",
+            financialInstitution: "test",
+            accountName: 'test'
         },
         finalReview: {
-            "document1": "Investment and Fee Summary",
-            "document2": "Statement of Advice",
-            "document3": "Praemium SMA PDS and Investment Guide extract",
+            Documents: [
+                "Investment and Fee Summary",
+                "Letter of Engagement",
+                "Praemium SMA PDS and Investment Guide extract"]
         }
     },
     // {
