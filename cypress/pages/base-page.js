@@ -14,7 +14,7 @@ let
     expandedBoxOnEtichicalOverlay = e => cy.get('[style="margin: 24px auto 12px; width: 100%; display: flex;"] > .ant-col-xs-24'),
     amountInTableFoundByLabelInFirstColumn = (valueInFirstColumn, numberOfColumnToCheck = 4) =>
         cy.contains(valueInFirstColumn).parent('tr').find('td').eq(numberOfColumnToCheck - 1),
-resultsTable = e => cy.get('[class="ant-table-container"]').eq(0).find('tbody'),
+    resultsTable = e => cy.get('[class="ant-table-container"]').eq(0).find('tbody'),
     firstRowInResultsTable = e => resultsTable().children('tr')
 
 export default class BasePage {
@@ -100,7 +100,7 @@ export default class BasePage {
         if (Cypress.env('onGithubActions')) {
             this.pause(10)
         } else {
-           this.pause(0.5)
+            this.pause(0.5)
             // cy.get('.iframes-container').should('exist')
         }
         return this;
@@ -130,6 +130,21 @@ export default class BasePage {
 
     isObject(variable) {
         return Object.prototype.toString.call(variable) === '[object Object]'
+    }
+
+    enterValue(element, arrayOrString) {
+        // this is a much faster action than 'element.type()'
+        // element().invoke('val', value).trigger('input')
+
+        if (Array.isArray(arrayOrString)) {
+            arrayOrString.forEach(function (value) {
+                element().invoke('val', value).trigger('input')
+                element().should('have.value', value)
+            })
+        } else {
+            // element().invoke('val', arrayOrString).trigger('input')
+            element().invoke('val', arrayOrString)
+        }
     }
 
     verify_text(element, expectedText) {
@@ -195,7 +210,6 @@ export default class BasePage {
         element().scrollIntoView();
         element().should('be.visible');
         element().click({force: true});
-        // element().click();
         return this;
     };
 
@@ -207,7 +221,7 @@ export default class BasePage {
     };
 
     select_checkbox_based_on_label(label) {
-        if (label !== null) {
+        if (label) {
             cy.wait(500)
             cy.contains('.animate-row .ant-col-md-22', label)
                 .then($th => $th.index())
@@ -222,15 +236,15 @@ export default class BasePage {
 
     select_checkboxes_based_on_labels(arrayOfLabels) {
         if (arrayOfLabels) {
-            arrayOfLabels.forEach(label =>{
-            cy.wait(500)
-            cy.contains('.animate-row .ant-col-md-22', label)
-                .then($th => $th.index())
-                .then(i => {
-                    expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').click()
-                    expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').should('be.checked')
-                    //cy.get('table tbody td').eq(contactIndex).should('contain', 'Maria Anders')
-                })
+            arrayOfLabels.forEach(label => {
+                cy.wait(500)
+                cy.contains('.animate-row .ant-col-md-22', label)
+                    .then($th => $th.index())
+                    .then(i => {
+                        expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').click()
+                        expandedBoxOnEtichicalOverlay().find('.ant-row-center').find('.ant-col').eq(i - 1).find('.ant-checkbox-input').should('be.checked')
+                        //cy.get('table tbody td').eq(contactIndex).should('contain', 'Maria Anders')
+                    })
             })
         }
         return this;
@@ -244,6 +258,7 @@ export default class BasePage {
         })
         return this;
     }
+
     wait_input_filed_to_have_value(element) {
         element().invoke('val').should('not.be.empty');
         return this;
@@ -310,7 +325,7 @@ export default class BasePage {
         return this;
     };
 
-    upload_file(index,fileName) {
+    upload_file(index, fileName) {
         uploadFileInput(index).attachFile(fileName);
         return this;
     }
@@ -339,8 +354,8 @@ export default class BasePage {
         }).then(emails => {
             cy.log('EMAIL IS ' + JSON.stringify(emails[0]))
             var last_unread_email = emails[0];
-           assert.include(last_unread_email.from, emailTemplate.from);
-           assert.include(last_unread_email.subject, emailTemplate.subject);
+            assert.include(last_unread_email.from, emailTemplate.from);
+            assert.include(last_unread_email.subject, emailTemplate.subject);
 
 
             let email = (JSON.stringify(last_unread_email.body)).replace(/(\r\n\r\n|\n|\r)/gm, "")
@@ -365,8 +380,8 @@ export default class BasePage {
                 firstRowInResultsTable().should('contain', content[property]);
             }
         } else {*/
-            firstRowInResultsTable().should('contain', content);
-       // }
+        firstRowInResultsTable().should('contain', content);
+        // }
         return this;
     };
 
@@ -381,7 +396,7 @@ export default class BasePage {
 
             let last_unread_email = mails[0];
             assert.isOk(last_unread_email.from.includes("contact@nucleuswealth.com"));
-          //  assert.isOk(last_unread_email.from === "contact@nucleuswealth.com <contact@nucleuswealth.com>");
+            //  assert.isOk(last_unread_email.from === "contact@nucleuswealth.com <contact@nucleuswealth.com>");
 
             cy.log('EMAIL CONTENT IS _______ ' + JSON.stringify(last_unread_email))
 
@@ -389,9 +404,9 @@ export default class BasePage {
             valueToSave1 = this.returnTrimString(valueToSave1);
             cy.setLocalStorage(propertyToSave1, valueToSave1);
 
-           /* let valueToSave1 = JSON.stringify(last_unread_email).match("<\[(\d+)\]>")[1];
-            valueToSave1 = this.returnTrimString(valueToSave1);
-            cy.setLocalStorage(propertyToSave1, valueToSave1);*/
+            /* let valueToSave1 = JSON.stringify(last_unread_email).match("<\[(\d+)\]>")[1];
+             valueToSave1 = this.returnTrimString(valueToSave1);
+             cy.setLocalStorage(propertyToSave1, valueToSave1);*/
 
             /*let valueToSave2 = JSON.stringify(last_unread_email).match(valueBefore2 + "(.*?)" + valueAfter2)[1];
             valueToSave2 = this.returnTrimString(valueToSave2);
@@ -401,8 +416,8 @@ export default class BasePage {
     };
 
     returnTrimString = function (valueToTrim) {
-        let remove= valueToTrim.indexOf('\\');
-        let result =  valueToTrim.substring(0, remove);
+        let remove = valueToTrim.indexOf('\\');
+        let result = valueToTrim.substring(0, remove);
         let resultF = result.trim();
         return resultF;
     }

@@ -503,10 +503,8 @@ D.scenarios = [
             investmentTotal: "100000"
         },
         ethicalOverlay: {
-            climateChange: [
-                "No Fossil Fuels (Worst Offenders)",
-                "No Fossil Fuels (Any)"],
-            war: 'No Arms (Any)'
+            climateChange: [],
+            war: ''
         },
         review: {
             yourPortfolioValues: {
@@ -622,17 +620,17 @@ D.scenarios = [
                 surnameInput: 'Test surname',
                 emailInput: 'email@test.com',
                 mobileInput: '123456',
-                genderInput: 'Female{enter}',
-                citizenshipInput: 'Australia{enter}',
-                employmentType: 'Employed',
-                employmentType2: 'Unemployed',
-                employmentInput: 'Employed{enter}',
+                genderInput: 'Female',
+                dateOfBirth: '16/04/1990',
+                citizenshipInput: 'Australia',
+                employmentInput: 'Employed',
                 taxInput: '11111111',
-                occupation: 'Analyst{enter}',
+                occupation: 'Analyst',
                 employerName: 'Test test',
-                employerAddress: 'Angola{enter}',
-                employerBusiness: 'Computer/Information Technology{enter}',
-                residentialAddress: 'Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia{enter}'
+                employerAddress: 'Angola',
+                employerBusiness: 'Computer/Information Technology',
+                residentialAddress: 'Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia',
+                licenseExpiryDate: '28/02/2026'
             },
             documents: {
                 telephoneBill: "Telephone Bill",

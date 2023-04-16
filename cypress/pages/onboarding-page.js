@@ -112,12 +112,13 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     // submitApplicantButton = e => cy.contains('Submit Applicant'),
     submitApplicantButton = e => cy.get('[data-test="applicants-submitApplicant-btn"]'),
     titleInputField = e => cy.get('[data-test="applicants-title-input"]'),
+    titleDropdownOptions = option => cy.get('.rc-virtual-list-holder-inner').contains(option),
     nameInputField = e => cy.get('#givenNames'),
     surnameInputField = e => cy.get('#surname'),
     emailInputField = e => cy.get('#email'),
     mobileInputField = e => cy.get('#phone'),
-    dateInputField = e => cy.get('.ant-picker'),
-    dateInputField2 = e => cy.get('[data-test="applicants-dob-input"]'),
+    dateField = e => cy.get('.ant-picker'),
+    dateInputField = e => cy.get('[data-test="applicants-dob-input"]'),
     driverLicenseExpiry = e => cy.get('#theForm_driver_license_expiry'),
     yearInputField = e => cy.get('.ant-picker-year-btn'),
     todayButton = e => cy.get('.ant-picker-today-btn'),
@@ -131,6 +132,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     taxInputField = e => cy.get('[data-test="applicants-tfn-input"]'),
     genderInputField = e => cy.get('[data-test="applicants-gender-input"] > .ant-select-selector'),
     residentialAddressInputField = e => cy.get('[data-test="applicants-residentialAddress-input"]'),
+    residentialAddressTypeaheadOption = e => cy.get('[data-test="applicants-addressSuggestion-0-input"]'),
     knowledgeLevel = e => cy.get('#theForm_investmentExperience_0_knowledgeLevel'),
     tradesPerYear = e => cy.get('#theForm_investmentExperience_0_tradesPerYear'),
     numberOfYearsTrading = e => cy.get('#theForm_investmentExperience_0_yearsTrading'),
@@ -363,67 +365,57 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    enter_values_at_create_new_applicant_input_fields(data) {
+    enter_values_at_create_new_applicant_input_fields(data, type) {
         titleInputField().click()
-        this.pause(2)
-        cy.contains('Miss').click()
-        nameInputField().type(data.nameInput);
-        surnameInputField().type(data.surnameInput);
-        emailInputField().type(data.emailInput);
-        mobileInputField().type(data.mobileInput);
-        genderInputField().click();
-        this.pause(2)
-        genderInputField().type(data.genderInput)
-        dateInputField().click();
-        this.pause(2)
-        todayButton().click()
-        citizenshipInputField().click({force: true})
-        this.pause(2)
-        citizenshipInputField().type(data.citizenshipInput)
-        employmentInputField().click();
-        this.pause(3)
-        employmentTypeOption(data.employmentType).click()
-        occupationInputField().click();
-        this.pause(2)
-        occupationInputField().type(data.occupation);
-        employerNameInputField().type(data.employerName);
-        employerAddressInputField().type(data.employerAddress);
-        employerBusinessInputField().click();
-        this.pause(2)
-        employerBusinessInputField().type(data.employerBusiness);
-        taxInputField().type(data.taxInput)
-        residentialAddressInputField().click();
-        this.pause(2)
-        residentialAddressInputField().type('Ter');
-        this.pause(1)
-        cy.contains('Terminal 3 & Terminal 4, Perth Airport WA, Australia').click()
-        this.pause(2)
-        return this;
-    }
+        titleDropdownOptions(data.titleInput).click()
 
-    enter_values_at_create_new_ib_applicant_input_fields(data) {
-        titleInputField().click()
-        cy.contains('Miss').click()
-        nameInputField().type(data.nameInput);
+        nameInputField().type(data.nameInput)
+        nameInputField().should('have.value', data.nameInput)
+
         surnameInputField().type(data.surnameInput);
+        surnameInputField().should('have.value', data.surnameInput)
+
         emailInputField().type(data.emailInput);
+        emailInputField().should('have.value', data.emailInput)
+
         mobileInputField().type(data.mobileInput);
+        mobileInputField().should('have.value', data.mobileInput)
+
         genderInputField().click();
-        genderInputField().type(data.genderInput)
-        dateInputField2().click();
+        genderInputField().type(data.genderInput).type('{enter}');
+
+        dateField().click();
+        // this.enterValue(dateInputField, data.dateOfBirth)
         todayButton().click()
+
         citizenshipInputField().click({force: true})
-        citizenshipInputField().type(data.citizenshipInput)
+        citizenshipInputField().type(data.citizenshipInput).type('{enter}');
+
         employmentInputField().click();
-        employmentTypeOption(data.employmentType2).click()
+        employmentTypeOption(data.employmentInput).click()
+
+        occupationInputField().type(data.occupation).type('{enter}');
+        employerNameInputField().type(data.employerName);
+        employerAddressInputField().type(data.employerAddress).type('{enter}');
+
+        employerBusinessInputField().click();
+        employerBusinessInputField().type(data.employerBusiness).type('{enter}');
+        ;
+
         taxInputField().type(data.taxInput)
+
         residentialAddressInputField().click();
-        residentialAddressInputField().type('Ter');
-        cy.wait(1000);
-        cy.contains('Terminal 3 & Terminal 4, Perth Airport WA, Australia').click()
-        cy.wait(2000);
-        driverLicenseExpiry().click();
-        driverLicenseExpiry().type('28/02/2026{enter}')
+        this.enterValue(residentialAddressInputField, data.residentialAddress)
+        residentialAddressInputField().type('{backspace}')
+        residentialAddressTypeaheadOption().should('be.visible')
+        cy.contains(data.residentialAddress).click()
+        residentialAddressInputField().should('have.value', data.residentialAddress)
+        // this.pause(2)
+
+        if (type === 'Individual-IB') {
+            driverLicenseExpiry().click();
+            driverLicenseExpiry().type(data.licenseExpiryDate).type('{enter}');
+        }
         return this;
     }
 
@@ -542,9 +534,9 @@ export default class OnboardingPage extends BasePage {
     }
 
     enter_Portfolio_values(data) {
-            investmentTotalField().type(data.investmentTotal);
-            tacticalGrowthField().type(data.tacticalGrowth);
-            coreInternationalField().type(data.coreInternational);
+        investmentTotalField().type(data.investmentTotal);
+        tacticalGrowthField().type(data.tacticalGrowth);
+        coreInternationalField().type(data.coreInternational);
 
         /* if (data.buildYourPortfolio['Tactical Growth']) {
              tacticalGrowthField().type(data.buildYourPortfolio['Tactical Growth'].percent);
@@ -558,9 +550,9 @@ export default class OnboardingPage extends BasePage {
 
 
     select_ethical_option(data) {
-            this.select_checkboxes_based_on_labels(data.climateChange)
-                .click_war_button()
-                .select_checkbox_based_on_label(data.war)
+        this.select_checkboxes_based_on_labels(data.climateChange)
+            .click_war_button()
+            .select_checkbox_based_on_label(data.war)
         return this;
     }
 
@@ -581,16 +573,6 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    enter_applicant_values(data) {
-        if (data.accountType === 'Individual-IB') {
-            this.enter_values_at_create_new_ib_applicant_input_fields(data.applicants.inputFields)
-        }
-        else if (data.accountType === 'Individual') {
-            this.enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields)
-        }
-        return this;
-    }
-
     enter_applicant_investment_experience(data) {
         if (data.applicants.investmentExperience["knowledgeLevel"]) {
             this.enter_investment_experience_values(D.investmentExperience)
@@ -602,17 +584,17 @@ export default class OnboardingPage extends BasePage {
 
     upload_documents(data) {
         //if (data.applicants.documents.telephoneBill) {
-            this.upload_and_submit_document_for_verification(data.applicants.documents.telephoneBill)
-                .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
-                .upload_and_submit_document_for_verification(data.applicants.documents.waterBill)
-      //  }
+        this.upload_and_submit_document_for_verification(data.applicants.documents.telephoneBill)
+            .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
+            .upload_and_submit_document_for_verification(data.applicants.documents.waterBill)
+        //  }
         return this;
     }
 
     enter_values_for_bank_details(data) {
         //if (data.bankDetails["bsb"]) {
-            this.enter_Bank_Details(data.bankDetails)
-       // }
+        this.enter_Bank_Details(data.bankDetails)
+        // }
         return this;
     }
 
@@ -773,7 +755,9 @@ export default class OnboardingPage extends BasePage {
     }
 
     add_new_applicant() {
+        addNewApplicantCard().should('be.enabled');
         addNewApplicantCard().click();
+        createNewApplicantButton().should('be.enabled');
         createNewApplicantButton().click()
         return this;
     }
@@ -904,8 +888,8 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_applicants_page() {
-        this.pause(6)
-        applicantCardMenuButton().should('be.visible')
+        // this.pause(6)
+        //   applicantCardMenuButton().should('be.visible')
         cy.url().should('include', 'applicants');
         pageTitle().should('have.text', 'Applicants');
         return this;
@@ -1030,44 +1014,45 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_chosen_ethics2(label_values__stacks) {
-            label_values__stacks.forEach(function (stack) {
-                if (stack[1]) {
-                    if (Array.isArray(stack[1])) {
-                        stack[1].forEach(function (value) {
-                            chosenEthicsContainer(stack[0]).invoke('text').should('contain', value)
-                        })
-                    } else {
-                        chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
-                    }
-
+        label_values__stacks.forEach(function (stack) {
+            if (stack[1]) {
+                if (Array.isArray(stack[1])) {
+                    stack[1].forEach(function (value) {
+                        chosenEthicsContainer(stack[0]).invoke('text').should('contain', value)
+                    })
+                } else {
+                    chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
                 }
-            });
+
+            }
+        });
         return this;
     }
-verify_ethics(data){
 
-    const label_values__stacks = [
-        ['Climate Change', [data.climateChange[0], data.climateChange[1]]],
-        ['War', [data.war]]
-    ];
+    verify_ethics(data) {
 
-    this.verify_chosen_ethics(label_values__stacks);
-    return this;
-}
+        const label_values__stacks = [
+            ['Climate Change', data.climateChange],
+            ['War', data.war]
+        ];
+
+        this.verify_chosen_ethics(label_values__stacks);
+        return this;
+    }
+
     verify_chosen_ethics(label_values__stacks) {
-    label_values__stacks.forEach(function (stack) {
-        if (stack[1]) {
-            if (Array.isArray(stack[1])) {
-                stack[1].forEach(function (value) {
-                    chosenEthicsContainer(stack[0]).invoke('text').should('contain', value)
-                })
-            } else {
-                chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
+        label_values__stacks.forEach(function (stack) {
+            if (stack[1]) {
+                if (Array.isArray(stack[1])) {
+                    stack[1].forEach(function (value) {
+                        chosenEthicsContainer(stack[0]).invoke('text').should('contain', value)
+                    })
+                } else {
+                    chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
+                }
+
             }
-
-        }
-    });
-
+        });
         return this;
     }
 
@@ -1116,7 +1101,7 @@ verify_ethics(data){
 
     verify_question_responses(type, arrayOfResponses) {
         let arrayOfQuestions = D.reviewQuestions
-        if (type === 'SMSF'){
+        if (type === 'SMSF') {
             arrayOfQuestions = D.reviewQuestionsSMSF
         }
         this.pause(3)
@@ -2126,6 +2111,8 @@ verify_ethics(data){
     complete_flow_for_creating_new_account(data) {
         let type = data.accountType
 
+        // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6433/applicants')
+
         this.click_create_new_investment_account()
             .select_account_type(type)
             .click_create_investment_account()
@@ -2138,13 +2125,12 @@ verify_ethics(data){
             this.verify_build_your_portfolio_page()
                 .enter_Portfolio_values(data.buildYourPortfolio)
                 .click_Save_and_Continue_button()
-        }
-        else{
+        } else {
             this
                 .verify_risk_profile_page()
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
                 .enter_financial_info(data.questionResponse)
-               .click_Save_and_Continue_button()
+                .click_Save_and_Continue_button()
         }
 
         this.verify_ethical_overlay_page()
@@ -2163,7 +2149,7 @@ verify_ethics(data){
             this.review_net_worth_annual_net_income_liquid_net_worth(data)
         }
 
-        if (!type.includes('Individual')){
+        if (!type.includes('Individual')) {
             this.verify_review_page()
                 .expand_question_responses_panel()
                 .verify_question_responses(type, data.reviewResponses)
@@ -2171,8 +2157,8 @@ verify_ethics(data){
 
         this.expand_ethical_overlay_panel()
             .verify_ethics(data.ethicalOverlay)
-          //  .review_portfolio_data(data)
-            this.click_Save_and_Continue_button()
+        //  .review_portfolio_data(data)
+        this.click_Save_and_Continue_button()
 
         if (type === 'SMSF') {
             this.verify_SMSF_page()
@@ -2185,7 +2171,7 @@ verify_ethics(data){
         this.verify_applicants_page()
             .remove_existing_applicant()
             .add_new_applicant()
-            .enter_applicant_values(data)
+            .enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields, type)
         if (type === 'Individual-IB') this.enter_applicant_investment_experience(data)
 
         this.click_submit_applicant_button()
