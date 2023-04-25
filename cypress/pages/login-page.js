@@ -51,7 +51,7 @@ export default class LoginPage extends BasePage {
         if (type === 'Individual-IB') {
             this.enter_credentials_and_click_Sign_In(data.username, data.password)
         }
-        else if (type === 'Personal Super' || type === 'Individual'|| type === 'SMSF' || type === 'Joint') {
+        else if (type === 'Personal Super' || type === 'Individual'|| type === 'SMSF' || type === 'Joint' || type === 'Trust' || type === 'Company') {
             this.enter_credentials_and_click_Sign_In(data.username, data.password)
         }
         return this;

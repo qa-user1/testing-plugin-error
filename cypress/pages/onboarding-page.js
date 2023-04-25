@@ -284,7 +284,7 @@ export default class OnboardingPage extends BasePage {
         fundNameInputField().type(data.fundName1);
         cy.contains('Other').click();
         customFundNameInputField().should('be.visible');
-        fundNameInputField().type(data.fundName2);
+        fundNameInputField().type(data.fundName2).type('{enter}');
         customFundNameInputField().should('not.exist');
         transferAmountInputField().type(data.transferAmount);
         memberNumberInputField().type(data.memberNumber);
@@ -491,6 +491,12 @@ export default class OnboardingPage extends BasePage {
         } else if (option.includes('Joint')) {
             this.click_non_super_type()
                 .select_joint_non_super_subtype()
+        } else if (option.includes('Trust')) {
+            this.click_non_super_type()
+                .select_trust_non_super_subtype()
+        } else if (option.includes('Company')) {
+            this.click_non_super_type()
+                .select_company_non_super_subtype()
         }
         return this;
     }
@@ -557,20 +563,25 @@ export default class OnboardingPage extends BasePage {
     review_portfolio_data(data) {
         this.review_indicative_portfolio(data.review.indicativePortfolio)
         this.verify_your_portfolio_panel(data.review.yourPortfolioValues)
-        if (data.ethicalOverlay) {
+        if (data.accountType === 'Individual' || data.accountType === 'SMSF' || data.accountType === 'Joint' || data.accountType === 'Trust' ) {
+            this.review_fees_and_charges(data.review.feesAndCharges, '4')
+        } else if (data.accountType === 'Personal Super' ) {
+            this.review_fees_and_charges(data.review.feesAndCharges, '3')
+        }
+       if (data.ethicalOverlay) {
             this.review_indicative_portfolio_excluded_securities(data.review.indicativePortfolioExcludedSecurities)
         }
 
         return this;
     }
 
-    review_net_worth_annual_net_income_liquid_net_worth(data) {
+    /*review_net_worth_annual_net_income_liquid_net_worth(data) {
         // Is it enough to "call" only 'netWorth' to be reason for if statement, or I should call all the three rows from data
         if (data.review.questionResponses["NetWorth"]) {
             this.verify_net_worth_annual_net_income_liquid_net_worth()
         }
         return this;
-    }
+    }*/
 
     enter_applicant_investment_experience(data) {
         if (data.applicants.investmentExperience["knowledgeLevel"]) {
@@ -1196,6 +1207,11 @@ export default class OnboardingPage extends BasePage {
 
     review_indicative_portfolio_excluded_securities(object) {
         this.verify_amount_on_multiple_rows_referenced_by_label_in_first_column(object, 2)
+        return this;
+    }
+
+    review_fees_and_charges(object, columnNumber) {
+        this.verify_amount_on_multiple_rows_referenced_by_label_in_first_column(object, columnNumber)
         return this;
     }
 

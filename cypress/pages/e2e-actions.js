@@ -5,9 +5,8 @@ const C = require('../fixtures/constants');
 module.exports = {
     complete_flow_for_creating_new_account: data => {
         let type = data.accountType
-        //   let ethical = D.scenarios.ethicalOverlay
 
-        // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6433/applicants')
+       //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6511/review')
 
         app.click_create_new_investment_account()
             .select_account_type(type)
@@ -17,7 +16,7 @@ module.exports = {
             .select_investment_choice(data.investmentChoice)
             .click_Save_and_Continue_button()
 
-        if (type === 'Individual-IB' || type === 'Individual') {
+        if (type === 'Individual-IB' || type === 'Individual' || type === 'Trust' || type === 'Company') {
             app.verify_build_your_portfolio_page()
                 .enter_Portfolio_values(data.buildYourPortfolio)
                 .click_Save_and_Continue_button()
@@ -40,10 +39,10 @@ module.exports = {
         }
 
         app.verify_review_page()
-
-        if (type === 'Individual-IB') {
+// I think we don't need this method in data driven
+       /* if (type === 'Individual-IB') {
             app.review_net_worth_annual_net_income_liquid_net_worth(data)
-        }
+        }*/
 
         if (!type.includes('Individual')) {
             app.verify_review_page()
@@ -53,7 +52,7 @@ module.exports = {
 
         app.expand_ethical_overlay_panel()
             .verify_ethics(data.ethicalOverlay)
-            .review_portfolio_data(data)
+            app.review_portfolio_data(data)
         /* app.click_Save_and_Continue_button()
 
          if (type === 'SMSF') {

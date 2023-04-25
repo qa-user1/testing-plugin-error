@@ -487,28 +487,46 @@ D.scenarios = [
         name: 'Scenario 1',
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
-        accountType: "Individual",
-        investmentChoice: "Self Directed",
+        accountType: "Personal Super",
+        investmentChoice: "Limited Advice",
         questionResponse: {
-            selectedOptions: [],
-            investmentTotal: null,
-            netWorth: null,
-            annualNetIncome: null,
-            liquidNetWorth: null
+            selectedOptions: [
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2
+            ],
+            investmentTotal: '100000',
+            netWorth: '200000',
+            annualNetIncome: '70000',
+            liquidNetWorth: '110000'
         },
-        reviewResponses:  [],
+        reviewResponses: [],
         buildYourPortfolio: {
-            tacticalGrowth: "50%",
-            coreInternational: "50%",
+            tacticalGrowth: "0%",
+            coreInternational: "100%",
             investmentTotal: "100000"
         },
         ethicalOverlay: {
             climateChange: [
+
+            ],
+            war: ''
+        },
+        /*climateChange: [
                 'No Fossil Fuels (Worst Offenders)',
                 'No Fossil Fuels (Any)'
             ],
             war: 'No Arms (Any)'
-        },
+        },*/
         review: {
             yourPortfolioValues: {
                 'totalAmount': '$100,000',
@@ -615,6 +633,15 @@ D.scenarios = [
                 'Endesa (ELE)': 'No Fossil Fuels (Any)',
                 'ENGIE (ENGI)': 'No Fossil Fuels (Any)'
             },
+            feesAndCharges: {
+'Platform Administration': '$78'
+                /*'Investment Management Fee': '$640',
+                'Platform Administration Fee': '$527',
+                'Advice Fee': '$0',
+                'ETF Fees': '$29',
+                'Initial Transaction Costs (estimated)': ' $189 - $304',
+                //'Advice Fee': '$0'*/
+            }
         },
         applicants: {
             inputFields: {
@@ -651,7 +678,13 @@ D.scenarios = [
                 "Investment and Fee Summary",
                 "Letter of Engagement",
                 "Praemium SMA PDS and Investment Guide extract"]
-        }
+        },
+        fundEntryInputFields: {
+            'fundName1': 'Other',
+            'fundName2': 'AustralianSuper',
+            'transferAmount': '100000',
+            'memberNumber': '5'
+        },
     },
     // {
     //     name: 'Scenario 2',
