@@ -280,7 +280,7 @@ D.indicativePortfolio = {
     'Zoetis (ZTS)': '381',
 }
 
-D.indicativePortfolioSecurity = {
+D.indicativePortfolioExcludedSecurities = {
     'Volkswagen (VOW3)': 'No Arms (Any)',
     'L3Harris Technologies (LHX)': 'No Arms (Any)',
     'Woodside Energy (WDS)': 'No Fossil Fuels (Any)',
@@ -606,7 +606,7 @@ D.scenarios = [
                 'Willis Towers Watson (WTW)': '1,049',
                 'Zoetis (ZTS)': '381',
             },
-            indicativePortfolioSecurity: {
+            indicativePortfolioExcludedSecurities: {
                 'Volkswagen (VOW3)': 'No Arms (Any)',
                 'L3Harris Technologies (LHX)': 'No Arms (Any)',
                 'Woodside Energy (WDS)': 'No Fossil Fuels (Any)',
@@ -693,7 +693,7 @@ D.scenarios = [
     //             'tacticalGrowthPercentage': '50%',
     //         },
     //         indicativePortfolio: {},
-    //         indicativePortfolioSecurity: {},
+    //         indicativePortfolioExcludedSecurities: {},
     //     },
     //     ethicalOverlay: {
     //         "climateChange1": "No Fossil Fuels (Worst Offenders)",

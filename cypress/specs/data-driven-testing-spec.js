@@ -1,8 +1,6 @@
-const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
-//const d = D.scenarios[0]
-
-
+const ui = require('../pages/ui-spec');
+const e2e = require('../pages/e2e-actions');
 
 D.scenarios.forEach(data => {
 
@@ -19,7 +17,7 @@ D.scenarios.forEach(data => {
                     .enter_credentials_for_sign_in(data)
                     .redirect_user_to_the_create_a_new_account_page()
                 ui.onboarding.verify_account_selection()
-                ui.onboarding.complete_flow_for_creating_new_account(data)
+                e2e.complete_flow_for_creating_new_account(data)
 
         })
 })

@@ -100,7 +100,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             ])
             .verify_your_portfolio_panel(D.yourPortfolioValues)
             .review_indicative_portfolio(D.indicativePortfolio)
-            .review_indicative_portfolio_security(D.indicativePortfolioSecurity)
+            .review_indicative_portfolio_excluded_securities(D.indicativePortfolioExcludedSecurities)
             .click_Save_and_Continue_button()
     })
 

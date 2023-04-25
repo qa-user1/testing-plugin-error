@@ -1,7 +1,5 @@
 import BasePage from "./base-page";
 import D from "../fixtures/data";
-import ui from "./ui-spec";
-import C from "../fixtures/constants";
 
 // *************************** ELEMENTS ***************************
 
@@ -557,13 +555,12 @@ export default class OnboardingPage extends BasePage {
     }
 
     review_portfolio_data(data) {
-        let ethical = data.war
-         if (ethical !== undefined && ethical !== null) {
-            this.review_indicative_portfolio_security(data.indicativePortfolioSecurity)
-        } else {
-             this.review_indicative_portfolio(data.indicativePortfolio)
-             this.verify_your_portfolio_panel(data.yourPortfolioValues)
-         }
+        this.review_indicative_portfolio(data.review.indicativePortfolio)
+        this.verify_your_portfolio_panel(data.review.yourPortfolioValues)
+        if (data.ethicalOverlay) {
+            this.review_indicative_portfolio_excluded_securities(data.review.indicativePortfolioExcludedSecurities)
+        }
+
         return this;
     }
 
@@ -1052,7 +1049,6 @@ export default class OnboardingPage extends BasePage {
                 } else {
                     chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
                 }
-
             }
         });
         return this;
@@ -1198,7 +1194,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    review_indicative_portfolio_security(object) {
+    review_indicative_portfolio_excluded_securities(object) {
         this.verify_amount_on_multiple_rows_referenced_by_label_in_first_column(object, 2)
         return this;
     }
@@ -2110,93 +2106,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    complete_flow_for_creating_new_account(data) {
-        let type = data.accountType
-     //   let ethical = D.scenarios.ethicalOverlay
 
-        // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6433/applicants')
-
-        this.click_create_new_investment_account()
-            .select_account_type(type)
-            .click_create_investment_account()
-            .go_through_tour_steps(C.stepMessages)
-            .verify_investment_choice_page()
-            .select_investment_choice(data.investmentChoice)
-            .click_Save_and_Continue_button()
-
-        if (type === 'Individual-IB' || type === 'Individual') {
-            this.verify_build_your_portfolio_page()
-                .enter_Portfolio_values(data.buildYourPortfolio)
-                .click_Save_and_Continue_button()
-        } else {
-            this
-                .verify_risk_profile_page()
-                .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
-                .enter_financial_info(data.questionResponse)
-                .click_Save_and_Continue_button()
-        }
-
-        this.verify_ethical_overlay_page()
-            .select_ethical_option(data.ethicalOverlay)
-            .click_Save_and_Continue_button()
-
-        if (type === 'Personal Super') {
-            this.verify_super_fund_entry_page()
-                .enter_values_on_super_fund_entry_input_fields(data.fundEntryInputFields)
-                .click_Save_and_Continue_button()
-        }
-
-        this.verify_review_page()
-
-        if (type === 'Individual-IB') {
-            this.review_net_worth_annual_net_income_liquid_net_worth(data)
-        }
-
-        if (!type.includes('Individual')) {
-            this.verify_review_page()
-                .expand_question_responses_panel()
-                .verify_question_responses(type, data.reviewResponses)
-        }
-
-        this.expand_ethical_overlay_panel()
-            .verify_ethics(data.ethicalOverlay)
-          .review_portfolio_data(data.ethicalOverlay, data.review)
-       /* this.click_Save_and_Continue_button()
-
-        if (type === 'SMSF') {
-            this.verify_SMSF_page()
-                .enter_all_required_SMSF_details(data.SMSFDetails)
-                .click_Save_and_Continue_button()
-                .enter_values_for_bank_details(data)
-                .click_Save_and_Continue_button()
-        }
-
-        this.verify_applicants_page()
-            .remove_existing_applicant()
-            .add_new_applicant()
-            .enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields, type)
-        if (type === 'Individual-IB') this.enter_applicant_investment_experience(data)
-
-        this.click_submit_applicant_button()
-            .upload_documents(data)
-            .click_Save_and_Continue_button()
-
-
-        if (type === 'Individual-IB' || type === 'Individual' || type === 'Joint') {
-            this.enter_values_for_bank_details(data)
-                .click_Save_and_Continue_button()
-        } else if (type === 'Personal Super') {
-            this.verify_insurance_quote_page()
-                .complete_insurance_quote(data)
-                .click_Save_and_Continue_button()
-        }
-
-        this.verify_Final_Review_page()
-            .verify_documents_on_final_review_page(data.finalReview)
-
-*/        return this;
-
-    }
 }
 
 
