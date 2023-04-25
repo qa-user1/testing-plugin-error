@@ -503,8 +503,11 @@ D.scenarios = [
             investmentTotal: "100000"
         },
         ethicalOverlay: {
-            climateChange: [],
-            war: ''
+            climateChange: [
+                'No Fossil Fuels (Worst Offenders)',
+                'No Fossil Fuels (Any)'
+            ],
+            war: 'No Arms (Any)'
         },
         review: {
             yourPortfolioValues: {

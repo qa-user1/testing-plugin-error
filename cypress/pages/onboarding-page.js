@@ -557,11 +557,13 @@ export default class OnboardingPage extends BasePage {
     }
 
     review_portfolio_data(data) {
-        if (data.review.indicativePortfolio) {
-            this.review_indicative_portfolio(data.review.indicativePortfolio)
-            this.verify_your_portfolio_panel(data.review.yourPortfolioValues)
-            this.review_indicative_portfolio_security(data.review.indicativePortfolioSecurity)
-        }
+        let ethical = data.war
+         if (ethical !== undefined && ethical !== null) {
+            this.review_indicative_portfolio_security(data.indicativePortfolioSecurity)
+        } else {
+             this.review_indicative_portfolio(data.indicativePortfolio)
+             this.verify_your_portfolio_panel(data.yourPortfolioValues)
+         }
         return this;
     }
 
@@ -2110,6 +2112,7 @@ export default class OnboardingPage extends BasePage {
 
     complete_flow_for_creating_new_account(data) {
         let type = data.accountType
+     //   let ethical = D.scenarios.ethicalOverlay
 
         // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6433/applicants')
 
@@ -2157,8 +2160,8 @@ export default class OnboardingPage extends BasePage {
 
         this.expand_ethical_overlay_panel()
             .verify_ethics(data.ethicalOverlay)
-        //  .review_portfolio_data(data)
-        this.click_Save_and_Continue_button()
+          .review_portfolio_data(data.ethicalOverlay, data.review)
+       /* this.click_Save_and_Continue_button()
 
         if (type === 'SMSF') {
             this.verify_SMSF_page()
@@ -2191,8 +2194,7 @@ export default class OnboardingPage extends BasePage {
         this.verify_Final_Review_page()
             .verify_documents_on_final_review_page(data.finalReview)
 
-
-        return this;
+*/        return this;
 
     }
 }
