@@ -5,6 +5,7 @@ const C = require('../fixtures/constants');
 module.exports = {
     complete_flow_for_creating_new_account: data => {
         let type = data.accountType
+        let choice = data.investmentChoice
 
        //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6511/review')
 
@@ -16,11 +17,20 @@ module.exports = {
             .select_investment_choice(data.investmentChoice)
             .click_Save_and_Continue_button()
 
-        if (type === 'Individual-IB' || type === 'Individual' || type === 'Trust' || type === 'Company') {
+        if (type === 'Individual-IB'  || type === 'Trust' || type === 'Company') {
             app.verify_build_your_portfolio_page()
                 .enter_Portfolio_values(data.buildYourPortfolio)
                 .click_Save_and_Continue_button()
-        } else {
+        }
+        if (type === 'Individual' && choice === 'Limited Advice'){
+            app
+                .verify_risk_profile_page()
+                .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
+        }
+
+
+
+            else {
             app
                 .verify_risk_profile_page()
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
@@ -52,8 +62,8 @@ module.exports = {
 
         app.expand_ethical_overlay_panel()
             .verify_ethics(data.ethicalOverlay)
-            app.review_portfolio_data(data)
-        /* app.click_Save_and_Continue_button()
+          //  app.review_portfolio_data(data)
+         app.click_Save_and_Continue_button()
 
          if (type === 'SMSF') {
              app.verify_SMSF_page()
@@ -86,7 +96,7 @@ module.exports = {
          app.verify_Final_Review_page()
              .verify_documents_on_final_review_page(data.finalReview)
 
- */
+
 
     }
 }

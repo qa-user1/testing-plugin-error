@@ -403,8 +403,9 @@ export default class OnboardingPage extends BasePage {
         taxInputField().type(data.taxInput)
 
         residentialAddressInputField().click();
-        this.enterValue(residentialAddressInputField, data.residentialAddress)
-        residentialAddressInputField().type('{backspace}')
+        residentialAddressInputField().type(data.residentialAddress).type('{enter}')
+       // this.enterValue(residentialAddressInputField, data.residentialAddress)
+       // residentialAddressInputField().type('{backspace}')
         residentialAddressTypeaheadOption().should('be.visible')
         cy.contains(data.residentialAddress).click()
         residentialAddressInputField().should('have.value', data.residentialAddress)
@@ -440,9 +441,9 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    upload_and_submit_document_for_verification(type) {
+    upload_and_submit_document_for_verification(idOption, type) {
         this.pause(4)
-        this.select_id_option()
+        this.select_id_option(idOption)
         this.pause(1)
             .select_document_type(type)
         this.pause(1)
@@ -452,11 +453,11 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    select_id_option() {
+    select_id_option(idOption) {
         this.pause(3)
         idOptionList().click();
         this.pause(3)
-        cy.contains('Upload an ID document').click();
+        cy.contains(idOption).click();
         return this;
     }
 
@@ -593,11 +594,11 @@ export default class OnboardingPage extends BasePage {
     }
 
     upload_documents(data) {
-        //if (data.applicants.documents.telephoneBill) {
-        this.upload_and_submit_document_for_verification(data.applicants.documents.telephoneBill)
+        if (data.applicants.documentType.idOption === 'Upload an ID document') {
+        this.upload_and_submit_document_for_verification('Upload an ID document', data.applicants.documentType.type1)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
-            .upload_and_submit_document_for_verification(data.applicants.documents.waterBill)
-        //  }
+            .upload_and_submit_document_for_verification('Upload an ID document', data.applicants.documentType.type2)
+    }
         return this;
     }
 
