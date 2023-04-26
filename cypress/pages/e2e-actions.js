@@ -53,24 +53,25 @@ module.exports = {
         if (type === 'Personal Super') {
             app.verify_super_fund_entry_page()
                 .enter_values_on_super_fund_entry(data.fundEntryInputFields)
-              //  .click_Save_and_Continue_button()
+                .click_Save_and_Continue_button()
         }
 
-       /* app.verify_review_page()
-// I think we don't need this method in data driven
+        app.verify_review_page()
+/*// I think we don't need this method in data driven
        /!* if (type === 'Individual-IB') {
             app.review_net_worth_annual_net_income_liquid_net_worth(data)
-        }*!/
+        }*!/*/
 
-        if (!type.includes('Individual')) {
+       // if (!type.includes('Individual')) {
+        if (choice === 'Limited Advice') {
             app.verify_review_page()
                 .expand_question_responses_panel()
                 .verify_question_responses(type, data.reviewResponses)
         }
 
-        app.expand_ethical_overlay_panel()
+       /* app.expand_ethical_overlay_panel()
             .verify_ethics(data.ethicalOverlay)
-          //  app.review_portfolio_data(data)
+            app.review_portfolio_data(data)
          app.click_Save_and_Continue_button()
 
          if (type === 'SMSF') {
@@ -90,9 +91,9 @@ module.exports = {
          app.click_submit_applicant_button()
              .upload_documents(data)
              .click_Save_and_Continue_button()
-*/
 
-         /*if (type === 'Individual-IB' || type === 'Individual' || type === 'Joint') {
+
+         if (type === 'Individual-IB' || type === 'Individual' || type === 'Joint') {
              app.enter_values_for_bank_details(data)
                  .click_Save_and_Continue_button()
          } else if (type === 'Personal Super') {

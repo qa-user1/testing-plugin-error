@@ -510,7 +510,20 @@ D.scenarios = [
             annualNetIncome: '70000',
             liquidNetWorth: '110000'
         },
-        reviewResponses: [],
+        reviewResponses: [
+            'I have dabbled in some Aussie stocks but mainly have managed investments',
+            'My priority is to generate income. However, I would like to see my initial investment grow over time',
+            'Uncertainty',
+            'Medium',
+            'Yes',
+            '10%',
+            'I would be concerned and consider changing my investment strategy',
+            'I prefer investments with a low risk of volatility; however, I am happy to have a small portion of my portfolio invested in assets with potentially higher levels of short-term capital fluctuation',
+            'Leave a portion in cash, say $10,000, and look to invest the rest in a term deposit',
+            '2 - 4 years',
+            'You would like more visibility over your investments within superannuation',
+            'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.'
+        ],
         buildYourPortfolio: {
             tacticalGrowth: "50",
             coreInternational: "50",
@@ -630,11 +643,12 @@ D.scenarios = [
                 'ENGIE (ENGI)': 'No Fossil Fuels (Any)'
             },
             feesAndCharges: {
-                'Investment Management Fee': '$640',
-                'Platform Administration Fee': '$527',
-                'Advice Fee': '$0',
-                'ETF Fees': '$29',
-                'Initial Transaction Costs (estimated)': ' $189 - $304',
+               // 'Investment Management Fee': '$640',
+               // 'Platform Administration Fee': '$527',
+                'Platform Administration': '$78',
+              //  'Advice Fee': '$0',
+              //  'ETF Fees': '$29',
+              //  'Initial Transaction Costs (estimated)': ' $189 - $304',
                 //'Advice Fee': '$0'
             }
         },
@@ -674,6 +688,7 @@ D.scenarios = [
                 "Investment and Fee Summary",
                 "Letter of Engagement",
                 //"Statement of Advice",
+                 'MetLife - Protect Product Disclosure Statement',
                 "Praemium SMA PDS and Investment Guide extract"]
         },
         fundEntryInputFields: {
@@ -685,13 +700,9 @@ D.scenarios = [
         insurance: {
                      lifeCover: '100000',
                      tpdCover: '100000',
-                     steppedLifeCoverAmount: '$55',
-                     steppedTPDAmount: '$55',
-                     levelTo65LifeCoverAmount: '$55',
-                     levelTo65TPDCoverAmount: '$55',
-                     weight: '5',
+                     weight: '3',
                      height: '10',
-                     occupation: 'test'
+                     occupation: 'Abattoir Worker – Manual butcher or boner'
                  },
     },
     // {

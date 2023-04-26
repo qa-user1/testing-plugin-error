@@ -577,8 +577,10 @@ export default class OnboardingPage extends BasePage {
         this.verify_your_portfolio_panel(data.review.yourPortfolioValues)
         if (data.accountType === 'Individual' || data.accountType === 'SMSF' || data.accountType === 'Joint' || data.accountType === 'Trust' ) {
             this.review_fees_and_charges(data.review.feesAndCharges, '4')
-        } else if (data.accountType === 'Personal Super' ) {
+        } else if (data.accountType === 'Personal Super' && data.investmentChoice === 'Limited Advice') {
             this.review_fees_and_charges(data.review.feesAndCharges, '3')
+        } else if (data.accountType === 'Personal Super' && data.investmentChoice === 'Self Directed') {
+            this.review_fees_and_charges(data.review.feesAndCharges, '4')
         }
        if (data.ethicalOverlay) {
             this.review_indicative_portfolio_excluded_securities(data.review.indicativePortfolioExcludedSecurities)
