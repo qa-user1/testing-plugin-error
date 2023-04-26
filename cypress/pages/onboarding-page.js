@@ -280,6 +280,17 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
+    enter_values_on_super_fund_entry(data){
+
+//need to modify method for other personal super account types
+            fundNameInputField().type(data.fundName).type('{enter}');
+            transferAmountInputField().type(data.transferAmount);
+            memberNumberInputField().type(data.memberNumber);
+            personalSuperAccountTypeInputField().click();
+            accumulationChoice().click();
+            return this;
+
+    }
     enter_values_on_super_fund_entry_input_fields(data) {
         fundNameInputField().type(data.fundName1);
         cy.contains('Other').click();

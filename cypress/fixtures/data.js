@@ -487,8 +487,8 @@ D.scenarios = [
         name: 'Scenario 1',
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
-        accountType: "Individual",
-        investmentChoice: "Self Directed",
+        accountType: "Personal Super",
+        investmentChoice: "Limited Advice",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -502,7 +502,8 @@ D.scenarios = [
                 2,
                 2,
                 2,
-                2
+                2,
+
             ],
             investmentTotal: '100000',
             netWorth: '200000',
@@ -672,14 +673,26 @@ D.scenarios = [
             Documents: [
                 "Investment and Fee Summary",
                 "Letter of Engagement",
+                //"Statement of Advice",
                 "Praemium SMA PDS and Investment Guide extract"]
         },
         fundEntryInputFields: {
-            'fundName1': 'Other',
-            'fundName2': 'AustralianSuper',
-            'transferAmount': '100000',
-            'memberNumber': '5'
+            fundName: 'AustralianSuper',
+            transferAmount: '100000',
+            memberNumber: '5',
+            personalSuperAccountType: 'Accumulation'
         },
+        insurance: {
+                     lifeCover: '100000',
+                     tpdCover: '100000',
+                     steppedLifeCoverAmount: '$55',
+                     steppedTPDAmount: '$55',
+                     levelTo65LifeCoverAmount: '$55',
+                     levelTo65TPDCoverAmount: '$55',
+                     weight: '5',
+                     height: '10',
+                     occupation: 'test'
+                 },
     },
     // {
     //     name: 'Scenario 2',
