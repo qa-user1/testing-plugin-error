@@ -485,10 +485,10 @@ D.personalInvestmentForms = [
 D.scenarios = [
     {
         name: 'Scenario 1',
-        username: 'testing@nucleuswealth.com',
-        password: 'Testing123!',
-        accountType: "Personal Super",
-        investmentChoice: "Limited Advice",
+        username: 'testing+ib@nucleuswealth.com',
+        password: 'Testing1234!',
+        accountType: "Individual-IB",
+        investmentChoice: "Self Directed",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -503,6 +503,7 @@ D.scenarios = [
                 2,
                 2,
                 2,
+                2
 
             ],
             investmentTotal: '100000',
@@ -530,7 +531,7 @@ D.scenarios = [
             investmentTotal: "100000"
         },
         ethicalOverlay: {
-        climateChange: [
+            climateChange: [
                 'No Fossil Fuels (Worst Offenders)',
                 'No Fossil Fuels (Any)'
             ],
@@ -643,12 +644,12 @@ D.scenarios = [
                 'ENGIE (ENGI)': 'No Fossil Fuels (Any)'
             },
             feesAndCharges: {
-               // 'Investment Management Fee': '$640',
-               // 'Platform Administration Fee': '$527',
+                // 'Investment Management Fee': '$640',
+                // 'Platform Administration Fee': '$527',
                 'Platform Administration': '$78',
-              //  'Advice Fee': '$0',
-              //  'ETF Fees': '$29',
-              //  'Initial Transaction Costs (estimated)': ' $189 - $304',
+                //  'Advice Fee': '$0',
+                //  'ETF Fees': '$29',
+                //  'Initial Transaction Costs (estimated)': ' $189 - $304',
                 //'Advice Fee': '$0'
             }
         },
@@ -688,7 +689,7 @@ D.scenarios = [
                 "Investment and Fee Summary",
                 "Letter of Engagement",
                 //"Statement of Advice",
-                 'MetLife - Protect Product Disclosure Statement',
+                'MetLife - Protect Product Disclosure Statement',
                 "Praemium SMA PDS and Investment Guide extract"]
         },
         fundEntryInputFields: {
@@ -698,12 +699,42 @@ D.scenarios = [
             personalSuperAccountType: 'Accumulation'
         },
         insurance: {
-                     lifeCover: '100000',
-                     tpdCover: '100000',
-                     weight: '3',
-                     height: '10',
-                     occupation: 'Abattoir Worker – Manual butcher or boner'
-                 },
+            lifeCover: '100000',
+            tpdCover: '100000',
+            weight: '3',
+            height: '10',
+            occupation: 'Abattoir Worker – Manual butcher or boner'
+        },
+        SMSFDetails: {
+            superFundName: 'test fund name',
+            SMSFAustralianBusinessNumber: '5555',
+            SMSFAustralianTaxFileNumber: '11111111',
+            address: 'Tesselaar Flower Farm, 357 Monbulk Rd, Silvan VIC 3795, Australia',
+            typeOfTrustees: 'Individual'
+        },
+        trustDetails: {
+            trustName: 'test trust name',
+            trustType: 'test trust type',
+            SMSFAustralianTaxFileNumber: '11111111',
+            address: 'Tesselaar Flower Farm, 357 Monbulk Rd, Silvan VIC 3795, Australia',
+            typeOfTrustees: 'Individual'
+        },
+        companyDetails: {
+            companyName: 'test company name',
+            companyAustralianBusinessNumber: 'test business',
+            companyAustralianTaxFileNumber: '11111111',
+            address: 'Tesselaar Flower Farm, 357 Monbulk Rd, Silvan VIC 3795, Australia',
+        },
+        investmentExperience: {
+            knowledgeLevel: 'None',
+            tradesPerYear: '4',
+            numberOfYearsTrading: '2'
+        },
+        compliancePageInputFields: {
+            statementOfInquiry: 'Test',
+            percentage: '100',
+            sourceType: 'Allowance'
+        }
     },
     // {
     //     name: 'Scenario 2',

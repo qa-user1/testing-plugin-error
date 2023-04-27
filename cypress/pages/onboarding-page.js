@@ -1,5 +1,5 @@
 import BasePage from "./base-page";
-import D from "../fixtures/data";
+import D, {SMSFDetails} from "../fixtures/data";
 
 // *************************** ELEMENTS ***************************
 
@@ -14,6 +14,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     limitedAdvice = e => cy.get(':nth-child(2) > .ant-radio-button-wrapper'),
     investmentChoice = e => cy.get('[href="/onboarding/2999/investment-choice"]'),
     documentType = e => cy.get('#greenid_upload_filetype'),
+    dateInputField2 = e => cy.get('[data-test="applicants-dob-input"]'),
     bsbInput = e => cy.get('[data-test="bankDetails-bsb-input"]'),
     accountNumberInput = e => cy.get('[data-test="bankDetails-accountNumber-input"]'),
     financialInstitutionInput = e => cy.get('[data-test="bankDetails-financialInstitution-input"]'),
@@ -393,7 +394,8 @@ export default class OnboardingPage extends BasePage {
         genderInputField().click();
         genderInputField().type(data.genderInput).type('{enter}');
 
-        dateField().click();
+        dateInputField2().click();
+        //dateField().click();
         // this.enterValue(dateInputField, data.dateOfBirth)
         todayButton().click()
 
@@ -409,7 +411,6 @@ export default class OnboardingPage extends BasePage {
 
         employerBusinessInputField().click();
         employerBusinessInputField().type(data.employerBusiness).type('{enter}');
-        ;
 
         taxInputField().type(data.taxInput)
 
@@ -430,7 +431,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     enter_investment_experience_values(data) {
-        knowledgeLevel().type(data.knowledgeLevel)
+        knowledgeLevel().type(data.knowledgeLevel).type('{enter}')
         tradesPerYear().type(data.tradesPerYear)
         numberOfYearsTrading().type(data.numberOfYearsTrading)
         return this;
@@ -513,15 +514,21 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    select_investment_choice(option) {
-        if (option === 'Self Directed') {
+    select_investment_choice(option,type) {
+        if (type === 'Individual-IB') {
+            this.click_self_directed_button()
+                .select_all_checkboxes(6)
+        }
+        else if (option === 'Self Directed') {
             this.click_self_directed_button()
                 .select_all_checkboxes(5)
+
         } else if (option === 'Limited Advice') {
             this.click_limited_advice_button()
                 .select_all_checkboxes(6)
         } else if (option === 'Full Advice') {
         }
+
         return this;
     }
 
@@ -598,11 +605,11 @@ export default class OnboardingPage extends BasePage {
     }*/
 
     enter_applicant_investment_experience(data) {
-        if (data.applicants.investmentExperience["knowledgeLevel"]) {
-            this.enter_investment_experience_values(D.investmentExperience)
+
+            this.enter_investment_experience_values(data.investmentExperience)
                 .upload_file('0', D.documentType.id)
                 .upload_file('1', D.documentType.id)
-        }
+
         return this;
     }
 
@@ -1161,7 +1168,20 @@ export default class OnboardingPage extends BasePage {
         SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
         SMSFAddress().clear();
         SMSFAddress().type(data.address)
-        cy.get('[type="radio"]').check('individual');
+            cy.get('[type="radio"]').check('individual');
+        return this;
+    }
+
+    enter_SMSF_details(data) {
+        superFundName().type(data.superFundName);
+        SMSFAustralianBusinessNumber().type(data.SMSFAustralianBusinessNumber);
+        SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
+        SMSFAddress().clear();
+        SMSFAddress().type(data.address)
+        if (data.typeOfTrustees === 'Individual'){
+            cy.get('[type="radio"]').check('individual');
+        }
+
         return this;
     }
 
@@ -1175,12 +1195,25 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
+    enter_all_trust_details(data) {
+        trustNameInputField().type(data.trustName);
+        trustTypeInputField().click();
+        unitTrustType().should('be.visible');
+        unitTrustType().click();
+        SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
+        if (data.typeOfTrustees === 'Individual'){
+            cy.get('[type="radio"]').check('individual');
+        }
+        return this;
+    }
+
     enter_all_required_company_details(data) {
         companyNameInputField().type(data.companyName);
         companyAustralianBusinessNumberInputField().type(data.companyAustralianBusinessNumber);
         companyAustralianTaxFileNumberInputField().type(data.companyAustralianTaxFileNumber);
         return this;
     }
+
 
 
     enter_address(data) {
@@ -2077,11 +2110,14 @@ export default class OnboardingPage extends BasePage {
     }
 
     enter_compliance_values(data) {
-        statementOfInquiry().type(data.statementOfInquiry);
+      //  statementOfInquiry().type(data.statementOfInquiry);
+
         sourceType().click();
-        allowance().click();
+        if (data.sourceType === 'Allowance') {
+            allowance().click();
+        }
         percentage().click();
-        percentage().type(data.percentage);
+        percentage().type(data.percentage).type('{enter}');
         return this;
     }
 
