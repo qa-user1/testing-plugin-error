@@ -154,6 +154,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     noEthicsSelectedMessage = e => cy.get('[data-test="review-noEthicSelected-text"]'),
     idOptionList = e => cy.contains('Choose a different ID option'),
     documentsSection = e => cy.contains('Documents').parents('.ant-collapse-item'),
+    agreementSection = e => cy.contains('Agreements and Disclosures').parents('.ant-collapse-item'),
     specificDocumentSection = title => cy.contains(title).parents('[data-test="review-document-link"]'),
     uploadId = e => cy.get('#uploadifive-greenid_file_upload'),
     agreementCheckbox = e => cy.get('#submit-application-form_data_snapshot_digital_signature'),
@@ -281,17 +282,27 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    enter_values_on_super_fund_entry(data){
+    enter_values_on_super_fund_entry(data) {
 
 //need to modify method for other personal super account types
-            fundNameInputField().type(data.fundName).type('{enter}');
-            transferAmountInputField().type(data.transferAmount);
+        personalSuperAccountTypeInputField().click();
+        accumulationChoice().click();
+        fundNameInputField().type(data.fundName).type('{enter}');
+        transferAmountInputField().clear();
+        transferAmountInputField().type(data.transferAmount);
+
+        if (data.fundName === 'Other' || data.fundName === 'SMSF') {
+            customFundNameInputField().type(data.customFundName)
+        } if (data.fundName !== 'SMSF') {
+            memberNumberInputField().clear();
             memberNumberInputField().type(data.memberNumber);
-            personalSuperAccountTypeInputField().click();
-            accumulationChoice().click();
-            return this;
+        }
+
+
+        return this;
 
     }
+
     enter_values_on_super_fund_entry_input_fields(data) {
         fundNameInputField().type(data.fundName1);
         cy.contains('Other').click();
@@ -405,19 +416,20 @@ export default class OnboardingPage extends BasePage {
         employmentInputField().click();
         employmentTypeOption(data.employmentInput).click()
 
-        occupationInputField().type(data.occupation).type('{enter}');
-        employerNameInputField().type(data.employerName);
-        employerAddressInputField().type(data.employerAddress).type('{enter}');
-
-        employerBusinessInputField().click();
-        employerBusinessInputField().type(data.employerBusiness).type('{enter}');
+        if (data.employmentInput === 'Employed' || data.employmentInput === 'Selfemployed') {
+            occupationInputField().type(data.occupation).type('{enter}');
+            employerNameInputField().type(data.employerName);
+            employerAddressInputField().type(data.employerAddress).type('{enter}');
+            employerBusinessInputField().click();
+            employerBusinessInputField().type(data.employerBusiness).type('{enter}');
+        }
 
         taxInputField().type(data.taxInput)
 
         residentialAddressInputField().click();
         residentialAddressInputField().type(data.residentialAddress).type('{enter}')
-       // this.enterValue(residentialAddressInputField, data.residentialAddress)
-       // residentialAddressInputField().type('{backspace}')
+        // this.enterValue(residentialAddressInputField, data.residentialAddress)
+        // residentialAddressInputField().type('{backspace}')
         residentialAddressTypeaheadOption().should('be.visible')
         cy.contains(data.residentialAddress).click()
         residentialAddressInputField().should('have.value', data.residentialAddress)
@@ -514,19 +526,23 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    select_investment_choice(option,type) {
-        if (type === 'Individual-IB') {
+    select_investment_choice(option, type) {
+        if (type === 'Individual-IB' && option === 'Self Directed') {
             this.click_self_directed_button()
                 .select_all_checkboxes(6)
-        }
-        else if (option === 'Self Directed') {
+        } else if (type === 'Individual-IB' && option === 'Limited Advice') {
+            this.click_limited_advice_button()
+                .select_all_checkboxes(6)
+        } else if (option === 'Self Directed') {
             this.click_self_directed_button()
                 .select_all_checkboxes(5)
 
         } else if (option === 'Limited Advice') {
             this.click_limited_advice_button()
                 .select_all_checkboxes(6)
+
         } else if (option === 'Full Advice') {
+            this.click_full_advice_button()
         }
 
         return this;
@@ -557,6 +573,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     enter_Portfolio_values(data) {
+        investmentTotalField().clear()
         investmentTotalField().type(data.investmentTotal);
         tacticalGrowthField().type(data.tacticalGrowth);
         coreInternationalField().type(data.coreInternational);
@@ -582,14 +599,14 @@ export default class OnboardingPage extends BasePage {
     review_portfolio_data(data) {
         this.review_indicative_portfolio(data.review.indicativePortfolio)
         this.verify_your_portfolio_panel(data.review.yourPortfolioValues)
-        if (data.accountType === 'Individual' || data.accountType === 'SMSF' || data.accountType === 'Joint' || data.accountType === 'Trust' ) {
+        if (data.accountType === 'Individual' || data.accountType === 'SMSF' || data.accountType === 'Joint' || data.accountType === 'Trust') {
             this.review_fees_and_charges(data.review.feesAndCharges, '4')
         } else if (data.accountType === 'Personal Super' && data.investmentChoice === 'Limited Advice') {
             this.review_fees_and_charges(data.review.feesAndCharges, '3')
         } else if (data.accountType === 'Personal Super' && data.investmentChoice === 'Self Directed') {
             this.review_fees_and_charges(data.review.feesAndCharges, '4')
         }
-       if (data.ethicalOverlay) {
+        if (data.ethicalOverlay) {
             this.review_indicative_portfolio_excluded_securities(data.review.indicativePortfolioExcludedSecurities)
         }
 
@@ -606,19 +623,19 @@ export default class OnboardingPage extends BasePage {
 
     enter_applicant_investment_experience(data) {
 
-            this.enter_investment_experience_values(data.investmentExperience)
-                .upload_file('0', D.documentType.id)
-                .upload_file('1', D.documentType.id)
+        this.enter_investment_experience_values(data.investmentExperience)
+            .upload_file('0', D.documentType.id)
+            .upload_file('1', D.documentType.id)
 
         return this;
     }
 
     upload_documents(data) {
         if (data.applicants.documentType.idOption === 'Upload an ID document') {
-        this.upload_and_submit_document_for_verification('Upload an ID document', data.applicants.documentType.type1)
-            .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
-            .upload_and_submit_document_for_verification('Upload an ID document', data.applicants.documentType.type2)
-    }
+            this.upload_and_submit_document_for_verification('Upload an ID document', data.applicants.documentType.type1)
+                .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
+                .upload_and_submit_document_for_verification('Upload an ID document', data.applicants.documentType.type2)
+        }
         return this;
     }
 
@@ -636,8 +653,11 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    verify_documents_on_final_review_page(data) {
+    verify_documents_on_final_review_page(option, type, data) {
         this.verify_Documents_available_for_download(data.Documents)
+        if (option === 'Full Advice' && type === 'Individual-IB') {
+            this.verify_agreements_and_disclosures_available_for_download(data.agreementsAndDisclosures)
+        }
         /*if (data.accountType === 'Individual-IB' || data.accountType === 'Individual' ) {
             this.verify_Documents_available_for_download([
                 'Investment and Fee Summary',
@@ -749,6 +769,11 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
+    click_full_advice_button() {
+        cy.contains('Full Advice').click();
+        return this;
+    }
+
     verify_acknowledgment_and_agreement_appear() {
         agreementBox().should('be.visible');
         return this;
@@ -837,6 +862,16 @@ export default class OnboardingPage extends BasePage {
         this.verify_multiple_text_values_in_one_container(documentsSection, documentTitles)
 
         documentTitles.forEach(function (title) {
+            specificDocumentSection(title).should('contain', 'Download');
+        });
+
+        return this;
+    }
+
+    verify_agreements_and_disclosures_available_for_download(agreementsTitles) {
+        this.verify_multiple_text_values_in_one_container(agreementSection, agreementsTitles)
+
+        agreementsTitles.forEach(function (title) {
             specificDocumentSection(title).should('contain', 'Download');
         });
 
@@ -1168,7 +1203,7 @@ export default class OnboardingPage extends BasePage {
         SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
         SMSFAddress().clear();
         SMSFAddress().type(data.address)
-            cy.get('[type="radio"]').check('individual');
+        cy.get('[type="radio"]').check('individual');
         return this;
     }
 
@@ -1178,7 +1213,7 @@ export default class OnboardingPage extends BasePage {
         SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
         SMSFAddress().clear();
         SMSFAddress().type(data.address)
-        if (data.typeOfTrustees === 'Individual'){
+        if (data.typeOfTrustees === 'Individual') {
             cy.get('[type="radio"]').check('individual');
         }
 
@@ -1201,7 +1236,7 @@ export default class OnboardingPage extends BasePage {
         unitTrustType().should('be.visible');
         unitTrustType().click();
         SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
-        if (data.typeOfTrustees === 'Individual'){
+        if (data.typeOfTrustees === 'Individual') {
             cy.get('[type="radio"]').check('individual');
         }
         return this;
@@ -1213,7 +1248,6 @@ export default class OnboardingPage extends BasePage {
         companyAustralianTaxFileNumberInputField().type(data.companyAustralianTaxFileNumber);
         return this;
     }
-
 
 
     enter_address(data) {
@@ -2110,7 +2144,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     enter_compliance_values(data) {
-      //  statementOfInquiry().type(data.statementOfInquiry);
+        //  statementOfInquiry().type(data.statementOfInquiry);
 
         sourceType().click();
         if (data.sourceType === 'Allowance') {

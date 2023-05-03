@@ -70,7 +70,7 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
 
     it('6. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
-            .verify_question_responses(D.reviewQuestionsSMSF, D.reviewResponsesSMSF)
+            .verify_question_responses(D.reviewQuestions, D.reviewResponsesSMSF)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
             .expand_ethical_overlay_panel()
             .save_data_object_for_Ethical_Overlay()

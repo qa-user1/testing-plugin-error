@@ -87,7 +87,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
 
     it('7. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
-            .verify_question_responses(D.reviewQuestions, D.reviewResponses)
+            .verify_question_responses(D.reviewQuestionsPersonalSuper, D.reviewResponsesPersonalSuper)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
             .expand_ethical_overlay_panel()
             .save_data_object_for_Ethical_Overlay()

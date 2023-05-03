@@ -11,7 +11,7 @@ D.scenarios.forEach(data => {
 
         })
 
-        it(data.accountType + '___ ', () => {
+        it(data.accountType + '___ ' + data.investmentChoice, () => {
                 ui.login.open_base_url()
                     .verify_login_menu(D.user)
                     .enter_credentials_for_sign_in(data)
