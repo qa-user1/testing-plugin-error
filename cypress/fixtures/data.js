@@ -522,7 +522,6 @@ D.scenarios = [
                 2,
 
 
-
             ],
             investmentTotal: '100000',
             netWorth: '200000',
@@ -699,7 +698,7 @@ D.scenarios = [
             },
         },
         bankDetails: {
-            bsb: "123456",
+            bsb: '123456',
             accountNumber: "3456",
             financialInstitution: "test",
             accountName: 'test'
@@ -722,7 +721,7 @@ D.scenarios = [
             customFundName: 'test',
             transferAmount: '100000',
             memberNumber: '5',
-            personalSuperAccountType: 'Accumulation'
+            personalSuperAccountType: 'Transition to retirement'
         },
         insurance: {
             lifeCover: '100000',

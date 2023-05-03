@@ -165,6 +165,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     memberNumberInputField = e => cy.get('[data-test="superFundEntry-memberNumber0-input"]'),
     personalSuperAccountTypeInputField = e => cy.get('[data-test="superDetails-personalSuperAccountType-input"]'),
     accumulationChoice = e => cy.get('[data-test="superDetails-personalSuperAccountType-input-accumulation"]'),
+    ttrChoice = e => cy.get('[data-test="superDetails-personalSuperAccountType-input-ttr"]'),
+    pensionChoice = e => cy.get('[data-test="superDetails-personalSuperAccountType-input-pension"]'),
     questionResponses = e => cy.get('[data-test="review-questionResponses-question"]'),
     answerResponses = e => cy.get('[data-test="review-questionResponses-answer"]'),
     lifeCoverInputField = e => cy.get('[data-test="insuranceQuote-lifeCover-input"]'),
@@ -284,9 +286,18 @@ export default class OnboardingPage extends BasePage {
 
     enter_values_on_super_fund_entry(data) {
 
-//need to modify method for other personal super account types
         personalSuperAccountTypeInputField().click();
-        accumulationChoice().click();
+        if (data.personalSuperAccountType === 'Accumulation') {
+            accumulationChoice().click();
+        } else if (data.personalSuperAccountType === 'Transition to retirement') {
+            ttrChoice().click();
+            this.enter_Bank_Details(data)
+        } else if (data.personalSuperAccountType === 'Pension') {
+            pensionChoice().click();
+            this.enter_Bank_Details(data)
+        }
+
+
         fundNameInputField().type(data.fundName).type('{enter}');
         transferAmountInputField().clear();
         transferAmountInputField().type(data.transferAmount);

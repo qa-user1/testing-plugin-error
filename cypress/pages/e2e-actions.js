@@ -10,9 +10,10 @@ module.exports = {
         let type = data.accountType
         let option = data.investmentChoice
 
+
           cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6692/super-fund-entry')
 
-       /* app.click_create_new_investment_account()
+        /*app.click_create_new_investment_account()
             .select_account_type(type)
             .click_create_investment_account()
             .go_through_tour_steps(C.stepMessages)
@@ -47,17 +48,14 @@ module.exports = {
 
         if (type === 'Personal Super') {
             app.verify_super_fund_entry_page()
-                .enter_values_on_super_fund_entry(data.fundEntryInputFields)
+                .enter_values_on_super_fund_entry(data.fundEntryInputFields, data.bankDetails)
                 .click_Save_and_Continue_button()
         }
 
         app.verify_review_page()
-        /*// I think we don't need this method in data driven
-                if (type === 'Individual-IB') {
-                    app.review_net_worth_annual_net_income_liquid_net_worth(data)
-                }*/
 
-        // if (!type.includes('Individual')) {
+
+
         if (type === 'Individual-IB') {
             app.verify_review_page()
                 .expand_question_responses_panel()
