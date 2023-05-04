@@ -138,7 +138,7 @@ D.reviewQuestions = [
     ]
 
 
-/*D.reviewQuestionsSMSF = [
+D.reviewQuestionsSMSF = [
     'How would you describe your current investment experience?',
     'What do you want to achieve from your investment with Nucleus?',
     'When will you need to withdraw more than 30% of the investment?',
@@ -152,7 +152,7 @@ D.reviewQuestions = [
     'What is the source of the majority of the funds you would like to invest with us?',
     'You have identified the following reasons for your interest in investing in our models:',
     'When deciding on your investment composition would you like:'
-]*/
+]
 
 D.reviewResponses = [
     'You want a portfolio tailored to your ethical values',
@@ -502,10 +502,10 @@ D.personalInvestmentForms = [
 D.scenarios = [
     {
         name: 'Scenario 1',
-        username: 'testing@nucleuswealth.com',
-        password: 'Testing123!',
-        accountType: "Personal Super",
-        investmentChoice: "Limited Advice",
+        username: 'testing+ib@nucleuswealth.com',
+        password: 'Testing1234!',
+        accountType: "Individual-IB",
+        investmentChoice: "Self Directed",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -520,6 +520,7 @@ D.scenarios = [
                 2,
                 2,
                 2,
+                2
 
 
             ],
@@ -721,7 +722,7 @@ D.scenarios = [
             customFundName: 'test',
             transferAmount: '100000',
             memberNumber: '5',
-            personalSuperAccountType: 'Transition to retirement'
+            personalSuperAccountType: 'Accumulation'
         },
         insurance: {
             lifeCover: '100000',
@@ -735,7 +736,8 @@ D.scenarios = [
             SMSFAustralianBusinessNumber: '5555',
             SMSFAustralianTaxFileNumber: '11111111',
             address: 'Tesselaar Flower Farm, 357 Monbulk Rd, Silvan VIC 3795, Australia',
-            typeOfTrustees: 'Individual'
+            typeOfTrustees: 'Corporate',
+            corporationName: 'test'
         },
         trustDetails: {
             trustName: 'test trust name',
@@ -758,7 +760,10 @@ D.scenarios = [
         compliancePageInputFields: {
             statementOfInquiry: 'Test',
             percentage: '100',
-            sourceType: 'Allowance'
+            sourceType: 'Other',
+            description: 'test',
+            politicalMilitaryDiplomatic: 'Yes',
+            affiliationDetailName: 'test'
         }
     },
     // {

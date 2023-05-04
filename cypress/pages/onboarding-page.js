@@ -122,6 +122,11 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     yearInputField = e => cy.get('.ant-picker-year-btn'),
     todayButton = e => cy.get('.ant-picker-today-btn'),
     employmentTypeOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
+    sourceTypeOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
+    politicalMilitaryDiplomatic = e => cy.get('[id="ib-details-form_affiliationDetail_hasAffiliation"]'),
+    politicalMilitaryDiplomaticOption = option => cy.get('[class="ant-select-selection-item"]').eq(2).find('[title="' + option + '"]'),
+    descriptionOtherSourceType = e => cy.get('[id="ib-details-form_sourceOfWealthList_0_description"]'),
+    affiliationDetailName = e => cy.get('[id="ib-details-form_affiliationDetail_name"]'),
     employmentInputField = e => cy.get('#theForm_employmentDetail_employmentTypeId'),
     occupationInputField = e => cy.get('#theForm_employmentDetail_occupation'),
     employerNameInputField = e => cy.get('#theForm_employmentDetail_employerName'),
@@ -172,6 +177,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     lifeCoverInputField = e => cy.get('[data-test="insuranceQuote-lifeCover-input"]'),
     TPDCoverInputField = e => cy.get('[data-test="insuranceQuote-TPD-input"]'),
     getQuoteButton = e => cy.get('[data-test="insuranceQuote-getQuote-btn"]'),
+    corporationNameInputField = e => cy.get('[data-test="smsf-corporationName-input"]'),
+    corporate = e => cy.get('[data-test="smsf-corporate-radio"]'),
     steppedLifeCoverAmount = e => cy.get('[data-test="insuranceQuote-SteppedLifeCover-td"]'),
     steppedTPDAmount = e => cy.get('[data-test="insuranceQuote-SteppedTPDCover-td"]'),
     levelTo65LifeCoverAmount = e => cy.get('[data-test="insuranceQuote-Level65LifeCover-td"]'),
@@ -284,29 +291,29 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    enter_values_on_super_fund_entry(data) {
+    enter_values_on_super_fund_entry(fundEntryValues, bankDetails) {
 
         personalSuperAccountTypeInputField().click();
-        if (data.personalSuperAccountType === 'Accumulation') {
+        if (fundEntryValues.personalSuperAccountType === 'Accumulation') {
             accumulationChoice().click();
-        } else if (data.personalSuperAccountType === 'Transition to retirement') {
+        } else if (fundEntryValues.personalSuperAccountType === 'Transition to retirement') {
             ttrChoice().click();
-            this.enter_Bank_Details(data)
-        } else if (data.personalSuperAccountType === 'Pension') {
+            this.enter_Bank_Details(bankDetails)
+        } else if (fundEntryValues.personalSuperAccountType === 'Pension') {
             pensionChoice().click();
-            this.enter_Bank_Details(data)
+            this.enter_Bank_Details(bankDetails)
         }
 
 
-        fundNameInputField().type(data.fundName).type('{enter}');
+        fundNameInputField().type(fundEntryValues.fundName).type('{enter}');
         transferAmountInputField().clear();
-        transferAmountInputField().type(data.transferAmount);
+        transferAmountInputField().type(fundEntryValues.transferAmount);
 
-        if (data.fundName === 'Other' || data.fundName === 'SMSF') {
-            customFundNameInputField().type(data.customFundName)
-        } if (data.fundName !== 'SMSF') {
+        if (fundEntryValues.fundName === 'Other' || fundEntryValues.fundName === 'SMSF') {
+            customFundNameInputField().type(fundEntryValues.customFundName)
+        } if (fundEntryValues.fundName !== 'SMSF') {
             memberNumberInputField().clear();
-            memberNumberInputField().type(data.memberNumber);
+            memberNumberInputField().type(fundEntryValues.memberNumber);
         }
 
 
@@ -1177,8 +1184,8 @@ export default class OnboardingPage extends BasePage {
 
     verify_question_responses(type, arrayOfResponses) {
         let arrayOfQuestions = D.reviewQuestions
-        if (type === 'SMSF') {
-            arrayOfQuestions = D.reviewQuestionsSMSF
+        if (type === 'Personal Super') {
+            arrayOfQuestions = D.reviewQuestionsPersonalSuper
         }
         this.pause(3)
         for (let i = 0; i < arrayOfResponses.length; i++) {
@@ -1223,9 +1230,12 @@ export default class OnboardingPage extends BasePage {
         SMSFAustralianBusinessNumber().type(data.SMSFAustralianBusinessNumber);
         SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
         SMSFAddress().clear();
-        SMSFAddress().type(data.address)
+        SMSFAddress().type(data.address).type('{enter}')
         if (data.typeOfTrustees === 'Individual') {
             cy.get('[type="radio"]').check('individual');
+        } else if (data.typeOfTrustees === 'Corporate') {
+            corporate().click();
+            corporationNameInputField().type(data.corporationName);
         }
 
         return this;
@@ -2155,12 +2165,22 @@ export default class OnboardingPage extends BasePage {
     }
 
     enter_compliance_values(data) {
+        //this is commented because this field isn't visible anymore
         //  statementOfInquiry().type(data.statementOfInquiry);
 
         sourceType().click();
-        if (data.sourceType === 'Allowance') {
-            allowance().click();
+        if (data.sourceType !== 'Other') {
+            sourceTypeOption(data.sourceType).click();
+        } else if (data.sourceType === 'Other') {
+            sourceTypeOption(data.sourceType).click();
+            descriptionOtherSourceType().type(data.description)
         }
+        // working on this part - in progress
+       /* politicalMilitaryDiplomatic().click()
+        politicalMilitaryDiplomaticOption(data.politicalMilitaryDiplomatic).click()
+        if (data.politicalMilitaryDiplomatic === 'Yes') {
+            affiliationDetailName().type(data.affiliationDetailName)
+        }*/
         percentage().click();
         percentage().type(data.percentage).type('{enter}');
         return this;

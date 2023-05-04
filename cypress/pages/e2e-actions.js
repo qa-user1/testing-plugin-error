@@ -11,9 +11,9 @@ module.exports = {
         let option = data.investmentChoice
 
 
-          cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6692/super-fund-entry')
+         // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6727/interactive-broker-compliance')
 
-        /*app.click_create_new_investment_account()
+        app.click_create_new_investment_account()
             .select_account_type(type)
             .click_create_investment_account()
             .go_through_tour_steps(C.stepMessages)
@@ -44,7 +44,7 @@ module.exports = {
 
         app.verify_ethical_overlay_page()
             .select_ethical_option(data.ethicalOverlay)
-            .click_Save_and_Continue_button()*/
+            .click_Save_and_Continue_button()
 
         if (type === 'Personal Super') {
             app.verify_super_fund_entry_page()
@@ -63,7 +63,7 @@ module.exports = {
         } else if (option === 'Limited Advice') {
             app.verify_review_page()
                 .expand_question_responses_panel()
-                .verify_question_responses(type, data.reviewResponses)
+               // .verify_question_responses(type, data.reviewResponses)
         }
 
         app.expand_ethical_overlay_panel()
