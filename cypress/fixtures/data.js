@@ -426,18 +426,18 @@ D.applicantsProfileFields = {
     surnameInput: 'Test surname',
     emailInput: 'email@test.com',
     mobileInput: '123456',
-    genderInput: 'Female{enter}',
+    genderInput: 'Female',
     //birthInput:'\'Date Of Birth\' is required',
-    citizenshipInput: 'Australia{enter}',
+    citizenshipInput: 'Australia',
     employmentType: 'Employed',
     employmentType2: 'Unemployed',
-    employmentInput: 'Employed{enter}',
+    employmentInput: 'Employed',
     taxInput: '11111111',
-    occupation: 'Analyst{enter}',
+    occupation: 'Analyst',
     employerName: 'Test test',
-    employerAddress: 'Angola{enter}',
-    employerBusiness: 'Computer/Information Technology{enter}',
-    residentialAddress: 'Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia{enter}'
+    employerAddress: 'Angola',
+    employerBusiness: 'Computer/Information Technology',
+    residentialAddress: 'Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia'
 
 }
 
@@ -555,7 +555,14 @@ D.scenarios = [
                 'No Fossil Fuels (Worst Offenders)',
                 'No Fossil Fuels (Any)'
             ],
-            war: 'No Arms (Any)'
+            war: 'No Arms (Any)',
+            humanRights: '',
+            health: ['No Fast Food'],
+            vices: 'No Gambling',
+            animalRights: 'No Fur or Specialty Leather',
+            religion: 'No Contraception',
+            assetClass: 'No Australian Shares',
+            thematic: 'No Australian Banks'
         },
         review: {
             yourPortfolioValues: {
@@ -762,8 +769,12 @@ D.scenarios = [
             percentage: '100',
             sourceType: 'Other',
             description: 'test',
-            politicalMilitaryDiplomatic: 'Yes',
-            affiliationDetailName: 'test'
+            politicalMilitaryDiplomatic: 'No',
+            affiliationDetailName: 'test',
+            affiliationRelationship: 'Other',
+            companyEmail: 'test@gmail.com',
+            controller: 'Yes',
+            exchangeCode: 'test'
         }
     },
     // {

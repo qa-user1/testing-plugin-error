@@ -121,12 +121,14 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     driverLicenseExpiry = e => cy.get('#theForm_driver_license_expiry'),
     yearInputField = e => cy.get('.ant-picker-year-btn'),
     todayButton = e => cy.get('.ant-picker-today-btn'),
-    employmentTypeOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
-    sourceTypeOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
-    politicalMilitaryDiplomatic = e => cy.get('[id="ib-details-form_affiliationDetail_hasAffiliation"]'),
-    politicalMilitaryDiplomaticOption = option => cy.get('[class="ant-select-selection-item"]').eq(2).find('[title="' + option + '"]'),
+    dropdownOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
+    politicalMilitaryDiplomatic = e => cy.get('[class="ant-select-selection-item"]').eq(0),
+    controller = e => cy.get('[id="ib-details-form_controllerDetail_hasController"]'),
+    exchangeCode = e => cy.get('[id="ib-details-form_controllerDetail_exchangeCode"]'),
     descriptionOtherSourceType = e => cy.get('[id="ib-details-form_sourceOfWealthList_0_description"]'),
     affiliationDetailName = e => cy.get('[id="ib-details-form_affiliationDetail_name"]'),
+    affiliationRelationship = e => cy.get('#ib-details-form_affiliationDetail_relationship'),
+    companyEmail = e => cy.get('[id="ib-details-form_affiliationDetail_companyEmail"]'),
     employmentInputField = e => cy.get('#theForm_employmentDetail_employmentTypeId'),
     occupationInputField = e => cy.get('#theForm_employmentDetail_occupation'),
     employerNameInputField = e => cy.get('#theForm_employmentDetail_employerName'),
@@ -311,7 +313,8 @@ export default class OnboardingPage extends BasePage {
 
         if (fundEntryValues.fundName === 'Other' || fundEntryValues.fundName === 'SMSF') {
             customFundNameInputField().type(fundEntryValues.customFundName)
-        } if (fundEntryValues.fundName !== 'SMSF') {
+        }
+        if (fundEntryValues.fundName !== 'SMSF') {
             memberNumberInputField().clear();
             memberNumberInputField().type(fundEntryValues.memberNumber);
         }
@@ -432,7 +435,7 @@ export default class OnboardingPage extends BasePage {
         citizenshipInputField().type(data.citizenshipInput).type('{enter}');
 
         employmentInputField().click();
-        employmentTypeOption(data.employmentInput).click()
+        dropdownOption(data.employmentInput).click()
 
         if (data.employmentInput === 'Employed' || data.employmentInput === 'Selfemployed') {
             occupationInputField().type(data.occupation).type('{enter}');
@@ -611,6 +614,15 @@ export default class OnboardingPage extends BasePage {
         this.select_checkboxes_based_on_labels(data.climateChange)
             .click_war_button()
             .select_checkbox_based_on_label(data.war)
+
+        //working on this
+        if (data.humanRights !== '' ) {
+            cy.contains('Human Rights').click();
+            this.select_checkboxes_based_on_labels(data.humanRights)
+        } if (data.health !== '') {
+            cy.contains('Health').click()
+            this.select_checkboxes_based_on_labels(data.health)
+        }
         return this;
     }
 
@@ -800,7 +812,6 @@ export default class OnboardingPage extends BasePage {
     click_Save_and_Continue_button() {
         saveContinueButton().should('not.have.attr', 'disabled')
         this.scroll_and_click(saveContinueButton)
-        // saveContinueButton().should('not.have.attr', 'disabled')
         return this;
     }
 
@@ -2168,19 +2179,31 @@ export default class OnboardingPage extends BasePage {
         //this is commented because this field isn't visible anymore
         //  statementOfInquiry().type(data.statementOfInquiry);
 
-        sourceType().click();
-        if (data.sourceType !== 'Other') {
-            sourceTypeOption(data.sourceType).click();
-        } else if (data.sourceType === 'Other') {
-            sourceTypeOption(data.sourceType).click();
-            descriptionOtherSourceType().type(data.description)
-        }
+        /* sourceType().click();
+         if (data.sourceType !== 'Other') {
+             sourceTypeOption(data.sourceType).click();
+         } else if (data.sourceType === 'Other') {
+             dropdownOption(data.sourceType).click();
+             descriptionOtherSourceType().type(data.description)
+         }*/
         // working on this part - in progress
-       /* politicalMilitaryDiplomatic().click()
-        politicalMilitaryDiplomaticOption(data.politicalMilitaryDiplomatic).click()
-        if (data.politicalMilitaryDiplomatic === 'Yes') {
+        politicalMilitaryDiplomatic().click()
+        dropdownOption(data.politicalMilitaryDiplomatic).click()
+        /*if (data.politicalMilitaryDiplomatic === 'Yes') {
             affiliationDetailName().type(data.affiliationDetailName)
+            affiliationRelationship().click();
+            dropdownOption(data.affiliationRelationship).click()
+            companyEmail().type(data.companyEmail)
         }*/
+        controller().click({force:true})
+       /* cy.get('.rc-virtual-list-holder-inner')
+            .find('[title]')
+            .eq(7)
+            .click();*/
+        dropdownOption(data.controller).click();
+        if (data.controller === 'Yes') {
+            exchangeCode().type(data.exchangeCode)
+        }
         percentage().click();
         percentage().type(data.percentage).type('{enter}');
         return this;
