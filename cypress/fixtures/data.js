@@ -558,11 +558,11 @@ D.scenarios = [
             war: 'No Arms (Any)',
             humanRights: '',
             health: ['No Fast Food'],
-            vices: 'No Gambling',
+          /*  vices: 'No Gambling',
             animalRights: 'No Fur or Specialty Leather',
             religion: 'No Contraception',
             assetClass: 'No Australian Shares',
-            thematic: 'No Australian Banks'
+            thematic: 'No Australian Banks'*/
         },
         review: {
             yourPortfolioValues: {
