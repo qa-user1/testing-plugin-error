@@ -102,21 +102,22 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
     it('8. Check Review Page', function () {
         ui.onboarding
-            .save_final_JSON_report('individual_ib_')
+           // .save_final_JSON_report('individual_ib_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
 
     it('9. Complete Applicants', function () {
+       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6825/applicants')
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .verify_text_is_visible('Investment Experience')
-           // .enter_values_at_create_new_ib_applicant_input_fields(D.applicantsProfileFields)
-            .enter_investment_experience_values(D.investmentExperience)
-            .upload_file('0', D.documentType.id)
-            .upload_file('1', D.documentType.id)
+            D.applicantsProfileFields.employmentInput = 'Unemployed'
+D.applicantsProfileFields.type = 'Individual-IB'
+            ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+            .enter_applicant_investment_experience(D.investmentExperience)
             .click_submit_applicant_button()
             .verify_your_identity()
         cy.url().should('include', 'applicants')
@@ -182,7 +183,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
     });
 
-    xit('14. Complete Final Review', function () {
+    it('14. Complete Final Review', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }

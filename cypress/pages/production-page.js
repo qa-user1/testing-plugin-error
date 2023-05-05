@@ -99,7 +99,7 @@ export default class ProductionPage extends BasePage {
             getIframeBody()
                 .find('[data-qa-focused="true"]')
                 .find('[data-qa-index="' + (optionToSelect - 1) + '"]')
-                .parents('[class="radio-list__Radio-sc-16rzvkh-1 fvLhU"]')
+                .parents('[class="radio-list__Radio-sc-16rzvkh-1 fOVCTH"]')
                 .invoke('attr', 'aria-checked').then(function (value) {
                 if (value === 'true') {
                     getIframeBody()
@@ -228,7 +228,12 @@ click_OK_on_Calculator_wizard() {
     verify_option_from_navbar(optionName, textHeader) {
         cy.url().should('include', optionName);
         mainContainer().should('be.visible');
-        cy.get('h1').should('have.text', textHeader);
+        if (optionName !== 'directindexing'){
+            cy.get('h1').eq(0).should('have.text', textHeader);
+        } else if (optionName === 'directindexing') {
+            cy.get('h3').eq(0).should('have.text', textHeader);
+        }
+
         return this;
     }
 

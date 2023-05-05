@@ -448,20 +448,22 @@ D.applicantsProfileFields = {
     genderInput: 'Female',
     //birthInput:'\'Date Of Birth\' is required',
     citizenshipInput: 'Australia',
-    employmentType: 'Employed',
-    employmentType2: 'Unemployed',
+    //employmentType: 'Employed',
+   // employmentType2: 'Unemployed',
     employmentInput: 'Employed',
     taxInput: '11111111',
     occupation: 'Analyst',
     employerName: 'Test test',
     employerAddress: 'Angola',
+    type: 'Individual-IB',
+    licenseExpiryDate: '28/02/2026',
     employerBusiness: 'Computer/Information Technology',
     residentialAddress: 'Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia'
 
 }
 
 D.investmentExperience = {
-    knowledgeLevel: 'None{enter}',
+    knowledgeLevel: 'None',
     tradesPerYear: '4',
     numberOfYearsTrading: '2'
 }

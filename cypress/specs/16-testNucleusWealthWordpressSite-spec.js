@@ -37,7 +37,7 @@ context('Nucleus Wealth Wordpress Site', () => {
     it('2. Visit Investment Options', function () {
 
         ui.production.click_option_from_navbar('Investment Options')
-       //     .verify_option_from_navbar('investment-options', 'Investment Options')
+         //   .verify_option_from_navbar('investment-options', 'Investment Options')
     })
 
     it('3. Visit Ethical Investing', function () {
@@ -47,12 +47,12 @@ context('Nucleus Wealth Wordpress Site', () => {
 
     it('4. Visit Superannuation', function () {
         ui.production.click_option_from_navbar('Superannuation')
-            .verify_option_from_navbar('super', 'NUCLEUS SUPERNUCLEUS SUPER')
+            .verify_option_from_navbar('super', 'NUCLEUS SUPER')
     })
 
     it('5. Visit Direct Indexing', function () {
         ui.production.click_option_from_navbar('Direct Indexing')
-            .verify_option_from_navbar('directindexing', 'Investment Options')
+            .verify_option_from_navbar('directindexing', 'Nucleus Direct Indexing – ETFs 2.0')
     })
 
     it('6. Visit Resources', function () {

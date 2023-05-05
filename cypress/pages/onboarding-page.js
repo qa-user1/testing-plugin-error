@@ -458,7 +458,7 @@ export default class OnboardingPage extends BasePage {
         residentialAddressInputField().should('have.value', data.residentialAddress)
         // this.pause(2)
 
-        if (type === 'Individual-IB') {
+        if (type === 'Individual-IB' || data.type === 'Individual-IB') {
             driverLicenseExpiry().click();
             driverLicenseExpiry().type(data.licenseExpiryDate).type('{enter}');
         }
@@ -655,7 +655,7 @@ export default class OnboardingPage extends BasePage {
 
     enter_applicant_investment_experience(data) {
 
-        this.enter_investment_experience_values(data.investmentExperience)
+        this.enter_investment_experience_values(data)
             .upload_file('0', D.documentType.id)
             .upload_file('1', D.documentType.id)
 
