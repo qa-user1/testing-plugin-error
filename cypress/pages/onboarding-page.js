@@ -388,6 +388,7 @@ export default class OnboardingPage extends BasePage {
 
     verify_validation_messages_for_compliance_page_fields(data) {
         this.verify_text_on_multiple_elements([
+            [statementOfInquiryValidationMessage, data.statementOfInquiry],
             [sourceTypeValidationMessage, data.sourceType],
             [percentageValidationMessage, data.percentage]
         ])
@@ -2219,6 +2220,7 @@ export default class OnboardingPage extends BasePage {
         dropdownOption(data.sourceType).click();
         percentage().click();
         percentage().type(data.percentage).type('{enter}');
+        statementOfInquiry().type(data.statementOfInquiry)
         return this;
     }
 

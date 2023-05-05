@@ -138,7 +138,7 @@ D.applicantsProfileFields.type = 'Individual-IB'
     });
 
     it('11. Complete Compliance', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6836/interactive-broker-compliance')
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6873/interactive-broker-compliance')
         ui.app.verify_text_is_visible('Investment Objective')
             .verify_text_is_visible('Trading Permission')
             .verify_text_is_visible('Source of wealth')
@@ -146,7 +146,7 @@ D.applicantsProfileFields.type = 'Individual-IB'
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_messages_for_compliance_page_fields(D.compliancePageValidationMessages)
             .enter_compliance_source_type_and_percentage(D.compliancePageInputFields)
-            .click_Save_and_Continue_button()
+            ui.onboarding.click_Save_and_Continue_button()
             .verify_Final_Review_page()
     });
 
