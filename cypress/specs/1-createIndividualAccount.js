@@ -1,7 +1,6 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
-const d = D.scenarios[0]
 
 context('Log in to the Nucleus Wealth portal, create an individual account, and complete the onboarding portal', () => {
 
@@ -93,14 +92,14 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('8. Review Review Page', function () {
-       /* ui.onboarding.expand_ethical_overlay_panel()
+        ui.onboarding.expand_ethical_overlay_panel()
             .verify_chosen_ethics([
                 ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
                 ['War', ['No Arms (Any)']]
             ])
             .verify_your_portfolio_panel(D.yourPortfolioValues)
             .review_indicative_portfolio(D.indicativePortfolio)
-            .review_indicative_portfolio_excluded_securities(D.indicativePortfolioExcludedSecurities)*/
+            .review_indicative_portfolio_excluded_securities(D.indicativePortfolioExcludedSecurities)
             ui.onboarding.click_Save_and_Continue_button()
     })
 
@@ -114,7 +113,6 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('10. Complete Risk Profile and navigate to Review', function () {
-      // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6742/risk-profile')
        cy.wait(3000)
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
@@ -126,7 +124,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .verify_review_page()
     })
 
-    xit('11. Scrape results from Review and navigate to Applicants', function () {
+    it('11. Scrape results from Review and navigate to Applicants', function () {
         ui.onboarding
             .click('Question Responses')
             .save_data_object_for_Questions_Responses()
@@ -162,16 +160,15 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     });
 
     it('12. Complete Applicants', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6744/applicants')
         ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
             .verify_your_identity()
-            .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
+            .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
     });
 
     it('12. Complete Applicants', function () {
-        ui.onboarding.upload_and_submit_document_for_verification(D.documentType.waterBill)
+        ui.onboarding.upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)
             .click_Save_and_Continue_button()
             .verify_Bank_Details_page()
     });

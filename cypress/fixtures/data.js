@@ -107,8 +107,6 @@ D.gmailAccount = {
 }
 
 D.reviewQuestions = [
-    'You have identified the following reasons for your interest in investing in our models:',
-    'What is the source of the majority of the funds you would like to invest with us?',
     'How would you describe your current investment experience?',
     'What do you want to achieve from your investment with Nucleus?',
     'When will you need to withdraw more than 30% of the investment?',
@@ -119,14 +117,18 @@ D.reviewQuestions = [
     'How would you react if the value of your portfolio fell by more than 20% in any year?',
     'Which one of the following best describes your attitude to market volatility when choosing an investment?',
     'Imagine you just received a $50,000 windfall - what would you look to immediately do with it?',
-    'When deciding on your investment composition would you like:'
+    'What is the source of the majority of the funds you would like to invest with us?',
+    'You have identified the following reasons for your interest in investing in our models:',
+    'When deciding on your investment composition would you like:',
+    'How much would you like to invest?',
+    'Net Worth:',
+    'Annual Net Income:',
+    'Liquid Net Worth:'
 ],
 
     D.reviewQuestionsPersonalSuper = [
-        'What is your primary objective for investing your superannuation with Nucleus Wealth?',
         'How would you describe your current investment experience?',
         'What do you want to achieve from your investment with Nucleus?',
-        'When will you need to withdraw more than 30% of your superannuation account? For most people this will be age 60 and above.',
         'When you think of the word "risk" in a financial context, which of the following words comes to mind first?',
         'What degree of risk have you taken with your financial decisions in the past?',
         'Have you ever borrowed money to make an investment (other than for residential property)?',
@@ -134,14 +136,19 @@ D.reviewQuestions = [
         'How would you react if the value of your portfolio fell by more than 20% in any year?',
         'Which one of the following best describes your attitude to market volatility when choosing an investment?',
         'Imagine you just received a $50,000 windfall - what would you look to immediately do with it?',
+        'When will you need to withdraw more than 30% of your superannuation account? For most people this will be age 60 and above.',
+        'What is your primary objective for investing your superannuation with Nucleus Wealth?',
         'When deciding on your investment composition would you like:',
+        'How much would you like to invest?',
+        'Net Worth:',
+        'Annual Net Income:',
+        'Liquid Net Worth:'
     ]
 
 
 D.reviewQuestionsSMSF = [
     'How would you describe your current investment experience?',
     'What do you want to achieve from your investment with Nucleus?',
-    'When will you need to withdraw more than 30% of the investment?',
     'When you think of the word "risk" in a financial context, which of the following words comes to mind first?',
     'What degree of risk have you taken with your financial decisions in the past?',
     'Have you ever borrowed money to make an investment (other than for residential property)?',
@@ -149,14 +156,16 @@ D.reviewQuestionsSMSF = [
     'How would you react if the value of your portfolio fell by more than 20% in any year?',
     'Which one of the following best describes your attitude to market volatility when choosing an investment?',
     'Imagine you just received a $50,000 windfall - what would you look to immediately do with it?',
-    'What is the source of the majority of the funds you would like to invest with us?',
-    'You have identified the following reasons for your interest in investing in our models:',
-    'When deciding on your investment composition would you like:'
+    'When will you need to withdraw more than 30% of your superannuation account? For most people this will be age 60 and above.',
+    'What is your primary objective for investing your superannuation with Nucleus Wealth?',
+    'When deciding on your investment composition would you like:',
+    'How much would you like to invest?',
+    'Net Worth:',
+    'Annual Net Income:',
+    'Liquid Net Worth:'
 ]
 
 D.reviewResponses = [
-    'You want a portfolio tailored to your ethical values',
-    'Investment income',
     'I have dabbled in some Aussie stocks but mainly have managed investments',
     'My priority is to generate income. However, I would like to see my initial investment grow over time',
     '2 - 4 years',
@@ -167,14 +176,18 @@ D.reviewResponses = [
     'I would be concerned and consider changing my investment strategy',
     'I prefer investments with a low risk of volatility; however, I am happy to have a small portion of my portfolio invested in assets with potentially higher levels of short-term capital fluctuation',
     'Leave a portion in cash, say $10,000, and look to invest the rest in a term deposit',
+   'Investment income',
+    'You want a portfolio tailored to your ethical values',
     'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.',
+    '$100,000',
+    '$200,000',
+    '$70,000',
+    '$120,000'
 ]
 
 D.reviewResponsesPersonalSuper = [
-    'You would like more visibility over your investments within superannuation',
     'I have dabbled in some Aussie stocks but mainly have managed investments',
     'My priority is to generate income. However, I would like to see my initial investment grow over time',
-    '2 - 4 years',
     'Uncertainty',
     'Medium',
     'Yes',
@@ -182,7 +195,13 @@ D.reviewResponsesPersonalSuper = [
     'I would be concerned and consider changing my investment strategy',
     'I prefer investments with a low risk of volatility; however, I am happy to have a small portion of my portfolio invested in assets with potentially higher levels of short-term capital fluctuation',
     'Leave a portion in cash, say $10,000, and look to invest the rest in a term deposit',
-    'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.'
+    '2-4 years',
+    'You would like more visibility over your investments within superannuation',
+    'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.',
+    '$100,000',
+    '$200,000',
+    '$70,000',
+    '$120,000'
 ]
 
 D.buildYouPortfolioFields = {
@@ -558,11 +577,11 @@ D.scenarios = [
             war: 'No Arms (Any)',
             humanRights: '',
             health: ['No Fast Food'],
-          /*  vices: 'No Gambling',
-            animalRights: 'No Fur or Specialty Leather',
-            religion: 'No Contraception',
-            assetClass: 'No Australian Shares',
-            thematic: 'No Australian Banks'*/
+            /*  vices: 'No Gambling',
+              animalRights: 'No Fur or Specialty Leather',
+              religion: 'No Contraception',
+              assetClass: 'No Australian Shares',
+              thematic: 'No Australian Banks'*/
         },
         review: {
             yourPortfolioValues: {
