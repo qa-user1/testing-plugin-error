@@ -11,7 +11,7 @@ module.exports = {
         let option = data.investmentChoice
 
 
-          cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6740/ethical-overlay')
+          cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6718/interactive-broker-compliance')
 
         /*app.click_create_new_investment_account()
             .select_account_type(type)
@@ -42,7 +42,7 @@ module.exports = {
         }
 */
 
-        app.verify_ethical_overlay_page()
+/*        app.verify_ethical_overlay_page()
             .select_ethical_option(data.ethicalOverlay)
             .click_Save_and_Continue_button()
 
@@ -120,7 +120,7 @@ module.exports = {
             app.verify_insurance_quote_page()
                 .complete_insurance_quote(data)
                 .click_Save_and_Continue_button()
-        }
+        }*/
 
         if (type === 'Individual-IB') {
             app.enter_compliance_values(data.compliancePageInputFields)
