@@ -63,7 +63,7 @@ module.exports = {
         } else if (option === 'Limited Advice') {
             app.verify_review_page()
                 .expand_question_responses_panel()
-               // .verify_question_responses(type, data.reviewResponses)
+               // .review_question_responses(type, data.reviewResponses)
         }
 
         app.expand_ethical_overlay_panel()

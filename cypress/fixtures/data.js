@@ -182,7 +182,7 @@ D.reviewResponses = [
     '$100,000',
     '$200,000',
     '$70,000',
-    '$120,000'
+    '$110,000'
 ]
 
 D.reviewResponsesPersonalSuper = [
@@ -195,13 +195,13 @@ D.reviewResponsesPersonalSuper = [
     'I would be concerned and consider changing my investment strategy',
     'I prefer investments with a low risk of volatility; however, I am happy to have a small portion of my portfolio invested in assets with potentially higher levels of short-term capital fluctuation',
     'Leave a portion in cash, say $10,000, and look to invest the rest in a term deposit',
-    '2-4 years',
+    '2 - 4 years',
     'You would like more visibility over your investments within superannuation',
     'I want my Assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s Quality/Value methodology.',
     '$100,000',
     '$200,000',
     '$70,000',
-    '$120,000'
+    '$110,000'
 ]
 
 D.buildYouPortfolioFields = {

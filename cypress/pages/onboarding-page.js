@@ -1195,12 +1195,20 @@ export default class OnboardingPage extends BasePage {
     }
 
 
-    verify_question_responses(type, arrayOfResponses) {
+    review_question_responses_(type, arrayOfResponses) {
         let arrayOfQuestions = D.reviewQuestions
         if (type === 'Personal Super') {
             arrayOfQuestions = D.reviewQuestionsPersonalSuper
         }
         this.pause(3)
+        for (let i = 0; i < arrayOfResponses.length; i++) {
+            questionsOnReviewPage(i).invoke('text').should('contain', arrayOfQuestions[i])
+            answersOnReviewPage(i).invoke('text').should('contain', arrayOfResponses[i])
+        }
+        return this;
+    }
+    verify_question_responses(arrayOfQuestions, arrayOfResponses) {
+
         for (let i = 0; i < arrayOfResponses.length; i++) {
             questionsOnReviewPage(i).invoke('text').should('contain', arrayOfQuestions[i])
             answersOnReviewPage(i).invoke('text').should('contain', arrayOfResponses[i])
