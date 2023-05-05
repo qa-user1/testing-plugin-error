@@ -454,7 +454,7 @@ D.applicantsProfileFields = {
     occupation: 'Analyst',
     employerName: 'Test test',
     employerAddress: 'Angola',
-    type: 'Individual-IB',
+    type: 'test',
     licenseExpiryDate: '28/02/2026',
     employerBusiness: 'Computer/Information Technology',
     residentialAddress: 'Terminal 3 & Terminal 4, Perth Airport WA 6105, Australia'

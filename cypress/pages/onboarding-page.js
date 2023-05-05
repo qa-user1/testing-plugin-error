@@ -455,7 +455,7 @@ export default class OnboardingPage extends BasePage {
         residentialAddressTypeaheadOption().should('be.visible')
         cy.contains(data.residentialAddress).click()
         residentialAddressInputField().should('have.value', data.residentialAddress)
-        // this.pause(2)
+
 
         if (type === 'Individual-IB' || data.type === 'Individual-IB') {
             driverLicenseExpiry().click();
