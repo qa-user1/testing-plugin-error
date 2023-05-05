@@ -138,19 +138,20 @@ D.applicantsProfileFields.type = 'Individual-IB'
     });
 
     it('11. Complete Compliance', function () {
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6836/interactive-broker-compliance')
         ui.app.verify_text_is_visible('Investment Objective')
             .verify_text_is_visible('Trading Permission')
             .verify_text_is_visible('Source of wealth')
             .verify_text_is_visible('Affiliation Detail')
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_messages_for_compliance_page_fields(D.compliancePageValidationMessages)
-            .enter_compliance_values(D.compliancePageInputFields)
+            .enter_compliance_source_type_and_percentage(D.compliancePageInputFields)
             .click_Save_and_Continue_button()
             .verify_Final_Review_page()
     });
 
     it('12. Check Final Review', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6236/final-review')
+       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6836/final-review')
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'MDA Brochure and Agreement',

@@ -429,14 +429,13 @@ D.applicantsProfileValidationMessages = {
 }
 
 D.compliancePageValidationMessages = {
-    statementOfInquiry: 'Please complete the statement of inquiry',
     sourceType: 'Please select source type',
     percentage: 'Please enter percentage'
 }
 
 D.compliancePageInputFields = {
-    statementOfInquiry: 'Test',
-    percentage: '100{enter}'
+    sourceType: 'Allowance',
+    percentage: '100'
 }
 
 D.applicantsProfileFields = {

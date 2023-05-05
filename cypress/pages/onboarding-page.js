@@ -388,7 +388,6 @@ export default class OnboardingPage extends BasePage {
 
     verify_validation_messages_for_compliance_page_fields(data) {
         this.verify_text_on_multiple_elements([
-            [statementOfInquiryValidationMessage, data.statementOfInquiry],
             [sourceTypeValidationMessage, data.sourceType],
             [percentageValidationMessage, data.percentage]
         ])
@@ -2189,31 +2188,35 @@ export default class OnboardingPage extends BasePage {
         //this is commented because this field isn't visible anymore
         //  statementOfInquiry().type(data.statementOfInquiry);
 
-        /* sourceType().click();
+         sourceType().click();
          if (data.sourceType !== 'Other') {
-             sourceTypeOption(data.sourceType).click();
+             dropdownOption(data.sourceType).click();
          } else if (data.sourceType === 'Other') {
              dropdownOption(data.sourceType).click();
              descriptionOtherSourceType().type(data.description)
-         }*/
+         }
         // working on this part - in progress
         politicalMilitaryDiplomatic().click()
         politicalMilitaryDiplomaticDropdownOption(data.politicalMilitaryDiplomatic).click()
-        /*if (data.politicalMilitaryDiplomatic === 'Yes') {
+        if (data.politicalMilitaryDiplomatic === 'Yes') {
             affiliationDetailName().type(data.affiliationDetailName)
             affiliationRelationship().click();
             dropdownOption(data.affiliationRelationship).click()
             companyEmail().type(data.companyEmail)
-        }*/
+        }
         controller().click({force:true})
-       /* cy.get('.rc-virtual-list-holder-inner')
-            .find('[title]')
-            .eq(7)
-            .click();*/
         controllerDropdownOption(data.controller).click();
         if (data.controller === 'Yes') {
             exchangeCode().type(data.exchangeCode)
         }
+        percentage().click();
+        percentage().type(data.percentage).type('{enter}');
+        return this;
+    }
+
+    enter_compliance_source_type_and_percentage(data){
+        sourceType().click();
+        dropdownOption(data.sourceType).click();
         percentage().click();
         percentage().type(data.percentage).type('{enter}');
         return this;
