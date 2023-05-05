@@ -122,6 +122,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     yearInputField = e => cy.get('.ant-picker-year-btn'),
     todayButton = e => cy.get('.ant-picker-today-btn'),
     dropdownOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
+    politicalMilitaryDiplomaticDropdownOption = option => cy.get('#ib-details-form_affiliationDetail_hasAffiliation_list').parent('div').find('[title="' + option + '"]'),
+    controllerDropdownOption = option => cy.get('#ib-details-form_controllerDetail_hasController_list').parent('div').find('[title="' + option + '"]'),
     politicalMilitaryDiplomatic = e => cy.get('[class="ant-select-selection-item"]').eq(0),
     controller = e => cy.get('[id="ib-details-form_controllerDetail_hasController"]'),
     exchangeCode = e => cy.get('[id="ib-details-form_controllerDetail_exchangeCode"]'),
@@ -2188,7 +2190,7 @@ export default class OnboardingPage extends BasePage {
          }*/
         // working on this part - in progress
         politicalMilitaryDiplomatic().click()
-        dropdownOption(data.politicalMilitaryDiplomatic).click()
+        politicalMilitaryDiplomaticDropdownOption(data.politicalMilitaryDiplomatic).click()
         /*if (data.politicalMilitaryDiplomatic === 'Yes') {
             affiliationDetailName().type(data.affiliationDetailName)
             affiliationRelationship().click();
@@ -2200,7 +2202,7 @@ export default class OnboardingPage extends BasePage {
             .find('[title]')
             .eq(7)
             .click();*/
-        dropdownOption(data.controller).click();
+        controllerDropdownOption(data.controller).click();
         if (data.controller === 'Yes') {
             exchangeCode().type(data.exchangeCode)
         }
