@@ -1,7 +1,7 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
-const d = D.scenarios[0]
+
 
 context('Individual Onboarding for Interactive Brokers', () => {
 
@@ -102,7 +102,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
     it('8. Check Review Page', function () {
         ui.onboarding
-            //.save_final_JSON_report('individual_ib_')
+            .save_final_JSON_report('individual_ib_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
@@ -113,16 +113,16 @@ context('Individual Onboarding for Interactive Brokers', () => {
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .verify_text_is_visible('Investment Experience')
-            .enter_values_at_create_new_ib_applicant_input_fields(D.applicantsProfileFields)
+           // .enter_values_at_create_new_ib_applicant_input_fields(D.applicantsProfileFields)
             .enter_investment_experience_values(D.investmentExperience)
             .upload_file('0', D.documentType.id)
             .upload_file('1', D.documentType.id)
             .click_submit_applicant_button()
             .verify_your_identity()
         cy.url().should('include', 'applicants')
-        ui.onboarding.upload_and_submit_document_for_verification(D.documentType.telephoneBill)
+        ui.onboarding.upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
-            .upload_and_submit_document_for_verification(D.documentType.waterBill)
+            .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)
             .click_Save_and_Continue_button()
             .verify_Bank_Details_page()
     });

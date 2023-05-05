@@ -72,7 +72,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
 
     it('6. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
-            .verify_question_responses(D.reviewQuestionsSMSF, D.reviewResponsesSMSF)
+            .verify_question_responses(D.reviewQuestions, D.reviewResponses)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
             .expand_ethical_overlay_panel()
             .save_data_object_for_Ethical_Overlay()
@@ -105,9 +105,9 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
             .verify_your_identity()
-            .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
+            .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
-            .upload_and_submit_document_for_verification(D.documentType.waterBill)
+            .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)
             .verify_applicants_page()
             .click_Save_and_Continue_button()
 
@@ -142,9 +142,9 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
             .verify_your_identity()
-            .upload_and_submit_document_for_verification(D.documentType.telephoneBill)
+            .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
-            .upload_and_submit_document_for_verification(D.documentType.waterBill)
+            .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)
             .verify_applicants_page()
             .verify_two_applicants_are_visible()
             .click_Save_and_Continue_button()

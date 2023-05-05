@@ -81,13 +81,12 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
 
     it('6. Review Review Page', function () {
         ui.onboarding
-            //.save_final_JSON_report('trust_')
+            .save_final_JSON_report('trust_')
             .click_Save_and_Continue_button()
             .verify_trust_details_page()
     })
 
     it('7. Complete In Trust Details', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6163/trust-details')
         ui.onboarding.enter_address(D.TrustDetails)
             ui.onboarding.click_Save_and_Continue_button()
             ui.onboarding.verify_validation_messages_for_trust_details(D.TrustDetailsValidationMsg)
