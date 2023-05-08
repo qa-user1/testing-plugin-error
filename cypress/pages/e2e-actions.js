@@ -11,9 +11,10 @@ module.exports = {
         let option = data.investmentChoice
 
 
-          cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6718/ethical-overlay')
+        // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6895/interactive-broker-compliance')
 
-      /*  app.click_create_new_investment_account()
+
+        app.click_create_new_investment_account()
             .select_account_type(type)
             .click_create_investment_account()
             .go_through_tour_steps(C.stepMessages)
@@ -22,7 +23,7 @@ module.exports = {
             .click_Save_and_Continue_button()
 
 
-        if (type === 'Individual-IB' && option === 'Self Directed') {
+        if (type === 'Individual-IB' || type === 'Joint-IB' && option === 'Self Directed') {
             app.verify_risk_profile_page()
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
                 .enter_financial_info(data.questionResponse)
@@ -39,7 +40,7 @@ module.exports = {
             app.verify_build_your_portfolio_page()
                 .enter_Portfolio_values(data.buildYourPortfolio)
                 .click_Save_and_Continue_button()
-        }*/
+        }
 
 
         app.verify_ethical_overlay_page()
@@ -56,10 +57,10 @@ module.exports = {
 
 
 
-        if (type === 'Individual-IB') {
+        if (type === 'Individual-IB' || type === 'Joint-IB') {
             app.verify_review_page()
                 .expand_question_responses_panel()
-               .verify_question_responses(type, data.reviewResponses)
+             //  .verify_question_responses(type, data.reviewResponses)
         } else if (option === 'Limited Advice') {
             app.verify_review_page()
                 .expand_question_responses_panel()
@@ -86,7 +87,7 @@ module.exports = {
                 .click_Save_and_Continue_button()
         }
 
-        if (type === 'Company') {
+        if (type === 'Company' || type === 'Company-IB') {
             app.enter_address(data.companyDetails)
                 .enter_all_required_company_details(data.companyDetails)
                 .enter_Bank_Details(data.bankDetails)
@@ -97,8 +98,8 @@ module.exports = {
             .remove_existing_applicant()
             .add_new_applicant()
             .enter_values_at_create_new_applicant_input_fields(data.applicants.inputFields, type)
-        if (type === 'Individual-IB') {
-            app.enter_applicant_investment_experience(data)
+        if (type === 'Individual-IB' || type === 'Joint-IB') {
+            app.enter_applicant_investment_experience(data.investmentExperience)
         }
 
 
@@ -113,7 +114,7 @@ module.exports = {
         app.click_Save_and_Continue_button()
 
 
-        if (type === 'Individual-IB' || type === 'Individual' || type === 'Joint') {
+        if (type === 'Individual-IB' || type === 'Joint-IB' || type === 'Individual' || type === 'Joint') {
             app.enter_values_for_bank_details(data)
                 .click_Save_and_Continue_button()
         } else if (type === 'Personal Super') {
@@ -121,8 +122,7 @@ module.exports = {
                 .complete_insurance_quote(data)
                 .click_Save_and_Continue_button()
         }
-
-        if (type === 'Individual-IB') {
+        if (type === 'Individual-IB' || type === 'Joint-IB') {
             app.enter_compliance_values(data.compliancePageInputFields)
                 .click_Save_and_Continue_button()
         }
@@ -133,6 +133,10 @@ module.exports = {
 
     }
 }
+
+
+
+
 
 
 

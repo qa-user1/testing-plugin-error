@@ -122,9 +122,9 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     yearInputField = e => cy.get('.ant-picker-year-btn'),
     todayButton = e => cy.get('.ant-picker-today-btn'),
     dropdownOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
-    politicalMilitaryDiplomaticDropdownOption = option => cy.get('#ib-details-form_affiliationDetail_hasAffiliation_list').parent('div').find('[title="' + option + '"]'),
+    politicalMilitaryDiplomaticDropdownOption = option => cy.get('#ib-details-form_affiliationDetail_hasAffiliation_list').parent('div').parent('div').find('[title="' + option + '"]'),
     controllerDropdownOption = option => cy.get('#ib-details-form_controllerDetail_hasController_list').parent('div').find('[title="' + option + '"]'),
-    politicalMilitaryDiplomatic = e => cy.get('[class="ant-select-selection-item"]').eq(0),
+    politicalMilitaryDiplomatic = e => cy.get('[class="ant-select-selector"]').eq(1),
     controller = e => cy.get('[id="ib-details-form_controllerDetail_hasController"]'),
     exchangeCode = e => cy.get('[id="ib-details-form_controllerDetail_exchangeCode"]'),
     descriptionOtherSourceType = e => cy.get('[id="ib-details-form_sourceOfWealthList_0_description"]'),
@@ -136,6 +136,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     employerNameInputField = e => cy.get('#theForm_employmentDetail_employerName'),
     employerAddressInputField = e => cy.get('#theForm_employmentDetail_employerCountry'),
     employerBusinessInputField = e => cy.get('#theForm_employmentDetail_employerBusiness'),
+    employmentStatusAnnualNetIncomeInputField = e => cy.get('[id="theForm_person_annual_net_income"]'),
+    employmentStatusNetWorthInputField = e => cy.get('[id="theForm_person_net_worth"]'),
     citizenshipInputField = e => cy.get('#theForm_citizenship'),
     taxInputField = e => cy.get('[data-test="applicants-tfn-input"]'),
     genderInputField = e => cy.get('[data-test="applicants-gender-input"] > .ant-select-selector'),
@@ -446,6 +448,10 @@ export default class OnboardingPage extends BasePage {
             employerBusinessInputField().click();
             employerBusinessInputField().type(data.employerBusiness).type('{enter}');
         }
+        if(type === 'Joint-IB'){
+            employmentStatusAnnualNetIncomeInputField().type(data.annualNetIncome)
+            employmentStatusNetWorthInputField().type(data.netWorth)
+        }
 
         taxInputField().type(data.taxInput)
 
@@ -458,7 +464,7 @@ export default class OnboardingPage extends BasePage {
         residentialAddressInputField().should('have.value', data.residentialAddress)
 
 
-        if (type === 'Individual-IB' || data.type === 'Individual-IB') {
+        if (type === 'Individual-IB' || type === 'Joint-IB' || data.type === 'Individual-IB') {
             driverLicenseExpiry().click();
             driverLicenseExpiry().type(data.licenseExpiryDate).type('{enter}');
         }
@@ -550,7 +556,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_investment_choice(option, type) {
-        if (type === 'Individual-IB' && option === 'Self Directed') {
+        if (type === 'Individual-IB' || type === 'Joint-IB' && option === 'Self Directed') {
             this.click_self_directed_button()
                 .select_all_checkboxes(6)
         } else if (type === 'Individual-IB' && option === 'Limited Advice') {
@@ -618,10 +624,11 @@ export default class OnboardingPage extends BasePage {
             .select_checkbox_based_on_label(data.war)
 
         //working on this
-        if (data.humanRights !== '' ) {
+        if (data.humanRights !== '') {
             cy.contains('Human Rights').click();
             this.select_checkboxes_based_on_labels(data.humanRights)
-        } if (data.health !== '') {
+        }
+        if (data.health !== '') {
             cy.contains('Health').click()
             this.select_checkboxes_based_on_labels(data.health)
         }
@@ -1207,6 +1214,7 @@ export default class OnboardingPage extends BasePage {
         }
         return this;
     }
+
     verify_question_responses(arrayOfQuestions, arrayOfResponses) {
 
         for (let i = 0; i < arrayOfResponses.length; i++) {
@@ -2189,14 +2197,14 @@ export default class OnboardingPage extends BasePage {
         //this is commented because this field isn't visible anymore
         //  statementOfInquiry().type(data.statementOfInquiry);
 
-         sourceType().click();
-         if (data.sourceType !== 'Other') {
-             dropdownOption(data.sourceType).click();
-         } else if (data.sourceType === 'Other') {
-             dropdownOption(data.sourceType).click();
-             descriptionOtherSourceType().type(data.description)
-         }
-        // working on this part - in progress
+        sourceType().click();
+        if (data.sourceType !== 'Other') {
+            dropdownOption(data.sourceType).click();
+        } else if (data.sourceType === 'Other') {
+            dropdownOption(data.sourceType).click();
+            descriptionOtherSourceType().type(data.description)
+        }
+        cy.wait(5000)
         politicalMilitaryDiplomatic().click()
         politicalMilitaryDiplomaticDropdownOption(data.politicalMilitaryDiplomatic).click()
         if (data.politicalMilitaryDiplomatic === 'Yes') {
@@ -2205,7 +2213,7 @@ export default class OnboardingPage extends BasePage {
             dropdownOption(data.affiliationRelationship).click()
             companyEmail().type(data.companyEmail)
         }
-        controller().click({force:true})
+        controller().click({force: true})
         controllerDropdownOption(data.controller).click();
         if (data.controller === 'Yes') {
             exchangeCode().type(data.exchangeCode)
@@ -2215,7 +2223,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    enter_compliance_source_type_and_percentage(data){
+    enter_compliance_source_type_and_percentage(data) {
         sourceType().click();
         dropdownOption(data.sourceType).click();
         percentage().click();
