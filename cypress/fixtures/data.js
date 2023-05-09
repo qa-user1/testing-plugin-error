@@ -526,8 +526,8 @@ D.scenarios = [
         name: 'Scenario 1',
         username: 'testing+ib@nucleuswealth.com',
         password: 'Testing1234!',
-        accountType: "Company-IB",
-        investmentChoice: "Self Directed",
+        accountType: "SMSF-IB",
+        investmentChoice: "Full Advice",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -542,7 +542,7 @@ D.scenarios = [
                 2,
                 2,
                 2,
-                2
+2
 
 
             ],
@@ -578,13 +578,13 @@ D.scenarios = [
                 'No Fossil Fuels (Any)'
             ],
             war: 'No Arms (Any)',
-            humanRights: '',
-            health: ['No Fast Food'],
-            /*  vices: 'No Gambling',
-              animalRights: 'No Fur or Specialty Leather',
-              religion: 'No Contraception',
-              assetClass: 'No Australian Shares',
-              thematic: 'No Australian Banks'*/
+            /* humanRights: '',
+             health: ['No Fast Food'],
+               vices: 'No Gambling',
+               animalRights: 'No Fur or Specialty Leather',
+               religion: 'No Contraception',
+               assetClass: 'No Australian Shares',
+               thematic: 'No Australian Banks'*/
         },
         review: {
             yourPortfolioValues: {

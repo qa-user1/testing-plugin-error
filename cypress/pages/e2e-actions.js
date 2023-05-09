@@ -47,7 +47,7 @@ module.exports = {
             .select_ethical_option(data.ethicalOverlay)
             .click_Save_and_Continue_button()
 
-        if (type === 'Personal Super') {
+        if (type === 'Personal Super' || type === 'Personal Super-IB') {
             app.verify_super_fund_entry_page()
                 .enter_values_on_super_fund_entry(data.fundEntryInputFields, data.bankDetails)
                 .click_Save_and_Continue_button()
@@ -72,7 +72,7 @@ module.exports = {
         //    app.review_portfolio_data(data)
         app.click_Save_and_Continue_button()
 
-        if (type === 'SMSF') {
+        if (type === 'SMSF' || type === 'SMSF-IB') {
             app.verify_SMSF_page()
                 .enter_SMSF_details(data.SMSFDetails)
                 .click_Save_and_Continue_button()
@@ -80,7 +80,7 @@ module.exports = {
                 .click_Save_and_Continue_button()
         }
 
-        if (type === 'Trust') {
+        if (type === 'Trust' || type === 'Trust-IB') {
             app.enter_address(data.trustDetails)
                 .enter_all_trust_details(data.trustDetails)
                 .enter_Bank_Details(data.bankDetails)
@@ -117,7 +117,7 @@ module.exports = {
         if (type === 'Individual-IB' || type === 'Joint-IB' || type === 'Individual' || type === 'Joint') {
             app.enter_values_for_bank_details(data)
                 .click_Save_and_Continue_button()
-        } else if (type === 'Personal Super') {
+        } else if (type === 'Personal Super' || type === 'Personal Super-IB') {
             app.verify_insurance_quote_page()
                 .complete_insurance_quote(data)
                 .click_Save_and_Continue_button()

@@ -624,7 +624,7 @@ export default class OnboardingPage extends BasePage {
             .select_checkbox_based_on_label(data.war)
 
         //working on this
-        if (data.humanRights !== '') {
+        /*if (data.humanRights !== '') {
             cy.contains('Human Rights').click();
             this.select_checkboxes_based_on_labels(data.humanRights)
         }
@@ -632,6 +632,26 @@ export default class OnboardingPage extends BasePage {
             cy.contains('Health').click()
             this.select_checkboxes_based_on_labels(data.health)
         }
+        if (data.vices !== '') {
+            cy.contains('Vices').click()
+            this.select_checkboxes_based_on_labels(data.vices)
+        }
+        if (data.animalRights !== '') {
+            cy.contains('Animal Rights').click()
+            this.select_checkboxes_based_on_labels(data.animalRights)
+        }
+        if (data.religion !== '') {
+            cy.contains('Religion').click()
+            this.select_checkboxes_based_on_labels(data.religion)
+        }
+        if (data.assetClass !== '') {
+            cy.contains('Asset Class').click()
+            this.select_checkboxes_based_on_labels(data.assetClass)
+        }
+        if (data.thematic !== '') {
+            cy.contains('Thematic').click()
+            this.select_checkboxes_based_on_labels(data.thematic)
+        }*/
         return this;
     }
 
