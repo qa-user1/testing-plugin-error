@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"skipped","Wed May 10 22:36:22 UTC 2023","Wed May 10 22:36:22 UTC 2023","3","","Test 2 Factor Login is working","","","","Get SMS and apply it in 2FA form",""
+"passed","Wed May 10 22:36:37 UTC 2023","Wed May 10 22:37:02 UTC 2023","25173","","Log in to the Nucleus Wealth portal, create a Personal Super Account and complete the onboarding portal","","","","1. Validate login credentials",""
