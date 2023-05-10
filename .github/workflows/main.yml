@@ -33,6 +33,9 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -53,6 +56,9 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -86,7 +92,7 @@ jobs:
        #   mkdir allure-results
 
           mv allure-results-1/* allure-results
-       #   mv allure-results-2/* allure-results
+          mv allure-results-2/* allure-results
        #   mv allure-results-3/* allure-results1
         #  mv allure-results-4/* allure-results 1
 
