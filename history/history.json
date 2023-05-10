@@ -1,0 +1,1 @@
+{"bf6bb454da03b373c15b2504cfaf708c":{"statistic":{"failed":0,"broken":0,"skipped":1,"passed":0,"unknown":0,"total":1},"items":[{"uid":"204f7237206bed63","status":"skipped","statusDetails":"Test ignored","time":{"start":1683757775758,"stop":1683757775761,"duration":3}}]}}
