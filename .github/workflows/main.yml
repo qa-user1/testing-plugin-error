@@ -71,7 +71,7 @@ jobs:
   merge-and-deploy-final-report:
     runs-on: ubuntu-latest
     timeout-minutes: 250
-    needs: [Run--Cypress-Test15, Run--Cypress-Test2]
+    needs: [Run-Cypress-Test15, Run-Cypress-Test2]
     if: always()
     strategy:
       fail-fast: false
@@ -110,7 +110,7 @@ jobs:
     name: Notify on Slack
     runs-on: ubuntu-latest
     if: always()
-    needs: [Run--Cypress-Test15, Run--Cypress-Test2]
+    needs: [Run-Cypress-Test15, Run-Cypress-Test2]
 
     steps:
       - uses: abinoda/slack-action@master
@@ -118,5 +118,5 @@ jobs:
           SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
         with:
           # custom message to send to slack
-          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-github1.github.io/safe-web-test-automation/  \"}}]}'
+          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1/testing-plugin-error/  \"}}]}'
 
