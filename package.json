@@ -46,14 +46,15 @@
     "docker:run": "docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_updateSnapshots cypress/included:9.7.0",
     "update:snapshots": "cross-env CYPRESS_updateSnapshots=true npm run docker:run"
   },
-
   "devDependencies": {
     "@shelex/cypress-allure-plugin": "^2.34.0",
-    "allure-commandline": "^2.13.0",
+    "allure-commandline": "^2.22.0",
     "aws-sdk": "^2.1258.0",
     "cypress": "^12.7.0",
     "cypress-file-upload": "^4.1.1",
+    "cypress-iframe": "^1.0.1",
     "cypress-localstorage-commands": "^2.2.1",
+    "cypress-promise": "^1.1.0",
     "cypress-v10-preserve-cookie": "^1.2.1",
     "cypress-visual-regression": "^1.7.0",
     "cypress-webpack-preprocessor-v5": "^5.0.0-alpha.1",
@@ -61,12 +62,10 @@
     "fs": "^0.0.1-security",
     "imap-simple": "5.1.0",
     "nodemailer": "^6.8.0",
+    "twilio": "^3.83.4",
     "webpack-sources": "^3.2.0",
     "xlsx": "^0.16.1",
-    "zip-local": "^0.3.5",
-    "cypress-iframe": "^1.0.1",
-    "cypress-promise": "^1.1.0",
-    "twilio": "^3.83.4"
+    "zip-local": "^0.3.5"
   },
   "repository": {
     "type": "git"
