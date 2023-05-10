@@ -1,1 +1,0 @@
-[{"uid":"9f751f5ae0a10a0c","name":"Get SMS and apply it in 2FA form","time":{"start":1683756764417,"stop":1683756764422,"duration":5},"status":"skipped","severity":"normal"},{"uid":"5d355c87eab55b52","name":"1. Validate login credentials","time":{"start":1683756757685,"stop":1683756775575,"duration":17890},"status":"passed","severity":"normal"}]
