@@ -84,8 +84,9 @@ jobs:
           npm init --yes
           npm i allure-commandline --save-dev
           mkdir allure-results1
-          mv allure-results-1/* allure-results
-          mv allure-results-2/* allure-results
+          mv allure-results1-1/* allure-results1
+          mv allure-results1-2/* allure-results1
+          
        #   mv allure-results-3/* allure-results1
         #  mv allure-results-4/* allure-results 1
 
