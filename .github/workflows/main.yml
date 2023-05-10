@@ -71,7 +71,7 @@ jobs:
   merge-and-deploy-final-report:
     runs-on: ubuntu-latest
     timeout-minutes: 250
-    needs: [Run-Cypress-Test15, Run-Cypress-Test2]
+    needs: [Run-Cypress-Test15]
     if: always()
     strategy:
       fail-fast: false
@@ -84,8 +84,8 @@ jobs:
           npm init --yes
           npm i allure-commandline --save-dev
           mkdir allure-results
-          mv allure-results-1/* allure-results
-          mv allure-results-2/* allure-results
+       #   mv allure-results-1/* allure-results
+      #    mv allure-results-2/* allure-results
        #   mv allure-results-3/* allure-results1
         #  mv allure-results-4/* allure-results 1
 
