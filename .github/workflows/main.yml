@@ -388,7 +388,7 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
-  Run-Cypress-Test17.0:
+  Run-Cypress-Test17-0:
     name: Cypress Test 17.0
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -413,7 +413,7 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
-  Run-Cypress-Test17.1:
+  Run-Cypress-Test17-1:
     name: Cypress Test 17.1
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -438,7 +438,7 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
-  Run-Cypress-Test17.2:
+  Run-Cypress-Test17-2:
     name: Cypress Test 17.2
     if: success() || failure()
     runs-on: ubuntu-latest
