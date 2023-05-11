@@ -79,7 +79,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .verify_review_page()
     })
 
-    xit('8. Check Review Page', function () {
+    it('8. Check Review Page', function () {
         ui.onboarding.click('Question Responses')
             .verify_net_worth_annual_net_income_liquid_net_worth()
             .save_data_object_for_Questions_Responses()
@@ -102,13 +102,12 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
     it('8. Check Review Page', function () {
         ui.onboarding
-           // .save_final_JSON_report('individual_ib_')
+            .save_final_JSON_report('individual_ib_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
 
     it('9. Complete Applicants', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6825/applicants')
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
@@ -138,7 +137,6 @@ D.applicantsProfileFields.type = 'Individual-IB'
     });
 
     it('11. Complete Compliance', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6873/interactive-broker-compliance')
         ui.app.verify_text_is_visible('Investment Objective')
             .verify_text_is_visible('Trading Permission')
             .verify_text_is_visible('Source of wealth')
@@ -151,7 +149,6 @@ D.applicantsProfileFields.type = 'Individual-IB'
     });
 
     it('12. Check Final Review', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6836/final-review')
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'MDA Brochure and Agreement',
@@ -164,7 +161,6 @@ D.applicantsProfileFields.type = 'Individual-IB'
     });
 
     it('13. Limited Advice Path', function () {
-         // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6236/risk-profile')
         ui.onboarding.click_sidebar_option('Investment Choice')
             .go_through_tour_steps(C.stepMessages)
             .verify_investment_choice_page()

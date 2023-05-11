@@ -97,7 +97,6 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     })
 
     it('7. Complete Applicants', function () {
-        //cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6850/applicants')
         ui.onboarding.verify_2_investitors_required_message()
             .remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)

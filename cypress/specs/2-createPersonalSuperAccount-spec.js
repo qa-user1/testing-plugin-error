@@ -86,7 +86,6 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
     })
 
     it('7. Review Review Page', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6792/review')
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestionsPersonalSuper, D.reviewResponsesPersonalSuper)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
