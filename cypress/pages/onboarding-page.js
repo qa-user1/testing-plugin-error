@@ -161,7 +161,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     transferAmountValidationMsg = e => cy.contains('Please enter a transfer amount').parent().parent().find('[role="alert"]'),
     memberNumberValidationMsg = e => cy.contains('Please enter your member number').parent().parent().find('[role="alert"]'),
     personalSuperAccountTypeValidationMsg = e => cy.contains('\'Personal Super Account Type\' field is required').parent().parent().find('[role="alert"]'),
-    identity = e => cy.get('#greenid-intro-content > h1'),
+    //identity = e => cy.get('#greenid-intro-content > h1'),
+    identity = e => cy.get('#greenid-source-title-heading'),
     noEthicsSelectedMessage = e => cy.get('[data-test="review-noEthicSelected-text"]'),
     idOptionList = e => cy.contains('Choose a different ID option'),
     documentsSection = e => cy.contains('Documents').parents('.ant-collapse-item'),
@@ -489,8 +490,8 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_your_identity() {
-        this.pause(7)
-        identity().should('be.visible');
+        //this.pause(7)
+        identity().should('have.text', "Driver's licence");
         return this;
     }
 

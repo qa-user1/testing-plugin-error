@@ -55,7 +55,6 @@ context('Client Portal - Account Dashboard', () => {
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .answerAllQuestionsWithSameOption(13, 2)
-        //cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5630/risk-profile')
         ui.onboarding.enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_ethical_overlay_page()
