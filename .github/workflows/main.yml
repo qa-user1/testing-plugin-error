@@ -561,7 +561,9 @@ jobs:
           mv allure-results-14/* allure-results
           mv allure-results-15/* allure-results
           mv allure-results-16/* allure-results
-          mv allure-results-17/* allure-results
+          mv allure-results-17.0/* allure-results
+          mv allure-results-17.1/* allure-results
+          mv allure-results-17.2/* allure-results
           mv allure-results-18/* allure-results
           mv allure-results-19/* allure-results
           mv allure-results-20/* allure-results
