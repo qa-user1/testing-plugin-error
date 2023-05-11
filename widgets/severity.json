@@ -1,1 +1,0 @@
-[{"uid":"2efde15e72d69658","name":"1. Validate login credentials","time":{"start":1683789059033,"stop":1683789081385,"duration":22352},"status":"passed","severity":"normal"},{"uid":"21e67b90a59eaa6","name":"Get SMS and apply it in 2FA form","time":{"start":1683789027607,"stop":1683789027611,"duration":4},"status":"skipped","severity":"normal"}]
