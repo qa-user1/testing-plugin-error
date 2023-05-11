@@ -28,28 +28,17 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: emptyFolder
 
-  Run-Cypress-Test15:
-    name: Cypress Test 15
+  Run-Clear-Gmail:
+    name: Clear Gmail
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    container:
-      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-      options: --user 1001
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test15
-      - name: Deploy report to temp-reports branch
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: true
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
+      - run: npm run clearGmail
+
 
   Run-Cypress-Test1:
     name: Cypress Test 1
@@ -189,10 +178,362 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+  Run-Cypress-Test8:
+    name: Cypress Test 8
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test8
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test9:
+    name: Cypress Test 9
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test9
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test10:
+    name: Cypress Test 10
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test10
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test11:
+    name: Cypress Test 11
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [Run-Cypress-Test1]
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test11
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test12:
+    name: Cypress Test 12
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test12
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test13:
+    name: Cypress Test 13
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [Run-Cypress-Test18]
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test13
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test14:
+    name: Cypress Test 14
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [Run-Cypress-Test1]
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test14
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test15:
+    name: Cypress Test 15
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test15
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test16:
+    name: Cypress Test 16
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test16
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test17:
+    name: Cypress Test 17
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [Run-Cypress-Test22]
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test17
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test18:
+    name: Cypress Test 18
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test18
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test19:
+    name: Cypress Test 19
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test19
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test20:
+    name: Cypress Test 20
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test20
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test21:
+    name: Cypress Test 21
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [Run-Cypress-Test8]
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test21
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test22:
+    name: Cypress Test 22
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [Run-Cypress-Test11]
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run e2e-test22
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+
   merge-and-deploy-final-report:
     runs-on: ubuntu-latest
     timeout-minutes: 250
-    needs: [Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6 ]
+    needs: [Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test13, Run-Cypress-Test14, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
     if: always()
     strategy:
       fail-fast: false
@@ -211,6 +552,21 @@ jobs:
           mv allure-results-4/* allure-results
           mv allure-results-5/* allure-results
           mv allure-results-6/* allure-results
+          mv allure-results-8/* allure-results
+          mv allure-results-9/* allure-results
+          mv allure-results-10/* allure-results
+          mv allure-results-11/* allure-results
+          mv allure-results-12/* allure-results
+          mv allure-results-13/* allure-results
+          mv allure-results-14/* allure-results
+          mv allure-results-15/* allure-results
+          mv allure-results-16/* allure-results
+          mv allure-results-17/* allure-results
+          mv allure-results-18/* allure-results
+          mv allure-results-19/* allure-results
+          mv allure-results-20/* allure-results
+          mv allure-results-21/* allure-results
+          mv allure-results-22/* allure-results
 
       - uses: actions/setup-java@v3
         with:
@@ -233,7 +589,7 @@ jobs:
     name: Notify on Slack
     runs-on: ubuntu-latest
     if: always()
-    needs: [Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6 ]
+    needs: [Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test13, Run-Cypress-Test14, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
 
     steps:
       - uses: abinoda/slack-action@master
