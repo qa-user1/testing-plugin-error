@@ -388,8 +388,8 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
-  Run-Cypress-Test17:
-    name: Cypress Test 17
+  Run-Cypress-Test17.0:
+    name: Cypress Test 17.0
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
@@ -403,9 +403,55 @@ jobs:
       - run: npm i
     #  - run: npm run clearGmail
       - run: npm run e2e-test17.0
- #   - run: npm run clearGmail
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test17.1:
+    name: Cypress Test 17.1
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [ Run-Cypress-Test22 ]
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      #  - run: npm run clearGmail
       - run: npm run e2e-test17.1
- #   - run: npm run clearGmail
+      - name: Deploy report to temp-reports branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+  Run-Cypress-Test17.2:
+    name: Cypress Test 17.2
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [ Run-Cypress-Test22 ]
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm i
+      #  - run: npm run clearGmail
       - run: npm run e2e-test17.2
       - name: Deploy report to temp-reports branch
         if: always()
