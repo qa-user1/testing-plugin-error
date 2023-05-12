@@ -1,5 +1,8 @@
 name: Cypress Tests
 
+  # runs tests every day at 4am
+  # schedule:
+#  - cron: '0 4 * * *'
 on: [ push ]
 
 permissions: write-all
@@ -183,6 +186,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    needs: [ Run-Cypress-Test11 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -252,7 +256,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [Run-Cypress-Test1]
+    needs: [ Run-Cypress-Test1 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -299,7 +303,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [Run-Cypress-Test18]
+    needs: [ Run-Cypress-Test11 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -323,7 +327,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [Run-Cypress-Test1]
+    needs: [ Run-Cypress-Test1 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -393,7 +397,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [Run-Cypress-Test22]
+  #  needs: [ Run-Cypress-Test11 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -401,7 +405,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run clearGmail
+    #  - run: npm run clearGmail
       - run: npm run e2e-test17.0
       - name: Deploy report to temp-reports branch
         if: always()
@@ -418,7 +422,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [ Run-Cypress-Test22 ]
+    needs: [ Run-Cypress-Test8 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -426,7 +430,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run clearGmail
+    #  - run: npm run clearGmail
       - run: npm run e2e-test17.1
       - name: Deploy report to temp-reports branch
         if: always()
@@ -443,7 +447,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [ Run-Cypress-Test22 ]
+    needs: [ Run-Cypress-Test14 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -451,7 +455,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run clearGmail
+    #  - run: npm run clearGmail
       - run: npm run e2e-test17.2
       - name: Deploy report to temp-reports branch
         if: always()
@@ -537,7 +541,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [Run-Cypress-Test8]
+    needs: [ Run-Cypress-Test8 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -561,7 +565,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [Run-Cypress-Test11]
+    needs: [ Run-Cypress-Test8 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -584,6 +588,7 @@ jobs:
   merge-and-deploy-final-report:
     runs-on: ubuntu-latest
     timeout-minutes: 250
+    continue-on-error: true
     needs: [Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test13, Run-Cypress-Test14, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17-0, Run-Cypress-Test17-1, Run-Cypress-Test17-2, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
     if: always()
     strategy:
@@ -597,29 +602,77 @@ jobs:
           npm init --yes
           npm i allure-commandline --save-dev
           mkdir allure-results
+           
+          if [ -d "allure-results-1" ]; then
           mv allure-results-1/* allure-results
+          fi
+          if [ -d "allure-results-2" ]; then
           mv allure-results-2/* allure-results
+          fi
+          if [ -d "allure-results-3" ]; then
           mv allure-results-3/* allure-results
+          fi
+          if [ -d "allure-results-4" ]; then
           mv allure-results-4/* allure-results
+          fi
+          if [ -d "allure-results-5" ]; then
           mv allure-results-5/* allure-results
+          fi
+          if [ -d "allure-results-6" ]; then
           mv allure-results-6/* allure-results
+          fi
+          if [ -d "allure-results-8" ]; then
           mv allure-results-8/* allure-results
+          fi
+          if [ -d "allure-results-9" ]; then
           mv allure-results-9/* allure-results
+          fi
+          if [ -d "allure-results-10" ]; then
           mv allure-results-10/* allure-results
+          fi
+          if [ -d "allure-results-11" ]; then
           mv allure-results-11/* allure-results
+          fi
+          if [ -d "allure-results-12" ]; then
           mv allure-results-12/* allure-results
+          fi
+          if [ -d "allure-results-13" ]; then
           mv allure-results-13/* allure-results
+          fi
+          if [ -d "allure-results-14" ]; then
           mv allure-results-14/* allure-results
+          fi
+          if [ -d "allure-results-15" ]; then
           mv allure-results-15/* allure-results
+          fi
+          if [ -d "allure-results-16" ]; then
           mv allure-results-16/* allure-results
-          mv allure-results-17.0/* allure-results
+          fi
+          if [ -d "allure-results-17" ]; then
+          mv allure-results-17/* allure-results
+          fi
+          if [ -d "allure-results-17.1" ]; then
           mv allure-results-17.1/* allure-results
+          fi
+          if [ -d "allure-results-17.2" ]; then
           mv allure-results-17.2/* allure-results
+          fi
+          if [ -d "allure-results-18" ]; then
           mv allure-results-18/* allure-results
+          fi
+          if [ -d "allure-results-19" ]; then
           mv allure-results-19/* allure-results
+          fi
+          if [ -d "allure-results-20" ]; then
           mv allure-results-20/* allure-results
+          fi
+          if [ -d "allure-results-21" ]; then
           mv allure-results-21/* allure-results
+          fi
+          if [ -d "allure-results-22" ]; then
           mv allure-results-22/* allure-results
+          fi
+          
 
       - uses: actions/setup-java@v3
         with:
@@ -638,6 +691,7 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+
   slack-notification:
     name: Notify on Slack
     runs-on: ubuntu-latest
@@ -650,5 +704,5 @@ jobs:
           SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
         with:
           # custom message to send to slack
-          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/  \"}}]}'
+          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/nucleus-w-portal/  \"}}]}'
 

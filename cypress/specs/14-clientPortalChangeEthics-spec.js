@@ -1,7 +1,7 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
-const d = D.scenarios[0]
+
 
 context('Client Portal - Change Ethics/Exclusions', () => {
 

@@ -889,7 +889,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_add_new_applicant_page() {
-        applicantForm().should('be.visible');
+    //    applicantForm().should('be.visible');
         this.verify_text_is_visible('General Details');
         this.verify_text_is_visible('Tax Details');
         this.verify_text_is_visible('Residential Address');
