@@ -56,6 +56,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test1
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -79,6 +81,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test2
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -102,6 +106,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test3
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -125,6 +131,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test4
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -148,6 +156,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test5
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -171,6 +181,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test6
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -195,6 +207,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test8
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -218,6 +232,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test9
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -241,6 +257,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test10
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -265,6 +283,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test11
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -288,6 +308,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test12
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -312,6 +334,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test13
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -336,6 +360,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test14
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -359,6 +385,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test15
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -382,6 +410,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test16
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -407,6 +437,8 @@ jobs:
       - run: npm i
     #  - run: npm run clearGmail
       - run: npm run e2e-test17.0
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -432,6 +464,8 @@ jobs:
       - run: npm i
     #  - run: npm run clearGmail
       - run: npm run e2e-test17.1
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -457,6 +491,8 @@ jobs:
       - run: npm i
     #  - run: npm run clearGmail
       - run: npm run e2e-test17.2
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -480,6 +516,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test18
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -503,6 +541,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test19
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -526,6 +566,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test20
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -550,6 +592,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test21
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -574,6 +618,8 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test22
+      - name: Pull latest changes
+      - run: git pull origin gh-pages
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
