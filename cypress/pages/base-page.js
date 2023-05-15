@@ -346,7 +346,7 @@ export default class BasePage {
         return this;
     };
 
-    verify_email_arrives_to_specified_address(emailAccount, emailTemplate) {
+    /*verify_email_arrives_to_specified_address(emailAccount, emailTemplate) {
         cy.task('fetchGmailUnseenMails', {
             username: emailAccount.email,
             password: emailAccount.password,
@@ -366,9 +366,48 @@ export default class BasePage {
         })
 
         return this;
-    };
+    };*/
+    verify_email_arrives_to_specified_address(emailAccount, emailTemplate) {
+        const checkEmail = () => {
+            return cy.task('fetchGmailUnseenMails', {
+                username: emailAccount.email,
+                password: emailAccount.password,
+                markSeen: false
+            }).then(emails => {
+                if (emails.length > 0) {
+                    cy.log('EMAIL IS ' + JSON.stringify(emails[0]))
+                    var last_unread_email = emails[0];
+                    assert.include(last_unread_email.from, emailTemplate.from);
+                    assert.include(last_unread_email.subject, emailTemplate.subject);
 
-    navigate_to(url) {
+                    let email = (JSON.stringify(last_unread_email.body)).replace(/(\r\n\r\n|\n|\r)/gm, "");
+
+                    emailTemplate.attachments.forEach(filename => {
+                        assert.isAbove(email.indexOf(filename), -1)
+                    })
+
+                    return cy.wrap(true);
+                } else {
+                    return cy.wrap(false);
+                }
+            });
+        };
+
+        const retryCheckEmail = () => {
+            checkEmail().then((result) => {
+                if (!result) {
+                    cy.wait(5000); // wait for 1 second
+                    retryCheckEmail(); // try again
+                }
+            });
+        };
+
+        retryCheckEmail();
+
+    }
+
+
+navigate_to(url) {
         cy.visit(url);
         return this;
     };

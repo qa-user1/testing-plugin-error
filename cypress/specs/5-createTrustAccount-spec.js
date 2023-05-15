@@ -67,7 +67,7 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
             .verify_review_page()
     })
 
-    xit('6. Review Review Page', function () {
+    it('6. Review Review Page', function () {
         ui.onboarding.expand_ethical_overlay_panel()
             .verify_no_ethics_selected_message()
             .save_data_object_for_Your_Portfolio_Trust_Profile()
