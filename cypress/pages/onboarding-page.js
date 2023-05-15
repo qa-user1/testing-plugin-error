@@ -852,7 +852,8 @@ export default class OnboardingPage extends BasePage {
 
     click_Submit_Application_button() {
         submitApplicationButton().should('not.have.attr', 'disabled')
-        submitApplicationButton().click()
+        this.scroll_and_click(submitApplicationButton)
+      //  submitApplicationButton().click()
         //  submitApplicationButton().should('not.have.attr', 'disabled')
         return this;
     }
