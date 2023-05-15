@@ -412,7 +412,7 @@ export default class BasePage {
 
         retryCheckEmail();
 
-
+return this;
     }
 
 
