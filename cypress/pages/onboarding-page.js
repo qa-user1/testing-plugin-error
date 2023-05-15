@@ -495,7 +495,7 @@ export default class OnboardingPage extends BasePage {
 
             cy.contains('h1', 'Verify your identity');
 
-        
+
         return this;
 
     }
