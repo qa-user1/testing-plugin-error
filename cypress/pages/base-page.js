@@ -368,6 +368,9 @@ export default class BasePage {
         return this;
     };*/
     verify_email_arrives_to_specified_address(emailAccount, emailTemplate) {
+        const MAX_WAIT_TIME = 90000; // Maximum wait time of 90 seconds
+        let startTime = new Date().getTime();
+
         const checkEmail = () => {
             return cy.task('fetchGmailUnseenMails', {
                 username: emailAccount.email,
@@ -396,13 +399,19 @@ export default class BasePage {
         const retryCheckEmail = () => {
             checkEmail().then((result) => {
                 if (!result) {
-                    cy.wait(5000); // wait for 1 second
-                    retryCheckEmail(); // try again
+                    let currentTime = new Date().getTime();
+                    if (currentTime - startTime < MAX_WAIT_TIME) {
+                        cy.wait(5000); // wait for 5 seconds
+                        retryCheckEmail(); // try again
+                    } else {
+                        throw new Error("Email check timed out");
+                    }
                 }
             });
         };
 
         retryCheckEmail();
+
 
     }
 
