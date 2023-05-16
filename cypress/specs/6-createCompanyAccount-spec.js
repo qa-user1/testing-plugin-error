@@ -57,7 +57,7 @@ context('Company Account', () => {
 
     it('6. Review Review Page', function () {
         ui.onboarding.expand_ethical_overlay_panel()
-            .verify_no_ethics_selected_message()
+            .verify_no_ethics_selected_message(C.noEthicsMessage)
             .save_data_object_for_Your_Portfolio_Trust_Profile()
             .save_data_object_for_Strategic_Asset_Allocation()
             .save_data_object_for_Indicative_Portfolio_Cash()

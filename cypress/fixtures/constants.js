@@ -8,6 +8,8 @@ C.errorMsg = {
     insuranceRequiredFields: '\'investment_account_identifier.personal_super_insurance_premium_choice\' is required'
 
 }
+C.noEthicsMessage = 'You have not chosen any ethics to be excluded from your portfolio'
+C.alertMsgReviewPage = 'You must have minimum 2 applicant(s).'
 
 C.stepMessages = {
     step1: "Welcome to the Nucleus Wealth Onboarding Portal. Please take a minute to familiarise yourself with the key functions of the portal.",

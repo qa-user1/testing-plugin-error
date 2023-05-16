@@ -293,8 +293,8 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    verify_no_ethics_selected_message() {
-        noEthicsSelectedMessage().should('contain.text', 'You have not chosen any ethics to be excluded from your portfolio');
+    verify_no_ethics_selected_message(message) {
+        noEthicsSelectedMessage().should('contain.text', message);
         return this;
     }
 
@@ -311,7 +311,6 @@ export default class OnboardingPage extends BasePage {
             this.enter_Bank_Details(bankDetails)
         }
 
-
         fundNameInputField().type(fundEntryValues.fundName).type('{enter}');
         transferAmountInputField().clear();
         transferAmountInputField().type(fundEntryValues.transferAmount);
@@ -323,10 +322,7 @@ export default class OnboardingPage extends BasePage {
             memberNumberInputField().clear();
             memberNumberInputField().type(fundEntryValues.memberNumber);
         }
-
-
         return this;
-
     }
 
     enter_values_on_super_fund_entry_input_fields(data) {
@@ -348,7 +344,6 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-
     clear_values_on_BYP_input_fields() {
         tacticalGrowthField().clear();
         tacticalIncomeField().clear();
@@ -362,20 +357,24 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_validation_messages_for_BYP_input_fields(data) {
-        this.verify_text(coreInternationalValidationMessage, data.coreInternational);
-        this.verify_text(coreAustraliaValidationMessage, data.coreAustralia);
-        this.verify_text(globalLeadersValidationMessage, data.globalLeaders);
-        this.verify_text(multiAssetValidationMessage, data.multiAssetPortfolios);
-        this.verify_text(australianLeadersValidationMessage, data.australianLeaders);
-        this.verify_text(governmentBondLadderValidationMessage, data.governmentBondLadder);
+        this.verify_text_on_multiple_elements([
+            [coreInternationalValidationMessage, data.coreInternational],
+            [coreAustraliaValidationMessage, data.coreAustralia],
+            [globalLeadersValidationMessage, data.globalLeaders],
+            [multiAssetValidationMessage, data.multiAssetPortfolios],
+            [australianLeadersValidationMessage, data.australianLeaders],
+            [governmentBondLadderValidationMessage, data.governmentBondLadder]
+        ])
         return this;
     }
 
     verify_validation_messages_for_fund_entry_input_fields(data) {
-        this.verify_text(fundNameValidationMsg, data.fundName);
-        this.verify_text(transferAmountValidationMsg, data.transferAmount);
-        this.verify_text(memberNumberValidationMsg, data.memberNumber);
-        this.verify_text(personalSuperAccountTypeValidationMsg, data.personalType);
+        this.verify_text_on_multiple_elements([
+            [fundNameValidationMsg, data.fundName],
+            [transferAmountValidationMsg, data.transferAmount],
+            [memberNumberValidationMsg, data.memberNumber],
+            [personalSuperAccountTypeValidationMsg, data.personalType]
+        ])
         return this;
     }
 
@@ -399,16 +398,18 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_validation_messages_for_create_new_applicant_input_fields(data) {
-        this.verify_text(titleInputValidationMsg, data.titleInput);
-        this.verify_text(givenNameValidationMsg, data.nameInput);
-        this.verify_text(surnameInputValidationMsg, data.surnameInput);
-        this.verify_text(emailInputValidationMsg, data.emailInput);
-        this.verify_text(mobileInputValidationMsg, data.mobileInput);
-        this.verify_text(genderInputValidationMsg, data.genderInput);
-        this.verify_text(birthDateInputValidationMsg, data.birthInput);
-        // this.verify_text(citizenshipInputValidationMsg, data.citizenshipInput);
-        this.verify_text(employmentInputValidationMsg, data.employmentInput);
-        this.verify_text(taxInputValidationMsg, data.taxInput);
+        this.verify_text_on_multiple_elements([
+            [titleInputValidationMsg, data.titleInput],
+            [givenNameValidationMsg, data.nameInput],
+            [surnameInputValidationMsg, data.surnameInput],
+            [emailInputValidationMsg, data.emailInput],
+            [mobileInputValidationMsg, data.mobileInput],
+            [genderInputValidationMsg, data.genderInput],
+            [birthDateInputValidationMsg, data.birthInput],
+           // [citizenshipInputValidationMsg, data.citizenshipInput],
+            [employmentInputValidationMsg, data.employmentInput],
+            [taxInputValidationMsg, data.taxInput]
+        ])
         return this;
     }
 
@@ -449,7 +450,7 @@ export default class OnboardingPage extends BasePage {
             employerBusinessInputField().click();
             employerBusinessInputField().type(data.employerBusiness).type('{enter}');
         }
-        if(type === 'Joint-IB'){
+        if (type === 'Joint-IB') {
             employmentStatusAnnualNetIncomeInputField().type(data.annualNetIncome)
             employmentStatusNetWorthInputField().type(data.netWorth)
         }
@@ -480,30 +481,24 @@ export default class OnboardingPage extends BasePage {
     }
 
     click_submit_applicant_button() {
-        //  this.pause(3)
         submitApplicantButton().should('be.visible');
-        // this.pause(3)
         submitApplicantButton().click().click();
-        //submitApplicantButton().should('not.be.visible');
-        // this.pause(5)
         return this;
     }
 
     verify_your_identity() {
         //this.pause(7)
-       // identity().should('have.text', "Driver's licence");
-
-            cy.contains('h1', 'Verify your identity');
-
-
+        // identity().should('have.text', "Driver's licence");
+        cy.contains('h1', 'Verify your identity');
         return this;
-
     }
 
     upload_and_submit_document_for_verification(idOption, type) {
-        this.pause(4)
+        idOptionList().should('be.visible')
+      //  this.pause(3)
         this.select_id_option(idOption)
-        this.pause(1)
+       // this.pause(1)
+            documentType().should('be.visible')
             .select_document_type(type)
         this.pause(1)
         this.upload_file('1', D.documentType.id)
@@ -513,9 +508,10 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_id_option(idOption) {
-        this.pause(3)
+        idOptionList().should('be.visible')
+        //this.pause(3)
         idOptionList().click();
-        this.pause(3)
+       // this.pause(3)
         cy.contains(idOption).click();
         return this;
     }
@@ -588,13 +584,6 @@ export default class OnboardingPage extends BasePage {
             .clear_all_required_insurance_values()
             .enter_values_for_life_and_tpd_cover(data.insurance)
             .enter_all_required_insurance_values(data.insurance)
-        return this;
-    }
-
-    answer_questions_with_third_option(option) {
-        if (option.includes(3)) {
-            this.answerAllQuestionsWithSameOption(13, 3)
-        }
         return this;
     }
 
@@ -678,20 +667,10 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    /*review_net_worth_annual_net_income_liquid_net_worth(data) {
-        // Is it enough to "call" only 'netWorth' to be reason for if statement, or I should call all the three rows from data
-        if (data.review.questionResponses["NetWorth"]) {
-            this.verify_net_worth_annual_net_income_liquid_net_worth()
-        }
-        return this;
-    }*/
-
     enter_applicant_investment_experience(data) {
-
         this.enter_investment_experience_values(data)
             .upload_file('0', D.documentType.id)
             .upload_file('1', D.documentType.id)
-
         return this;
     }
 
@@ -760,21 +739,8 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    enter_core_international_value(option) {
-        if (option.includes('50%')) {
-            coreInternationalField().type('50');
-        }
-        return this;
-    }
-
-    type_investment_total(option) {
-        if (option.includes('100000')) {
-            investmentTotalField().type('100000');
-        }
-        return this;
-    }
-
     click_create_new_investment_account() {
+        newInvestmentButton().should('be.visible')
         newInvestmentButton().click()
         return this;
     }
@@ -853,8 +819,6 @@ export default class OnboardingPage extends BasePage {
     click_Submit_Application_button() {
         submitApplicationButton().should('not.have.attr', 'disabled')
         this.scroll_and_click(submitApplicationButton)
-      //  submitApplicationButton().click()
-        //  submitApplicationButton().should('not.have.attr', 'disabled')
         return this;
     }
 
@@ -864,11 +828,8 @@ export default class OnboardingPage extends BasePage {
     }
 
     remove_existing_applicant() {
-        // this.pause(6)
         applicantCardMenuButton().should('be.visible');
         applicantCardMenuButton().click();
-
-        // this.pause(3)
         removeApplicantButton().should('be.visible');
         removeApplicantButton().click();
         popUpWindowRemoveApplicant().click();
@@ -883,9 +844,9 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    verify_alert_msg_final_review_page() {
+    verify_alert_msg_final_review_page(alertMsg) {
         alertMsgFinalReviewPage().should('be.visible');
-        alertMsgFinalReviewPage().should('contain', 'You must have minimum 2 applicant(s).');
+        alertMsgFinalReviewPage().should('contain', alertMsg);
         return this;
     }
 
@@ -895,7 +856,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_add_new_applicant_page() {
-    //    applicantForm().should('be.visible');
+        //    applicantForm().should('be.visible');
         this.verify_text_is_visible('General Details');
         this.verify_text_is_visible('Tax Details');
         this.verify_text_is_visible('Residential Address');
@@ -1019,7 +980,6 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_applicants_page() {
-        // this.pause(6)
         //   applicantCardMenuButton().should('be.visible')
         cy.url().should('include', 'applicants');
         pageTitle().should('have.text', 'Applicants');
@@ -1141,22 +1101,6 @@ export default class OnboardingPage extends BasePage {
                 feesAndChargesPanel().click();
             }
         })
-        return this;
-    }
-
-    verify_chosen_ethics2(label_values__stacks) {
-        label_values__stacks.forEach(function (stack) {
-            if (stack[1]) {
-                if (Array.isArray(stack[1])) {
-                    stack[1].forEach(function (value) {
-                        chosenEthicsContainer(stack[0]).invoke('text').should('contain', value)
-                    })
-                } else {
-                    chosenEthicsContainer(stack[0]).invoke('text').should('contain', stack[0])
-                }
-
-            }
-        });
         return this;
     }
 
