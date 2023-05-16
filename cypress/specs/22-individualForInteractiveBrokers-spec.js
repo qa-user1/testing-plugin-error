@@ -191,7 +191,7 @@ D.applicantsProfileFields.type = 'Individual-IB'
             .click_Agree_checkbox()
             .click_Submit_Application_button()
         ui.onboarding.verify_success_page()
-        cy.wait(45000)
+       // cy.wait(45000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individual_IB_AccountCreated)
     });
 })
