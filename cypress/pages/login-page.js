@@ -193,8 +193,8 @@ confirmAccount().click()
         return this;
     }
 
-    verify_error_message() {
-        loginErrorMsg().should('have.text', 'Incorrect username or password.');
+    verify_error_message(errorMsg) {
+        loginErrorMsg().should('have.text', errorMsg);
         return this;
     }
 

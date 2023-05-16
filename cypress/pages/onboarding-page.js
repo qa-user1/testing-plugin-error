@@ -495,10 +495,9 @@ export default class OnboardingPage extends BasePage {
 
     upload_and_submit_document_for_verification(idOption, type) {
         idOptionList().should('be.visible')
-      //  this.pause(3)
+        this.pause(3)
         this.select_id_option(idOption)
-       // this.pause(1)
-            documentType().should('be.visible')
+       this.pause(1)
             this.select_document_type(type)
         this.pause(1)
         this.upload_file('1', D.documentType.id)
@@ -870,7 +869,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_document_type(option) {
-        this.pause(2)
+        documentType().should('be.visible')
         documentType().select(option);
         return this;
     }
