@@ -8,7 +8,6 @@ import D from "../fixtures/data";
 
 let
     adminHeader = e => cy.get('[data-testid="nucleus-header-navbar"]'),
-    kanbanMenu = e => cy.get('[role="menu"]').find(),
     kanbans = e => cy.contains('Kanbans'),
     stats = e => cy.contains('Stats'),
     sales = e => cy.contains('Sales'),
@@ -84,68 +83,79 @@ export default class AdminPage extends BasePage {
     }
 
     click_kanbans_submenu() {
+        kanbans().should('be.visible')
         kanbans().click();
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_stats_submenu() {
+        stats().should('be.visible')
         stats().click();
-        this.pause(2)
+        //this.pause(2)
         return this;
     }
 
     click_sales_submenu() {
+        sales().should('be.visible')
         sales().click();
-        this.pause(2)
+      //  this.pause(2)
         return this;
     }
 
     click_key_prospects() {
+        keyProspects().should('be.visible')
         keyProspects().click({force: true});
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_agile_tasks() {
+        agileTasks().should('be.visible')
         agileTasks().click({force: true});
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_contact_clients() {
+        contactClients().should('be.visible')
         contactClients().click({force: true});
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_brokerage_free_offer() {
+        brokerageFreeOffer().should('be.visible')
         brokerageFreeOffer().click({force: true});
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_trading_submenu() {
+        trading().should('be.visible')
         trading().click();
-        this.pause(2)
+        //this.pause(2)
         return this;
     }
 
     click_trade_recent() {
+        tradeRecent().should('be.visible')
         tradeRecent().click({force: true});
-        this.pause(2)
+      //  this.pause(2)
         return this;
     }
 
     click_trade_weights() {
+        tradeWeights().should('be.visible')
         tradeWeights().click({force: true});
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_important_follow_ups() {
+        importantFollowUps().should('be.visible')
         importantFollowUps().click({force: true});
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
@@ -155,57 +165,66 @@ export default class AdminPage extends BasePage {
     }
 
     click_client() {
+        client().should('be.visible')
         client().click({force: true});
-        this.pause(2)
+        //this.pause(2)
         return this;
     }
 
     click_research() {
+        research().should('be.visible')
         research().click({force: true});
-        this.pause(2)
+      //  this.pause(2)
         return this;
     }
 
     click_non_client_certified_docs() {
+        nonClientCertifiedDocs().should('be.visible')
         nonClientCertifiedDocs().click();
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_investment_account_search() {
+        investmentAccountSearch().should('be.visible')
         investmentAccountSearch().click();
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_property_calculator() {
+        propertyCalculator().should('be.visible')
         propertyCalculator().click();
-        this.pause(2)
+        //this.pause(2)
         return this;
     }
 
     click_ethical_investment() {
+        ethicalInvestment().should('be.visible')
         ethicalInvestment().click();
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_investment_suitability() {
+        investmentSuitability().should('be.visible')
         investmentSuitability().click();
-        this.pause(2)
+      //  this.pause(2)
         return this;
     }
 
 
     click_insurance_kanban() {
+        insuranceKanban().should('be.visible')
         insuranceKanban().click({force: true});
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
     click_onboarding_kanban() {
+        onboardingKanban().should('be.visible')
         onboardingKanban().click({force: true});
-        this.pause(2)
+       // this.pause(2)
         return this;
     }
 
@@ -312,12 +331,12 @@ return this;
         cy.contains('Current Settings').click();
         return this;
     }
-    verify_current_settings(){
-        this.verify_text_is_visible('Data Snapshot Details');
-        this.verify_text_is_visible('Portfolio Weights');
-        this.verify_text_is_visible('Ethic Settings');
-        this.verify_text_is_visible('Securities Excluded');
-        this.verify_text_is_visible('Securities Substituted');
+    verify_current_settings(data){
+        this.verify_text_is_visible(data.snapshotDetails);
+        this.verify_text_is_visible(data.portfolioWeights);
+        this.verify_text_is_visible(data.ethicsSettings);
+        this.verify_text_is_visible(data.securitiesExcluded);
+        this.verify_text_is_visible(data.securitiesSubstituted);
         return this;
     }
 }

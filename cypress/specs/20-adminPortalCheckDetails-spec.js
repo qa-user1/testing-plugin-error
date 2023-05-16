@@ -54,7 +54,7 @@ context('Admin Portal - Check details', () => {
 
     it('7. Check Current Settings', function () {
         ui.admin.click_current_settings()
-            .verify_current_settings()
+            .verify_current_settings(D.currentSettings)
 
     })
 

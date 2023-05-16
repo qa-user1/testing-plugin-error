@@ -409,6 +409,14 @@ D.fundEntryInputFields = {
     memberNumber: '5'
 }
 
+D.currentSettings = {
+  snapshotDetails: 'Data Snapshot Details',
+  portfolioWeights: 'Portfolio Weights',
+  ethicsSettings: 'Ethic Settings',
+  securitiesExcluded: 'Securities Excluded',
+  securitiesSubstituted: 'Securities Substituted'
+}
+
 D.finalReviewValidationMessage = {
     agreeCheckbox: 'Please check this box to proceed'
 }

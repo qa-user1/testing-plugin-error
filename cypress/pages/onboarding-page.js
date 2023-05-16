@@ -498,7 +498,7 @@ export default class OnboardingPage extends BasePage {
       //  this.pause(3)
         this.select_id_option(idOption)
        // this.pause(1)
-            documentType().should('be.visible')
+            .documentType().should('be.visible')
             .select_document_type(type)
         this.pause(1)
         this.upload_file('1', D.documentType.id)
@@ -2149,7 +2149,8 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_sidebar_content_not_exist(option) {
-        this.pause(5)
+        //this.pause(5)
+        sideBar().should('be.visible')
         sideBar().should('not.contain', option);
         return this;
     }
@@ -2204,13 +2205,13 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_your_portfolio_content_not_exist(option) {
-        this.pause(3)
+        //this.pause(3)
+        cy.get('[class="ant-collapse-content ant-collapse-content-active"]').should('be.visible');
         cy.get('[class="ant-collapse-content ant-collapse-content-active"]').should('not.contain', option);
         return this;
     }
 
     go_through_tour_steps(data) {
-        // this.pause(3)
         tourWindow().should('be.visible');
         this.verify_text_is_visible(data.step1)
         nextButtonTourWindow().click()
