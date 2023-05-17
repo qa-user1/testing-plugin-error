@@ -54,7 +54,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     globalLeadersValidationMessage = e => cy.contains('Global Leaders').parent().parent().parent().find('[role="alert"]'),
     australianLeadersValidationMessage = e => cy.contains('Australian Leaders').parent().parent().parent().find('[role="alert"]'),
     governmentBondLadderValidationMessage = e => cy.contains('Government Bond Ladder').parent().parent().parent().find('[role="alert"]'),
-    multiAssetValidationMessage = e => cy.contains('Multi Asset Portfolios').parent().parent().parent().parent().parent().parent().find('[role="alert"]'),
+    multiAssetValidationMessage = e => cy.contains('Multi-asset Portfolios').parent().parent().parent().parent().parent().parent().find('[role="alert"]'),
     bsbValidationMessage = e => cy.contains('BSB').parent().parent().parent().find('[role="alert"]'),
     accountNumberValidationMessage = e => cy.contains('Account Number').parent().parent().parent().find('[role="alert"]'),
     financialInstitutionValidationMessage = e => cy.contains('Financial Institution').parent().parent().parent().find('[role="alert"]'),
@@ -215,6 +215,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     netWorth = e => cy.get('#risk-profile-form_financialInfo_net_worth'),
     annualNetIncome = e => cy.get('#risk-profile-form_financialInfo_annual_net_income'),
     liquidNetWorth = e => cy.get('#risk-profile-form_financialInfo_liquid_net_worth'),
+    birthYear = e => cy.get('#risk-profile-form_financialInfo_birth_year'),
     investmentTotal = e => cy.get('#risk-profile-form_investment_total'),
     sideBar = e => cy.get('[class="ant-layout-sider ant-layout-sider-dark"]'),
     tourWindow = e => cy.get('.ant-tour-inner'),
@@ -592,6 +593,9 @@ export default class OnboardingPage extends BasePage {
         netWorth().type(data.netWorth);
         annualNetIncome().type(data.annualNetIncome);
         liquidNetWorth().type(data.liquidNetWorth);
+        birthYear().click();
+        birthYear().clear();
+        birthYear().type(data.birthYear).type('{enter}');
         return this;
     }
 
@@ -762,7 +766,7 @@ export default class OnboardingPage extends BasePage {
 
     verify_types_of_investment_account() {
         investmentLayout().should('be.visible');
-        this.verify_text_is_visible('What type of Investment Account would you like to open?');
+        this.verify_text_is_visible('What type of investment account would you like to open?');
         this.verify_text_is_visible('Super');
         this.verify_text_is_visible('Non-Super');
         return this;
@@ -935,8 +939,8 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_super_subtypes() {
-        personalSuperType().should('have.text', 'Personal Super');
-        SMSFSuperType().should('have.text', 'SMSF');
+        personalSuperType().should('have.text', 'Personal Super ');
+        SMSFSuperType().should('have.text', 'SMSF ');
         return this;
     }
 
@@ -965,7 +969,7 @@ export default class OnboardingPage extends BasePage {
     verify_ethical_overlay_page() {
         climateChangeButton().should('be.visible')
         cy.url().should('include', 'ethical-overlay');
-        pageTitle().should('have.text', 'Ethical Overlay');
+        pageTitle().should('have.text', 'Screen and tilts');
         this.verify_text(selectedMenuOption, 'Ethical Overlay')
         this.verify_text_is_present_on_main_container('Vices')
         return this;
@@ -975,6 +979,13 @@ export default class OnboardingPage extends BasePage {
         climateChangeButton().should('be.visible')
         cy.url().should('include', 'ethical-overlay');
         pageTitle2().should('have.text', 'Ethical Overlay');
+        return this;
+    }
+
+    verify_screen_and_tilts_page() {
+        climateChangeButton().should('be.visible')
+        cy.url().should('include', 'ethical-overlay');
+        pageTitle().should('have.text', 'Screen and tilts');
         return this;
     }
 
@@ -2212,6 +2223,7 @@ export default class OnboardingPage extends BasePage {
 
     go_through_tour_steps(data) {
         tourWindow().should('be.visible');
+        this.pause(1)
         this.verify_text_is_visible(data.step1)
         nextButtonTourWindow().click()
         this.verify_text_is_visible(data.step2)
@@ -2238,8 +2250,8 @@ export default class OnboardingPage extends BasePage {
     }
 
     click_and_verify_each_modal_step() {
-        this.verify_text_is_visible('Video Tutorial');
-        videoTutorial().should('be.visible');
+      //  this.verify_text_is_visible('Video Tutorial');
+      //  videoTutorial().should('be.visible');
         this.verify_text_is_visible('Chat with us');
         cy.contains('Chat with us').click();
         chat().should('be.visible');

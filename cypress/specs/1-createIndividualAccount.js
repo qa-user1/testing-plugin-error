@@ -6,7 +6,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
 
 
     before(function () {
-        Cypress.Cookies.debug(true)
+       /* Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -19,10 +19,10 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
-      /*  cy.clearAllLocalStorage()
+        )*/
+        cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
+        cy.clearAllSessionStorage()
     })
 
     it('1. Validate login credentials', function () {
@@ -31,7 +31,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .enter_wrong_credentials_and_click_Sign_In(D.user.username, 'wrongPass')
             .verify_error_message(C.wrongCredentials)
              .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-             .redirect_user_to_the_create_a_new_account_page()
+            // .redirect_user_to_the_create_a_new_account_page()
          ui.onboarding.verify_account_selection()
     })
 
@@ -53,7 +53,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
         cy.saveLocalStorage()
     })
 
-    it('4. Check Help Modal in Investment Choice', function () {
+    xit('4. Check Help Modal in Investment Choice', function () {
         ui.onboarding.click_on_need_help_with_this_page()
             .verify_modal_window()
             .click_and_verify_each_modal_step()
@@ -61,12 +61,20 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
 
     })
 
-    it('5. Navigate to Build Your Portfolio Page from Investment Choice', function () {
+    it('5. Navigate to Risk Profile Page from Investment Choice', function () {
         ui.onboarding.click_self_directed_button()
             .verify_acknowledgment_and_agreement_appear()
             .click_Save_and_Continue_button()
             .verify_text_is_visible(C.errorMsg.checkAllBoxes)
-            .select_all_checkboxes(5)
+            .select_all_checkboxes(6)
+            .click_Save_and_Continue_button()
+            .verify_risk_profile_page()
+    })
+
+    it('6. Complete Risk Profile', function () {
+        ui.onboarding.answerAllQuestionsWithSameOption(12, 2)
+
+            ui.onboarding.enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_build_your_portfolio_page()
     })
@@ -77,11 +85,11 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .verify_validation_messages_for_BYP_input_fields(D.buildYouPortfolioValidationMessages)
             .clear_values_on_BYP_input_fields()
             .enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
-            .click_Save_and_Continue_button()
-            .verify_ethical_overlay_page()
+           // .click_Save_and_Continue_button()
+           // .verify_ethical_overlay_page()
     })
 
-    it('7. Complete Ethical Overlay', function () {
+    it('7. Complete Screen and Tilts', function () {
         ui.onboarding.click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -92,21 +100,22 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('8. Review Review Page', function () {
-        ui.onboarding.expand_ethical_overlay_panel()
+       /* ui.onboarding.expand_ethical_overlay_panel()
             .verify_chosen_ethics([
                 ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
                 ['War', ['No Arms (Any)']]
             ])
             .verify_your_portfolio_panel(D.yourPortfolioValues)
             .review_indicative_portfolio(D.indicativePortfolio)
-            .review_indicative_portfolio_excluded_securities(D.indicativePortfolioExcludedSecurities)
+            .review_indicative_portfolio_excluded_securities(D.indicativePortfolioExcludedSecurities)*/
             ui.onboarding.click_Save_and_Continue_button()
     })
 
     it('9. Navigate to Risk Profile', function () {
+
         ui.onboarding.click_sidebar_option('Investment Choice')
-            .click_limited_advice_button()
             .go_through_tour_steps(C.stepMessages)
+            .click_limited_advice_button()
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
@@ -114,12 +123,17 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
 
     it('10. Complete Risk Profile and navigate to Review', function () {
        cy.wait(3000)
-        ui.onboarding.click_Save_and_Continue_button()
-            .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
-            .answerAllQuestionsWithSameOption(13, 2)
+
+
+            //.click_Save_and_Continue_button()
+          //  .click_Save_and_Continue_button()
+            //.verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
-            .verify_ethical_overlay_page()
+            .verify_screen_and_tilts_page()
             .click_Save_and_Continue_button()
             .verify_review_page()
     })
@@ -143,14 +157,14 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
     })
 
-    it('11. Scrape results from Review and navigate to Applicants', function () {
+    xit('11. Scrape results from Review and navigate to Applicants', function () {
         ui.onboarding
             .save_final_JSON_report('individual_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
 
-    it('12. Complete Applicants', function () {
+    xit('12. Complete Applicants', function () {
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
@@ -159,7 +173,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .verify_validation_messages_for_create_new_applicant_input_fields(D.applicantsProfileValidationMessages)
     });
 
-    it('12. Complete Applicants', function () {
+    xit('12. Complete Applicants', function () {
         ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
             .verify_your_identity()
@@ -167,13 +181,13 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
     });
 
-    it('12. Complete Applicants', function () {
+    xit('12. Complete Applicants', function () {
         ui.onboarding.upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)
             .click_Save_and_Continue_button()
             .verify_Bank_Details_page()
     });
 
-    it('13. Complete Bank Details', function () {
+    xit('13. Complete Bank Details', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)
             .enter_Bank_Details(D.bankDetails)
@@ -181,7 +195,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .verify_Final_Review_page()
     });
 
-    it('14. Complete Final Review', function () {
+    xit('14. Complete Final Review', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }

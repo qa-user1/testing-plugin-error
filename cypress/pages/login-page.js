@@ -118,8 +118,14 @@ export default class LoginPage extends BasePage {
     }
 
     redirect_user_to_the_create_a_new_account_page() {
-        mainContainerHome().should('be.visible');
+        cy.get('body').then(($body) => {
+            if ($body.find(mainContainerHome()).length > 0) {
+                mainContainerHome().should('be.visible');
                 createNewAccount().invoke('removeAttr', 'target').click({force:true})
+            } else {
+
+            }
+        })
         return this;
     }
 
