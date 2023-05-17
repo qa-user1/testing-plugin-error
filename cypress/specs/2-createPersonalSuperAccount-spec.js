@@ -13,8 +13,8 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
          })
      });*/
 
-    beforeEach(function () {
-        Cypress.Cookies.debug(true)
+    before(function () {
+       /* Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -27,11 +27,14 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
+        )*/
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
 
     })
 
-    it.only('1. Validate login credentials', function () {
+    it('1. Validate login credentials', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
@@ -63,7 +66,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
         ui.onboarding.answerAllQuestionsWithSameOption(12, 2)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
-            .verify_ethical_overlay_page()
+            .verify_screen_and_tilts_page()
     })
 
     it('5. Complete Ethical Overlay', function () {
@@ -97,8 +100,8 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
             .save_data_object_for_Indicative_Portfolio_Cash()
             .save_data_object_for_Indicative_Portfolio_Bonds()
             .save_data_object_for_Indicative_Portfolio_Australian_Shares()
-            .save_data_object_for_Indicative_Portfolio_International_Shares()
-            .save_data_object_for_Indicative_Portfolio_Excluded_securities()
+            .save_data_object_for_Indicative_Portfolio_International_Shares_personal_super()
+            .save_data_object_for_Indicative_Portfolio_Excluded_securities_personal_super()
             .save_data_object_for_Fees_Australian_Super()
             .save_data_object_for_Your_Fees()
     })

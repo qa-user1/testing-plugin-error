@@ -990,7 +990,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_applicants_page() {
-        //   applicantCardMenuButton().should('be.visible')
+           applicantCardMenuButton().should('be.visible')
         cy.url().should('include', 'applicants');
         pageTitle().should('have.text', 'Applicants');
         return this;
@@ -1576,13 +1576,26 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    save_final_JSON_report(prefix) {
+    /*save_final_JSON_report(prefix) {
         cy.log('Object is ' + JSON.stringify(D.dataForExport))
         individualAccountNumber().invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
             let accountNo = text.match('Account (' + "(.*)" + ')')[1];
             cy.writeFile('S3_bucket/' + prefix + accountNo + '.json', D.dataForExport)
         })
+        return this;
+    }*/
+
+    save_final_JSON_report(prefix) {
+        cy.log('Object is ' + JSON.stringify(D.dataForExport))
+        let currentdate = new Date();
+        let datetime = currentdate.getFullYear() + "-"
+            + (currentdate.getMonth()+1)  + "-"
+            + currentdate.getDate() + "_"
+            + currentdate.getHours() + "-"
+            + currentdate.getMinutes() + "-"
+            + currentdate.getSeconds();
+            cy.writeFile('S3_bucket/' + prefix + '_' + datetime + '.json', D.dataForExport)
         return this;
     }
 
@@ -1652,7 +1665,6 @@ export default class OnboardingPage extends BasePage {
 
     save_data_object_for_Indicative_Portfolio_Bonds() {
         let firstColumnValues = [
-            'AGB Apr-2023 (GSBG23)',
             'AGB Apr-2024 (GSBG24)',
             'AGB Apr-2025 (GSBG25)',
             'AGB Apr-2026 (GSBG26)',
@@ -1700,7 +1712,7 @@ export default class OnboardingPage extends BasePage {
 
     save_data_object_for_Indicative_Portfolio_Australian_Shares() {
         let firstColumnValues = [
-            'ANZ Bank (ANZ)',
+            'ANZ (ANZ)',
             'Aristocrat Leisure (ALL)',
             'Coles (COL)',
             'Commonwealth Bank (CBA)',
@@ -1717,7 +1729,8 @@ export default class OnboardingPage extends BasePage {
             'Wesfarmers (WES)',
             'Westpac Bank (WBC)',
             'WiseTech Global (WTC)',
-            'Woolworths (WOW)'
+            'Woolworths (WOW)',
+            'Xero (XRO)'
         ]
 
         let self = this
@@ -1766,7 +1779,6 @@ export default class OnboardingPage extends BasePage {
         let firstColumnValues = [
             '3M (MMM)',
             'ABB (ABBN)',
-            'ABB Turbo Systems (ACLN)',
             'Activision Blizzard (ATVI)',
             'Alphabet (GOOG)',
             'Amada (6113)',
@@ -1781,6 +1793,82 @@ export default class OnboardingPage extends BasePage {
             'Citizens Financial (CFG)',
             'Cognizant (CTSH)',
             'DBS (D05)',
+            'Deutsche Telekom (DTE)',
+            'Diageo (DGE)',
+            'eBay (EBAY)',
+            'EDP (EDP)',
+            'Eli Lilly and (LLY)',
+           // 'Endesa (ELE)',
+           // 'ENGIE (ENGI)',
+            'Expedia (EXPE)',
+          //  'General Dynamics (GD)',
+            'General Motors (GM)',
+          //  'Hitachi (6501)',
+            'HOYA Corp (7741)',
+            'Intertek (ITRK)',
+            'J. M. Smucker (SJM)',
+            'Johnson & Johnson (JNJ)',
+            'JPMorgan Chase (JPM)',
+            'KDDI Corp (9433)',
+           // 'L3Harris Technologies (LHX)',
+            'LVMH Moët Hennessy (MC)',
+            'Merck (MRK)',
+            'Meta Platforms (META)',
+            'Microsoft Corp (MSFT)',
+            'Moncler (MONC)',
+            'Newmont Corp (NEM)',
+            'Nintendo (7974)',
+            'Novartis (NOVN)',
+            'Novo Nordisk (NOVO B)',
+            'Paychex (PAYX)',
+            'Pernod Ricard (RI)',
+            'Philip Morris Int. (PM)',
+            'Public Storage (PSA)',
+            'Recordati (REC)',
+            'Robert Half Int. (RHI)',
+            'Royal Ahold Delhaize (AD)',
+            'Sanofi (SAN)',
+            'Schneider Electric (SU)',
+            'Sony Group Corp (6758)',
+            'Taisei Corp (1801)',
+            'Telenor ASA (TEL)',
+            'Unilever (ULVR)',
+            'Vinci (DG)',
+            'Visa (V)',
+           // 'Volkswagen (VOW3)',
+            'Willis Towers Watson (WTW)',
+            'Zoetis (ZTS)',
+        ]
+
+        let self = this
+        firstColumnValues.forEach(function (value) {
+            self.amountInTableFoundByLabelInFirstColumn(value).invoke('text').then(function (amount) {
+                D.dataForExport.indicativePortfolio['International Shares'][value] = amount
+            })
+        })
+        return this;
+    }
+
+    save_data_object_for_Indicative_Portfolio_International_Shares_personal_super() {
+        let firstColumnValues = [
+            '3M (MMM)',
+            'ABB (ABBN)',
+            'Activision Blizzard (ATVI)',
+            'Alphabet (GOOG)',
+            'Amada (6113)',
+            'American Tower Corp (AMT)',
+            'Apple (AAPL)',
+            'Applied Materials (AMAT)',
+            'Assicurazioni Generali (G)',
+            'Astellas Pharma (4503)',
+            'Bristol-Myers Squibb (BMY)',
+            'CDW Corp (CDW)',
+            'Cisco Systems (CSCO)',
+            'Citizens Financial (CFG)',
+            'Cognizant (CTSH)',
+            'DBS (D05)',
+            'Deutsche Telekom (DTE)',
+            'Diageo (DGE)',
             'eBay (EBAY)',
             'EDP (EDP)',
             'Eli Lilly and (LLY)',
@@ -1795,24 +1883,22 @@ export default class OnboardingPage extends BasePage {
             'LVMH Moët Hennessy (MC)',
             'Merck (MRK)',
             'Meta Platforms (META)',
-            'Michelin (ML)',
             'Microsoft Corp (MSFT)',
             'Moncler (MONC)',
             'Newmont Corp (NEM)',
             'Nintendo (7974)',
             'Novartis (NOVN)',
             'Novo Nordisk (NOVO B)',
-            'O\'Reilly Automotive (ORLY)',
             'Paychex (PAYX)',
+            'Pernod Ricard (RI)',
+            'Philip Morris Int. (PM)',
             'Public Storage (PSA)',
             'Recordati (REC)',
             'Robert Half Int. (RHI)',
-            'Roche (ROG)',
             'Royal Ahold Delhaize (AD)',
             'Sanofi (SAN)',
             'Schneider Electric (SU)',
             'Sony Group Corp (6758)',
-            'Southwest Airlines (LUV)',
             'Taisei Corp (1801)',
             'Telenor ASA (TEL)',
             'Unilever (ULVR)',
@@ -1913,6 +1999,28 @@ export default class OnboardingPage extends BasePage {
             'BHP (BHP)',
             'Hitachi (6501)',
             'Endesa (ELE)',
+            'ENGIE (ENGI)',
+        ]
+
+        let self = this
+        firstColumnValues.forEach(function (value) {
+            self.amountInTableFoundByLabelInFirstColumn(value, 2).invoke('text').then(function (amount) {
+                D.dataForExport.indicativePortfolio['Security'][value] = amount
+            })
+        })
+        return this;
+    }
+
+    save_data_object_for_Indicative_Portfolio_Excluded_securities_personal_super() {
+        let firstColumnValues = [
+            'General Dynamics (GD)',
+            'Endesa (ELE)',
+            'L3Harris Technologies (LHX)',
+            'BHP (BHP)',
+            'Volkswagen (VOW3)',
+            'Woodside Energy (WDS)',
+          'APA (APA)',
+            'Hitachi (6501)',
             'ENGIE (ENGI)',
         ]
 

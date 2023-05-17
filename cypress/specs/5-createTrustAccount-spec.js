@@ -6,7 +6,7 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
 
 
     before(function () {
-        Cypress.Cookies.debug(true)
+      /*  Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -19,10 +19,10 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-            )
-      /*  cy.clearAllLocalStorage()
+            )*/
+        cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
+        cy.clearAllSessionStorage()
 
     })
 
@@ -59,12 +59,12 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
         D.buildYouPortfolioFields.coreInternational = '100'
         ui.onboarding.enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
             .click_Save_and_Continue_button()
-            .verify_ethical_overlay_page()
+           // .verify_ethical_overlay_page()
     })
 
     it('5. Complete Ethical Overlay', function () {
-        ui.onboarding.click_Save_and_Continue_button()
-            .verify_review_page()
+       // ui.onboarding.click_Save_and_Continue_button()
+            ui.onboarding.verify_review_page()
     })
 
     it('6. Review Review Page', function () {

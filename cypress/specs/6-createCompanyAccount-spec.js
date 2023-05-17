@@ -47,7 +47,7 @@ context('Company Account', () => {
         D.buildYouPortfolioFields.coreInternational = '100'
         ui.onboarding.enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
             .click_Save_and_Continue_button()
-            .verify_ethical_overlay_page()
+            .verify_screen_and_tilts_page()
     })
 
     it('5. Complete Ethical Overlay', function () {
