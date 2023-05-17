@@ -123,13 +123,11 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
 
     it('10. Complete Risk Profile and navigate to Review', function () {
        cy.wait(3000)
-
-
-            //.click_Save_and_Continue_button()
-          //  .click_Save_and_Continue_button()
+        ui.onboarding.click_Save_and_Continue_button()
+        cy.wait(2000)
+        ui.onboarding.click_Save_and_Continue_button()
             //.verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
-        cy.clearAllLocalStorage()
-        cy.clearAllCookies()
+
         ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
