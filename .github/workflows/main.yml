@@ -621,6 +621,7 @@ jobs:
           ref: gh-pages
       - name: Install dependencies
         run: |
+          git config — global http.postBuffer 157286400
           npm init --yes
           npm i allure-commandline --save-dev
           mkdir allure-results
