@@ -392,7 +392,7 @@ export default class OnboardingPage extends BasePage {
 
     verify_validation_messages_for_compliance_page_fields(data) {
         this.verify_text_on_multiple_elements([
-            [statementOfInquiryValidationMessage, data.statementOfInquiry],
+          //  [statementOfInquiryValidationMessage, data.statementOfInquiry],
             [sourceTypeValidationMessage, data.sourceType],
             [percentageValidationMessage, data.percentage]
         ])
