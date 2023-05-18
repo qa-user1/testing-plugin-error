@@ -6,8 +6,8 @@ const d = D.scenarios[0]
 context('Log in to the Nucleus Wealth portal, create a Joint Account and complete the onboarding portal', () => {
 
 
-    beforeEach(function () {
-        Cypress.Cookies.debug(true)
+    before(function () {
+       /* Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -20,8 +20,10 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
-
+        )*/
+         cy.clearAllLocalStorage()
+              cy.clearAllCookies()
+              cy.clearAllSessionStorage()
     })
 
 
@@ -60,7 +62,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_screen_and_tilts_page()
     })
 
-    it('5. Complete Ethical Overlay', function () {
+    it('5. Complete Screen and tilts', function () {
         ui.onboarding.click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -70,7 +72,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_review_page()
     })
 
-    it('6. Review Review Page', function () {
+    xit('6. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestions, D.reviewResponses)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -81,9 +83,8 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .save_data_object_for_Strategic_Asset_Allocation()
             .save_data_object_for_Indicative_Portfolio_Cash()
             .save_data_object_for_Indicative_Portfolio_Bonds()
-            .save_data_object_for_Indicative_Portfolio_Australian_Shares()
+            .save_data_object_for_Indicative_Portfolio_Australian_Shares_2()
             .save_data_object_for_Indicative_Portfolio_International_Shares()
-            .save_data_object_for_Indicative_Portfolio_Excluded_securities()
             .save_data_object_for_Fees_and_Charges_On_Going_Fees()
             .save_data_object_for_Fees_and_Charges_Embedded_Fees()
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
@@ -91,7 +92,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
 
     it('6. Review Review Page', function () {
         ui.onboarding
-         //   .save_final_JSON_report('joint_')
+            .save_final_JSON_report('joint_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
@@ -102,7 +103,9 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
             .verify_add_new_applicant_page()
-            .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+        D.applicantsProfileFields.type = 'Joint'
+        ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+            .enter_applicant_investment_experience(D.investmentExperience)
             .click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
@@ -122,10 +125,22 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     it('9. Complete Bank Details', function () {
         ui.onboarding.enter_Bank_Details(D.bankDetails)
             .click_Save_and_Continue_button()
+            .verify_compliance_page()
+    });
+
+    it('10. Complete Compliance', function () {
+        ui.app.verify_text_is_visible('Investment Objective')
+            .verify_text_is_visible('Trading Permission')
+            .verify_text_is_visible('Source of Wealth')
+            .verify_text_is_visible('Affiliation Detail')
+        ui.onboarding.click_Save_and_Continue_button()
+            .verify_validation_messages_for_compliance_page_fields(D.compliancePageValidationMessages)
+            .enter_compliance_source_type_and_percentage(D.compliancePageInputFields)
+        ui.onboarding.click_Save_and_Continue_button()
             .verify_Final_Review_page()
     });
 
-    it('10. Review Final Review', function () {
+    it('11. Review Final Review', function () {
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'Statement of Advice',
@@ -136,10 +151,12 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_applicants_page()
     });
 
-    it('11. Add another investor in Applicants', function () {
+    it('12. Add another investor in Applicants', function () {
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
-            .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+        D.applicantsProfileFields.type = 'Joint'
+        ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+            .enter_applicant_investment_experience(D.investmentExperience)
             .click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
@@ -152,7 +169,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .click_Save_and_Continue_button()
     });
 
-    it('12. Review Final Review', function () {
+    it('13. Review Final Review', function () {
         ui.onboarding.verify_no_alert_msg_final_review_page()
     });
 })

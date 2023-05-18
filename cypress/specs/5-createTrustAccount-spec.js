@@ -58,12 +58,10 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
     it('4. Complete Build Your Portfolio', function () {
         D.buildYouPortfolioFields.coreInternational = '100'
         ui.onboarding.enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
-            .click_Save_and_Continue_button()
-           // .verify_ethical_overlay_page()
     })
 
-    it('5. Complete Ethical Overlay', function () {
-       // ui.onboarding.click_Save_and_Continue_button()
+    it('5. Complete Screen and tilts', function () {
+        ui.onboarding.click_Save_and_Continue_button()
             ui.onboarding.verify_review_page()
     })
 

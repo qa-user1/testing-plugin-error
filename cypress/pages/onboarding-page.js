@@ -95,7 +95,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     coreInternationalPercentage = e => cy.get('[data-test="review-coreInternationalWeighting-text"]'),
     tacticalGrowthAmount = e => cy.get('[data-test="review-tacticalGrowthAmount-text"]'),
     tacticalGrowthPercentage = e => cy.get('[data-test="review-tacticalGrowthWeighting-text"]'),
-    warButton = e => cy.get(':nth-child(2) > .ant-radio-button-wrapper'),
+    //warButton = e => cy.get(':nth-child(2) > .ant-radio-button-wrapper'),
+    warButton = e => cy.contains('War'),
     removeApplicantButton = e => cy.get('[data-test="applicants-userCardRemove-btn"]'),
     userCardFirst = e => cy.get('[data-test="applicants-userCard-card"]').first(),
     userCardLast = e => cy.get('[data-test="applicants-userCard-card"]').last(),
@@ -451,7 +452,7 @@ export default class OnboardingPage extends BasePage {
             employerBusinessInputField().click();
             employerBusinessInputField().type(data.employerBusiness).type('{enter}');
         }
-        if (type === 'Joint-IB') {
+        if (type === 'Joint-IB' || data.type === 'Joint') {
             employmentStatusAnnualNetIncomeInputField().type(data.annualNetIncome)
             employmentStatusNetWorthInputField().type(data.netWorth)
         }
@@ -467,7 +468,7 @@ export default class OnboardingPage extends BasePage {
         residentialAddressInputField().should('have.value', data.residentialAddress)
 
 
-        if (type === 'Individual-IB' || type === 'Joint-IB' || data.type === 'Individual-IB') {
+        if (type === 'Individual-IB' || type === 'Joint-IB' || data.type === 'Individual-IB' || data.type === 'Joint') {
             driverLicenseExpiry().click();
             driverLicenseExpiry().type(data.licenseExpiryDate).type('{enter}');
         }
@@ -1675,6 +1676,7 @@ export default class OnboardingPage extends BasePage {
             'AGB Jun-2039 (GSBK39)',
             'AGB May-2028 (GSBI28)',
             'AGB May-2030 (GSBI30)',
+            'AGB May-2032 (GSBI32)',
             'AGB Nov-2031 (GSBU31)'
         ]
 
@@ -1729,6 +1731,41 @@ export default class OnboardingPage extends BasePage {
             'Wesfarmers (WES)',
             'Westpac Bank (WBC)',
             'WiseTech Global (WTC)',
+            'Woolworths (WOW)',
+            'Xero (XRO)'
+        ]
+
+        let self = this
+        firstColumnValues.forEach(function (value) {
+            self.amountInTableFoundByLabelInFirstColumn(value).invoke('text').then(function (amount) {
+                D.dataForExport.indicativePortfolio['Australian Shares'][value] = amount
+            })
+        })
+        return this;
+    }
+
+    save_data_object_for_Indicative_Portfolio_Australian_Shares_2() {
+        let firstColumnValues = [
+            'ANZ (ANZ)',
+            'APA (APA)',
+            'Aristocrat Leisure (ALL)',
+            'BHP (BHP)',
+            'Coles (COL)',
+            'Commonwealth Bank (CBA)',
+            'Computershare (CPU)',
+            'CSL (CSL)',
+            'Endeavour (EDV)',
+            'Medibank Private (MPL)',
+            'National Australia Bank (NAB)',
+            'Northern Star Resources (NST)',
+            'Qantas Airways (QAN)',
+            'Sonic Healthcare (SHL)',
+            'Transurban (TCL)',
+            'Treasury Wine Estates (TWE)',
+            'Wesfarmers (WES)',
+            'Westpac Bank (WBC)',
+            'WiseTech Global (WTC)',
+            'Woodside Energy (WDS)',
             'Woolworths (WOW)',
             'Xero (XRO)'
         ]
@@ -1798,19 +1835,19 @@ export default class OnboardingPage extends BasePage {
             'eBay (EBAY)',
             'EDP (EDP)',
             'Eli Lilly and (LLY)',
-           // 'Endesa (ELE)',
-           // 'ENGIE (ENGI)',
+            'Endesa (ELE)',
+            'ENGIE (ENGI)',
             'Expedia (EXPE)',
-          //  'General Dynamics (GD)',
+            'General Dynamics (GD)',
             'General Motors (GM)',
-          //  'Hitachi (6501)',
+            'Hitachi (6501)',
             'HOYA Corp (7741)',
             'Intertek (ITRK)',
             'J. M. Smucker (SJM)',
             'Johnson & Johnson (JNJ)',
             'JPMorgan Chase (JPM)',
             'KDDI Corp (9433)',
-           // 'L3Harris Technologies (LHX)',
+            'L3Harris Technologies (LHX)',
             'LVMH Moët Hennessy (MC)',
             'Merck (MRK)',
             'Meta Platforms (META)',
@@ -1835,7 +1872,7 @@ export default class OnboardingPage extends BasePage {
             'Unilever (ULVR)',
             'Vinci (DG)',
             'Visa (V)',
-           // 'Volkswagen (VOW3)',
+            'Volkswagen (VOW3)',
             'Willis Towers Watson (WTW)',
             'Zoetis (ZTS)',
         ]
@@ -1849,7 +1886,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    save_data_object_for_Indicative_Portfolio_International_Shares_personal_super() {
+    save_data_object_for_Indicative_Portfolio_International_Shares_2() {
         let firstColumnValues = [
             '3M (MMM)',
             'ABB (ABBN)',
@@ -2011,7 +2048,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    save_data_object_for_Indicative_Portfolio_Excluded_securities_personal_super() {
+    save_data_object_for_Indicative_Portfolio_Excluded_securities_2() {
         let firstColumnValues = [
             'General Dynamics (GD)',
             'Endesa (ELE)',
@@ -2318,7 +2355,7 @@ export default class OnboardingPage extends BasePage {
         dropdownOption(data.sourceType).click();
         percentage().click();
         percentage().type(data.percentage).type('{enter}');
-        statementOfInquiry().type(data.statementOfInquiry)
+        //statementOfInquiry().type(data.statementOfInquiry)
         return this;
     }
 

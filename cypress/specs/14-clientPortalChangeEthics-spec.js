@@ -40,7 +40,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .go_through_tour_steps(C.stepMessages)
         cy.saveLocalStorage()
         ui.onboarding.click_self_directed_button()
-            .select_all_checkboxes(5)
+            .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .enter_values_on_BYP_input_fields(D.buildYouPortfolioFields)
             .clear_values_on_BYP_input_fields()

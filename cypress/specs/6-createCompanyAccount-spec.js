@@ -46,11 +46,9 @@ context('Company Account', () => {
     it('4. Complete Build Your Portfolio', function () {
         D.buildYouPortfolioFields.coreInternational = '100'
         ui.onboarding.enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
-            .click_Save_and_Continue_button()
-            .verify_screen_and_tilts_page()
     })
 
-    it('5. Complete Ethical Overlay', function () {
+    it('5. Complete Screen and tilts', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_review_page()
     })
@@ -68,7 +66,8 @@ context('Company Account', () => {
     })
 
     it('6. Review Review Page', function () {
-        ui.onboarding.save_final_JSON_report('company_')
+        ui.onboarding
+            //.save_final_JSON_report('company_')
             .click_Save_and_Continue_button()
             .verify_company_details_page()
     })

@@ -6,7 +6,7 @@ const C = require('../fixtures/constants');
 context('Log in to the Nucleus Wealth portal, create an SMSF Account and complete the onboarding portal', () => {
 
 
-    beforeEach(function () {
+    before(function () {
         Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
@@ -21,6 +21,9 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )
+       /* cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()*/
     })
 
 
@@ -58,7 +61,7 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
             .verify_screen_and_tilts_page()
     })
 
-    it('5. Complete Ethical Overlay', function () {
+    it('5. Complete Screen and Tilts', function () {
         ui.onboarding.click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -80,8 +83,8 @@ context('Log in to the Nucleus Wealth portal, create an SMSF Account and complet
             .save_data_object_for_Indicative_Portfolio_Cash()
             .save_data_object_for_Indicative_Portfolio_Bonds()
             .save_data_object_for_Indicative_Portfolio_Australian_Shares()
-            .save_data_object_for_Indicative_Portfolio_International_Shares()
-            .save_data_object_for_Indicative_Portfolio_Excluded_securities()
+            .save_data_object_for_Indicative_Portfolio_International_Shares_2()
+            .save_data_object_for_Indicative_Portfolio_Excluded_securities_2()
             .save_data_object_for_Fees_and_Charges_On_Going_Fees()
             .save_data_object_for_Fees_and_Charges_Embedded_Fees()
             .save_data_object_for_Fees_and_Charges_Initial_Costs()

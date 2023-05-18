@@ -31,7 +31,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .enter_wrong_credentials_and_click_Sign_In(D.user.username, 'wrongPass')
             .verify_error_message(C.wrongCredentials)
              .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-            // .redirect_user_to_the_create_a_new_account_page()
+             .redirect_user_to_the_create_a_new_account_page()
          ui.onboarding.verify_account_selection()
     })
 
