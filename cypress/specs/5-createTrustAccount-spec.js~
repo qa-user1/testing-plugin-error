@@ -2,16 +2,29 @@ const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 
-context('Company Account', () => {
-
+context(' Log in to the Nucleus Wealth portal, create a Trust Account and complete the onboarding portal', () => {
 
 
     before(function () {
+      /*  Cypress.Cookies.debug(true)
+        cy.preserveCookieOnce(
+            'secure',
+            'ntercom',
+            'XSRF-TOKEN',
+            '__hssc',
+            'hubspotutk',
+            '__hstc',
+            '_fbp',
+            'cognito',
+            '__Secure-next-auth.callback-url',
+            '__Secure-next-auth.session-token',
+            '__Host-next-auth.csrf-token',
+            )*/
         cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()
-    })
 
+    })
 
 
     it('1. Validate login credentials', function () {
@@ -22,17 +35,16 @@ context('Company Account', () => {
         ui.onboarding.verify_account_selection()
     })
 
-    it('2. Create a Company Account', function () {
+    it('2. Create a Trust Account', function () {
         ui.onboarding.click_create_new_investment_account()
             .verify_types_of_investment_account()
             .click_non_super_type()
             .verify_non_super_subtypes()
-            .select_company_non_super_subtype()
+            .select_trust_non_super_subtype()
             .click_create_investment_account()
             .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
         cy.saveLocalStorage();
-
 
     })
 
@@ -44,14 +56,13 @@ context('Company Account', () => {
     })
 
     it('4. Complete Build Your Portfolio', function () {
-        ui.onboarding.go_through_tour_steps(C.buildYourPortfolioStepMsgs)
         D.buildYouPortfolioFields.coreInternational = '100'
         ui.onboarding.enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
     })
 
     it('5. Complete Screen and tilts', function () {
         ui.onboarding.click_Save_and_Continue_button()
-            .verify_review_page()
+            ui.onboarding.verify_review_page()
     })
 
     it('6. Review Review Page', function () {
@@ -68,17 +79,17 @@ context('Company Account', () => {
 
     it('6. Review Review Page', function () {
         ui.onboarding
-            //.save_final_JSON_report('company_')
+            .save_final_JSON_report('trust_')
             .click_Save_and_Continue_button()
-            .verify_company_details_page()
+            .verify_trust_details_page()
     })
 
-    it('7. Complete In Company Details', function () {
+    it('7. Complete In Trust Details', function () {
         ui.onboarding.enter_address(D.TrustDetails)
-            .click_Save_and_Continue_button()
-            .verify_validation_messages_for_company_details(D.companyDetailsValidationMsg)
+            ui.onboarding.click_Save_and_Continue_button()
+            ui.onboarding.verify_validation_messages_for_trust_details(D.TrustDetailsValidationMsg)
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)
-            .enter_all_required_company_details(D.companyDetails)
+            .enter_all_required_trust_details(D.TrustDetails)
             .enter_Bank_Details(D.bankDetails)
             .click_Save_and_Continue_button()
             .verify_applicants_page()

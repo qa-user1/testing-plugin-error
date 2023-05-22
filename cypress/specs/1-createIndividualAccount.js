@@ -118,6 +118,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
     })
 
     it('10. Complete Risk Profile and navigate to Review', function () {
+        cy.wait(3000)
         ui.onboarding.click_Save_and_Continue_button()
         .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
         .answerAllQuestionsWithSameOption(13, 2)
