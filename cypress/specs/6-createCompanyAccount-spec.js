@@ -29,7 +29,7 @@ context('Company Account', () => {
             .verify_non_super_subtypes()
             .select_company_non_super_subtype()
             .click_create_investment_account()
-            .go_through_tour_steps(C.stepMessages)
+            .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
         cy.saveLocalStorage();
 

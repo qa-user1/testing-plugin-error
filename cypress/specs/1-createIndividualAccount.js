@@ -128,7 +128,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .verify_review_page()
     })
 
-    xit('11. Scrape results from Review and navigate to Applicants', function () {
+    it('11. Scrape results from Review and navigate to Applicants', function () {
         ui.onboarding
             .click('Question Responses')
             .save_data_object_for_Questions_Responses()
@@ -147,7 +147,7 @@ context('Log in to the Nucleus Wealth portal, create an individual account, and 
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
     })
 
-    xit('11. Scrape results from Review and navigate to Applicants', function () {
+    it('11. Scrape results from Review and navigate to Applicants', function () {
         ui.onboarding
             .save_final_JSON_report('individual_')
             .click_Save_and_Continue_button()

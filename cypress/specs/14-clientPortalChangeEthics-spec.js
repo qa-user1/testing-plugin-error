@@ -37,7 +37,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .click_non_super_type()
             .select_individual_non_super_subtype()
             .click_create_investment_account()
-            .go_through_tour_steps(C.stepMessages)
+            .go_through_tour_steps(C.investmentStepMessages)
         cy.saveLocalStorage()
         ui.onboarding.click_self_directed_button()
             .select_all_checkboxes(6)
