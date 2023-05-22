@@ -331,7 +331,7 @@ D.indicativePortfolioExcludedSecurities = {
 }
 
 D.buildYouPortfolioValidationMessages = {
-    coreInternational: 'Minimum investment required is $10,000 or 10%',
+    coreInternational: 'Minimum investment required is $50,000 or 50%',
     coreAustralia: 'Minimum investment required is $25,000 or 25%',
     globalLeaders: 'Minimum investment required is $25,000 or 25%',
     multiAssetPortfolios: 'Minimum investment total required is $10,000 or 10%',

@@ -12,13 +12,23 @@ C.noEthicsMessage = 'You have not chosen any ethics to be excluded from your por
 C.alertMsgReviewPage = 'You must have minimum 2 applicant(s).'
 C.wrongCredentials = 'Incorrect username or password.'
 
-C.stepMessages = {
+C.investmentStepMessages = {
     step1: "Welcome to the Nucleus Wealth Onboarding Portal. Please take a minute to familiarise yourself with the key functions of the portal.",
     step2: "You can always come back and change your investment choice later.",
     step3: "You can always go back",
     step4: "You may jump to different tabs within the onboarding portal. Make sure you have saved the settings on your current page before moving tabs.",
     step5: "Each page in the onboarding portal has a short video tutorial for you to watch in case you get stuck.",
     step6: "If you are still stuck or have questions after watching our video tutorial, you'll have the option to message us through our chat box, or simply give us a call."
+}
+
+C.buildYourPortfolioStepMsgs = {
+    step1: "You have chosen to allocate which portfolios to invest in. When your allocation total = 100% you can progress:",
+    step2: "Click the arrows to see what your options are for each category:",
+    step3: "Throughout the page, you will see question marks. If you hover over these, you will see more detailed information:",
+    step4: "The three main types of base portfolios are at the top:",
+    step5: "When you are finished adding portfolios, you can screen out particular stocks. First choose a category:",
+    step6: "Then choose which type of stocks you would like to exclude:",
+    step7: "Press “Save and Continue” when you are finished:"
 }
 C.emailTemplates = {
     individualAccountCreated: {

@@ -255,6 +255,8 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
+
+
     verify_empty_input_fields_on_BYP_page() {
         investmentTotalField().should('be.empty');
         tacticalGrowthField().should('be.empty');
@@ -392,7 +394,7 @@ export default class OnboardingPage extends BasePage {
 
     verify_validation_messages_for_compliance_page_fields(data) {
         this.verify_text_on_multiple_elements([
-          //  [statementOfInquiryValidationMessage, data.statementOfInquiry],
+            //  [statementOfInquiryValidationMessage, data.statementOfInquiry],
             [sourceTypeValidationMessage, data.sourceType],
             [percentageValidationMessage, data.percentage]
         ])
@@ -408,7 +410,7 @@ export default class OnboardingPage extends BasePage {
             [mobileInputValidationMsg, data.mobileInput],
             [genderInputValidationMsg, data.genderInput],
             [birthDateInputValidationMsg, data.birthInput],
-           // [citizenshipInputValidationMsg, data.citizenshipInput],
+            // [citizenshipInputValidationMsg, data.citizenshipInput],
             [employmentInputValidationMsg, data.employmentInput],
             [taxInputValidationMsg, data.taxInput]
         ])
@@ -452,7 +454,7 @@ export default class OnboardingPage extends BasePage {
             employerBusinessInputField().click();
             employerBusinessInputField().type(data.employerBusiness).type('{enter}');
         }
-        if (type === 'Joint-IB' || data.type === 'Joint') {
+        if (type === 'Joint-IB') {
             employmentStatusAnnualNetIncomeInputField().type(data.annualNetIncome)
             employmentStatusNetWorthInputField().type(data.netWorth)
         }
@@ -468,7 +470,7 @@ export default class OnboardingPage extends BasePage {
         residentialAddressInputField().should('have.value', data.residentialAddress)
 
 
-        if (type === 'Individual-IB' || type === 'Joint-IB' || data.type === 'Individual-IB' || data.type === 'Joint') {
+        if (type === 'Individual-IB' || type === 'Joint-IB' || data.type === 'Individual-IB') {
             driverLicenseExpiry().click();
             driverLicenseExpiry().type(data.licenseExpiryDate).type('{enter}');
         }
@@ -499,8 +501,8 @@ export default class OnboardingPage extends BasePage {
         idOptionList().should('be.visible')
         this.pause(3)
         this.select_id_option(idOption)
-       this.pause(1)
-            this.select_document_type(type)
+        this.pause(1)
+        this.select_document_type(type)
         this.pause(1)
         this.upload_file('1', D.documentType.id)
         this.pause(1)
@@ -512,7 +514,7 @@ export default class OnboardingPage extends BasePage {
         idOptionList().should('be.visible')
         //this.pause(3)
         idOptionList().click();
-       // this.pause(3)
+        // this.pause(3)
         cy.contains(idOption).click();
         return this;
     }
@@ -991,7 +993,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_applicants_page() {
-           applicantCardMenuButton().should('be.visible')
+        applicantCardMenuButton().should('be.visible')
         cy.url().should('include', 'applicants');
         pageTitle().should('have.text', 'Applicants');
         return this;
@@ -1084,6 +1086,11 @@ export default class OnboardingPage extends BasePage {
 
     click_yes_insurance_button() {
         cy.contains('Yes I would').click();
+        return this;
+    }
+
+    expand_card(index) {
+                cy.get('[class="ant-card-extra"]').eq(index).click()
         return this;
     }
 
@@ -1591,12 +1598,12 @@ export default class OnboardingPage extends BasePage {
         cy.log('Object is ' + JSON.stringify(D.dataForExport))
         let currentdate = new Date();
         let datetime = currentdate.getFullYear() + "-"
-            + (currentdate.getMonth()+1)  + "-"
+            + (currentdate.getMonth() + 1) + "-"
             + currentdate.getDate() + "_"
             + currentdate.getHours() + "-"
             + currentdate.getMinutes() + "-"
             + currentdate.getSeconds();
-            cy.writeFile('S3_bucket/' + prefix + '_' + datetime + '.json', D.dataForExport)
+        cy.writeFile('S3_bucket/' + prefix + '_' + datetime + '.json', D.dataForExport)
         return this;
     }
 
@@ -1812,7 +1819,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    save_data_object_for_Indicative_Portfolio_International_Shares() {
+    save_data_object_for_Indicative_Portfolio_International_Shares_2() {
         let firstColumnValues = [
             '3M (MMM)',
             'ABB (ABBN)',
@@ -1886,7 +1893,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    save_data_object_for_Indicative_Portfolio_International_Shares_2() {
+    save_data_object_for_Indicative_Portfolio_International_Shares() {
         let firstColumnValues = [
             '3M (MMM)',
             'ABB (ABBN)',
@@ -2028,7 +2035,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    save_data_object_for_Indicative_Portfolio_Excluded_securities() {
+    save_data_object_for_Indicative_Portfolio_Excluded_securities_2() {
         let firstColumnValues = [
             'Volkswagen (VOW3)',
             'L3Harris Technologies (LHX)',
@@ -2048,7 +2055,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    save_data_object_for_Indicative_Portfolio_Excluded_securities_2() {
+    save_data_object_for_Indicative_Portfolio_Excluded_securities() {
         let firstColumnValues = [
             'General Dynamics (GD)',
             'Endesa (ELE)',
@@ -2056,7 +2063,7 @@ export default class OnboardingPage extends BasePage {
             'BHP (BHP)',
             'Volkswagen (VOW3)',
             'Woodside Energy (WDS)',
-          'APA (APA)',
+            'APA (APA)',
             'Hitachi (6501)',
             'ENGIE (ENGI)',
         ]
@@ -2381,6 +2388,10 @@ export default class OnboardingPage extends BasePage {
         nextButtonTourWindow().click()
         this.verify_text_is_visible(data.step6)
         nextButtonTourWindow().click()
+        if (data.step7) {
+            this.verify_text_is_visible(data.step7)
+            nextButtonTourWindow().click()
+        }
         return this;
     }
 
@@ -2395,8 +2406,8 @@ export default class OnboardingPage extends BasePage {
     }
 
     click_and_verify_each_modal_step() {
-      //  this.verify_text_is_visible('Video Tutorial');
-      //  videoTutorial().should('be.visible');
+        //  this.verify_text_is_visible('Video Tutorial');
+        //  videoTutorial().should('be.visible');
         this.verify_text_is_visible('Chat with us');
         cy.contains('Chat with us').click();
         chat().should('be.visible');

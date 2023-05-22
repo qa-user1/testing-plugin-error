@@ -42,7 +42,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_non_super_subtypes()
             .select_joint_non_super_subtype()
             .click_create_investment_account()
-            .go_through_tour_steps(C.stepMessages)
+            .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
         cy.saveLocalStorage();
 
@@ -83,8 +83,9 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .save_data_object_for_Strategic_Asset_Allocation()
             .save_data_object_for_Indicative_Portfolio_Cash()
             .save_data_object_for_Indicative_Portfolio_Bonds()
-            .save_data_object_for_Indicative_Portfolio_Australian_Shares_2()
+            .save_data_object_for_Indicative_Portfolio_Australian_Shares()
             .save_data_object_for_Indicative_Portfolio_International_Shares()
+            .save_data_object_for_Indicative_Portfolio_Excluded_securities()
             .save_data_object_for_Fees_and_Charges_On_Going_Fees()
             .save_data_object_for_Fees_and_Charges_Embedded_Fees()
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
@@ -92,7 +93,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
 
     it('6. Review Review Page', function () {
         ui.onboarding
-            .save_final_JSON_report('joint_')
+        //    .save_final_JSON_report('joint_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
@@ -103,9 +104,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
             .verify_add_new_applicant_page()
-        D.applicantsProfileFields.type = 'Joint'
         ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
-            .enter_applicant_investment_experience(D.investmentExperience)
             .click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
@@ -125,22 +124,11 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     it('9. Complete Bank Details', function () {
         ui.onboarding.enter_Bank_Details(D.bankDetails)
             .click_Save_and_Continue_button()
-            .verify_compliance_page()
-    });
-
-    it('10. Complete Compliance', function () {
-        ui.app.verify_text_is_visible('Investment Objective')
-            .verify_text_is_visible('Trading Permission')
-            .verify_text_is_visible('Source of Wealth')
-            .verify_text_is_visible('Affiliation Detail')
-        ui.onboarding.click_Save_and_Continue_button()
-            .verify_validation_messages_for_compliance_page_fields(D.compliancePageValidationMessages)
-            .enter_compliance_source_type_and_percentage(D.compliancePageInputFields)
-        ui.onboarding.click_Save_and_Continue_button()
             .verify_Final_Review_page()
     });
 
-    it('11. Review Final Review', function () {
+
+    it('10. Review Final Review', function () {
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'Statement of Advice',
@@ -154,9 +142,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
     it('12. Add another investor in Applicants', function () {
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
-        D.applicantsProfileFields.type = 'Joint'
         ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
-            .enter_applicant_investment_experience(D.investmentExperience)
             .click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)

@@ -14,7 +14,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
      });*/
 
     before(function () {
-        Cypress.Cookies.debug(true)
+        /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -27,10 +27,10 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
-        /*cy.clearAllLocalStorage()
+        )*/
+        cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
+        cy.clearAllSessionStorage()
 
     })
 
@@ -50,7 +50,7 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
             .verify_super_subtypes()
             .click_personal_super_subtype()
             .click_create_investment_account()
-            .go_through_tour_steps(C.stepMessages)
+            .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
         cy.saveLocalStorage();
     })
@@ -100,8 +100,8 @@ context('Log in to the Nucleus Wealth portal, create a Personal Super Account an
             .save_data_object_for_Indicative_Portfolio_Cash()
             .save_data_object_for_Indicative_Portfolio_Bonds()
             .save_data_object_for_Indicative_Portfolio_Australian_Shares()
-            .save_data_object_for_Indicative_Portfolio_International_Shares_2()
-            .save_data_object_for_Indicative_Portfolio_Excluded_securities_2()
+            .save_data_object_for_Indicative_Portfolio_International_Shares()
+            .save_data_object_for_Indicative_Portfolio_Excluded_securities()
             .save_data_object_for_Fees_Australian_Super()
             .save_data_object_for_Your_Fees()
     })
