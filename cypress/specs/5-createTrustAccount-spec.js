@@ -56,6 +56,7 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
     })
 
     it('4. Complete Build Your Portfolio', function () {
+        ui.onboarding.go_through_tour_steps(C.buildYourPortfolioStepMsgs)
         D.buildYouPortfolioFields.coreInternational = '100'
         ui.onboarding.enter_investment_value_and_core_international_value(D.buildYouPortfolioFields)
     })
