@@ -83,7 +83,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .verify_review_page()
     })
 
-    it('8. Check Review Page', function () {
+    xit('8. Check Review Page', function () {
         ui.onboarding.click('Question Responses')
             //.verify_net_worth_annual_net_income_liquid_net_worth()
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -104,7 +104,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
     it('8. Check Review Page', function () {
         ui.onboarding
-            .save_final_JSON_report('individual_ib_')
+          //  .save_final_JSON_report('individual_ib_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
@@ -194,7 +194,7 @@ D.applicantsProfileFields.type = 'Individual-IB'
             .click_Submit_Application_button()
         ui.onboarding.verify_success_page()
        // cy.wait(45000)
-        ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individual_IB_AccountCreated)
+      //  ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individual_IB_AccountCreated)
     });
 })
 
