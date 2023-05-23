@@ -141,7 +141,7 @@ D.applicantsProfileFields.type = 'Individual-IB'
     it('11. Complete Compliance', function () {
         ui.app.verify_text_is_visible('Investment Objective')
             .verify_text_is_visible('Trading Permission')
-            .verify_text_is_visible('Source of wealth')
+            .verify_text_is_visible('Source of Wealth')
             .verify_text_is_visible('Affiliation Detail')
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_messages_for_compliance_page_fields(D.compliancePageValidationMessages)
