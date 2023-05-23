@@ -1,7 +1,6 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
-const d = D.scenarios[0]
 
 context('Client Portal - Account Dashboard', () => {
     let accountNo;
@@ -34,12 +33,12 @@ context('Client Portal - Account Dashboard', () => {
             .go_through_tour_steps(C.investmentStepMessages)
         cy.saveLocalStorage()
         ui.onboarding.click_self_directed_button()
-            .select_all_checkboxes(6)
+            .select_all_checkboxes(5)
             .click_Save_and_Continue_button()
-        ui.onboarding.answerAllQuestionsWithSameOption(12, 2)
-
-        ui.onboarding.enter_financial_info(D.financialInfo)
-            .click_Save_and_Continue_button()
+            .go_through_tour_steps(C.buildYourPortfolioStepMsgs)
+        ui.onboarding.expand_card(0)
+            .expand_card(1)
+            .expand_card(2)
             .enter_values_on_BYP_input_fields(D.buildYouPortfolioFields)
             .clear_values_on_BYP_input_fields()
             .enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
@@ -54,13 +53,13 @@ context('Client Portal - Account Dashboard', () => {
 
         ui.onboarding.click_sidebar_option('Investment Choice')
             .click_limited_advice_button()
-            .go_through_tour_steps(C.stepMessages)
+            .go_through_tour_steps(C.investmentStepMessages)
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .answerAllQuestionsWithSameOption(13, 2)
         ui.onboarding.enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
-            .verify_ethical_overlay_page()
+            .verify_screen_and_tilts_page()
             .click_Save_and_Continue_button()
             .verify_review_page()
             .click_Save_and_Continue_button()
@@ -80,12 +79,21 @@ context('Client Portal - Account Dashboard', () => {
             .click_Agree_checkbox()
             .click_Submit_Application_button()
             .verify_success_page()
-        cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
+        /*cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
             accountNo = text.match('Account (' + "(.*)" + ')')[1];
-            cy.saveLocalStorage()
+            cy.saveLocalStorage()*/
+        cy.url().then(function (url) {
+            let regex = /onboarding\/(\d+)/;
+            let match = url.match(regex);
+            if (match && match.length > 1) {
+                accountNo = match[1];
+                cy.log('ACCOUNT NUMBER ' + accountNo);
+                cy.saveLocalStorage();
+            }
+        });
         })
-    })
+
 
 
     it('1. Direct user to “Your Accounts” page', () => {

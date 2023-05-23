@@ -75,7 +75,7 @@ context(' Log in to the Nucleus Wealth portal, create a Trust Account and comple
             .save_data_object_for_Your_Portfolio_Trust_Profile()
             .save_data_object_for_Strategic_Asset_Allocation()
             .save_data_object_for_Indicative_Portfolio_Cash()
-            .save_data_object_for_Indicative_Portfolio_International_Shares()
+            .save_data_object_for_Indicative_Portfolio_International_Shares_2()
             .save_data_object_for_Fees_and_Charges_On_Going_Fees()
             .save_data_object_for_Fees_and_Charges_Embedded_Fees()
             .save_data_object_for_Fees_and_Charges_Initial_Costs()

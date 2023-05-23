@@ -71,7 +71,7 @@ context('Company Account', () => {
 
     it('6. Review Review Page', function () {
         ui.onboarding
-            //.save_final_JSON_report('company_')
+            .save_final_JSON_report('company_')
             .click_Save_and_Continue_button()
             .verify_company_details_page()
     })
