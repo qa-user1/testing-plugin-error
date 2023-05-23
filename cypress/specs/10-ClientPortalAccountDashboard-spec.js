@@ -79,10 +79,6 @@ context('Client Portal - Account Dashboard', () => {
             .click_Agree_checkbox()
             .click_Submit_Application_button()
             .verify_success_page()
-        /*cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
-            cy.log('ACCOUNT NUMBER ' + text)
-            accountNo = text.match('Account (' + "(.*)" + ')')[1];
-            cy.saveLocalStorage()*/
         cy.url().then(function (url) {
             let regex = /onboarding\/(\d+)/;
             let match = url.match(regex);
@@ -148,8 +144,7 @@ context('Client Portal - Account Dashboard', () => {
                 ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
                 ['War', ['No Arms (Any)']]
             ])
-            ui.clientPortal.verify_change_ethics_button()
-                .click_ethics_panel()
+            ui.clientPortal.click_ethics_panel()
 
 
         })

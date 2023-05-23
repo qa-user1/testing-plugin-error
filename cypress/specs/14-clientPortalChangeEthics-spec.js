@@ -6,6 +6,7 @@ const C = require('../fixtures/constants');
 context('Client Portal - Change Ethics/Exclusions', () => {
 
 //not available anymore on website
+
     let accountNo;
 
     beforeEach(function () {
@@ -25,7 +26,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
         )
     })
 
-    before(function () {
+    /*before(function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
@@ -83,10 +84,10 @@ context('Client Portal - Change Ethics/Exclusions', () => {
             .click_Agree_checkbox()
             .click_Submit_Application_button()
             .verify_success_page()
-        /*cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
+        /!*cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
             cy.log('ACCOUNT NUMBER ' + text)
             accountNo = text.match('Account (' + "(.*)" + ')')[1];
-            cy.saveLocalStorage()*/
+            cy.saveLocalStorage()*!/
         cy.url().then(function (url) {
             let regex = /onboarding\/(\d+)/;
             let match = url.match(regex);
@@ -96,7 +97,7 @@ context('Client Portal - Change Ethics/Exclusions', () => {
                 cy.saveLocalStorage();
             }
         });
-    })
+    })*/
 
     xit('1. Direct user to “Your Account(s)” page', function () {
         ui.login.open_base_url()

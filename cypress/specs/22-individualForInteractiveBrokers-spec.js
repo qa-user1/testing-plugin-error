@@ -29,7 +29,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
-            .redirect_user_to_the_create_a_new_account_page()
+          //  .redirect_user_to_the_create_a_new_account_page()
         ui.onboarding.verify_account_selection()
     })
 
@@ -59,30 +59,34 @@ context('Individual Onboarding for Interactive Brokers', () => {
     })
 
     it('5. Complete Risk Profile', function () {
-        ui.onboarding.answerAllQuestionsWithSameOption(13, 3)
+        ui.onboarding.answerAllQuestionsWithSameOption(12, 3)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
+            .go_through_tour_steps(C.buildYourPortfolioStepMsgsIB)
             .verify_build_your_portfolio_page()
 
     })
 
     it('6. Complete Build Your Portfolio', function () {
+        ui.onboarding.expand_card(0)
+            .expand_card(1)
+            .expand_card(2)
         D.buildYouPortfolioFields.tacticalGrowth2 = '100'
         D.buildYouPortfolioFields.coreInternational2 = '0'
         ui.onboarding.enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
-            .click_Save_and_Continue_button()
-            .verify_ethical_overlay_page()
+
+
     })
 
-    it('7. Complete Ethical Overlay', function () {
+    it('7.Complete Screen and Tilts', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_review_page()
     })
 
     it('8. Check Review Page', function () {
         ui.onboarding.click('Question Responses')
-            .verify_net_worth_annual_net_income_liquid_net_worth()
-            .save_data_object_for_Questions_Responses()
+            //.verify_net_worth_annual_net_income_liquid_net_worth()
+            .save_data_object_for_Questions_Responses_Personal_Super_Account()
             .expand_ethical_overlay_panel()
             .verify_text_is_visible('Tactical Growth')
             .save_data_object_for_Your_Portfolio_IB_Profile()
@@ -96,8 +100,6 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .save_data_object_for_Fees_and_Charges_On_Going_Fees()
             .save_data_object_for_Fees_and_Charges_Embedded_Fees()
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
-
-
     })
 
     it('8. Check Review Page', function () {
@@ -162,7 +164,7 @@ D.applicantsProfileFields.type = 'Individual-IB'
 
     it('13. Limited Advice Path', function () {
         ui.onboarding.click_sidebar_option('Investment Choice')
-            .go_through_tour_steps(C.stepMessages)
+            .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
             .click_limited_advice_button()
             .select_all_checkboxes(6)

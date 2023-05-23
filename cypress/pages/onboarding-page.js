@@ -1788,7 +1788,8 @@ export default class OnboardingPage extends BasePage {
 
     save_data_object_for_Indicative_Portfolio_IB_Australian_Shares() {
         let firstColumnValues = [
-            'ANZ Bank (ANZ)',
+            'ANZ (ANZ)',
+            'APA (APA)',
             'Aristocrat Leisure (ALL)',
             'BHP (BHP)',
             'Coles (COL)',
@@ -1807,7 +1808,8 @@ export default class OnboardingPage extends BasePage {
             'Westpac Bank (WBC)',
             'WiseTech Global (WTC)',
             'Woodside Energy (WDS)',
-            'Woolworths (WOW)'
+            'Woolworths (WOW)',
+            'Xero (XRO)'
         ]
 
         let self = this
@@ -1965,7 +1967,6 @@ export default class OnboardingPage extends BasePage {
         let firstColumnValues = [
             '3M (MMM)',
             'ABB (ABBN)',
-            'ABB Turbo Systems (ACLN)',
             'Activision Blizzard (ATVI)',
             'Alphabet (GOOG)',
             'Amada (6113)',
@@ -1980,12 +1981,15 @@ export default class OnboardingPage extends BasePage {
             'Citizens Financial (CFG)',
             'Cognizant (CTSH)',
             'DBS (D05)',
+            'Deutsche Telekom (DTE)',
+            'Diageo (DGE)',
             'eBay (EBAY)',
             'EDP (EDP)',
             'Eli Lilly and (LLY)',
             'Endesa (ELE)',
             'ENGIE (ENGI)',
             'Expedia (EXPE)',
+            'General Dynamics (GD)',
             'General Motors (GM)',
             'Hitachi (6501)',
             'HOYA Corp (7741)',
@@ -1998,24 +2002,22 @@ export default class OnboardingPage extends BasePage {
             'LVMH Moët Hennessy (MC)',
             'Merck (MRK)',
             'Meta Platforms (META)',
-            'Michelin (ML)',
             'Microsoft Corp (MSFT)',
             'Moncler (MONC)',
             'Newmont Corp (NEM)',
             'Nintendo (7974)',
             'Novartis (NOVN)',
             'Novo Nordisk (NOVO B)',
-            'O\'Reilly Automotive (ORLY)',
             'Paychex (PAYX)',
+            'Pernod Ricard (RI)',
+            'Philip Morris Int. (PM)',
             'Public Storage (PSA)',
             'Recordati (REC)',
             'Robert Half Int. (RHI)',
-            'Roche (ROG)',
             'Royal Ahold Delhaize (AD)',
             'Sanofi (SAN)',
             'Schneider Electric (SU)',
             'Sony Group Corp (6758)',
-            'Southwest Airlines (LUV)',
             'Taisei Corp (1801)',
             'Telenor ASA (TEL)',
             'Unilever (ULVR)',
@@ -2390,6 +2392,18 @@ export default class OnboardingPage extends BasePage {
         nextButtonTourWindow().click()
         if (data.step7) {
             this.verify_text_is_visible(data.step7)
+            nextButtonTourWindow().click()
+        }
+        if (data.step8) {
+            this.verify_text_is_visible(data.step8)
+            nextButtonTourWindow().click()
+        }
+        if (data.step9) {
+            this.verify_text_is_visible(data.step9)
+            nextButtonTourWindow().click()
+        }
+        if (data.step10) {
+            this.verify_text_is_visible(data.step10)
             nextButtonTourWindow().click()
         }
         return this;
