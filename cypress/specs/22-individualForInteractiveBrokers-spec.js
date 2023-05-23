@@ -161,7 +161,13 @@ D.applicantsProfileFields.type = 'Individual-IB'
         ])
             .verify_text_is_visible('Nucleus Investment Documents')
             .verify_text_is_visible('Interactive Brokers Agreements')
-       // ui.clientPortal.verify_download_button_for_documents(32)
+            .verify_text_is_visible('Financial Services Guides and Privacy:')
+            .verify_text_is_visible('Interactive Brokers Trading and Custody Agreements:')
+            .verify_text_is_visible('Interactive Brokers Additional Services and Data Agreements:')
+            .verify_text_is_visible('Stock Exchange Agreements & Disclosures:')
+            .verify_text_is_visible('US Tax form:')
+            .verify_text_is_visible('Download all')
+        ui.clientPortal.verify_download_button_for_documents(32)
     });
 
     it('13. Limited Advice Path', function () {
@@ -173,6 +179,8 @@ D.applicantsProfileFields.type = 'Individual-IB'
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
             .verify_sidebar_content_not_exist('Build Your Portfolio')
+        ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
+            .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
         ui.app.pause(3)
         ui.onboarding.click_Save_and_Continue_button()
@@ -196,7 +204,7 @@ D.applicantsProfileFields.type = 'Individual-IB'
             .click_Submit_Application_button()
         ui.onboarding.verify_success_page()
        // cy.wait(45000)
-      //  ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individual_IB_AccountCreated)
+        ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individual_IB_AccountCreated)
     });
 })
 
