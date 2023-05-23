@@ -6,7 +6,7 @@ const d = D.scenarios[0]
 context('Client Portal - Change Portfolio', () => {
     let accountNo;
 
-    beforeEach(function () {
+    /*beforeEach(function () {
         Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
@@ -21,7 +21,7 @@ context('Client Portal - Change Portfolio', () => {
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )
-    })
+    })*/
 
     before(function () {
         ui.login.open_base_url()

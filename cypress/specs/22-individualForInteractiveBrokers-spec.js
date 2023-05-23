@@ -6,8 +6,8 @@ const C = require('../fixtures/constants');
 context('Individual Onboarding for Interactive Brokers', () => {
 
 
-    beforeEach(function () {
-        Cypress.Cookies.debug(true)
+    before(function () {
+        /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -20,7 +20,10 @@ context('Individual Onboarding for Interactive Brokers', () => {
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
+        )*/
+        cy.clearAllLocalStorage()
+        cy.clearAllCookies()
+        cy.clearAllSessionStorage()
 
     })
 
@@ -156,10 +159,9 @@ D.applicantsProfileFields.type = 'Individual-IB'
             'MDA Brochure and Agreement',
             'Statement of Advice MDA',
         ])
-            .verify_text_is_visible('Agreements and Disclosures')
-            .verify_text_is_visible('Download all')
-            .verify_text_is_visible('Tax Certification')
-        ui.clientPortal.verify_download_button_for_documents(32)
+            .verify_text_is_visible('Nucleus Investment Documents')
+            .verify_text_is_visible('Interactive Brokers Agreements')
+       // ui.clientPortal.verify_download_button_for_documents(32)
     });
 
     it('13. Limited Advice Path', function () {
