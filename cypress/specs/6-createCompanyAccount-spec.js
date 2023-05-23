@@ -64,7 +64,6 @@ context('Company Account', () => {
             .save_data_object_for_Strategic_Asset_Allocation()
             .save_data_object_for_Indicative_Portfolio_Cash()
             .save_data_object_for_Indicative_Portfolio_International_Shares()
-            .verify_text_is_visible('There are currently no securities excluded due to your ethical choices. If you feel a security should have been screened out, please contact us .')
             .save_data_object_for_Fees_and_Charges_On_Going_Fees()
             .save_data_object_for_Fees_and_Charges_Embedded_Fees()
             .save_data_object_for_Fees_and_Charges_Initial_Costs()

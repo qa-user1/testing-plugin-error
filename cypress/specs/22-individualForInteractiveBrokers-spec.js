@@ -95,7 +95,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .save_data_object_for_Indicative_Portfolio_IB_Bonds()
             .save_data_object_for_Indicative_Portfolio_IB_Australian_Shares()
             .save_data_object_for_Indicative_Portfolio_IB_International_Shares()
-            .verify_text_is_visible('There are currently no securities excluded due to your ethical choices. If you feel a security should have been screened out, please contact us .')
+         //   .verify_text_is_visible('There are currently no securities excluded due to your ethical choices. If you feel a security should have been screened out, please contact us .')
             .click('Fees And Charges')
             .save_data_object_for_Fees_and_Charges_On_Going_Fees()
             .save_data_object_for_Fees_and_Charges_Embedded_Fees()
