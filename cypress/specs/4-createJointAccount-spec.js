@@ -72,7 +72,7 @@ context('Log in to the Nucleus Wealth portal, create a Joint Account and complet
             .verify_review_page()
     })
 
-    xit('6. Review Review Page', function () {
+    it('6. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestions, D.reviewResponses)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
