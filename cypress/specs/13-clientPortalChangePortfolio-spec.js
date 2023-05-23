@@ -109,7 +109,6 @@ context('Client Portal - Change Portfolio', () => {
 
     it('2. Direct user to “Investment Choice”', function () {
         ui.clientPortal.click_change_portfolio_button(accountNo)
-        //  ui.onboarding.go_through_tour_steps(C.stepMessages)
         ui.clientPortal.verify_investment_choice_link()
 
     })
@@ -124,8 +123,13 @@ context('Client Portal - Change Portfolio', () => {
 
 
     it('4. Complete Build Your Portfolio', function () {
+        ui.onboarding.go_through_tour_steps(C.buildYourPortfolioStepMsgs)
+       .expand_card(0)
+            .expand_card(1)
+            .expand_card(2)
         ui.clientPortal.verify_build_your_portfolio_link()
             .complete_build_your_portfolio()
+        ui.clientPortal.check_or_uncheck_nuclear_power()
         ui.onboarding.click_Save_and_Continue_button()
         ui.clientPortal.verify_final_review_link()
     })
@@ -133,6 +137,9 @@ context('Client Portal - Change Portfolio', () => {
 
     it('5. Check Final Review', function () {
         ui.clientPortal.verify_final_review_page()
+            .expand_current_ethics()
+            .expand_new_ethics()
+            .verify_number_of_selected_options_is_different_in_Current_and_New_Ethics()
             .verify_download_button_for_documents(2)
         ui.onboarding.verify_Documents_available_for_download([
             'Record of Engagement',

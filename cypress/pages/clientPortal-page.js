@@ -66,6 +66,7 @@ let
     contactUsButton = e => cy.contains('Contact us to change your details'),
     generalDetails = e => cy.contains('General Details'),
     uploadNewDocument = e => cy.contains('Upload New Document'),
+    uploadDocument = e => cy.contains('Upload Document'),
     uploadVerificationDocuments = e => cy.contains('Upload Verification Documents'),
     thirdPartyAuthorities = e => cy.contains('Third Party Authorities'),
     searchForLostSuper = e => cy.contains('Search for Lost Super'),
@@ -251,7 +252,7 @@ export default class LoginPage extends BasePage {
     }
 
     upload_verification_document() {
-        uploadNewDocument().click();
+        uploadDocument().click();
         documentTypeList().click();
         documentTypeList().type('Driver License{enter}');
         uploadFileInput('0').attachFile(D.documentType.id);
