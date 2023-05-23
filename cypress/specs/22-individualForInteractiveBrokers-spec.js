@@ -32,7 +32,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
-          //  .redirect_user_to_the_create_a_new_account_page()
+        //  .redirect_user_to_the_create_a_new_account_page()
         ui.onboarding.verify_account_selection()
     })
 
@@ -86,7 +86,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .verify_review_page()
     })
 
-    xit('8. Check Review Page', function () {
+    it('8. Check Review Page', function () {
         ui.onboarding.click('Question Responses')
             //.verify_net_worth_annual_net_income_liquid_net_worth()
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -98,7 +98,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .save_data_object_for_Indicative_Portfolio_IB_Bonds()
             .save_data_object_for_Indicative_Portfolio_IB_Australian_Shares()
             .save_data_object_for_Indicative_Portfolio_IB_International_Shares()
-         //   .verify_text_is_visible('There are currently no securities excluded due to your ethical choices. If you feel a security should have been screened out, please contact us .')
+            //   .verify_text_is_visible('There are currently no securities excluded due to your ethical choices. If you feel a security should have been screened out, please contact us .')
             .click('Fees And Charges')
             .save_data_object_for_Fees_and_Charges_On_Going_Fees()
             .save_data_object_for_Fees_and_Charges_Embedded_Fees()
@@ -107,7 +107,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
 
     it('8. Check Review Page', function () {
         ui.onboarding
-          //  .save_final_JSON_report('individual_ib_')
+            .save_final_JSON_report('individual_ib_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
@@ -118,9 +118,9 @@ context('Individual Onboarding for Interactive Brokers', () => {
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .verify_text_is_visible('Investment Experience')
-            D.applicantsProfileFields.employmentInput = 'Unemployed'
-D.applicantsProfileFields.type = 'Individual-IB'
-            ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+        D.applicantsProfileFields.employmentInput = 'Unemployed'
+        D.applicantsProfileFields.type = 'Individual-IB'
+        ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .enter_applicant_investment_experience(D.investmentExperience)
             .click_submit_applicant_button()
             .verify_your_identity()
@@ -149,7 +149,7 @@ D.applicantsProfileFields.type = 'Individual-IB'
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_messages_for_compliance_page_fields(D.compliancePageValidationMessages)
             .enter_compliance_source_type_and_percentage(D.compliancePageInputFields)
-            ui.onboarding.click_Save_and_Continue_button()
+        ui.onboarding.click_Save_and_Continue_button()
             .verify_Final_Review_page()
     });
 
@@ -201,9 +201,10 @@ D.applicantsProfileFields.type = 'Individual-IB'
             .click_Save_and_Continue_button()
             .verify_validation_message_for_agree_checkbox(D.finalReviewValidationMessage)
             .click_Agree_checkbox()
+            .select_all_checkboxes(6)
             .click_Submit_Application_button()
         ui.onboarding.verify_success_page()
-       // cy.wait(45000)
+        // cy.wait(45000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individual_IB_AccountCreated)
     });
 })
