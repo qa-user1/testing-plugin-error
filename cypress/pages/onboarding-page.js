@@ -577,6 +577,7 @@ export default class OnboardingPage extends BasePage {
 
         } else if (option === 'Full Advice') {
             this.click_full_advice_button()
+                .select_all_checkboxes(6)
         }
 
         return this;
