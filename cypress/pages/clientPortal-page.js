@@ -364,6 +364,7 @@ export default class LoginPage extends BasePage {
     }
 
     verify_account_dashboard() {
+        cy.wait(10000)
         clientPortalContent().should('be.visible');
         cy.url().should('include', 'client-portal');
         cy.url().should('include', 'account-dashboard');
