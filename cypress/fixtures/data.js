@@ -542,7 +542,7 @@ D.scenarios = [
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
         accountType: "Individual",
-        investmentChoice: "Self Directed",
+        investmentChoice: "Limited Advice",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -557,9 +557,7 @@ D.scenarios = [
                 2,
                 2,
                 2,
-2
-
-
+                2
             ],
             investmentTotal: '100000',
             netWorth: '200000',

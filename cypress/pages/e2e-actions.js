@@ -33,6 +33,7 @@ module.exports = {
             .expand_card(0)
                 .expand_card(1)
                 .expand_card(2)
+                .expand_card(3)
                 .enter_Portfolio_values(data.buildYourPortfolio)
                 .select_ethical_option(data.ethicalOverlay)
                 .click_Save_and_Continue_button()
@@ -53,9 +54,9 @@ module.exports = {
         }
 
 
-     /*   app.verify_screen_and_tilts_page()
+        app.verify_screen_and_tilts_page()
             .select_ethical_option(data.ethicalOverlay)
-            .click_Save_and_Continue_button()*/
+            .click_Save_and_Continue_button()
 
         if (type === 'Personal Super' || type === 'Personal Super-IB') {
             app.verify_super_fund_entry_page()
