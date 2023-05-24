@@ -593,8 +593,11 @@ export default class OnboardingPage extends BasePage {
     enter_financial_info(data) {
         investmentTotal().clear()
         investmentTotal().type(data.investmentTotal);
+        netWorth().clear();
         netWorth().type(data.netWorth);
+        annualNetIncome().clear();
         annualNetIncome().type(data.annualNetIncome);
+        liquidNetWorth().clear();
         liquidNetWorth().type(data.liquidNetWorth);
         birthYear().click();
         birthYear().clear();

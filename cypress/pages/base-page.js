@@ -118,7 +118,7 @@ export default class BasePage {
 
     select_all_checkboxes(numberOfCheckboxes) {
         for (let i = 0; i < numberOfCheckboxes; i++) {
-            checkbox(i).click()
+            checkbox(i).click({force: true})
         }
         return this;
     }

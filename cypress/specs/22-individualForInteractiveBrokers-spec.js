@@ -32,7 +32,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
-        //  .redirect_user_to_the_create_a_new_account_page()
+          .redirect_user_to_the_create_a_new_account_page()
         ui.onboarding.verify_account_selection()
     })
 
@@ -201,7 +201,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .click_Save_and_Continue_button()
             .verify_validation_message_for_agree_checkbox(D.finalReviewValidationMessage)
             .click_Agree_checkbox()
-            .select_all_checkboxes(6)
+            .select_all_checkboxes(7)
             .click_Submit_Application_button()
         ui.onboarding.verify_success_page()
         // cy.wait(45000)

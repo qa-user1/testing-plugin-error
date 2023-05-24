@@ -602,6 +602,12 @@ export default class LoginPage extends BasePage {
     }
 
     complete_build_your_portfolio() {
+        coreInternationalInputField().clear();
+        coreAustraliaInputField().clear();
+        govermentBondLadderInputField().clear();
+        coreInternationalInputField().type('10');
+        coreAustraliaInputField().type('10');
+        govermentBondLadderInputField().type('80');
         tacticalGrowthInputField().clear();
         tacticalGrowthInputField().type('100');
         allocationTotalValue().should('have.text', '200%');
