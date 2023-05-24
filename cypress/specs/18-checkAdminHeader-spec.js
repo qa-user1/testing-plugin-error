@@ -8,8 +8,8 @@ context('Check Admin header', () => {
 
 
 
-    beforeEach(function () {
-       /* Cypress.Cookies.debug(true)
+    before(function () {
+        /*Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
