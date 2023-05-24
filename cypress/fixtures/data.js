@@ -539,10 +539,10 @@ D.personalInvestmentForms = [
 D.scenarios = [
     {
         name: 'Scenario 1',
-        username: 'testing+ib@nucleuswealth.com',
-        password: 'Testing1234!',
-        accountType: "SMSF-IB",
-        investmentChoice: "Full Advice",
+        username: 'testing@nucleuswealth.com',
+        password: 'Testing123!',
+        accountType: "Individual",
+        investmentChoice: "Self Directed",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -564,7 +564,8 @@ D.scenarios = [
             investmentTotal: '100000',
             netWorth: '200000',
             annualNetIncome: '70000',
-            liquidNetWorth: '110000'
+            liquidNetWorth: '110000',
+            birthYear: '1990'
         },
         reviewResponses: [
             'You want a portfolio tailored to your ethical values',
@@ -583,8 +584,8 @@ D.scenarios = [
         ],
 
         buildYourPortfolio: {
-            tacticalGrowth: "100",
-            coreInternational: "0",
+            tacticalGrowth: "50",
+            coreInternational: "50",
             investmentTotal: "100000"
         },
         ethicalOverlay: {

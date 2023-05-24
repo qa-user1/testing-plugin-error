@@ -17,7 +17,7 @@ module.exports = {
         app.click_create_new_investment_account()
             .select_account_type(type)
             .click_create_investment_account()
-            .go_through_tour_steps(C.stepMessages)
+            .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
             .select_investment_choice(data.investmentChoice, type)
             .click_Save_and_Continue_button()
@@ -28,8 +28,13 @@ module.exports = {
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
                 .enter_financial_info(data.questionResponse)
                 .click_Save_and_Continue_button()
-            app.verify_build_your_portfolio_page()
+            app.go_through_tour_steps(C.buildYourPortfolioStepMsgs)
+                .verify_build_your_portfolio_page()
+            .expand_card(0)
+                .expand_card(1)
+                .expand_card(2)
                 .enter_Portfolio_values(data.buildYourPortfolio)
+                .select_ethical_option(data.ethicalOverlay)
                 .click_Save_and_Continue_button()
         } else if (option === 'Limited Advice' || option === 'Full Advice') {
             app.verify_risk_profile_page()
@@ -38,14 +43,19 @@ module.exports = {
                 .click_Save_and_Continue_button()
         } else if (option === 'Self Directed') {
             app.verify_build_your_portfolio_page()
+            app.go_through_tour_steps(C.buildYourPortfolioStepMsgs)
+            .expand_card(0)
+                .expand_card(1)
+                .expand_card(2)
                 .enter_Portfolio_values(data.buildYourPortfolio)
+                .select_ethical_option(data.ethicalOverlay)
                 .click_Save_and_Continue_button()
         }
 
 
-        app.verify_ethical_overlay_page()
+     /*   app.verify_screen_and_tilts_page()
             .select_ethical_option(data.ethicalOverlay)
-            .click_Save_and_Continue_button()
+            .click_Save_and_Continue_button()*/
 
         if (type === 'Personal Super' || type === 'Personal Super-IB') {
             app.verify_super_fund_entry_page()
