@@ -42,6 +42,9 @@ module.exports = {
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
                 .enter_financial_info(data.questionResponse)
                 .click_Save_and_Continue_button()
+            app.verify_screen_and_tilts_page()
+                .select_ethical_option(data.ethicalOverlay)
+                .click_Save_and_Continue_button()
         } else if (option === 'Self Directed') {
             app.verify_build_your_portfolio_page()
             app.go_through_tour_steps(C.buildYourPortfolioStepMsgs)
@@ -54,9 +57,7 @@ module.exports = {
         }
 
 
-        app.verify_screen_and_tilts_page()
-            .select_ethical_option(data.ethicalOverlay)
-            .click_Save_and_Continue_button()
+
 
         if (type === 'Personal Super' || type === 'Personal Super-IB') {
             app.verify_super_fund_entry_page()
