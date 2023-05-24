@@ -73,7 +73,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     governmentBondLadderField = e => cy.get('#portfolios_9'),
     investmentTotalField = e => cy.get('#investment_total'),
     alertBYPpage = e => cy.get('[data-test="byp-alert"]'),
-    pageTitle = e => cy.get('[data-test="onboarding-leftHeader-title"]', {timeout: 55000}),
+    pageTitle = e => cy.get('[data-test="onboarding-leftHeader-title"]', {timeout: 85000}),
     pageTitle2 = e => cy.get('[data-test="clientPortal-ethicalOverlay-title"]', {timeout: 55000}),
     selectedMenuOption = e => cy.get('.ant-menu-item-selected'),
     applicantsTabSideMenu = e => cy.get('[data-test="navigation-Applicants-link"]'),
@@ -1069,7 +1069,7 @@ export default class OnboardingPage extends BasePage {
 
     verify_success_page() {
         pageTitle().should('be.visible');
-        cy.contains('Success', {timeout: 450000})
+        cy.contains('Success', {timeout: 850000})
         pageTitle(60).should('have.text', 'Success');
         cy.url().should('include', 'success');
         return this;

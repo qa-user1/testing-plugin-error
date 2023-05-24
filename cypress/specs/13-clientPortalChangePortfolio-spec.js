@@ -1,7 +1,7 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
-const d = D.scenarios[0]
+
 
 context('Client Portal - Change Portfolio', () => {
     let accountNo;
@@ -42,15 +42,15 @@ context('Client Portal - Change Portfolio', () => {
             .expand_card(1)
             .expand_card(2)
             .enter_values_on_BYP_input_fields(D.buildYouPortfolioFields)
-           // .clear_values_on_BYP_input_fields()
-           // .enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
+            .clear_values_on_BYP_input_fields()
+            .enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
             .click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
             .click_war_button()
             .select_checkbox_based_on_label('No Arms (Any)')
             .click_Save_and_Continue_button()
-            .click_Save_and_Continue_button()
+           // .click_Save_and_Continue_button()
 
 
         ui.onboarding.click_sidebar_option('Investment Choice')
@@ -81,10 +81,7 @@ context('Client Portal - Change Portfolio', () => {
             .click_Agree_checkbox()
             .click_Submit_Application_button()
             .verify_success_page()
-        /*cy.get('[data-test="onboarding-rightHeader-title"]').invoke('text').then(function (text) {
-            cy.log('ACCOUNT NUMBER ' + text)
-            accountNo = text.match('Account (' + "(.*)" + ')')[1];
-            cy.saveLocalStorage()*/
+
         cy.url().then(function (url) {
             let regex = /onboarding\/(\d+)/;
             let match = url.match(regex);
