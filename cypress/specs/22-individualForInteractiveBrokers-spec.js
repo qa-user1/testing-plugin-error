@@ -184,6 +184,7 @@ context('Individual Onboarding for Interactive Brokers', () => {
             .click_Save_and_Continue_button()
         ui.app.pause(3)
         ui.onboarding.click_Save_and_Continue_button()
+        ui.app.pause(3)
         ui.onboarding.click_Save_and_Continue_button()
         ui.app.pause(3)
         ui.onboarding.verify_your_portfolio_content_not_exist('Tactical Growth')
