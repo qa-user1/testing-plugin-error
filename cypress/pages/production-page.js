@@ -190,7 +190,7 @@ click_OK_on_Calculator_wizard() {
     }
 
     click_get_started_button() {
-        getStartedButton().click();
+        getStartedButton().click({force:true});
         return this;
     }
 

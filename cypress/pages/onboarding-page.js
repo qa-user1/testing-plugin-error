@@ -71,6 +71,13 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     globalLeadersField = e => cy.get('#portfolios_8'),
     coreAustraliaField = e => cy.get('#portfolios_5'),
     governmentBondLadderField = e => cy.get('#portfolios_9'),
+    stocksGlobalLeaders = e => cy.get('.ant-select-selection-item').eq(2),
+    stocksAustralianLeaders = e => cy.get('.ant-select-selection-item').eq(1),
+    investmentStyleFactors = e => cy.contains('Investment Style Factors'),
+    technology = e => cy.contains('Technology'),
+    consumption = e => cy.contains('Consumption'),
+    commodities = e => cy.contains('Commodities'),
+    military = e => cy.contains('Military'),
     investmentTotalField = e => cy.get('#investment_total'),
     alertBYPpage = e => cy.get('[data-test="byp-alert"]'),
     pageTitle = e => cy.get('[data-test="onboarding-leftHeader-title"]', {timeout: 85000}),
@@ -254,7 +261,6 @@ export default class OnboardingPage extends BasePage {
         disclaimerDescription().should('be.visible');
         return this;
     }
-
 
 
     verify_empty_input_fields_on_BYP_page() {
@@ -486,7 +492,9 @@ export default class OnboardingPage extends BasePage {
 
     click_submit_applicant_button() {
         submitApplicantButton().should('be.visible');
-        submitApplicantButton().click().click();
+        cy.wait(3000)
+        this.scroll_and_click(submitApplicantButton)
+        // submitApplicantButton().click().click();
         return this;
     }
 
@@ -605,21 +613,69 @@ export default class OnboardingPage extends BasePage {
         birthYear().type(data.birthYear).type('{enter}');
         return this;
     }
-
-    enter_Portfolio_values(data) {
+//working on this
+    enter_Portfolio_values(data, type) {
         investmentTotalField().clear()
         investmentTotalField().type(data.investmentTotal);
         tacticalGrowthField().type(data.tacticalGrowth);
         coreInternationalField().type(data.coreInternational);
+        if (data.tacticalIncome !== '') {
+            tacticalIncomeField().type(data.tacticalIncome);
+        }
+        if (data.tacticalAccumulation !== '') {
+            tacticalAccumulationField().type(data.tacticalAccumulation);
+        }
+        if (data.coreAustralia !== '') {
+            coreAustraliaField().type(data.coreAustralia);
+        }
+        if (data.australianLeaders15 !== '') {
+            australianLeadersField().type(data.australianLeaders15);
+        }
+        if (data.globalLeaders !== '') {
+            globalLeadersField().type(data.globalLeaders);
+        }
+        if (data.governmentBondLadder !== '') {
+           governmentBondLadderField().type(data.governmentBondLadder);
+        }
+        if (type === 'Individual-IB' && data.stocksAustralianLeaders === '15') {
+            stocksAustralianLeaders().click()
+            cy.get('[title="15"]').click()
+        }
+        if (type === 'Individual-IB' && data.stocksAustralianLeaders === '25') {
+            stocksAustralianLeaders().click()
+            cy.get('[title="25"]').click()
+        }
+        if (type === 'Individual-IB' && data.stocksAustralianLeaders === '40') {
+            stocksAustralianLeaders().click()
+            cy.get('[title="40"]').click()
+        }
+        if (type === 'Individual-IB' && data.stocksAustralianLeaders === '75') {
+            stocksAustralianLeaders().click()
+            cy.get('[title="75"]').click()
+        }
+        if (type === 'Individual-IB' && data.stocksGlobalLeaders === '15') {
+            stocksGlobalLeaders().click()
+            cy.get('[title="15"]').click()
+        }
+        if (type === 'Individual-IB' && data.stocksGlobalLeaders === '25') {
+            stocksGlobalLeaders().click()
+            cy.get('[title="25"]').click()
+        }
+        if (type === 'Individual-IB' && data.stocksGlobalLeaders === '40') {
+            stocksGlobalLeaders().click()
+            cy.get('[title="40"]').click()
+        }
+        if (type === 'Individual-IB' && data.stocksGlobalLeaders === '75') {
+            stocksGlobalLeaders().click()
+            cy.get('[title="75"]').click()
+        }
 
-        /* if (data.buildYourPortfolio['Tactical Growth']) {
-             tacticalGrowthField().type(data.buildYourPortfolio['Tactical Growth'].percent);
-         }
-         else if (data.buildYourPortfolio['Core International']) {
-             tacticalGrowthField().type(data.buildYourPortfolio['Tactical Growth'].percent);
-             coreInternationalField().type(data.buildYourPortfolio['Core International'].percent);
-         }*/
         return this;
+    }
+// working on this
+    enter_portfolio_tilts(){
+investmentStyleFactors().click()
+
     }
 
 
@@ -628,8 +684,7 @@ export default class OnboardingPage extends BasePage {
             .click_war_button()
             .select_checkbox_based_on_label(data.war)
 
-        //working on this
-        /*if (data.humanRights !== '') {
+        if (data.humanRights !== '') {
             cy.contains('Human Rights').click();
             this.select_checkboxes_based_on_labels(data.humanRights)
         }
@@ -656,7 +711,7 @@ export default class OnboardingPage extends BasePage {
         if (data.thematic !== '') {
             cy.contains('Thematic').click()
             this.select_checkboxes_based_on_labels(data.thematic)
-        }*/
+        }
         return this;
     }
 
@@ -1094,7 +1149,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     expand_card(index) {
-                cy.get('[class="ant-card-extra"]').eq(index).click()
+        cy.get('[class="ant-card-extra"]').eq(index).click()
         return this;
     }
 
@@ -2368,7 +2423,7 @@ export default class OnboardingPage extends BasePage {
         dropdownOption(data.sourceType).click();
         percentage().click();
         percentage().type(data.percentage).type('{enter}');
-          statementOfInquiry().type(data.statementOfInquiry)
+        statementOfInquiry().type(data.statementOfInquiry)
         return this;
     }
 

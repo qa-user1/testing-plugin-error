@@ -131,7 +131,7 @@ D.reviewQuestions = [
         'What do you want to achieve from your investment with Nucleus Wealth?',
         'When you think of the word "risk" in a financial context, which of the following words comes to mind first?',
         'What degree of risk have you taken with your financial decisions in the past?',
-       // 'Have you ever borrowed money to make an investment (other than for residential property)?',
+        // 'Have you ever borrowed money to make an investment (other than for residential property)?',
         'Investments can go up or down in value and experts often say you should be prepared to weather a downturn. By how much could the total value of all your investments go down in 3 months before you would begin to feel uncomfortable?',
 
         'Which one of the following best describes your attitude to market volatility when choosing an investment?',
@@ -176,11 +176,11 @@ D.reviewResponses = [
     '10%',
     'I prefer investments with a low risk of volatility; however, I am happy to have a small portion of my portfolio invested in assets with potentially higher levels of short-term capital fluctuation',
     'Leave a portion in cash, say $10,000, and look to invest the rest in a term deposit',
-   'Investment income',
+    'Investment income',
     'You want a portfolio tailored to your ethical values',
     'I want my assets to be maintained at my target weights; with shares/bonds picked based on Nucleus Wealth’s quality/value methodology',
-   'No',
-     'I would be concerned and consider changing my investment strategy',
+    'No',
+    'I would be concerned and consider changing my investment strategy',
     '$100,000',
     '$200,000',
     '$70,000',
@@ -325,7 +325,7 @@ D.indicativePortfolioExcludedSecurities = {
     'BHP (BHP)': 'No Fossil Fuels (Any)',
     'Volkswagen (VOW3)': 'No Arms (Any)',
     'Woodside Energy (WDS)': 'No Fossil Fuels (Any)',
-   'APA (APA)': 'No Fossil Fuels (Any)',
+    'APA (APA)': 'No Fossil Fuels (Any)',
     'Hitachi (6501)': 'No Arms (Any)',
     'ENGIE (ENGI)': 'No Fossil Fuels (Any)'
 }
@@ -414,11 +414,11 @@ D.fundEntryInputFields = {
 }
 
 D.currentSettings = {
-  snapshotDetails: 'Data Snapshot Details',
-  portfolioWeights: 'Portfolio Weights',
-  ethicsSettings: 'Ethic Settings',
-  securitiesExcluded: 'Securities Excluded',
-  securitiesSubstituted: 'Securities Substituted'
+    snapshotDetails: 'Data Snapshot Details',
+    portfolioWeights: 'Portfolio Weights',
+    ethicsSettings: 'Ethic Settings',
+    securitiesExcluded: 'Securities Excluded',
+    securitiesSubstituted: 'Securities Substituted'
 }
 
 D.finalReviewValidationMessage = {
@@ -462,7 +462,7 @@ D.applicantsProfileFields = {
     //birthInput:'\'Date Of Birth\' is required',
     citizenshipInput: 'Australia',
     //employmentType: 'Employed',
-   // employmentType2: 'Unemployed',
+    // employmentType2: 'Unemployed',
     employmentInput: 'Employed',
     taxInput: '11111111',
     occupation: 'Analyst',
@@ -539,10 +539,10 @@ D.personalInvestmentForms = [
 D.scenarios = [
     {
         name: 'Scenario 1',
-        username: 'testing@nucleuswealth.com',
-        password: 'Testing123!',
-        accountType: "Personal Super",
-        investmentChoice: "Full Advice",
+        username: 'testing+ib@nucleuswealth.com',
+        password: 'Testing1234!',
+        accountType: "Individual-IB",
+        investmentChoice: "Self Directed",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -583,7 +583,67 @@ D.scenarios = [
         buildYourPortfolio: {
             tacticalGrowth: "50",
             coreInternational: "50",
-            investmentTotal: "100000"
+            investmentTotal: "100000",
+
+            //keep like this if you don't want
+            // to include these values
+            tacticalIncome: '',
+            tacticalAccumulation: '',
+            coreAustralia: '',
+            australianLeaders15: '',
+            globalLeaders: '',
+            governmentBondLadder: '',
+
+
+            stocksAustralianLeaders: '40',
+            stocksGlobalLeaders: '75',
+
+            //Portfolio Tilts
+            //Investment Style Factors
+            qualityStocks: '100',
+            valueStocks: '100',
+            growthStocks: '100',
+            defensives: '100',
+
+            //Climate Change
+            cleanEnergy: '100',
+            batterySupplyChain: '100',
+            nuclearPower: '100',
+
+            //Technology
+            largeTechnologyStocks: '100',
+            cloudComputingStocks: '100',
+            roboticsArtificialIntelligence: '100',
+            cybersecurity: '100',
+            
+            //Consumption
+            videoGaming: '100',
+            travel: '100',
+            luxuryGoods: '100',
+            logistics: '100',
+
+            //Commodities
+            oilGasStocks: '100',
+            goldStocks: '100',
+            agribusiness: '100',
+
+            //Military
+            defenseContractors: '100',
+
+            //GICS Sectors
+            globalCommunicationServices: '100',
+            globalConsumerDiscretionary: '100',
+            globalConsumerStaples: '100',
+            globalEnergy: '100',
+            globalFinancials: '100',
+            globalHealthCare: '100',
+            globalIndustrials: '100',
+            globalInformationTechnology: '100',
+            globalMaterials: '100',
+            globalRealEstate: '100',
+            globalUtilities: '2000'
+
+
         },
         ethicalOverlay: {
             climateChange: [
@@ -591,13 +651,13 @@ D.scenarios = [
                 'No Fossil Fuels (Any)'
             ],
             war: 'No Arms (Any)',
-            /* humanRights: '',
-             health: ['No Fast Food'],
-               vices: 'No Gambling',
-               animalRights: 'No Fur or Specialty Leather',
-               religion: 'No Contraception',
-               assetClass: 'No Australian Shares',
-               thematic: 'No Australian Banks'*/
+            humanRights: '',
+            health: '',
+            vices: '',
+            animalRights: '',
+            religion: '',
+            assetClass: '',
+            thematic: ''
         },
         review: {
             yourPortfolioValues: {

@@ -11,7 +11,7 @@ module.exports = {
         let option = data.investmentChoice
 
 
-        // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/6895/interactive-broker-compliance')
+       //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3654/build-your-portfolio')
 
 
         app.click_create_new_investment_account()
@@ -28,13 +28,13 @@ module.exports = {
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
                 .enter_financial_info(data.questionResponse)
                 .click_Save_and_Continue_button()
-            app.go_through_tour_steps(C.buildYourPortfolioStepMsgs)
+            app.go_through_tour_steps(C.buildYourPortfolioStepMsgsIB)
                 .verify_build_your_portfolio_page()
             .expand_card(0)
                 .expand_card(1)
                 .expand_card(2)
                 .expand_card(3)
-                .enter_Portfolio_values(data.buildYourPortfolio)
+                .enter_Portfolio_values(data.buildYourPortfolio, type)
                 .select_ethical_option(data.ethicalOverlay)
                 .click_Save_and_Continue_button()
         } else if (option === 'Limited Advice' || option === 'Full Advice') {
