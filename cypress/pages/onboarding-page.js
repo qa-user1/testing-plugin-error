@@ -492,7 +492,7 @@ export default class OnboardingPage extends BasePage {
 
     click_submit_applicant_button() {
         submitApplicantButton().should('be.visible');
-        cy.wait(3000)
+        cy.wait(5000)
         this.scroll_and_click(submitApplicantButton)
         // submitApplicantButton().click().click();
         return this;
