@@ -1,7 +1,6 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
-const d = D.scenarios[0]
 
 context('Log in to the Nucleus Wealth portal, create a Joint Account and complete the onboarding portal', () => {
 
