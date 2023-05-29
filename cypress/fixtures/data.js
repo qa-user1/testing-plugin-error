@@ -581,7 +581,7 @@ D.scenarios = [
         ],
 
         buildYourPortfolio: {
-            tacticalGrowth: "50",
+            tacticalGrowth: "49",
             coreInternational: "50",
             investmentTotal: "100000",
 
@@ -600,48 +600,48 @@ D.scenarios = [
 
             //Portfolio Tilts
             //Investment Style Factors
-            qualityStocks: '100',
-            valueStocks: '100',
-            growthStocks: '100',
-            defensives: '100',
+            qualityStocks: '',
+            valueStocks: '',
+            growthStocks: '',
+            defensives: '',
 
             //Climate Change
-            cleanEnergy: '100',
-            batterySupplyChain: '100',
-            nuclearPower: '100',
+            cleanEnergy: '',
+            batterySupplyChain: '',
+            nuclearPower: '',
 
             //Technology
-            largeTechnologyStocks: '100',
-            cloudComputingStocks: '100',
-            roboticsArtificialIntelligence: '100',
-            cybersecurity: '100',
+            largeTechnologyStocks: '',
+            cloudComputingStocks: '',
+            roboticsArtificialIntelligence: '',
+            cybersecurity: '',
             
             //Consumption
-            videoGaming: '100',
-            travel: '100',
-            luxuryGoods: '100',
-            logistics: '100',
+            videoGaming: '1',
+            travel: '',
+            luxuryGoods: '',
+            logistics: '',
 
             //Commodities
-            oilGasStocks: '100',
-            goldStocks: '100',
-            agribusiness: '100',
+            oilGasStocks: '',
+            goldStocks: '',
+            agribusiness: '',
 
             //Military
-            defenseContractors: '100',
+            defenseContractors: '',
 
             //GICS Sectors
-            globalCommunicationServices: '100',
-            globalConsumerDiscretionary: '100',
-            globalConsumerStaples: '100',
-            globalEnergy: '100',
-            globalFinancials: '100',
-            globalHealthCare: '100',
-            globalIndustrials: '100',
-            globalInformationTechnology: '100',
-            globalMaterials: '100',
-            globalRealEstate: '100',
-            globalUtilities: '2000'
+            globalCommunicationServices: '',
+            globalConsumerDiscretionary: '',
+            globalConsumerStaples: '',
+            globalEnergy: '',
+            globalFinancials: '',
+            globalHealthCare: '',
+            globalIndustrials: '',
+            globalInformationTechnology: '',
+            globalMaterials: '',
+            globalRealEstate: '',
+            globalUtilities: ''
 
 
         },

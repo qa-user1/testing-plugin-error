@@ -74,10 +74,41 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     stocksGlobalLeaders = e => cy.get('.ant-select-selection-item').eq(2),
     stocksAustralianLeaders = e => cy.get('.ant-select-selection-item').eq(1),
     investmentStyleFactors = e => cy.contains('Investment Style Factors'),
+    qualityStocks = e => cy.get('[data-test="byp-qualityStocks-input"]'),
+    valueStocks = e => cy.get('[data-test="byp-valueStocks-input"]'),
+    growthStocks = e => cy.get('[data-test="byp-growthStocks-input"]'),
+    defensives = e => cy.get('[data-test="byp-Defensives-input"]'),
+    cleanEnergy = e => cy.get('[data-test="byp-cleanEnergy-input"]'),
+    batterySupplyChain = e => cy.get('[data-test="byp-batterySupplyChain-input"]'),
+    nuclearPower = e => cy.get('[data-test="byp-nuclearPower-input"]'),
+    largeTechonologyStocks = e => cy.get('[data-test="byp-largeTechnologyStocks-input"]'),
+    cloudComputingStocks = e => cy.get('[data-test="byp-cloudComputingStocks-input"]'),
+    roboticsArtificialIntelligence = e => cy.get('[data-test="byp-robotics/ArtificialIntelligence-input"]'),
+    cybersecurity = e => cy.get('[data-test="byp-Cybersecurity-input"]'),
+    videoGaming = e => cy.get('[data-test="byp-videoGaming-input"]'),
+    travel = e => cy.get('[data-test="byp-Travel-input"]'),
+    luxuryGoods = e => cy.get('[data-test="byp-luxuryGoods-input"]'),
+    logistics = e => cy.get('[data-test="byp-Logistics-input"]'),
+    oilGasStocks = e => cy.get('[data-test="byp-oilGasStocks-input"]'),
+    goldStocks = e => cy.get('[data-test="byp-goldStocks-input"]'),
+    globalCommunicationServices = e => cy.get('[data-test="byp-globalCommunicationServices-input"]'),
+    globalConsumerDiscretionary = e => cy.get('[data-test="byp-globalConsumerDiscretionary-input"]'),
+    globalConsumerStaples = e => cy.get('[data-test="byp-globalConsumerStaples-input"]'),
+    globalEnergy = e => cy.get('[data-test="byp-globalEnergy-input"]'),
+    globalFinancials = e => cy.get('[data-test="byp-globalFinancials-input"]'),
+    globalHealthCare = e => cy.get('[data-test="byp-globalHealthCare-input"]'),
+    globalIndustrials = e => cy.get('[data-test="byp-globalIndustrials-input"]'),
+    globalInformationTechnology = e => cy.get('[data-test="byp-globalInformationTechnology-input"]'),
+    globalMaterials = e => cy.get('[data-test="byp-globalMaterials-input"]'),
+    globalRealEstate = e => cy.get('[data-test="byp-globalRealEstate-input"]'),
+    globalUtilities = e => cy.get('[data-test="byp-globalUtilities-input"]'),
+    agribusiness = e => cy.get('[data-test="byp-Agribusiness-input"]'),
+    defenseContractors = e => cy.get('[data-test="byp-defenseContractors-input"]'),
     technology = e => cy.contains('Technology'),
     consumption = e => cy.contains('Consumption'),
     commodities = e => cy.contains('Commodities'),
     military = e => cy.contains('Military'),
+    gicsSector = e => cy.contains('GICS Sectors'),
     investmentTotalField = e => cy.get('#investment_total'),
     alertBYPpage = e => cy.get('[data-test="byp-alert"]'),
     pageTitle = e => cy.get('[data-test="onboarding-leftHeader-title"]', {timeout: 85000}),
@@ -130,7 +161,9 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     yearInputField = e => cy.get('.ant-picker-year-btn'),
     todayButton = e => cy.get('.ant-picker-today-btn'),
     dropdownOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
+    dropdownOptionStock = option => cy.get('[class="ant-select-selector"]').eq(1),
     politicalMilitaryDiplomaticDropdownOption = option => cy.get('#ib-details-form_affiliationDetail_hasAffiliation_list').parent('div').parent('div').find('[title="' + option + '"]'),
+    stockIncludedDropdownOption = option => cy.get('[class="ant-select-selection-item"]').eq(2).find('[title="' + option + '"]'),
     controllerDropdownOption = option => cy.get('#ib-details-form_controllerDetail_hasController_list').parent('div').find('[title="' + option + '"]'),
     politicalMilitaryDiplomatic = e => cy.get('[class="ant-select-selector"]').eq(1),
     controller = e => cy.get('[id="ib-details-form_controllerDetail_hasController"]'),
@@ -460,7 +493,7 @@ export default class OnboardingPage extends BasePage {
             employerBusinessInputField().click();
             employerBusinessInputField().type(data.employerBusiness).type('{enter}');
         }
-        if (type === 'Joint-IB') {
+        if (type === 'Joint-IB' || type === 'Individual-IB') {
             employmentStatusAnnualNetIncomeInputField().type(data.annualNetIncome)
             employmentStatusNetWorthInputField().type(data.netWorth)
         }
@@ -492,9 +525,9 @@ export default class OnboardingPage extends BasePage {
 
     click_submit_applicant_button() {
         submitApplicantButton().should('be.visible');
-    //    cy.wait(5000)
-    //    this.scroll_and_click(submitApplicantButton)
-         submitApplicantButton().click().click();
+        //    cy.wait(5000)
+        //    this.scroll_and_click(submitApplicantButton)
+        submitApplicantButton().click().click();
         return this;
     }
 
@@ -613,6 +646,7 @@ export default class OnboardingPage extends BasePage {
         birthYear().type(data.birthYear).type('{enter}');
         return this;
     }
+
 //working on this
     enter_Portfolio_values(data, type) {
         investmentTotalField().clear()
@@ -635,15 +669,17 @@ export default class OnboardingPage extends BasePage {
             globalLeadersField().type(data.globalLeaders);
         }
         if (data.governmentBondLadder !== '') {
-           governmentBondLadderField().type(data.governmentBondLadder);
+            governmentBondLadderField().type(data.governmentBondLadder);
         }
-        if (type === 'Individual-IB' && data.stocksAustralianLeaders === '15') {
+        /*if (type === 'Individual-IB' && data.stocksAustralianLeaders === '15') {
             stocksAustralianLeaders().click()
             cy.get('[title="15"]').click()
         }
         if (type === 'Individual-IB' && data.stocksAustralianLeaders === '25') {
             stocksAustralianLeaders().click()
-            cy.get('[title="25"]').click()
+            politicalMilitaryDiplomaticDropdownOption = option => cy.get('#ib-details-form_affiliationDetail_hasAffiliation_list').parent('div').parent('div').find('[title="' + option + '"]'),
+                class="ant-select-selection-item"
+                cy.get('[title="25"]').click()
         }
         if (type === 'Individual-IB' && data.stocksAustralianLeaders === '40') {
             stocksAustralianLeaders().click()
@@ -669,13 +705,125 @@ export default class OnboardingPage extends BasePage {
             stocksGlobalLeaders().click()
             cy.get('[title="75"]').click()
         }
-
+*/
+        if (data.stocksAustralianLeaders !== '') {
+            stocksAustralianLeaders().click()
+            dropdownOption(data.stocksAustralianLeaders).click()
+        }
+        if (data.stocksGlobalLeaders !== '') {
+            stocksGlobalLeaders().click()
+            dropdownOption(data.stocksGlobalLeaders).click();
+        }
         return this;
     }
-// working on this
-    enter_portfolio_tilts(){
-investmentStyleFactors().click()
 
+// working on this
+    enter_portfolio_tilts(data) {
+        investmentStyleFactors().click()
+        if (data.qualityStocks !== '') {
+            qualityStocks().type(data.qualityStocks)
+        }
+        if (data.valueStocks !== '') {
+            valueStocks().type(data.valueStocks)
+        }
+        if (data.growthStocks !== '') {
+            growthStocks().type(data.growthStocks)
+        }
+        if (data.defensives !== '') {
+            defensives().type(data.defensives)
+        }
+
+        cy.contains('Climate Change').eq(0).click();
+        if (data.cleanEnergy !== '') {
+            cleanEnergy().type(data.cleanEnergy)
+        }
+        if (data.batterySupplyChain !== '') {
+            batterySupplyChain().type(data.batterySupplyChain)
+        }
+        if (data.nuclearPower !== '') {
+            nuclearPower().type(data.nuclearPower)
+        }
+        cy.contains('Climate Change').eq(0).click();
+
+        technology().click();
+        if (data.largeTechnologyStocks !== '') {
+            largeTechonologyStocks().type(data.largeTechnologyStocks)
+        }
+        if (data.cloudComputingStocks !== '') {
+            cloudComputingStocks().type(data.cloudComputingStocks)
+        }
+        if (data.roboticsArtificialIntelligence !== '') {
+            roboticsArtificialIntelligence().type(data.roboticsArtificialIntelligence)
+        }
+        if (data.cybersecurity !== '') {
+            cybersecurity().type(data.cybersecurity)
+        }
+
+        consumption().click();
+        if (data.videoGaming !== '') {
+            videoGaming().type(data.videoGaming)
+        }
+        if (data.travel !== '') {
+            travel().type(data.travel)
+        }
+        if (data.luxuryGoods !== '') {
+            luxuryGoods().type(data.luxuryGoods)
+        }
+        if (data.logistics !== '') {
+            logistics().type(data.logistics)
+        }
+
+        commodities().click();
+        if (data.oilGasStocks !== '') {
+            oilGasStocks().type(data.oilGasStocks)
+        }
+        if (data.goldStocks !== '') {
+            goldStocks().type(data.goldStocks)
+        }
+        if (data.agribusiness !== '') {
+            agribusiness().type(data.agribusiness)
+        }
+
+        military().click();
+        if (data.defenseContractors !== '') {
+            defenseContractors().type(data.defenseContractors)
+        }
+
+        gicsSector().click();
+        if (data.globalCommunicationServices !== '') {
+            globalCommunicationServices().type(data.globalCommunicationServices)
+        }
+        if (data.globalConsumerDiscretionary !== '') {
+            globalConsumerDiscretionary().type(data.globalConsumerDiscretionary)
+        }
+        if (data.globalConsumerStaples !== '') {
+            globalConsumerStaples().type(data.globalConsumerStaples)
+        }
+        if (data.globalEnergy !== '') {
+            globalEnergy().type(data.globalEnergy)
+        }
+        if (data.globalFinancials !== '') {
+            globalFinancials().type(data.globalFinancials)
+        }
+        if (data.globalHealthCare !== '') {
+            globalHealthCare().type(data.globalHealthCare)
+        }
+        if (data.globalIndustrials !== '') {
+            globalIndustrials().type(data.globalIndustrials)
+        }
+        if (data.globalInformationTechnology !== '') {
+            globalInformationTechnology().type(data.globalInformationTechnology)
+        }
+        if (data.globalMaterials !== '') {
+            globalMaterials().type(data.globalMaterials)
+        }
+        if (data.globalRealEstate !== '') {
+            globalRealEstate().type(data.globalRealEstate)
+        }
+        if (data.globalUtilities !== '') {
+            globalUtilities().type(data.globalUtilities)
+        }
+        return this;
     }
 
 

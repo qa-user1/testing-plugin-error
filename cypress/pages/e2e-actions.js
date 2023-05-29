@@ -22,7 +22,6 @@ module.exports = {
             .select_investment_choice(data.investmentChoice, type)
             .click_Save_and_Continue_button()
 
-
         if (type === 'Individual-IB' || type === 'Joint-IB' && option === 'Self Directed') {
             app.verify_risk_profile_page()
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
@@ -35,6 +34,7 @@ module.exports = {
                 .expand_card(2)
                 .expand_card(3)
                 .enter_Portfolio_values(data.buildYourPortfolio, type)
+                .enter_portfolio_tilts(data.buildYourPortfolio, type)
                 .select_ethical_option(data.ethicalOverlay)
                 .click_Save_and_Continue_button()
         } else if (option === 'Limited Advice' || option === 'Full Advice') {

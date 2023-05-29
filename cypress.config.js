@@ -28,6 +28,9 @@ module.exports = defineConfig({
     watchForFileChanges: false,
     chromeWebSecurity: false,
     screenshotOnRunFailure: true,
+    chromeExtensions: [
+        "C:\\Users\\Amina.DESKTOP-54PAEO9\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\liecbddmkiiihnedobmlmillhodjkdmb\\5.5.17_0"
+    ],
 
 
     env: {
