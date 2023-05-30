@@ -5,8 +5,16 @@ name: Cypress Tests
 #  - cron: '0 4 * * *'
 on: [ push ]
 
-permissions: write-all
+permissions: write-
 
+env:
+    #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+    BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+    AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
+    AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+    ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+    AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+    
 jobs:
 
   clear-previous-reports:
@@ -733,10 +741,3 @@ jobs:
           # custom message to send to slack
           args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/  \"}}]}'
 
-  env:
-    #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-    BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
-    AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
-    AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-    ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
-    AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
