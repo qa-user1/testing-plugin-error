@@ -57,6 +57,7 @@ jobs:
       - run: npm i
       - run: npm run e2e-test5
       - run:  mv S3_bucket/* report
+      - run:  mv mainScript.js report
 
       - name: Deploy report to temp-reports branch
         if: always()
