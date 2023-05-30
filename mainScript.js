@@ -1,67 +1,75 @@
-const cypress = require('cypress');
-const upload = require('./cypress/support/upload-to-s3');
-const nodemailer = require('./cypress/support/sendEmail');
-const archiver = require('./cypress/support/archiver');
-var helper = require('./cypress/support/e2e-helper');
 const fs = require('fs');
+var path = require('path');
+const AWS = require('aws-sdk');
 const local = process.argv[2];
 
+//const {  BUCKET_NAME, AWS_ACCESS_ID, AWS_SECRET_KEY } = process.env;
+const BUCKET_NAME = 'neutron-qa-data',
+    AWS_ACCESS_ID = 'AKIAXFS6WV4DEGL5JFO7',
+    AWS_SECRET_KEY = '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'
 
-if (fs.existsSync("report/allure-results")) {
-    fs.rmSync("report/allure-results", {recursive: true})
+function uploadToS3(file, name, type) {
+    console.log(process.env.BUCKET_NAME);
+    const s3bucket = new AWS.S3({
+        accessKeyId: AWS_ACCESS_ID,
+        secretAccessKey: AWS_SECRET_KEY,
+        Bucket: BUCKET_NAME,
+    });
+    const params = {
+        Bucket: BUCKET_NAME,
+        Key: name,
+        Body: file,
+        //      ACL: 'public-read',
+        ContentType: `image/${type}`,
+    };
+
+    s3bucket.upload(params, (err, data) => {
+        if (err) {
+            throw err;
+        }
+        console.log('Success!');
+        console.log(data);
+    });
 }
 
-// cypress.run({
-//     spec: [
-//
-//         'cypress/specs/1-createIndividualAccount.js',
-//          'cypress/specs/2-createPersonalSuperAccount-spec.js',
-//          'cypress/specs/3-createSMSFaccount-spec.js',
-//          'cypress/specs/4-createJointAccount-spec.js',
-//          'cypress/specs/5-createTrustAccount-spec.js',
-//          'cypress/specs/6-createCompanyAccount-spec.js',
-//         'cypress/specs/8-signUpNewUser-spec.js',
-//         'cypress/specs/9-clientPortalHome-spec.js',
-//         'cypress/specs/10-ClientPortalAccountDashboard-spec.js',
-//         'cypress/specs/11-clientPortalAdministration-spec.js',
-//         'cypress/specs/12-clientPortalForms-spec.js',
-//         'cypress/specs/13-clientPortalChangePortfolio-spec.js',
-//         'cypress/specs/15-2factorLogin-spec.js',
-//         'cypress/specs/16-testNucleusWealthWordpressSite-spec.js',
-//         'cypress/specs/17.0-createTestUserOnLivePortal-spec.js',
-//         'cypress/specs/17.1-createUserForWalkTheWorld-spec.js',
-//         'cypress/specs/17.2-createNewUserForMacroBusiness-spec.js',
-//         'cypress/specs/18-checkAdminHeader-spec.js',
-//         'cypress/specs/19-lookUpInvestmentAccount-spec.js',
-//         'cypress/specs/20-adminPortalCheckDetails-spec.js',
-//         'cypress/specs/21-forgotPassFunction-spec.js',
-//         'cypress/specs/22-individualForInteractiveBrokers-spec.js',
-//
-//
-//     ],
-//     record: true,
-//     browser: 'chrome',
-//
-// })
-//     .then(() => {
-//         console.log('\nArchiving the test artifacts');
-//         archiver.archiveFolder('report')
-//         archiver.archiveFolder('S3_bucket')
-   // })
-   //  .then(async () => {
-   //      console.log('\nPreparing attachments and sending an email');
-   //      await nodemailer.sendEmail()
-   //  })
-   // .then(() => {
-       // upload to s3
-        if (!local) {
-            console.log('\nUploading to S3');
-            upload.uploadAllFilesToS3()
-                // .catch((err) => {
-                //     console.error(err);
-                // });
-        } else {
-            console.log('\nLocal run - skipping Sp3 upload');
+function getFiles(dir, fileList = []) {
+    const files = fs.readdirSync(dir);
+    files.forEach((file) => {
+        const filePath = `${dir}/${file}`;
+        if (['.gitkeep', '.Trash-0'].indexOf(file) === -1) {
+            if (fs.statSync(filePath).isDirectory()) {
+                getFiles(filePath, fileList);
+            } else {
+                const obj = {
+                    path: filePath,
+                    name: file,
+                    type: file.split('.')[1],
+                }
+                fileList.push(obj);
+            }
         }
-  //  })
+    });
+    return fileList;
+}
 
+function uploadAllFilesToS3(dir, fileList = []) {
+    snapshots.forEach((snapshotObject) => {
+        fs.readFile(snapshotObject.path, (err, data) => {
+            if (err) {
+                throw err;
+            }
+            uploadToS3(data, snapshotObject.name, snapshotObject.type);
+            // console.log(snapshot);
+        });
+    });
+}
+
+const snapshotsDir = path.join(__dirname, 'S3_bucket');
+const snapshots = getFiles(snapshotsDir, []);
+
+if (!local) {
+    console.log('\nUploading to S3');
+    uploadAllFilesToS3()
+} else {
+    console.log('\nLocal run - skipping Sp3 upload');
+}
