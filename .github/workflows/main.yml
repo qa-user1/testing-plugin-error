@@ -80,8 +80,6 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: gh-pages
       - name: Install dependencies
         run: |
           git config --global http.postBuffer 157286400
