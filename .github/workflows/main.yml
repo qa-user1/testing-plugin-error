@@ -5,7 +5,7 @@ name: Cypress Tests
 #  - cron: '0 4 * * *'
 on: [ push ]
 
-permissions: write-
+permissions: write-all
 
 env:
     #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
