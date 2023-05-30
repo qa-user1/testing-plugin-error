@@ -44,23 +44,24 @@ if (fs.existsSync("report/allure-results")) {
 //
 // })
 //     .then(() => {
-        console.log('\nArchiving the test artifacts');
-        archiver.archiveFolder('report')
-        archiver.archiveFolder('S3_bucket')
+//         console.log('\nArchiving the test artifacts');
+//         archiver.archiveFolder('report')
+//         archiver.archiveFolder('S3_bucket')
    // })
-    .then(async () => {
-        console.log('\nPreparing attachments and sending an email');
-        await nodemailer.sendEmail()
-    })
-    .then(() => {
+   //  .then(async () => {
+   //      console.log('\nPreparing attachments and sending an email');
+   //      await nodemailer.sendEmail()
+   //  })
+   // .then(() => {
        // upload to s3
         if (!local) {
             console.log('\nUploading to S3');
             upload.uploadAllFilesToS3()
+                // .catch((err) => {
+                //     console.error(err);
+                // });
         } else {
             console.log('\nLocal run - skipping Sp3 upload');
         }
-    })
-    .catch((err) => {
-        console.error(err);
-    });
+  //  })
+
