@@ -44,7 +44,7 @@ jobs:
 
 
   Run-Cypress-Test5:
-    name: Cypress Test 1
+    name: Cypress Test 5
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
@@ -56,8 +56,9 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test5
-      - run:  mv S3_bucket/* report
-      - run:  mv mainScript.js report
+      - run:  |
+          mkdir report/S3_bucket
+          mv S3_bucket/* report/S3_bucket
 
       - name: Deploy report to temp-reports branch
         if: always()
