@@ -12,9 +12,8 @@ env:
     BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
     AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
     AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-    ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
-    AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
-    
+
+
 jobs:
 
   clear-previous-reports:
@@ -381,6 +380,9 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm i
       - run: npm run e2e-test15
+        env:
+          ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
