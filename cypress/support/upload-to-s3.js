@@ -2,11 +2,11 @@ const fs = require('fs');
 var path = require('path');
 const AWS = require('aws-sdk');
 
-//const {  BUCKET_NAME, AWS_ACCESS_ID, AWS_SECRET_KEY } = process.env;
- const BUCKET_NAME = 'neutron-qa-data',
+const {  BUCKET_NAME, AWS_ACCESS_ID, AWS_SECRET_KEY } = process.env;
+ /*const BUCKET_NAME = 'neutron-qa-data',
      AWS_ACCESS_ID = 'AKIAXFS6WV4DEGL5JFO7',
      AWS_SECRET_KEY = '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'
-
+*/
 function uploadToS3(file, name, type) {
    // const {  BUCKET_NAME, AWS_ACCESS_ID, AWS_SECRET_KEY } = process.env;
     console.log(process.env.BUCKET_NAME);
