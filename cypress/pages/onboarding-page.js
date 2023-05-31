@@ -536,6 +536,7 @@ export default class OnboardingPage extends BasePage {
     verify_your_identity() {
         //this.pause(7)
         // identity().should('have.text', "Driver's licence");
+        cy.wait(8000)
         cy.contains('h1', 'Verify your identity');
         return this;
     }

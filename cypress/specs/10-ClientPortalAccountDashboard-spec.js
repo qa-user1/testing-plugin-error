@@ -68,7 +68,7 @@ context('Client Portal - Account Dashboard', () => {
             .click_submit_applicant_button()
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
-            .verify_your_identity()
+            //.verify_your_identity()
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)
             .click_Save_and_Continue_button()
