@@ -542,6 +542,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     upload_and_submit_document_for_verification(idOption, type) {
+        this.pause(3)
         idOptionList().should('be.visible')
         this.pause(3)
         this.select_id_option(idOption)
