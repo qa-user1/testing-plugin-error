@@ -11,7 +11,7 @@ module.exports = {
         let option = data.investmentChoice
 
 
-       //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3654/build-your-portfolio')
+        //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3654/build-your-portfolio')
 
 
         app.click_create_new_investment_account()
@@ -19,45 +19,47 @@ module.exports = {
             .click_create_investment_account()
             .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
-            .select_investment_choice(data.investmentChoice, type)
+        app.select_investment_choice(data.investmentChoice, type)
             .click_Save_and_Continue_button()
 
-        if (type === 'Individual-IB' || type === 'Joint-IB' && option === 'Self Directed') {
+        if (option === 'Limited Advice' || option === 'Full Advice') {
+            app.verify_risk_profile_page()
+                .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
+                .enter_financial_info(data.questionResponse)
+                .click_Save_and_Continue_button()
+            //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3921/ethical-overlay')
+            app.verify_screen_and_tilts_page()
+                .select_ethical_option(data.ethicalOverlay)
+                .select_tilts_option(data.ethicalOverlay)
+                .click_Save_and_Continue_button()
+        } else if (type === 'Individual-IB' || type === 'Joint-IB' && option === 'Self Directed') {
             app.verify_risk_profile_page()
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
                 .enter_financial_info(data.questionResponse)
                 .click_Save_and_Continue_button()
             app.go_through_tour_steps(C.buildYourPortfolioStepMsgsIB)
                 .verify_build_your_portfolio_page()
-            .expand_card(0)
+                .turn_on_allocate_cash()
+                .expand_card(0)
                 .expand_card(1)
                 .expand_card(2)
-                .expand_card(3)
+                .expand_card(4)
+                .enter_cash(data.buildYourPortfolio)
                 .enter_Portfolio_values(data.buildYourPortfolio, type)
                 .enter_portfolio_tilts(data.buildYourPortfolio, type)
-                .select_ethical_option(data.ethicalOverlay)
-                .click_Save_and_Continue_button()
-        } else if (option === 'Limited Advice' || option === 'Full Advice') {
-            app.verify_risk_profile_page()
-                .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
-                .enter_financial_info(data.questionResponse)
-                .click_Save_and_Continue_button()
-            app.verify_screen_and_tilts_page()
                 .select_ethical_option(data.ethicalOverlay)
                 .click_Save_and_Continue_button()
         } else if (option === 'Self Directed') {
             app.verify_build_your_portfolio_page()
             app.go_through_tour_steps(C.buildYourPortfolioStepMsgs)
-            .expand_card(0)
+                .turn_on_allocate_cash()
+                .expand_card(0)
                 .expand_card(1)
                 .expand_card(2)
                 .enter_Portfolio_values(data.buildYourPortfolio)
                 .select_ethical_option(data.ethicalOverlay)
                 .click_Save_and_Continue_button()
         }
-
-
-
 
         if (type === 'Personal Super' || type === 'Personal Super-IB') {
             app.verify_super_fund_entry_page()
@@ -68,15 +70,14 @@ module.exports = {
         app.verify_review_page()
 
 
-
         if (type === 'Individual-IB' || type === 'Joint-IB') {
             app.verify_review_page()
                 .expand_question_responses_panel()
-             //  .verify_question_responses(type, data.reviewResponses)
+            //  .verify_question_responses(type, data.reviewResponses)
         } else if (option === 'Limited Advice') {
             app.verify_review_page()
                 .expand_question_responses_panel()
-               // .review_question_responses(type, data.reviewResponses)
+            // .review_question_responses(type, data.reviewResponses)
         }
 
         app.expand_ethical_overlay_panel()
@@ -142,9 +143,10 @@ module.exports = {
         app.verify_Final_Review_page()
             .verify_documents_on_final_review_page(option, type, data.finalReview)
 
-
     }
 }
+
+
 
 
 

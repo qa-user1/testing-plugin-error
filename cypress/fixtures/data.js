@@ -539,10 +539,10 @@ D.personalInvestmentForms = [
 D.scenarios = [
     {
         name: 'Scenario 1',
-        username: 'testing+ib@nucleuswealth.com',
-        password: 'Testing1234!',
-        accountType: "Individual-IB",
-        investmentChoice: "Full Advice",
+        username: 'testing@nucleuswealth.com',
+        password: 'Testing123!',
+        accountType: "Individual",
+        investmentChoice: "Self Directed",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -556,7 +556,8 @@ D.scenarios = [
                 2,
                 2,
                 2,
-                2
+                2,
+
             ],
             investmentTotal: '100000',
             netWorth: '200000',
@@ -584,6 +585,7 @@ D.scenarios = [
             tacticalGrowth: "49",
             coreInternational: "50",
             investmentTotal: "100000",
+            cash: '500',
 
             //keep like this if you don't want
             // to include these values
@@ -615,7 +617,7 @@ D.scenarios = [
             cloudComputingStocks: '',
             roboticsArtificialIntelligence: '',
             cybersecurity: '',
-            
+
             //Consumption
             videoGaming: '1',
             travel: '',
@@ -657,7 +659,54 @@ D.scenarios = [
             animalRights: '',
             religion: '',
             assetClass: '',
-            thematic: ''
+            thematic: '',
+
+            // tilts
+            //Investment Style Factors
+
+            qualityStocks: '',
+            valueStocks: 'Small Weight',
+            growthStocks: '',
+            defensives: '',
+
+            //CLimate Change
+            batterySupplyChain: '',
+            cleanEnergy: '',
+            nuclearPower: '',
+
+            //technology
+            largeTechnologyStocks: '',
+            cloudComputingStocks: '',
+            roboticsArtificialIntelligence: '',
+            cybersecurity: '',
+
+            //consumption
+            videoGaming: '',
+            luxuryGoods: '',
+            travel: '',
+            logistics: '',
+
+            //commodities
+            goldStocks: '',
+            oilGasStocks: '',
+            agribusiness: '',
+
+            //military
+            defenseContractors: '',
+
+            // GICS Sectors
+            globalConsumerDiscretionary: '',
+            globalConsumerStaples: '',
+            globalCommunicationServices: '',
+            globalEnergy: '',
+            globalMaterials: '',
+            globalIndustrials: '',
+            globalHealthCare: '',
+            globalFinancials: '',
+            globalInformationTechnology: '',
+            globalRealEstate: '',
+            globalUtilities: ''
+
         },
         review: {
             yourPortfolioValues: {

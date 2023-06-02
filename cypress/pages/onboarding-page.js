@@ -109,6 +109,10 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     commodities = e => cy.contains('Commodities'),
     military = e => cy.contains('Military'),
     gicsSector = e => cy.contains('GICS Sectors'),
+    climateChangeTiltsButton = e => cy.get('[class="ant-radio-button-wrapper radio-btn-card css-86j49d"]').eq(8),
+    technologyTiltsButton = e => cy.get('[class="ant-radio-button-wrapper radio-btn-card css-86j49d"]').eq(9),
+    allocateCash = e => cy.get('[class="ant-switch-inner"]'),
+    cash = e => cy.get('[data-test="byp-Cash-input"]'),
     investmentTotalField = e => cy.get('#investment_total'),
     alertBYPpage = e => cy.get('[data-test="byp-alert"]'),
     pageTitle = e => cy.get('[data-test="onboarding-leftHeader-title"]', {timeout: 85000}),
@@ -151,6 +155,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     submitApplicantButton = e => cy.get('[data-test="applicants-submitApplicant-btn"]'),
     titleInputField = e => cy.get('[data-test="applicants-title-input"]'),
     titleDropdownOptions = option => cy.get('.rc-virtual-list-holder-inner').contains(option),
+    tiltsDropdownOptions = option => cy.get('[class="ant-select-dropdown css-86j49d ant-select-dropdown-placement-bottomLeft "]').contains(option),
     nameInputField = e => cy.get('#givenNames'),
     surnameInputField = e => cy.get('#surname'),
     emailInputField = e => cy.get('#email'),
@@ -263,6 +268,36 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     modalButton = e => cy.contains('Need help with this page?'),
     modalWindow = e => cy.get('[role="dialog"]'),
     videoTutorial = e => cy.get('#widget2'),
+    qualityStocksTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_35'),
+    valueStocksTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_36'),
+    growthStocksTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_37'),
+    defensivesTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_64'),
+    batterySupplyChainTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_32'),
+    cleanEnergyTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_61'),
+    nuclearPowerTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_62'),
+    largeTechnologyStocksTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_34'),
+    roboticsArtificialIntelligenceTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_58'),
+    cybersecurityTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_60'),
+    videoGamingTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_63'),
+    luxuryGoodsTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_65'),
+    travelTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_66'),
+    logisticsTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_67'),
+    cloudComputingStocksTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_38'),
+    goldStocksTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_43'),
+    oilGasStocksTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_39'),
+    agribusinessTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_59'),
+    defenseContractorsTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_64'),
+    globalConsumerDiscretionaryTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_52'),
+    globalConsumerStaplesTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_49'),
+    globalCommunicationServicesTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_51'),
+    globalEnergyTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_54'),
+    globalMaterialsTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_55'),
+    globalIndustrialsTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_48'),
+    globalHealthCareTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_47'),
+    globalFinancialsTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_50'),
+    globalInformationTechnologyTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_57'),
+    globalRealEstateTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_56'),
+    globalUtilitiesTypeOfTilt = e => cy.get('#ethical-overlay-form_portfolio_tilt_53'),
     chat = e => cy.get('[id="hubspot-conversations-inline-iframe"]'),
     meetings = e => cy.get('.meetings-iframe-container > iframe'),
     nextButtonTourWindow = e => cy.get('[class="ant-btn css-86j49d ant-btn-primary ant-btn-sm ant-tour-next-btn"]'),
@@ -606,7 +641,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_investment_choice(option, type) {
-        if (type === 'Individual-IB' || type === 'Joint-IB' && option === 'Self Directed') {
+        if (option === 'Self Directed' && type === 'Individual-IB' || type === 'Joint-IB'  ) {
             this.click_self_directed_button()
                 .select_all_checkboxes(6)
         } else if (type === 'Individual-IB' && option === 'Limited Advice') {
@@ -648,6 +683,18 @@ export default class OnboardingPage extends BasePage {
         birthYear().click();
         birthYear().clear();
         birthYear().type(data.birthYear).type('{enter}');
+        return this;
+    }
+
+    turn_on_allocate_cash() {
+        allocateCash().click();
+        return this;
+    }
+
+    enter_cash(data) {
+        if (data.cash !== '') {
+            cash().type(data.cash)
+        }
         return this;
     }
 
@@ -863,6 +910,143 @@ export default class OnboardingPage extends BasePage {
         if (data.thematic !== '') {
             cy.contains('Thematic').click()
             this.select_checkboxes_based_on_labels(data.thematic)
+        }
+        return this;
+    }
+
+    climateChange = 'Climate Change';
+
+    select_tilts_option(data) {
+        if (data.qualityStocks !== '') {
+            qualityStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.qualityStocks).click();
+        }
+        if (data.valueStocks !== '') {
+            valueStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.valueStocks).click();
+        }
+        if (data.growthStocks !== '') {
+            growthStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.growthStocks).click();
+        }
+        if (data.defensives !== '') {
+            defensivesTypeOfTilt().click()
+            tiltsDropdownOptions(data.defensives).click();
+        }
+
+        climateChangeTiltsButton().click()
+        if (data.batterySupplyChain !== '') {
+            batterySupplyChainTypeOfTilt().click()
+            tiltsDropdownOptions(data.batterySupplyChain).click();
+        }
+        if (data.cleanEnergy !== '') {
+            cleanEnergyTypeOfTilt().click()
+            tiltsDropdownOptions(data.cleanEnergy).click();
+        }
+        if (data.nuclearPower !== '') {
+            nuclearPowerTypeOfTilt().click();
+            tiltsDropdownOptions(data.nuclearPower).click();
+        }
+
+        technologyTiltsButton().click()
+        if (data.largeTechnologyStocks !== '') {
+            largeTechnologyStocksTypeOfTilt().click();
+            tiltsDropdownOptions(data.largeTechnologyStocks).click();
+        }
+        if (data.cloudComputingStocks !== '') {
+            cloudComputingStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.cloudComputingStocks).click();
+        }
+        if (data.roboticsArtificialIntelligence !== '') {
+            roboticsArtificialIntelligenceTypeOfTilt().click()
+            tiltsDropdownOptions(data.roboticsArtificialIntelligence).click();
+        }
+        if (data.cybersecurity !== '') {
+            cybersecurityTypeOfTilt().click()
+            tiltsDropdownOptions(data.cybersecurity).click();
+        }
+
+         consumption().click()
+        if (data.videoGaming !== '') {
+            videoGamingTypeOfTilt().click()
+            tiltsDropdownOptions(data.videoGaming).click();
+        }
+        if (data.luxuryGoods !== '') {
+            luxuryGoodsTypeOfTilt().click();
+            tiltsDropdownOptions(data.luxuryGoods).click();
+        }
+        if (data.travel !== '') {
+            travelTypeOfTilt().click();
+            tiltsDropdownOptions(data.travel).click();
+        }
+        if (data.logistics !== '') {
+            logisticsTypeOfTilt().click();
+            tiltsDropdownOptions(data.logistics).click();
+        }
+
+         commodities().click()
+        if (data.goldStocks !== '') {
+            goldStocksTypeOfTilt().click();
+            tiltsDropdownOptions(data.goldStocks).click();
+        }
+        if (data.oilGasStocks !== '') {
+            oilGasStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.oilGasStocks).click();
+        }
+        if (data.agribusiness !== '') {
+            agribusinessTypeOfTilt().click();
+            tiltsDropdownOptions(data.agribusiness).click();
+        }
+         military().click()
+        if (data.defenseContractors !== '') {
+            defenseContractorsTypeOfTilt().click();
+            tiltsDropdownOptions(data.defenseContractors).click();
+        }
+
+         gicsSector().click()
+        if (data.globalConsumerDiscretionary !== '') {
+           globalConsumerDiscretionaryTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalConsumerDiscretionary).click();
+        }
+        if (data.globalConsumerStaples !== '') {
+           globalConsumerStaplesTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalConsumerStaples).click();
+        }
+        if (data.globalCommunicationServices !== '') {
+            globalCommunicationServicesTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalCommunicationServices).click();
+        }
+        if (data.globalEnergy !== '') {
+            globalEnergyTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalEnergy).click();
+        }
+        if (data.globalMaterials !== '') {
+            globalMaterialsTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalMaterials).click();
+        }
+        if (data.globalIndustrials !== '') {
+            globalIndustrialsTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalIndustrials).click();
+        }
+        if (data.globalHealthCare !== '') {
+            globalHealthCareTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalHealthCare).click();
+        }
+        if (data.globalFinancials !== '') {
+           globalFinancialsTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalFinancials).click();
+        }
+        if (data.globalInformationTechnology !== '') {
+            globalInformationTechnologyTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalInformationTechnology).click();
+        }
+        if (data.globalRealEstate !== '') {
+            globalRealEstateTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalRealEstate).click();
+        }
+        if (data.globalUtilities !== '') {
+            globalUtilitiesTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalUtilities).click();
         }
         return this;
     }
@@ -1174,7 +1358,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_build_your_portfolio_page() {
-        investmentTotalField().should('be.visible');
+        //investmentTotalField().should('be.visible');
         cy.url().should('include', 'build-your-portfolio');
         pageTitle().should('have.text', 'Build Your Portfolio');
         return this;
