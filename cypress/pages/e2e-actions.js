@@ -30,10 +30,10 @@ module.exports = {
             //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3921/ethical-overlay')
             app.verify_screen_and_tilts_page()
                 .select_ethical_option(data.ethicalOverlay)
-        } if (option === 'Full Advice') {
+        } if (type === 'Individual-IB' && option === 'Full Advice') {
                 app.select_tilts_option(data.ethicalOverlay)
             }
-           if (option === 'Limited Advice'){
+          else if (option === 'Limited Advice' || option === 'Full Advice'){
                app.click_Save_and_Continue_button()
            }
 
