@@ -541,8 +541,8 @@ D.scenarios = [
         name: 'Scenario 1',
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
-        accountType: "Personal Super",
-        investmentChoice: "Full Advice",
+        accountType: "Joint",
+        investmentChoice: "Self Directed",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -557,7 +557,7 @@ D.scenarios = [
                 2,
                 2,
                 2,
-
+2
 
             ],
             investmentTotal: '100000',
@@ -829,15 +829,18 @@ D.scenarios = [
             inputFields: {
                 titleInput: 'Mr',
                 nameInput: 'Test name',
+                middleName: 'Test',
                 surnameInput: 'Test surname',
                 emailInput: 'email@test.com',
                 mobileInput: '123456',
                 genderInput: 'Female',
+                countryOfBirth: 'Australia',
                 dateOfBirth: '16/04/1990',
                 citizenshipInput: 'Australia',
                 employmentInput: 'Employed',
                 taxInput: '11111111',
                 occupation: 'Analyst',
+                numberOfDependents: '0',
                 employerName: 'Test test',
                 employerAddress: 'Angola',
                 employerBusiness: 'Computer/Information Technology',

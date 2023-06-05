@@ -157,6 +157,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     titleDropdownOptions = option => cy.get('.rc-virtual-list-holder-inner').contains(option),
     tiltsDropdownOptions = option => cy.get('[class="ant-select-dropdown css-86j49d ant-select-dropdown-placement-bottomLeft "]').contains(option),
     nameInputField = e => cy.get('#givenNames'),
+    middleNameInputField = e => cy.get('#middleNames'),
     surnameInputField = e => cy.get('#surname'),
     emailInputField = e => cy.get('#email'),
     mobileInputField = e => cy.get('#phone'),
@@ -185,8 +186,11 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     employmentStatusAnnualNetIncomeInputField = e => cy.get('[id="theForm_person_annual_net_income"]'),
     employmentStatusNetWorthInputField = e => cy.get('[id="theForm_person_net_worth"]'),
     citizenshipInputField = e => cy.get('#theForm_citizenship'),
+    maritalStatus = e => cy.get('#theForm_marital_status'),
+    countryOfBirth = e => cy.get('#theForm_country_of_birth'),
     taxInputField = e => cy.get('[data-test="applicants-tfn-input"]'),
     genderInputField = e => cy.get('[data-test="applicants-gender-input"] > .ant-select-selector'),
+    numberOfDependentsInputField = e => cy.get('#theForm_num_dependents'),
     residentialAddressInputField = e => cy.get('[data-test="applicants-residentialAddress-input"]'),
     residentialAddressTypeaheadOption = e => cy.get('[data-test="applicants-addressSuggestion-0-input"]'),
     knowledgeLevel = e => cy.get('#theForm_investmentExperience_0_knowledgeLevel'),
@@ -517,6 +521,9 @@ export default class OnboardingPage extends BasePage {
         nameInputField().type(data.nameInput)
         nameInputField().should('have.value', data.nameInput)
 
+        middleNameInputField().clear();
+        middleNameInputField().type(data.middleName)
+
         surnameInputField().type(data.surnameInput);
         surnameInputField().should('have.value', data.surnameInput)
 
@@ -529,6 +536,9 @@ export default class OnboardingPage extends BasePage {
         genderInputField().click();
         genderInputField().type(data.genderInput).type('{enter}');
 
+        numberOfDependentsInputField().clear();
+        numberOfDependentsInputField().type(data.numberOfDependents)
+
         dateInputField2().click();
         //dateField().click();
         // this.enterValue(dateInputField, data.dateOfBirth)
@@ -536,6 +546,9 @@ export default class OnboardingPage extends BasePage {
 
         citizenshipInputField().click({force: true})
         citizenshipInputField().type(data.citizenshipInput).type('{enter}');
+
+        countryOfBirth().click({force:true})
+        countryOfBirth().type(data.countryOfBirth).type('{enter}')
 
         employmentInputField().click();
         dropdownOption(data.employmentInput).click()

@@ -61,9 +61,9 @@ C.emailTemplates = {
         content: 'Welcome aboard! Your application for Individual Investment Account has been successfully submitted.',
         attachments: [
             'Nucleus Wealth - Financial Services Guide.pdf',
-            'Nucleus Wealth - MDA Brochure and Agreement.pdf',
             'Nucleus Wealth - Investment and Fee Summary.pdf',
             'Nucleus Wealth - Statement of Advice.pdf',
+            'Praemium SMA - Product Disclosure Statement and Investment Menu extract.pdf'
         ]
     },
 
