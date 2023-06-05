@@ -542,7 +542,7 @@ D.scenarios = [
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
         accountType: "Personal Super",
-        investmentChoice: "Limited Advice",
+        investmentChoice: "Full Advice",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -557,7 +557,7 @@ D.scenarios = [
                 2,
                 2,
                 2,
-                
+
 
             ],
             investmentTotal: '100000',
@@ -876,7 +876,14 @@ D.scenarios = [
             customFundName: 'test',
             transferAmount: '100000',
             memberNumber: '5',
-            personalSuperAccountType: 'Accumulation'
+            personalSuperAccountType: 'Accumulation',
+
+            //manually enter fees
+            platformAdministration: '20',
+            investmentManagement: '20',
+            ETFfees: ' 20',
+            Performance: '20',
+            advice: '20'
         },
         insurance: {
             lifeCover: '100000',

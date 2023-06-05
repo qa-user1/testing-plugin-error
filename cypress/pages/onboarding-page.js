@@ -222,7 +222,13 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     transferAmountInputField = e => cy.get('[data-test="superFundEntry-transferAmount0-input"]'),
     memberNumberInputField = e => cy.get('[data-test="superFundEntry-memberNumber0-input"]'),
     personalSuperAccountTypeInputField = e => cy.get('[data-test="superDetails-personalSuperAccountType-input"]'),
+    platformAdministration = e => cy.get('[data-test="superFundEntry-platformAdministration0-input"]'),
+    investmentManagement = e => cy.get('[data-test="superFundEntry-investmentManagement0-input"]'),
+    ETFfees = e => cy.get('[data-test="superFundEntry-eTFFeesOther0-input"]'),
+    performance = e => cy.get('[data-test="superFundEntry-Performance0-input"]'),
+    advice = e => cy.get('[data-test="superFundEntry-Advice0-input"]'),
     accumulationChoice = e => cy.get('[data-test="superDetails-personalSuperAccountType-input-accumulation"]'),
+    manuallyEnterFeesButton = e => cy.get('[data-test="superFundEntry-manuallyEnterFees0-btn"]'),
     ttrChoice = e => cy.get('[data-test="superDetails-personalSuperAccountType-input-ttr"]'),
     pensionChoice = e => cy.get('[data-test="superDetails-personalSuperAccountType-input-pension"]'),
     questionResponses = e => cy.get('[data-test="review-questionResponses-question"]'),
@@ -392,6 +398,19 @@ export default class OnboardingPage extends BasePage {
         fundNameInputField().type(fundEntryValues.fundName).type('{enter}');
         transferAmountInputField().clear();
         transferAmountInputField().type(fundEntryValues.transferAmount);
+        if (fundEntryValues.platformAdministration !== '') {
+            manuallyEnterFeesButton().click();
+            platformAdministration().clear();
+            platformAdministration().type(fundEntryValues.platformAdministration);
+            investmentManagement().clear();
+            investmentManagement().type(fundEntryValues.investmentManagement);
+            ETFfees().clear();
+            ETFfees().type(fundEntryValues.ETFfees);
+            performance().clear();
+            performance().type(fundEntryValues.Performance);
+            advice().clear();
+            advice().type(fundEntryValues.advice)
+        }
 
         if (fundEntryValues.fundName === 'Other' || fundEntryValues.fundName === 'SMSF') {
             customFundNameInputField().type(fundEntryValues.customFundName)
@@ -641,7 +660,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     select_investment_choice(option, type) {
-        if (option === 'Self Directed' && type === 'Individual-IB' || type === 'Joint-IB'  ) {
+        if (option === 'Self Directed' && type === 'Individual-IB' || type === 'Joint-IB') {
             this.click_self_directed_button()
                 .select_all_checkboxes(6)
         } else if (type === 'Individual-IB' && option === 'Limited Advice') {
@@ -917,139 +936,139 @@ export default class OnboardingPage extends BasePage {
     climateChange = 'Climate Change';
 
     select_tilts_option(data) {
-     //   if (data.investmentChoice === 'Full Advice'){
-            if (data.qualityStocks !== '') {
-                qualityStocksTypeOfTilt().click()
-                tiltsDropdownOptions(data.qualityStocks).click();
-            }
-            if (data.valueStocks !== '') {
-                valueStocksTypeOfTilt().click()
-                tiltsDropdownOptions(data.valueStocks).click();
-            }
-            if (data.growthStocks !== '') {
-                growthStocksTypeOfTilt().click()
-                tiltsDropdownOptions(data.growthStocks).click();
-            }
-            if (data.defensives !== '') {
-                defensivesTypeOfTilt().click()
-                tiltsDropdownOptions(data.defensives).click();
-            }
+        //   if (data.investmentChoice === 'Full Advice'){
+        if (data.qualityStocks !== '') {
+            qualityStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.qualityStocks).click();
+        }
+        if (data.valueStocks !== '') {
+            valueStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.valueStocks).click();
+        }
+        if (data.growthStocks !== '') {
+            growthStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.growthStocks).click();
+        }
+        if (data.defensives !== '') {
+            defensivesTypeOfTilt().click()
+            tiltsDropdownOptions(data.defensives).click();
+        }
 
-            climateChangeTiltsButton().click()
-            if (data.batterySupplyChain !== '') {
-                batterySupplyChainTypeOfTilt().click()
-                tiltsDropdownOptions(data.batterySupplyChain).click();
-            }
-            if (data.cleanEnergy !== '') {
-                cleanEnergyTypeOfTilt().click()
-                tiltsDropdownOptions(data.cleanEnergy).click();
-            }
-            if (data.nuclearPower !== '') {
-                nuclearPowerTypeOfTilt().click();
-                tiltsDropdownOptions(data.nuclearPower).click();
-            }
+        climateChangeTiltsButton().click()
+        if (data.batterySupplyChain !== '') {
+            batterySupplyChainTypeOfTilt().click()
+            tiltsDropdownOptions(data.batterySupplyChain).click();
+        }
+        if (data.cleanEnergy !== '') {
+            cleanEnergyTypeOfTilt().click()
+            tiltsDropdownOptions(data.cleanEnergy).click();
+        }
+        if (data.nuclearPower !== '') {
+            nuclearPowerTypeOfTilt().click();
+            tiltsDropdownOptions(data.nuclearPower).click();
+        }
 
-            technologyTiltsButton().click()
-            if (data.largeTechnologyStocks !== '') {
-                largeTechnologyStocksTypeOfTilt().click();
-                tiltsDropdownOptions(data.largeTechnologyStocks).click();
-            }
-            if (data.cloudComputingStocks !== '') {
-                cloudComputingStocksTypeOfTilt().click()
-                tiltsDropdownOptions(data.cloudComputingStocks).click();
-            }
-            if (data.roboticsArtificialIntelligence !== '') {
-                roboticsArtificialIntelligenceTypeOfTilt().click()
-                tiltsDropdownOptions(data.roboticsArtificialIntelligence).click();
-            }
-            if (data.cybersecurity !== '') {
-                cybersecurityTypeOfTilt().click()
-                tiltsDropdownOptions(data.cybersecurity).click();
-            }
+        technologyTiltsButton().click()
+        if (data.largeTechnologyStocks !== '') {
+            largeTechnologyStocksTypeOfTilt().click();
+            tiltsDropdownOptions(data.largeTechnologyStocks).click();
+        }
+        if (data.cloudComputingStocks !== '') {
+            cloudComputingStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.cloudComputingStocks).click();
+        }
+        if (data.roboticsArtificialIntelligence !== '') {
+            roboticsArtificialIntelligenceTypeOfTilt().click()
+            tiltsDropdownOptions(data.roboticsArtificialIntelligence).click();
+        }
+        if (data.cybersecurity !== '') {
+            cybersecurityTypeOfTilt().click()
+            tiltsDropdownOptions(data.cybersecurity).click();
+        }
 
-            consumption().click()
-            if (data.videoGaming !== '') {
-                videoGamingTypeOfTilt().click()
-                tiltsDropdownOptions(data.videoGaming).click();
-            }
-            if (data.luxuryGoods !== '') {
-                luxuryGoodsTypeOfTilt().click();
-                tiltsDropdownOptions(data.luxuryGoods).click();
-            }
-            if (data.travel !== '') {
-                travelTypeOfTilt().click();
-                tiltsDropdownOptions(data.travel).click();
-            }
-            if (data.logistics !== '') {
-                logisticsTypeOfTilt().click();
-                tiltsDropdownOptions(data.logistics).click();
-            }
+        consumption().click()
+        if (data.videoGaming !== '') {
+            videoGamingTypeOfTilt().click()
+            tiltsDropdownOptions(data.videoGaming).click();
+        }
+        if (data.luxuryGoods !== '') {
+            luxuryGoodsTypeOfTilt().click();
+            tiltsDropdownOptions(data.luxuryGoods).click();
+        }
+        if (data.travel !== '') {
+            travelTypeOfTilt().click();
+            tiltsDropdownOptions(data.travel).click();
+        }
+        if (data.logistics !== '') {
+            logisticsTypeOfTilt().click();
+            tiltsDropdownOptions(data.logistics).click();
+        }
 
-            commodities().click()
-            if (data.goldStocks !== '') {
-                goldStocksTypeOfTilt().click();
-                tiltsDropdownOptions(data.goldStocks).click();
-            }
-            if (data.oilGasStocks !== '') {
-                oilGasStocksTypeOfTilt().click()
-                tiltsDropdownOptions(data.oilGasStocks).click();
-            }
-            if (data.agribusiness !== '') {
-                agribusinessTypeOfTilt().click();
-                tiltsDropdownOptions(data.agribusiness).click();
-            }
-            military().click()
-            if (data.defenseContractors !== '') {
-                defenseContractorsTypeOfTilt().click();
-                tiltsDropdownOptions(data.defenseContractors).click();
-            }
+        commodities().click()
+        if (data.goldStocks !== '') {
+            goldStocksTypeOfTilt().click();
+            tiltsDropdownOptions(data.goldStocks).click();
+        }
+        if (data.oilGasStocks !== '') {
+            oilGasStocksTypeOfTilt().click()
+            tiltsDropdownOptions(data.oilGasStocks).click();
+        }
+        if (data.agribusiness !== '') {
+            agribusinessTypeOfTilt().click();
+            tiltsDropdownOptions(data.agribusiness).click();
+        }
+        military().click()
+        if (data.defenseContractors !== '') {
+            defenseContractorsTypeOfTilt().click();
+            tiltsDropdownOptions(data.defenseContractors).click();
+        }
 
-            gicsSector().click()
-            if (data.globalConsumerDiscretionary !== '') {
-                globalConsumerDiscretionaryTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalConsumerDiscretionary).click();
-            }
-            if (data.globalConsumerStaples !== '') {
-                globalConsumerStaplesTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalConsumerStaples).click();
-            }
-            if (data.globalCommunicationServices !== '') {
-                globalCommunicationServicesTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalCommunicationServices).click();
-            }
-            if (data.globalEnergy !== '') {
-                globalEnergyTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalEnergy).click();
-            }
-            if (data.globalMaterials !== '') {
-                globalMaterialsTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalMaterials).click();
-            }
-            if (data.globalIndustrials !== '') {
-                globalIndustrialsTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalIndustrials).click();
-            }
-            if (data.globalHealthCare !== '') {
-                globalHealthCareTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalHealthCare).click();
-            }
-            if (data.globalFinancials !== '') {
-                globalFinancialsTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalFinancials).click();
-            }
-            if (data.globalInformationTechnology !== '') {
-                globalInformationTechnologyTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalInformationTechnology).click();
-            }
-            if (data.globalRealEstate !== '') {
-                globalRealEstateTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalRealEstate).click();
-            }
-            if (data.globalUtilities !== '') {
-                globalUtilitiesTypeOfTilt().click();
-                tiltsDropdownOptions(data.globalUtilities).click();
-            }
-       // }
+        gicsSector().click()
+        if (data.globalConsumerDiscretionary !== '') {
+            globalConsumerDiscretionaryTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalConsumerDiscretionary).click();
+        }
+        if (data.globalConsumerStaples !== '') {
+            globalConsumerStaplesTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalConsumerStaples).click();
+        }
+        if (data.globalCommunicationServices !== '') {
+            globalCommunicationServicesTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalCommunicationServices).click();
+        }
+        if (data.globalEnergy !== '') {
+            globalEnergyTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalEnergy).click();
+        }
+        if (data.globalMaterials !== '') {
+            globalMaterialsTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalMaterials).click();
+        }
+        if (data.globalIndustrials !== '') {
+            globalIndustrialsTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalIndustrials).click();
+        }
+        if (data.globalHealthCare !== '') {
+            globalHealthCareTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalHealthCare).click();
+        }
+        if (data.globalFinancials !== '') {
+            globalFinancialsTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalFinancials).click();
+        }
+        if (data.globalInformationTechnology !== '') {
+            globalInformationTechnologyTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalInformationTechnology).click();
+        }
+        if (data.globalRealEstate !== '') {
+            globalRealEstateTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalRealEstate).click();
+        }
+        if (data.globalUtilities !== '') {
+            globalUtilitiesTypeOfTilt().click();
+            tiltsDropdownOptions(data.globalUtilities).click();
+        }
+        // }
 
         return this;
     }

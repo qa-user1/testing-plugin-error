@@ -68,6 +68,7 @@ module.exports = {
         }
 
         if (type === 'Personal Super' || type === 'Personal Super-IB') {
+       //   cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4024/super-fund-entry')
             app.verify_super_fund_entry_page()
                 .enter_values_on_super_fund_entry(data.fundEntryInputFields, data.bankDetails)
                 .click_Save_and_Continue_button()
