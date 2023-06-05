@@ -757,11 +757,11 @@ export default class OnboardingPage extends BasePage {
             cy.get('[title="75"]').click()
         }
 */
-        if (data.stocksAustralianLeaders !== '') {
+        if (type === 'Individual-IB' && data.stocksAustralianLeaders !== '') {
             stocksAustralianLeaders().click()
             dropdownOption(data.stocksAustralianLeaders).click()
         }
-        if (data.stocksGlobalLeaders !== '') {
+        if (type === 'Individual-IB' && data.stocksGlobalLeaders !== '') {
             stocksGlobalLeaders().click()
             dropdownOption(data.stocksGlobalLeaders).click();
         }
@@ -917,137 +917,140 @@ export default class OnboardingPage extends BasePage {
     climateChange = 'Climate Change';
 
     select_tilts_option(data) {
-        if (data.qualityStocks !== '') {
-            qualityStocksTypeOfTilt().click()
-            tiltsDropdownOptions(data.qualityStocks).click();
-        }
-        if (data.valueStocks !== '') {
-            valueStocksTypeOfTilt().click()
-            tiltsDropdownOptions(data.valueStocks).click();
-        }
-        if (data.growthStocks !== '') {
-            growthStocksTypeOfTilt().click()
-            tiltsDropdownOptions(data.growthStocks).click();
-        }
-        if (data.defensives !== '') {
-            defensivesTypeOfTilt().click()
-            tiltsDropdownOptions(data.defensives).click();
-        }
+     //   if (data.investmentChoice === 'Full Advice'){
+            if (data.qualityStocks !== '') {
+                qualityStocksTypeOfTilt().click()
+                tiltsDropdownOptions(data.qualityStocks).click();
+            }
+            if (data.valueStocks !== '') {
+                valueStocksTypeOfTilt().click()
+                tiltsDropdownOptions(data.valueStocks).click();
+            }
+            if (data.growthStocks !== '') {
+                growthStocksTypeOfTilt().click()
+                tiltsDropdownOptions(data.growthStocks).click();
+            }
+            if (data.defensives !== '') {
+                defensivesTypeOfTilt().click()
+                tiltsDropdownOptions(data.defensives).click();
+            }
 
-        climateChangeTiltsButton().click()
-        if (data.batterySupplyChain !== '') {
-            batterySupplyChainTypeOfTilt().click()
-            tiltsDropdownOptions(data.batterySupplyChain).click();
-        }
-        if (data.cleanEnergy !== '') {
-            cleanEnergyTypeOfTilt().click()
-            tiltsDropdownOptions(data.cleanEnergy).click();
-        }
-        if (data.nuclearPower !== '') {
-            nuclearPowerTypeOfTilt().click();
-            tiltsDropdownOptions(data.nuclearPower).click();
-        }
+            climateChangeTiltsButton().click()
+            if (data.batterySupplyChain !== '') {
+                batterySupplyChainTypeOfTilt().click()
+                tiltsDropdownOptions(data.batterySupplyChain).click();
+            }
+            if (data.cleanEnergy !== '') {
+                cleanEnergyTypeOfTilt().click()
+                tiltsDropdownOptions(data.cleanEnergy).click();
+            }
+            if (data.nuclearPower !== '') {
+                nuclearPowerTypeOfTilt().click();
+                tiltsDropdownOptions(data.nuclearPower).click();
+            }
 
-        technologyTiltsButton().click()
-        if (data.largeTechnologyStocks !== '') {
-            largeTechnologyStocksTypeOfTilt().click();
-            tiltsDropdownOptions(data.largeTechnologyStocks).click();
-        }
-        if (data.cloudComputingStocks !== '') {
-            cloudComputingStocksTypeOfTilt().click()
-            tiltsDropdownOptions(data.cloudComputingStocks).click();
-        }
-        if (data.roboticsArtificialIntelligence !== '') {
-            roboticsArtificialIntelligenceTypeOfTilt().click()
-            tiltsDropdownOptions(data.roboticsArtificialIntelligence).click();
-        }
-        if (data.cybersecurity !== '') {
-            cybersecurityTypeOfTilt().click()
-            tiltsDropdownOptions(data.cybersecurity).click();
-        }
+            technologyTiltsButton().click()
+            if (data.largeTechnologyStocks !== '') {
+                largeTechnologyStocksTypeOfTilt().click();
+                tiltsDropdownOptions(data.largeTechnologyStocks).click();
+            }
+            if (data.cloudComputingStocks !== '') {
+                cloudComputingStocksTypeOfTilt().click()
+                tiltsDropdownOptions(data.cloudComputingStocks).click();
+            }
+            if (data.roboticsArtificialIntelligence !== '') {
+                roboticsArtificialIntelligenceTypeOfTilt().click()
+                tiltsDropdownOptions(data.roboticsArtificialIntelligence).click();
+            }
+            if (data.cybersecurity !== '') {
+                cybersecurityTypeOfTilt().click()
+                tiltsDropdownOptions(data.cybersecurity).click();
+            }
 
-         consumption().click()
-        if (data.videoGaming !== '') {
-            videoGamingTypeOfTilt().click()
-            tiltsDropdownOptions(data.videoGaming).click();
-        }
-        if (data.luxuryGoods !== '') {
-            luxuryGoodsTypeOfTilt().click();
-            tiltsDropdownOptions(data.luxuryGoods).click();
-        }
-        if (data.travel !== '') {
-            travelTypeOfTilt().click();
-            tiltsDropdownOptions(data.travel).click();
-        }
-        if (data.logistics !== '') {
-            logisticsTypeOfTilt().click();
-            tiltsDropdownOptions(data.logistics).click();
-        }
+            consumption().click()
+            if (data.videoGaming !== '') {
+                videoGamingTypeOfTilt().click()
+                tiltsDropdownOptions(data.videoGaming).click();
+            }
+            if (data.luxuryGoods !== '') {
+                luxuryGoodsTypeOfTilt().click();
+                tiltsDropdownOptions(data.luxuryGoods).click();
+            }
+            if (data.travel !== '') {
+                travelTypeOfTilt().click();
+                tiltsDropdownOptions(data.travel).click();
+            }
+            if (data.logistics !== '') {
+                logisticsTypeOfTilt().click();
+                tiltsDropdownOptions(data.logistics).click();
+            }
 
-         commodities().click()
-        if (data.goldStocks !== '') {
-            goldStocksTypeOfTilt().click();
-            tiltsDropdownOptions(data.goldStocks).click();
-        }
-        if (data.oilGasStocks !== '') {
-            oilGasStocksTypeOfTilt().click()
-            tiltsDropdownOptions(data.oilGasStocks).click();
-        }
-        if (data.agribusiness !== '') {
-            agribusinessTypeOfTilt().click();
-            tiltsDropdownOptions(data.agribusiness).click();
-        }
-         military().click()
-        if (data.defenseContractors !== '') {
-            defenseContractorsTypeOfTilt().click();
-            tiltsDropdownOptions(data.defenseContractors).click();
-        }
+            commodities().click()
+            if (data.goldStocks !== '') {
+                goldStocksTypeOfTilt().click();
+                tiltsDropdownOptions(data.goldStocks).click();
+            }
+            if (data.oilGasStocks !== '') {
+                oilGasStocksTypeOfTilt().click()
+                tiltsDropdownOptions(data.oilGasStocks).click();
+            }
+            if (data.agribusiness !== '') {
+                agribusinessTypeOfTilt().click();
+                tiltsDropdownOptions(data.agribusiness).click();
+            }
+            military().click()
+            if (data.defenseContractors !== '') {
+                defenseContractorsTypeOfTilt().click();
+                tiltsDropdownOptions(data.defenseContractors).click();
+            }
 
-         gicsSector().click()
-        if (data.globalConsumerDiscretionary !== '') {
-           globalConsumerDiscretionaryTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalConsumerDiscretionary).click();
-        }
-        if (data.globalConsumerStaples !== '') {
-           globalConsumerStaplesTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalConsumerStaples).click();
-        }
-        if (data.globalCommunicationServices !== '') {
-            globalCommunicationServicesTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalCommunicationServices).click();
-        }
-        if (data.globalEnergy !== '') {
-            globalEnergyTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalEnergy).click();
-        }
-        if (data.globalMaterials !== '') {
-            globalMaterialsTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalMaterials).click();
-        }
-        if (data.globalIndustrials !== '') {
-            globalIndustrialsTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalIndustrials).click();
-        }
-        if (data.globalHealthCare !== '') {
-            globalHealthCareTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalHealthCare).click();
-        }
-        if (data.globalFinancials !== '') {
-           globalFinancialsTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalFinancials).click();
-        }
-        if (data.globalInformationTechnology !== '') {
-            globalInformationTechnologyTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalInformationTechnology).click();
-        }
-        if (data.globalRealEstate !== '') {
-            globalRealEstateTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalRealEstate).click();
-        }
-        if (data.globalUtilities !== '') {
-            globalUtilitiesTypeOfTilt().click();
-            tiltsDropdownOptions(data.globalUtilities).click();
-        }
+            gicsSector().click()
+            if (data.globalConsumerDiscretionary !== '') {
+                globalConsumerDiscretionaryTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalConsumerDiscretionary).click();
+            }
+            if (data.globalConsumerStaples !== '') {
+                globalConsumerStaplesTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalConsumerStaples).click();
+            }
+            if (data.globalCommunicationServices !== '') {
+                globalCommunicationServicesTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalCommunicationServices).click();
+            }
+            if (data.globalEnergy !== '') {
+                globalEnergyTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalEnergy).click();
+            }
+            if (data.globalMaterials !== '') {
+                globalMaterialsTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalMaterials).click();
+            }
+            if (data.globalIndustrials !== '') {
+                globalIndustrialsTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalIndustrials).click();
+            }
+            if (data.globalHealthCare !== '') {
+                globalHealthCareTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalHealthCare).click();
+            }
+            if (data.globalFinancials !== '') {
+                globalFinancialsTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalFinancials).click();
+            }
+            if (data.globalInformationTechnology !== '') {
+                globalInformationTechnologyTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalInformationTechnology).click();
+            }
+            if (data.globalRealEstate !== '') {
+                globalRealEstateTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalRealEstate).click();
+            }
+            if (data.globalUtilities !== '') {
+                globalUtilitiesTypeOfTilt().click();
+                tiltsDropdownOptions(data.globalUtilities).click();
+            }
+       // }
+
         return this;
     }
 

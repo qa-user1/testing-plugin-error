@@ -542,7 +542,7 @@ D.scenarios = [
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
         accountType: "Individual",
-        investmentChoice: "Self Directed",
+        investmentChoice: "Limited Advice",
         questionResponse: {
             selectedOptions: [
                 2,
@@ -557,6 +557,7 @@ D.scenarios = [
                 2,
                 2,
                 2,
+                2
 
             ],
             investmentTotal: '100000',
@@ -582,10 +583,10 @@ D.scenarios = [
         ],
 
         buildYourPortfolio: {
-            tacticalGrowth: "49",
+            tacticalGrowth: "50",
             coreInternational: "50",
             investmentTotal: "100000",
-            cash: '500',
+            cash: '',
 
             //keep like this if you don't want
             // to include these values
@@ -597,8 +598,8 @@ D.scenarios = [
             governmentBondLadder: '',
 
 
-            stocksAustralianLeaders: '40',
-            stocksGlobalLeaders: '75',
+            stocksAustralianLeaders: '5',
+            stocksGlobalLeaders: '',
 
             //Portfolio Tilts
             //Investment Style Factors

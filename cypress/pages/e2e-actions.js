@@ -30,9 +30,14 @@ module.exports = {
             //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3921/ethical-overlay')
             app.verify_screen_and_tilts_page()
                 .select_ethical_option(data.ethicalOverlay)
-                .select_tilts_option(data.ethicalOverlay)
-                .click_Save_and_Continue_button()
-        } else if (type === 'Individual-IB' || type === 'Joint-IB' && option === 'Self Directed') {
+        } if (option === 'Full Advice') {
+                app.select_tilts_option(data.ethicalOverlay)
+            }
+           if (option === 'Limited Advice'){
+               app.click_Save_and_Continue_button()
+           }
+
+         else if (type === 'Individual-IB' || type === 'Joint-IB' && option === 'Self Directed') {
             app.verify_risk_profile_page()
                 .answerQuestionsWithSpecificOption(data.questionResponse.selectedOptions)
                 .enter_financial_info(data.questionResponse)
@@ -56,6 +61,7 @@ module.exports = {
                 .expand_card(0)
                 .expand_card(1)
                 .expand_card(2)
+                .enter_cash(data.buildYourPortfolio)
                 .enter_Portfolio_values(data.buildYourPortfolio)
                 .select_ethical_option(data.ethicalOverlay)
                 .click_Save_and_Continue_button()
