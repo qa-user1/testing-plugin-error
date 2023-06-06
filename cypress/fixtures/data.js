@@ -455,12 +455,15 @@ D.compliancePageInputFields = {
 D.applicantsProfileFields = {
     titleInput: 'Mr',
     nameInput: 'Test name',
+    middleName: 'Test',
     surnameInput: 'Test surname',
     emailInput: 'email@test.com',
     mobileInput: '123456',
     genderInput: 'Female',
     //birthInput:'\'Date Of Birth\' is required',
     citizenshipInput: 'Australia',
+    countryOfBirth: 'Australia',
+    numberOfDependents: '0',
     //employmentType: 'Employed',
     // employmentType2: 'Unemployed',
     employmentInput: 'Employed',
@@ -542,7 +545,7 @@ D.scenarios = [
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
         accountType: "Joint",
-        investmentChoice: "Self Directed",
+        investmentChoice: "Full Advice",
         questionResponse: {
             selectedOptions: [
                 2,

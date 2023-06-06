@@ -252,7 +252,14 @@ export default class LoginPage extends BasePage {
     }
 
     upload_verification_document() {
-        uploadDocument().click();
+        cy.get('body').then(($body) => {
+            if ($body.find('Upload Document').length > 0) {
+                uploadDocument().click();
+            } else {
+                uploadNewDocument().click();
+            }
+        });
+       // uploadDocument().click();
         documentTypeList().click();
         documentTypeList().type('Driver License{enter}');
         uploadFileInput('0').attachFile(D.documentType.id);
