@@ -253,7 +253,7 @@ export default class LoginPage extends BasePage {
 
     upload_verification_document() {
         cy.get('body').then(($body) => {
-            if ($body.find('Upload Document').length > 0) {
+            if ($body.find('button:contains("Upload Document")').length > 0) {
                 uploadDocument().click();
             } else {
                 uploadNewDocument().click();
