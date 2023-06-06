@@ -317,7 +317,7 @@ jobs:
       - run: npm i
       - uses: nick-invision/retry@v2
         with:
-          timeout_minutes: 10
+          timeout_minutes: 15
           max_attempts: 3
           command: npm run e2e-test10
 
@@ -404,7 +404,7 @@ jobs:
       - run: npm i
       - uses: nick-invision/retry@v2
         with:
-          timeout_minutes: 10
+          timeout_minutes: 15
           max_attempts: 3
           command: npm run e2e-test13
 
