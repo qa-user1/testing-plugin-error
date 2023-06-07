@@ -544,7 +544,7 @@ D.scenarios = [
         name: 'Scenario 1',
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
-        accountType: "Trust",
+        accountType: "Personal Super",
         investmentChoice: "Self Directed",
         questionResponse: {
             selectedOptions: [
@@ -560,7 +560,7 @@ D.scenarios = [
                 2,
                 2,
                 2,
-2
+
 
             ],
             investmentTotal: '100000',
@@ -601,7 +601,7 @@ D.scenarios = [
             governmentBondLadder: '',
 
 
-            stocksAustralianLeaders: '5',
+            stocksAustralianLeaders: '',
             stocksGlobalLeaders: '',
 
             //Portfolio Tilts
@@ -623,7 +623,7 @@ D.scenarios = [
             cybersecurity: '',
 
             //Consumption
-            videoGaming: '1',
+            videoGaming: '',
             travel: '',
             luxuryGoods: '',
             logistics: '',

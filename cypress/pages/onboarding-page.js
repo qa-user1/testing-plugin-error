@@ -402,6 +402,19 @@ export default class OnboardingPage extends BasePage {
         fundNameInputField().type(fundEntryValues.fundName).type('{enter}');
         transferAmountInputField().clear();
         transferAmountInputField().type(fundEntryValues.transferAmount);
+
+
+        if (fundEntryValues.fundName === 'Other' || fundEntryValues.fundName === 'SMSF') {
+            customFundNameInputField().type(fundEntryValues.customFundName)
+        }
+        if (fundEntryValues.fundName !== 'SMSF') {
+            memberNumberInputField().clear();
+            memberNumberInputField().type(fundEntryValues.memberNumber);
+        }
+        return this;
+    }
+
+    manually_enter_fee(fundEntryValues){
         if (fundEntryValues.platformAdministration !== '') {
             manuallyEnterFeesButton().click();
             platformAdministration().clear();
@@ -414,14 +427,6 @@ export default class OnboardingPage extends BasePage {
             performance().type(fundEntryValues.Performance);
             advice().clear();
             advice().type(fundEntryValues.advice)
-        }
-
-        if (fundEntryValues.fundName === 'Other' || fundEntryValues.fundName === 'SMSF') {
-            customFundNameInputField().type(fundEntryValues.customFundName)
-        }
-        if (fundEntryValues.fundName !== 'SMSF') {
-            memberNumberInputField().clear();
-            memberNumberInputField().type(fundEntryValues.memberNumber);
         }
         return this;
     }
