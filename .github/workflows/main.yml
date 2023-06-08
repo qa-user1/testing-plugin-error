@@ -491,7 +491,7 @@ jobs:
     steps:
       - name: Get current date
         id: get-date
-        run: echo "date=$(date +'%u')" >> $GITHUB_ENV
+        run: echo "date=$(date +'%u')" >> $GITHUB_OUTPUT
         shell: bash
 
       - uses: actions/checkout@v2
