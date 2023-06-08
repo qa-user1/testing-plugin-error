@@ -70,7 +70,7 @@ module.exports = {
             app.verify_super_fund_entry_page()
                 .enter_values_on_super_fund_entry(data.fundEntryInputFields, data.bankDetails)
         }
-        if (type === 'Personal Super' || type === 'Personal Super-IB' && option === 'Limited Advice') {
+        if (option === 'Limited Advice' || option === 'Full Advice' && type === 'Personal Super' || type === 'Personal Super-IB') {
             app.manually_enter_fee(data.fundEntryInputFields)
         }
         if (type === 'Personal Super' || type === 'Personal Super-IB') {

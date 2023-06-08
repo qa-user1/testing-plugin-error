@@ -545,7 +545,7 @@ D.scenarios = [
         username: 'testing@nucleuswealth.com',
         password: 'Testing123!',
         accountType: "Personal Super",
-        investmentChoice: "Self Directed",
+        investmentChoice: "Full Advice",
         questionResponse: {
             selectedOptions: [
                 2,
