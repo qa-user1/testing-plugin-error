@@ -495,20 +495,20 @@ jobs:
         shell: bash
 
       - uses: actions/checkout@v2
-        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '4')
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '5')
 
       - uses: actions/setup-node@v3
-        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '4')
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '5')
 
       - run: npm i
-        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '4')
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '5')
 
       - uses: nick-invision/retry@v2
         with:
           timeout_minutes: 10
           max_attempts: 3
           command: npm run e2e-test17.0
-        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '4')
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '5')
 
       - name: Deploy report to temp-reports branch
         if: always()
