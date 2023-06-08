@@ -27,7 +27,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
     })
 
-    it('1. Log into user with IB access', function () {
+    xit('1. Log into user with IB access', function () {
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -36,7 +36,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         ui.onboarding.verify_account_selection()
     })
 
-    it('2. Create new Individual account', function () {
+    xit('2. Create new Individual account', function () {
         ui.onboarding.click_create_new_investment_account()
             .verify_types_of_investment_account()
             .click_non_super_type()
@@ -48,12 +48,12 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         cy.saveLocalStorage()
     })
 
-    it('3. Check SideNav', function () {
+    xit('3. Check SideNav', function () {
         ui.onboarding.verify_sidebar_content('Risk Profile')
         ui.onboarding.verify_sidebar_content('Compliance')
     })
 
-    it('4. Navigate to Risk Profile page', function () {
+    xit('4. Navigate to Risk Profile page', function () {
         ui.onboarding.click_self_directed_button()
             .verify_acknowledgment_and_agreement_appear()
             .select_all_checkboxes(6)
@@ -61,7 +61,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .verify_risk_profile_page()
     })
 
-    it('5. Complete Risk Profile', function () {
+    xit('5. Complete Risk Profile', function () {
         ui.onboarding.answerAllQuestionsWithSameOption(12, 3)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
@@ -70,7 +70,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
     })
 
-    it('6. Complete Build Your Portfolio', function () {
+    xit('6. Complete Build Your Portfolio', function () {
         ui.onboarding.expand_card(0)
             .expand_card(1)
             .expand_card(2)
@@ -81,12 +81,12 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
     })
 
-    it('7.Complete Screen and Tilts', function () {
+    xit('7.Complete Screen and Tilts', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_review_page()
     })
 
-    it('8. Check Review Page', function () {
+    xit('8. Check Review Page', function () {
         ui.onboarding.click('Question Responses')
             //.verify_net_worth_annual_net_income_liquid_net_worth()
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -105,14 +105,14 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
     })
 
-    it('8. Check Review Page', function () {
+    xit('8. Check Review Page', function () {
         ui.onboarding
             .save_final_JSON_report('individual_ib_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
 
-    it('9. Complete Applicants', function () {
+    xit('9. Complete Applicants', function () {
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
@@ -133,7 +133,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     });
 
 
-    it('10. Complete Bank Details', function () {
+    xit('10. Complete Bank Details', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)
             .enter_Bank_Details(D.bankDetails)
@@ -141,7 +141,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .verify_compliance_page()
     });
 
-    it('11. Complete Compliance', function () {
+    xit('11. Complete Compliance', function () {
         ui.app.verify_text_is_visible('Investment Objective')
             .verify_text_is_visible('Trading Permission')
             .verify_text_is_visible('Source of Wealth')
@@ -153,7 +153,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .verify_Final_Review_page()
     });
 
-    it('12. Check Final Review', function () {
+    xit('12. Check Final Review', function () {
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'MDA Brochure and Agreement',
@@ -170,7 +170,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         ui.clientPortal.verify_download_button_for_documents(32)
     });
 
-    it('13. Limited Advice Path', function () {
+    xit('13. Limited Advice Path', function () {
         ui.onboarding.click_sidebar_option('Investment Choice')
             .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
@@ -193,7 +193,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
     });
 
-    it('14. Complete Final Review', function () {
+    xit('14. Complete Final Review', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }

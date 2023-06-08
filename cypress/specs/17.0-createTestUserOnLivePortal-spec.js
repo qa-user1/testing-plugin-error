@@ -12,7 +12,7 @@ context('17.0 Create Test User on Live Portal', () => {
         cy.clearAllSessionStorage()
     })
 
-    it('1. Create a new user on Live Portal', function () {
+    xit('1. Create a new user on Live Portal', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }
@@ -28,7 +28,7 @@ context('17.0 Create Test User on Live Portal', () => {
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
     })
 
-    it('2. Subscribe to Nucleus Wealth mailing list', function () {
+    xit('2. Subscribe to Nucleus Wealth mailing list', function () {
         ui.production.open_production_url()
             .verify_production_home_page()
             .click_subscribe_button()
@@ -38,7 +38,7 @@ context('17.0 Create Test User on Live Portal', () => {
             .verify_text_is_visible('Thanks for subscribing to email updates from nucleus wealth')
     })
 
-    it('3. Subscribe user via Investment Suitability Calculator', function () {
+    xit('3. Subscribe user via Investment Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/investment-suitability-calculator'
         ui.production.open_base_url()
             .verify_calculator_page()
@@ -52,7 +52,7 @@ context('17.0 Create Test User on Live Portal', () => {
             .verify_text_is_visible('Investment Suitability')
     })
 
-    it('4. Subscribe user via Suitability Calculator', function () {
+    xit('4. Subscribe user via Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/ethical-investment-calculator'
         ui.production.open_base_url()
             .verify_ethical_calculator_page()

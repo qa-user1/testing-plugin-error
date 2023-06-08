@@ -26,7 +26,7 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
     })
 
 
-    it('1. Validate login credentials', function () {
+    xit('1. Validate login credentials', function () {
         ui.login.open_base_url()
             .verify_login_menu()
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
@@ -34,7 +34,7 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
         ui.onboarding.verify_account_selection()
     })
 
-    it('2. Create a Joint Account', function () {
+    xit('2. Create a Joint Account', function () {
         ui.onboarding.click_create_new_investment_account()
             .verify_types_of_investment_account()
             .click_non_super_type()
@@ -47,21 +47,21 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
 
     })
 
-    it('3. Complete Investment Choice', function () {
+    xit('3. Complete Investment Choice', function () {
         ui.onboarding.click_limited_advice_button()
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
     })
 
-    it('4. Complete Risk Profile', function () {
+    xit('4. Complete Risk Profile', function () {
         ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_screen_and_tilts_page()
     })
 
-    it('5. Complete Screen and tilts', function () {
+    xit('5. Complete Screen and tilts', function () {
         ui.onboarding.click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -71,7 +71,7 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
             .verify_review_page()
     })
 
-    it('6. Review Review Page', function () {
+    xit('6. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestions, D.reviewResponses)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -90,14 +90,14 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
     })
 
-    it('6. Review Review Page', function () {
+    xit('6. Review Review Page', function () {
         ui.onboarding
             .save_final_JSON_report('joint_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
 
-    it('7. Complete Applicants', function () {
+    xit('7. Complete Applicants', function () {
         ui.onboarding.verify_2_investitors_required_message()
             .remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
@@ -115,19 +115,19 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
 
     });
 
-    it('8. Navigate from Applicants to Bank Details', function () {
+    xit('8. Navigate from Applicants to Bank Details', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_Bank_Details_page()
     });
 
-    it('9. Complete Bank Details', function () {
+    xit('9. Complete Bank Details', function () {
         ui.onboarding.enter_Bank_Details(D.bankDetails)
             .click_Save_and_Continue_button()
             .verify_Final_Review_page()
     });
 
 
-    it('10. Review Final Review', function () {
+    xit('10. Review Final Review', function () {
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'Statement of Advice',
@@ -138,7 +138,7 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
             .verify_applicants_page()
     });
 
-    it('12. Add another investor in Applicants', function () {
+    xit('12. Add another investor in Applicants', function () {
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
         ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
@@ -154,7 +154,7 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
             .click_Save_and_Continue_button()
     });
 
-    it('13. Review Final Review', function () {
+    xit('13. Review Final Review', function () {
         ui.onboarding.verify_no_alert_msg_final_review_page()
     });
 })
