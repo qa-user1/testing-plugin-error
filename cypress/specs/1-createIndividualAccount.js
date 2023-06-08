@@ -2,7 +2,7 @@ const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 
-context('Log in to the Nucleus Wealth portal, create an individual account, and complete the onboarding portal', () => {
+context('1. Log in to the Nucleus Wealth portal, create an individual account, and complete the onboarding portal', () => {
 
 
     before(function () {

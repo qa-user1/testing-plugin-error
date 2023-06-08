@@ -1,7 +1,7 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 
-context('Forgot password function', () => {
+context('21. Forgot password function', () => {
 
     before(function () {
         cy.clearAllLocalStorage()

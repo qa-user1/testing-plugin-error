@@ -2,7 +2,7 @@ const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 
-context('Company Account', () => {
+context('6. Company Account', () => {
 
 
 

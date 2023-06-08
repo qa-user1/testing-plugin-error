@@ -4,7 +4,7 @@ const C = require('../fixtures/constants');
 const S = require('../fixtures/settings')
 const {currentDate} = require("../support/e2e-helper");
 
-context('Admin Portal - Check details', () => {
+context('20. Admin Portal - Check details', () => {
 
 
 

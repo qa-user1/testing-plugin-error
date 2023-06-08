@@ -3,7 +3,7 @@ const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 const {currentDate} = require("../support/e2e-helper");
 
-context('Sign Up new user', () => {
+context('8. Sign Up new user', () => {
 
 
 

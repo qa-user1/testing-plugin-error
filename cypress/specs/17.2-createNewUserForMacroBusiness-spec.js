@@ -4,7 +4,7 @@ const C = require('../fixtures/constants');
 const S = require('../fixtures/settings')
 const {currentDate} = require("../support/e2e-helper");
 
-context('Create Test User on Live Portal', () => {
+context('17.2 Create Test User on Live Portal', () => {
 
     beforeEach(function () {
         cy.clearAllLocalStorage()

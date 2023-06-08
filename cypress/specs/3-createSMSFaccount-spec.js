@@ -3,7 +3,7 @@ const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 //const d = D.scenarios[0]
 
-context('Log in to the Nucleus Wealth portal, create an SMSF Account and complete the onboarding portal', () => {
+context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and complete the onboarding portal', () => {
 
 
     before(function () {

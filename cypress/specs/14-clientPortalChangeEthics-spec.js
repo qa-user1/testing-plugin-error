@@ -3,7 +3,7 @@ const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 
 
-context('Client Portal - Change Ethics/Exclusions', () => {
+context('14. Client Portal - Change Ethics/Exclusions', () => {
 
 //not available anymore on website
 

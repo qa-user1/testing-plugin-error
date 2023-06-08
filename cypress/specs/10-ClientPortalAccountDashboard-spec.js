@@ -2,7 +2,7 @@ const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 
-context('Client Portal - Account Dashboard', () => {
+context('10. Client Portal - Account Dashboard', () => {
     let accountNo;
 
     beforeEach(function () {
