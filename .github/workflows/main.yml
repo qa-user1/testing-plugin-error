@@ -850,6 +850,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+
       - name: Generate Allure Report
         if: always()
         run: |
@@ -865,6 +866,17 @@ jobs:
       - name: Upload artifacts to S3
         run: |
           node mainScript.js
+
+  Generate-Allure-Report-failures:
+    runs-on: ubuntu-latest
+    needs: [ Run-Cypress-Test1, Run-Cypress-Test15]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate Allure Report (Failures)
+        run: |
+              node_modules/allure-commandline/dist/bin/allure generate --only-failures allure-results -o report-failures
 
   slack-notification:
     name: Notify on Slack
