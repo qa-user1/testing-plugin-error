@@ -489,7 +489,7 @@ jobs:
     steps:
       - name: Get current date
         id: get-date
-        run: echo "::set-output name=date::$(date +'%u')"
+        run: echo "date=$(date +'%u')" >> $GITHUB_ENV
         shell: bash
 
       - uses: actions/checkout@v2
