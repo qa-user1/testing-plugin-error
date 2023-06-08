@@ -481,7 +481,7 @@ jobs:
 
   Run-Cypress-Test17-0:
     name: Cypress Test 17.0
-    if: (github.event_name == 'schedule' && (fromJSON('["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]')[getStepsContext().run_at.getDay()] == 'Thu')) || success() || failure()
+    if: github.event_name == 'schedule' && (fromJSON('["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]')[((steps.get-date.outputs.date).split('-')[2]-1)%7] == 'Thu') || github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     #  needs: [ Run-Cypress-Test11 ]
@@ -489,6 +489,11 @@ jobs:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
     steps:
+      - name: Get current date
+        id: get-date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        shell: bash
+        
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
