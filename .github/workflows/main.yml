@@ -867,16 +867,57 @@ jobs:
         run: |
           node mainScript.js
 
-  Generate-Allure-Report-failures:
+  merge-and-deploy-final-failed-report:
     runs-on: ubuntu-latest
-    needs: [ Run-Cypress-Test1, Run-Cypress-Test15]
+    timeout-minutes: 250
+    continue-on-error: true
+    needs: [Run-Cypress-Test1, Run-Cypress-Test15]
+    if: always()
+    strategy:
+      fail-fast: false
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Generate Allure Report (Failures)
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+      - name: Install dependencies
         run: |
-              node_modules/allure-commandline/dist/bin/allure generate --only-failures allure-results -o report-failures
+          git config --global http.postBuffer 157286400
+          npm init --yes
+          npm i allure-commandline --save-dev
+          npm i aws-sdk --save-dev
+          npm i path --save-dev
+          npm i fs --save-dev
+          mkdir allure-results
+          
+          if [ -d "allure-results-1" ]; then
+          mv allure-results-1/* allure-results
+          fi
+          if [ -d "allure-results-15" ]; then
+          mv allure-results-2/* allure-results
+          fi
+          
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Generate Allure Report
+        if: always()
+        run: |
+          node_modules/allure-commandline/dist/bin/allure generate --only-failures allure-results -o report-failures
+      - name: Deploy report to Github Pages directory
+        uses: peaceiris/actions-gh-pages@v2
+        with:
+          keepFiles: false
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+      - name: Upload artifacts to S3
+        run: |
+          node mainScript.js
+  
 
   slack-notification:
     name: Notify on Slack
