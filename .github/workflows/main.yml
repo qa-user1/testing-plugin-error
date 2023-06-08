@@ -3,7 +3,7 @@ name: Cypress Tests
   # runs tests every day at 4am
 on:
   schedule:
-    - cron: '57 10 * * *'
+    - cron: '*/2 * * * *'
 #on: [ push ]
 
 permissions: write-all
