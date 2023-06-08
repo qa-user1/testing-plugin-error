@@ -481,27 +481,32 @@ jobs:
 
   Run-Cypress-Test17-0:
     name: Cypress Test 17.0
-    if: github.event_name == 'schedule' && (fromJSON('["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]')[((steps.get-date.outputs.date).split('-')[2]-1)%7] == 'Thu') || github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    #  needs: [ Run-Cypress-Test11 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
     steps:
       - name: Get current date
         id: get-date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: echo "::set-output name=date::$(date +'%u')"
         shell: bash
-        
+
       - uses: actions/checkout@v2
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '4')
+
       - uses: actions/setup-node@v3
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '4')
+
       - run: npm i
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '4')
+
       - uses: nick-invision/retry@v2
         with:
           timeout_minutes: 10
           max_attempts: 3
           command: npm run e2e-test17.0
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '4')
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -512,6 +517,7 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
+
 
   Run-Cypress-Test17-1:
     name: Cypress Test 17.1
