@@ -127,7 +127,7 @@ jobs:
           
           if [ -d "allure-results-15" ]; then
           mv allure-results-15/* allure-results
-          
+          fi
 
       - name: Set up environment variable
         id: set_date
