@@ -80,7 +80,7 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
-  
+
 
 
   Run-Cypress-Test15:
@@ -218,7 +218,7 @@ jobs:
     name: Notify on Slack
     runs-on: ubuntu-latest
     if: always()
-    needs: [Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test13, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17-0, Run-Cypress-Test17-1, Run-Cypress-Test17-2, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
+    needs: [Run-Cypress-Test1, Run-Cypress-Test15]
 
     steps:
       - uses: abinoda/slack-action@master
