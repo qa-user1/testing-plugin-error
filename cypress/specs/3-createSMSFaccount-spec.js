@@ -27,7 +27,7 @@ context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and comp
     })
 
 
-    xit('1. Validate login credentials', function () {
+    it('1. Validate login credentials', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
@@ -35,7 +35,7 @@ context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and comp
         ui.onboarding.verify_account_selection()
     })
 
-    xit('2. Create a SMSF Account', function () {
+    it('2. Create a SMSF Account', function () {
         ui.onboarding.click_create_new_investment_account()
             .verify_types_of_investment_account()
             .click_super_type()
@@ -47,21 +47,21 @@ context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and comp
         cy.saveLocalStorage();
     })
 
-    xit('3. Complete Investment Choice', function () {
+    it('3. Complete Investment Choice', function () {
         ui.onboarding.click_limited_advice_button()
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
     })
 
-    xit('4. Complete Risk Profile', function () {
+    it('4. Complete Risk Profile', function () {
         ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_screen_and_tilts_page()
     })
 
-    xit('5. Complete Screen and Tilts', function () {
+    it('5. Complete Screen and Tilts', function () {
         ui.onboarding.click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -71,7 +71,7 @@ context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and comp
             .verify_review_page()
     })
 
-    xit('6. Review Review Page', function () {
+    it('6. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestions, D.reviewResponses)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -90,14 +90,14 @@ context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and comp
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
     })
 
-    xit('6. Review Review Page', function () {
+    it('6. Review Review Page', function () {
         ui.onboarding
             .save_final_JSON_report('smsf_')
             .click_Save_and_Continue_button()
             .verify_SMSF_page()
     })
 
-    xit('7. Complete In SMSF Details', function () {
+    it('7. Complete In SMSF Details', function () {
         ui.onboarding.enter_address(D.SMSFDetails)
             .click_Save_and_Continue_button()
             .verify_validation_messages_for_SMSF_details(D.smsfDetailsValidationMessages)
@@ -108,13 +108,13 @@ context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and comp
             .verify_applicants_page()
     })
 
-    xit('8. Navigate from Applicants to Final Review', function () {
+    it('8. Navigate from Applicants to Final Review', function () {
         ui.onboarding.verify_applicant_is_visible()
             .click_Save_and_Continue_button()
             .verify_Final_Review_page()
     })
 
-    xit('9. Review Final Review', function () {
+    it('9. Review Final Review', function () {
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'Statement of Advice',

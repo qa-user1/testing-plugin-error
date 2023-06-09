@@ -25,24 +25,24 @@ context('11. Client Portal - Administration', () => {
 
 
 
-    xit('1. Direct user to “Administration” page', function () {
+    it('1. Direct user to “Administration” page', function () {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
         ui.clientPortal.click_administration_link()
     })
 
-    xit('2. Check Administration Page', function () {
+    it('2. Check Administration Page', function () {
         ui.clientPortal.verify_administration_page()
         cy.saveLocalStorage()
     })
 
-    xit('3. Check Upload Verification Documents', function () {
+    it('3. Check Upload Verification Documents', function () {
         ui.clientPortal.verify_upload_verification_documents()
 
     })
 
-    xit('4. Check Administration Page', function () {
+    it('4. Check Administration Page', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }

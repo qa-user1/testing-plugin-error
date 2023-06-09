@@ -35,11 +35,11 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
         ui.onboarding.verify_account_selection()
     })
 
-    xit('2.Disclaimer Alert is present', function () {
+    it('2.Disclaimer Alert is present', function () {
         ui.onboarding.verify_disclaimer_in_the_footer()
     })
 
-    xit('3. Create new Individual investment account', function () {
+    it('3. Create new Individual investment account', function () {
         ui.onboarding.click_create_new_investment_account()
             .verify_types_of_investment_account()
             .click_super_type()
@@ -61,7 +61,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
 
     })
 
-    xit('5. Navigate to Build Your Portfolio from Investment Choice', function () {
+    it('5. Navigate to Build Your Portfolio from Investment Choice', function () {
         ui.onboarding.click_self_directed_button()
             .verify_acknowledgment_and_agreement_appear()
             .click_Save_and_Continue_button()
@@ -72,7 +72,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
 
     })
 
-    xit('6. Complete Build Your Portfolio', function () {
+    it('6. Complete Build Your Portfolio', function () {
         ui.onboarding.expand_card(0)
             .expand_card(1)
             .expand_card(2)
@@ -85,7 +85,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
 
     })
 
-    xit('7. Complete Screen and Tilts', function () {
+    it('7. Complete Screen and Tilts', function () {
         ui.onboarding.click_climate_change_button()
             .select_checkbox_based_on_label('No Fossil Fuels (Worst Offenders)')
             .select_checkbox_based_on_label('No Fossil Fuels (Any)')
@@ -95,7 +95,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
             .verify_review_page()
     })
 
-    xit('8. Review Review Page', function () {
+    it('8. Review Review Page', function () {
         ui.onboarding.expand_ethical_overlay_panel()
             .verify_chosen_ethics([
                 ['Climate Change', ['No Fossil Fuels (Worst Offenders)', 'No Fossil Fuels (Any)']],
@@ -107,7 +107,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
         ui.onboarding.click_Save_and_Continue_button()
     })
 
-    xit('9. Navigate to Risk Profile', function () {
+    it('9. Navigate to Risk Profile', function () {
 
         ui.onboarding.click_sidebar_option('Investment Choice')
             .go_through_tour_steps(C.investmentStepMessages)
@@ -117,7 +117,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
             .verify_risk_profile_page()
     })
 
-    xit('10. Complete Risk Profile and navigate to Review', function () {
+    it('10. Complete Risk Profile and navigate to Review', function () {
         cy.wait(3000)
         ui.onboarding.click_Save_and_Continue_button()
         .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
@@ -129,7 +129,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
             .verify_review_page()
     })
 
-    xit('11. Scrape results from Review and navigate to Applicants', function () {
+    it('11. Scrape results from Review and navigate to Applicants', function () {
         ui.onboarding
             .click('Question Responses')
             .save_data_object_for_Questions_Responses()
@@ -148,14 +148,14 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
             .save_data_object_for_Fees_and_Charges_Initial_Costs()
     })
 
-    xit('11. Scrape results from Review and navigate to Applicants', function () {
+    it('11. Scrape results from Review and navigate to Applicants', function () {
         ui.onboarding
             .save_final_JSON_report('individual_')
             .click_Save_and_Continue_button()
             .verify_applicants_page()
     })
 
-    xit('12. Complete Applicants', function () {
+    it('12. Complete Applicants', function () {
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
@@ -164,7 +164,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
             .verify_validation_messages_for_create_new_applicant_input_fields(D.applicantsProfileValidationMessages)
     });
 
-    xit('12. Complete Applicants', function () {
+    it('12. Complete Applicants', function () {
         ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .click_submit_applicant_button()
             .verify_your_identity()
@@ -172,7 +172,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
             .verify_text_is_present_on_main_container('Your document was uploaded successfully and will be reviewed by an administrator.')
     });
 
-    xit('12. Complete Applicants', function () {
+    it('12. Complete Applicants', function () {
         ui.onboarding.upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)
             .click_Save_and_Continue_button()
             .verify_Bank_Details_page()
