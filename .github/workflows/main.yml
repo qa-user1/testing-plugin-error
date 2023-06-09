@@ -868,13 +868,13 @@ jobs:
           #     Name: EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN, Value Paste the Token
           API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
           NOW: ${{ env.NOW }}
-          with:
-            # GitHub Action output files
-            source-directory: report
-            destination-github-username: 'Nucleus-Test-Reports'
-            destination-repository-name: 'report_${{ env.NOW }}'
-            user-email: 'senderovic.amina@gmail.com'
-            target-branch: "main"
+        with:
+          # GitHub Action output files
+          source-directory: report
+          destination-github-username: 'Nucleus-Test-Reports'
+          destination-repository-name: 'report_${{ env.NOW }}'
+          user-email: 'senderovic.amina@gmail.com'
+          target-branch: "main"
 
       - name: Upload artifacts to S3
         run: |
