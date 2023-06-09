@@ -855,10 +855,11 @@ jobs:
         if: always()
         run: |
           node_modules/allure-commandline/dist/bin/allure generate  allure-results -o report
+
       - name: Deploy report to Github Pages directory
         uses: peaceiris/actions-gh-pages@v2
         with:
-          keepFiles: false
+          keepFiles: true
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -871,7 +872,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 250
     continue-on-error: true
-    needs: [Run-Cypress-Test15, Run-Cypress-Test16]
+    needs: merge-and-deploy-final-report
     if: always()
     strategy:
       fail-fast: false
@@ -887,34 +888,19 @@ jobs:
           npm i aws-sdk --save-dev
           npm i path --save-dev
           npm i fs --save-dev
-          mkdir allure-results
+          mkdir allure-results-failures
           
-          if [ -d "allure-results-15" ]; then
-          mv allure-results-15/* allure-results
-          fi
-          if [ -d "allure-results-16" ]; then
-          mv allure-results-16/* allure-results
-          fi
-          if [ -d "allure-results-failures" ]; then
-          mv allure-results-failures/* allure-results
-          fi
-          
-
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
 
       - name: Generate Allure Report
         if: always()
         run: |
-          mkdir allure-results-failures
+    
           mv allure-results/* allure-results-failures
           node_modules/allure-commandline/dist/bin/allure generate allure-results-failures -o report-failures
       - name: Deploy report to Github Pages directory
         uses: peaceiris/actions-gh-pages@v2
         with:
-          keepFiles: false
+          keepFiles: true
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -934,7 +920,7 @@ jobs:
           SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
         with:
           # custom message to send to slack
-          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/  \"}}]}'
+          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/report  \"}}]}'
 
 
   slack-notification2:
@@ -949,4 +935,4 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN}}
         with:
-          args: '{"channel": "${{secrets.SLACK_PR_CHANNEL_ID}}", "blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "*Automated test report - Failures:* https://qa-user1.github.io/testing-plugin-error/ \"}}]}'
+          args: '{"channel": "${{secrets.SLACK_PR_CHANNEL_ID}}", "blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "*Automated test report - Failures:* https://qa-user1.github.io/testing-plugin-error/report-failures \"}}]}'
