@@ -154,6 +154,7 @@ jobs:
           npm i aws-sdk --save-dev
           npm i path --save-dev
           npm i fs --save-dev
+          node .github/actions-scripts/configureGitHubPages.mjs
           mkdir allure-results
           
           if [ -d "allure-results-1" ]; then
