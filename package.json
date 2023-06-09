@@ -70,5 +70,8 @@
   "repository": {
     "type": "git"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^19.0.11"
+  }
 }
