@@ -871,7 +871,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 250
     continue-on-error: true
-    needs: [Run-Cypress-Test1, Run-Cypress-Test15]
+    needs: [Run-Cypress-Test15, Run-Cypress-Test16]
     if: always()
     strategy:
       fail-fast: false
@@ -889,11 +889,14 @@ jobs:
           npm i fs --save-dev
           mkdir allure-results
           
-          if [ -d "allure-results-1" ]; then
+          if [ -d "allure-results-15" ]; then
           mv allure-results-1/* allure-results
           fi
-          if [ -d "allure-results-15" ]; then
+          if [ -d "allure-results-16" ]; then
           mv allure-results-15/* allure-results
+          fi
+          if [ -d "allure-results-failures" ]; then
+          mv allure-results-failures/* allure-results
           fi
           
 
