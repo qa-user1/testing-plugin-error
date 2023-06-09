@@ -126,9 +126,6 @@ jobs:
           npm i fs --save-dev
           mkdir allure-results
           
-          if [ -d "allure-results-1" ]; then
-          mv allure-results-1/* allure-results
-          fi
           
           if [ -d "allure-results-15" ]; then
           mv allure-results-15/* allure-results
