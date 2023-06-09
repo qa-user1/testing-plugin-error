@@ -904,7 +904,7 @@ jobs:
       - name: Generate Allure Report
         if: always()
         run: |
-    
+          mkdir allure-results-failures
           mv allure-results/* allure-results-failures
           node_modules/allure-commandline/dist/bin/allure generate allure-results-failures -o report-failures
       - name: Deploy report to Github Pages directory
