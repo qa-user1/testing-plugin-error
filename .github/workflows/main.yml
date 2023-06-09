@@ -941,7 +941,7 @@ jobs:
     name: Notify on Slack failed tests
     runs-on: ubuntu-latest
     if: always()
-    needs: [merge-and-deploy-final-failed-report, Run-Cypress-Test15, Run-Cypress-Test16]
+    needs: [Run-Cypress-Test15, Run-Cypress-Test16]
 
     steps:
 
