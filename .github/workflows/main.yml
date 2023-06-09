@@ -890,10 +890,10 @@ jobs:
           mkdir allure-results
           
           if [ -d "allure-results-15" ]; then
-          mv allure-results-1/* allure-results
+          mv allure-results-15/* allure-results
           fi
           if [ -d "allure-results-16" ]; then
-          mv allure-results-15/* allure-results
+          mv allure-results-16/* allure-results
           fi
           if [ -d "allure-results-failures" ]; then
           mv allure-results-failures/* allure-results
