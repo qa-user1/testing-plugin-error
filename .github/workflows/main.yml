@@ -949,4 +949,4 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN}}
         with:
-          args: '{"channel": "${{secrets.SLACK_PR_CHANNEL_ID}}", "blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "*Automated test report - Failures:* https://qa-user1.github.io/testing-plugin-error/report-failures"}}]}'
+          args: '{"channel": "${{secrets.SLACK_PR_CHANNEL_ID}}", "blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "*Automated test report - Failures:* https://qa-user1.github.io/testing-plugin-error/ \"}}]}'
