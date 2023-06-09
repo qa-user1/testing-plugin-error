@@ -851,6 +851,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+            name: allure-results
+            path: allure-results/
+
       - name: Generate Allure Report
         if: always()
         run: |
@@ -889,7 +895,11 @@ jobs:
           npm i path --save-dev
           npm i fs --save-dev
           mkdir allure-results-failures
-          
+
+      - name: Download allure-results
+        uses: actions/download-artifact@v2
+        with:
+          name: allure-results
 
       - name: Generate Allure Report
         if: always()
