@@ -893,7 +893,7 @@ jobs:
           mv allure-results-1/* allure-results
           fi
           if [ -d "allure-results-15" ]; then
-          mv allure-results-2/* allure-results
+          mv allure-results-15/* allure-results
           fi
           
 
@@ -914,9 +914,7 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
-      - name: Upload artifacts to S3
-        run: |
-          node mainScript.js
+
   
 
   slack-notification:
