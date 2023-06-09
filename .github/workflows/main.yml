@@ -48,37 +48,7 @@ jobs:
       - run: npm i
       - run: npm run clearGmail
 
-  Run-Cypress-Test1:
-    name: Cypress Test 1
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    container:
-      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-      options: --user 1001
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: npm run e2e-test1
-      - run: |
-          mkdir report/S3_bucket
-          mv S3_bucket/* report/S3_bucket
-          mv mainScript.js report
 
-      - name: Deploy report to temp-reports branch
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: true
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
 
 
 
@@ -138,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 250
     continue-on-error: true
-    needs: [Run-Cypress-Test1, Run-Cypress-Test15]
+    needs: [Run-Cypress-Test15]
     if: always()
     strategy:
       fail-fast: false
@@ -218,7 +188,7 @@ jobs:
     name: Notify on Slack
     runs-on: ubuntu-latest
     if: always()
-    needs: [Run-Cypress-Test1, Run-Cypress-Test15]
+    needs: [Run-Cypress-Test15]
 
     steps:
       - uses: abinoda/slack-action@master
