@@ -930,4 +930,8 @@ jobs:
         with:
           # custom message to send to slack
           args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/  \"}}]}'
-
+      - uses: abinoda/slack-action@master
+        env:
+          SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN}}
+        with:
+          args: '{"channel": "${{secrets.SLACK_PR_CHANNEL_ID}}", "blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "*Automated test report - Failures:* https://qa-user1.github.io/testing-plugin-error/report-failures"}}]}'
