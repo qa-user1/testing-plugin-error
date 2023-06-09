@@ -1,19 +1,16 @@
 name: Cypress Tests
-
-  # runs tests every day at 4am
-#on:
+on:
  # schedule:
-  #  - cron: '*/5 * * * *'
-on: [ push ]
-
+  #  - cron: '0 4 * * *'
+ [ push ]
 
 permissions: write-all
 
 env:
-    #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-    BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
-    AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
-    AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+  AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
+  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
 
 
 jobs:
@@ -563,7 +560,7 @@ jobs:
 
   Run-Cypress-Test17-2:
     name: Cypress Test 17.2
-   # if: success() || failure()
+    # if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
     needs: [ Run-Cypress-Test1 ]
@@ -720,7 +717,7 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
-            
+
 
   Run-Cypress-Test22:
     name: Cypress Test 22
@@ -741,7 +738,7 @@ jobs:
           max_attempts: 3
           command: npm run e2e-test22
 
-    #  - run: npm run e2e-test22
+      #  - run: npm run e2e-test22
       - run: |
           mkdir report/S3_bucket
           mv S3_bucket/* report/S3_bucket
@@ -846,102 +843,67 @@ jobs:
           mv allure-results-22/* allure-results
           fi
 
+      - name: Set up environment variable
+        id: set_date
+        run: echo "NOW=$(date +'%B_%d')" >> $GITHUB_ENV
+
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-            name: allure-results
-            path: allure-results/
-
       - name: Generate Allure Report
         if: always()
         run: |
           node_modules/allure-commandline/dist/bin/allure generate  allure-results -o report
 
-      - name: Deploy report to Github Pages directory
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: true
+      - name: Deploy to external repository
+        uses: cpina/github-action-push-to-another-repository@main
         env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
+          # 🏗️ <internal repository>, run GitHub Action.
+          # 🎁 <external repository>, receiving Artifacts.
+          # @see https://cpina.github.io/push-to-another-repository-docs/setup-using-personal-access-token.html#setup-personal-access-token
+          # 1.1 Generate Personal Access Token: <external repository>/<Avatar>/Settings/Developer settings/Personal access tokens/Generate new token
+          #     Select `No expiration` and Check `✅️ repo    Full control of private repositories`, Generate and then Copy the Token
+          # 1.2 Then make the token available to the GitHub Action: <internal repository>/Settings/Secrets/Actions/New repository secret
+          #     Name: EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN, Value Paste the Token
+          API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
+          NOW: ${{ env.NOW }}
+          with:
+            # GitHub Action output files
+            source-directory: report
+            destination-github-username: 'Nucleus-Test-Reports'
+            destination-repository-name: 'report_${{ env.NOW }}'
+            user-email: 'senderovic.amina@gmail.com'
+            target-branch: "main"
+
       - name: Upload artifacts to S3
         run: |
           node mainScript.js
 
-  merge-and-deploy-final-failed-report:
-    runs-on: ubuntu-latest
-    timeout-minutes: 250
-    continue-on-error: true
-    needs: merge-and-deploy-final-report
-    if: always()
-    strategy:
-      fail-fast: false
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-      - name: Install dependencies
-        run: |
-          git config --global http.postBuffer 157286400
-          npm init --yes
-          npm i allure-commandline --save-dev
-          npm i aws-sdk --save-dev
-          npm i path --save-dev
-          npm i fs --save-dev
-          mkdir allure-results-failures
 
-      - name: Download allure-results
-        uses: actions/download-artifact@v2
-        with:
-          name: allure-results
 
-      - name: Generate Allure Report
-        if: always()
-        run: |
-          mkdir allure-results-failures
-          mv allure-results/* allure-results-failures
-          node_modules/allure-commandline/dist/bin/allure generate allure-results-failures -o report-failures
-      - name: Deploy report to Github Pages directory
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: true
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report-failures
 
-  
+
+
+     #   with:
+     #     keepFiles: false
+     #   env:
+      #    PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    PUBLISH_BRANCH: gh-pages
+     #     PUBLISH_DIR: report
+
 
   slack-notification:
     name: Notify on Slack
     runs-on: ubuntu-latest
     if: always()
-    needs: [merge-and-deploy-final-report, merge-and-deploy-final-failed-report]
+    needs: [Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test13, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17-0, Run-Cypress-Test17-1, Run-Cypress-Test17-2, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
+
     steps:
       - uses: abinoda/slack-action@master
         env:
           SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
         with:
           # custom message to send to slack
-          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/report  \"}}]}'
+          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/  \"}}]}'
 
-
-  slack-notification2:
-    name: Notify on Slack failed tests
-    runs-on: ubuntu-latest
-    if: always()
-    needs: [merge-and-deploy-final-failed-report]
-
-    steps:
-
-      - uses: abinoda/slack-action@master
-        env:
-          SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN}}
-        with:
-          args: '{"channel": "${{secrets.SLACK_PR_CHANNEL_ID}}", "blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "*Automated test report - Failures:* https://qa-user1.github.io/testing-plugin-error/report-failures \"}}]}'
