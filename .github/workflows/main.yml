@@ -905,7 +905,9 @@ jobs:
       - name: Generate Allure Report
         if: always()
         run: |
-          node_modules/allure-commandline/dist/bin/allure generate --only-failures allure-results -o report-failures
+          mkdir allure-results-failures
+          mv allure-results/* allure-results-failures
+          node_modules/allure-commandline/dist/bin/allure generate allure-results-failures -o report-failures
       - name: Deploy report to Github Pages directory
         uses: peaceiris/actions-gh-pages@v2
         with:
