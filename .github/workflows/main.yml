@@ -159,7 +159,7 @@ jobs:
           source-directory: report
           destination-github-username: 'Nucleus-Test-Reports'
           destination-repository-name: 'report_${{ env.NOW }}'
-          user-email: 'qa-user1'
+          user-email: 'protractor.user1@gmail.com'
           target-branch: "main"
 
       - name: Upload artifacts to S3
