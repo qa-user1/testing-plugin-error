@@ -155,10 +155,10 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
           NOW: ${{ env.NOW }}
         with:
-          
+
           # GitHub Action output files
           source-directory: report
-          destination-github-username: 'Nucleus-Test-Reports'
+          destination-github-username: 'Nucleus-Reports'
           destination-repository-name: 'report_${{ env.NOW }}'
           user-email: 'protractor.user1@gmail.com'
           target-branch: "main"

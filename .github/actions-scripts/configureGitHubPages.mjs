@@ -6,11 +6,11 @@ import {Octokit} from "@octokit/rest";
 
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 //const owner = 'qa-github1'
-const owner = 'Nucleus-Test-Reports'
+const owner = 'Nucleus-Reports'
 const repo = 'testing-plugin-error'
 const env = 'github-pages'
 const dateAndTime = new Date();
@@ -46,7 +46,7 @@ try {
 
         // make 31 repositories -- 1 repo for each day in the month
         await octokit.request('POST /orgs/{org}/repos', {
-            org: 'Nucleus-Test-Reports',
+            org: 'Nucleus-Reports',
             name: newRepo,
             description: 'Test Reports ',
             homepage: 'https://github.com',
