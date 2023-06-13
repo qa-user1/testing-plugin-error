@@ -181,32 +181,15 @@
       name: Notify on Slack
       runs-on: ubuntu-latest
       if: always()
-      needs: [ Run-Cypress-Test15 ]
+      needs: [ Run-Cypress-Test15]
 
       steps:
-        - name: Prepare report URL
-          id: prepare_report_url
-          run: echo "::set-output name=report_url::https://nucleus-reports.github.io/report_${{ env.NOW }}/"
-
         - uses: abinoda/slack-action@master
           env:
             SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
-            REPORT_URL: ${{ steps.prepare_report_url.outputs.report_url }}
           with:
             # custom message to send to slack
-            args: >
-              {
-                \"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",
-                \"blocks\":[
-                  {
-                    \"type\":\"section\",
-                    \"text\":{
-                      \"type\":\"mrkdwn\",
-                      \"text\":\"*Automated test report* $REPORT_URL\"
-                    }
-                  }
-                ]
-              }
-    
+            args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/Nucleus-Reports/report_${{ env.NOW }} \"}}]}'
+
     
 
