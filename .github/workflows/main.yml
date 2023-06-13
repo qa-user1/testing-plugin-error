@@ -181,20 +181,13 @@
       name: Notify on Slack
       runs-on: ubuntu-latest
       if: always()
-      needs: [ Run-Cypress-Test15, merge-and-deploy-final-report ]
+      needs: [ Run-Cypress-Test15 ]
 
       steps:
-        - name: Prepare Slack Message
-          id: prepare_slack_message
-          run: |
-            NOW=${{ needs.merge-and-deploy-final-report.outputs.date }}
-            CHANNEL_ID=${{ secrets.SLACK_PR_CHANNEL_ID }}
-            MESSAGE="{\"channel\":\"${CHANNEL_ID}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/Nucleus-Reports/report_${NOW} \"}}]}"
-            echo "${MESSAGE}" > message.json
         - uses: abinoda/slack-action@master
           env:
             SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
           with:
             # custom message to send to slack
-            args: "$(cat message.json)"
+            args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/Nucleus-Reports/report_$NOW  \"}}]}'
 
