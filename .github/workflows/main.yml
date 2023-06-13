@@ -182,12 +182,13 @@
       runs-on: ubuntu-latest
       if: always()
       needs: [ Run-Cypress-Test15 ]
+      env:
+        NOW: ${{ env.NOW }}
 
       steps:
         - name: Prepare Slack Message
           id: prepare_slack_message
-          run: |
-            echo "::set-output name=message::{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/Nucleus-Reports/report_${{ env.NOW }} \"}}]}"
+          run: echo "::set-output name=message::{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/Nucleus-Reports/report_${{ env.NOW }} \"}}]}"
 
         - uses: abinoda/slack-action@master
           env:
@@ -195,5 +196,4 @@
           with:
             # custom message to send to slack
             args: "${{ steps.prepare_slack_message.outputs.message }}"
-    
 
