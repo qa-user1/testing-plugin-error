@@ -191,6 +191,7 @@
         - uses: abinoda/slack-action@master
           env:
             SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
+            REPORT_URL: ${{ steps.prepare_report_url.outputs.report_url }}
           with:
             # custom message to send to slack
             args: >
@@ -201,10 +202,11 @@
                     \"type\":\"section\",
                     \"text\":{
                       \"type\":\"mrkdwn\",
-                      \"text\":\"*Automated test report* ${steps.prepare_report_url.outputs.report_url}\"
+                      \"text\":\"*Automated test report* $REPORT_URL\"
                     }
                   }
                 ]
               }
+    
     
 
