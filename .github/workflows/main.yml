@@ -123,11 +123,15 @@
             npm i allure-commandline --save-dev
             
             mkdir allure-results
+            mkdir allure-results-failed
             
+            sudo apt-get install -y jq
             
             if [ -d "allure-results-15" ]; then
             mv allure-results-15/* allure-results
             fi
+            
+            jq 'select(.status=="failed")' allure-results/*.json > allure-results-failed/failed-tests.json
 
         - name: Set up environment variable
           id: set_date
@@ -137,44 +141,41 @@
           with:
             distribution: 'temurin'
             java-version: '17'
-        - name: Generate Allure Report
+
+
+        - name: Generate Allure Report for all tests
           if: always()
           run: |
-            node_modules/allure-commandline/dist/bin/allure generate  allure-results -o report
+              node_modules/allure-commandline/dist/bin/allure generate allure-results -o report/all-tests
 
-        - name: Deploy to external repository
+        - name: Generate Allure Report for failed tests
+          if: always()
+          run: |
+                node_modules/allure-commandline/dist/bin/allure generate allure-results-failed -o report/failed-tests
+
+        - name: Deploy all tests report to external repository
           uses: cpina/github-action-push-to-another-repository@main
           env:
-            # 🏗️ <internal repository>, run GitHub Action.
-            # 🎁 <external repository>, receiving Artifacts.
-            # @see https://cpina.github.io/push-to-another-repository-docs/setup-using-personal-access-token.html#setup-personal-access-token
-            # 1.1 Generate Personal Access Token: <external repository>/<Avatar>/Settings/Developer settings/Personal access tokens/Generate new token
-            #     Select `No expiration` and Check `✅️ repo    Full control of private repositories`, Generate and then Copy the Token
-            # 1.2 Then make the token available to the GitHub Action: <internal repository>/Settings/Secrets/Actions/New repository secret
-            #     Name: EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN, Value Paste the Token
-            API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
-            NOW: ${{ env.NOW }}
+              API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
+              NOW: ${{ env.NOW }}
           with:
-            # GitHub Action output files
-            source-directory: report
-            destination-github-username: 'Nucleus-Reports'
-            destination-repository-name: 'report_${{ env.NOW }}'
-            user-email: 'qa-user1'
-            target-branch: "main"
+              source-directory: report/all-tests
+              destination-github-username: 'Nucleus-Reports'
+              destination-repository-name: 'report_${{ env.NOW }}'
+              user-email: 'qa-user1'
+              target-branch: "main"
 
-       # - name: Upload artifacts to S3
-       #   run: |
-       #     node mainScript.js
-        
-        
-        
-
-        #   with:
-        #     keepFiles: false
-        #   env:
-        #    PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #    PUBLISH_BRANCH: gh-pages
-        #     PUBLISH_DIR: report
+        - name: Deploy failed tests report to external repository
+          uses: cpina/github-action-push-to-another-repository@main
+          env:
+              API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
+              NOW: ${{ env.NOW }}
+          with:
+              source-directory: report/failed-tests
+              destination-github-username: 'Nucleus-Reports'
+              destination-repository-name: 'report_failed_${{ env.NOW }}'
+              user-email: 'qa-user1'
+              target-branch: "main"
 
 
     slack-notification:

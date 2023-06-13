@@ -6,7 +6,7 @@ import {Octokit} from "@octokit/rest";
 
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 //const owner = 'qa-github1'
@@ -40,11 +40,48 @@ try {
     // }
 
 
-    for (let i = 1; i<32; i++){
+    /*for (let i = 1; i<32; i++){
         let  month = i < 10? '0' + i : i;
         newRepo = 'report_June_' + month
 
         // make 31 repositories -- 1 repo for each day in the month
+        await octokit.request('POST /orgs/{org}/repos', {
+            org: 'Nucleus-Reports',
+            name: newRepo,
+            description: 'Test Reports ',
+            homepage: 'https://github.com',
+            'private': false,
+            has_issues: true,
+            has_projects: true,
+            has_wiki: true,
+            auto_init: true,
+            headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+            }
+        })
+
+
+
+
+        // enable GItHub pages on all newly created repositories
+        await octokit.request('POST /repos/{owner}/{repo}/pages', {
+            owner,
+            repo : newRepo,
+            source: {
+                branch: 'main',
+                path: '/'
+            },
+            headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+            }
+        })
+    }*/
+
+    for (let i = 1; i<32; i++){
+        let  month = i < 10? '0' + i : i;
+        newRepo = 'report_failed_June_' + month
+
+        // make 31 repositories for failed tests -- 1 repo for each day in the month
         await octokit.request('POST /orgs/{org}/repos', {
             org: 'Nucleus-Reports',
             name: newRepo,
