@@ -66,12 +66,12 @@
         - uses: actions/checkout@v2
         - uses: actions/setup-node@v3
         - run: npm i
-               npm run e2e-test15
-       # - uses: nick-invision/retry@v2
-       #   with:
-       #     timeout_minutes: 10
-       #     max_attempts: 3
-        #    command: npm run e2e-test15
+
+        - uses: nick-invision/retry@v2
+          with:
+            timeout_minutes: 10
+            max_attempts: 3
+            command: npm run e2e-test15
           env:
             ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
             AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
