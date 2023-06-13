@@ -155,7 +155,6 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
           NOW: ${{ env.NOW }}
         with:
-          
           # GitHub Action output files
           source-directory: report
           destination-github-username: 'Nucleus-Reports'
