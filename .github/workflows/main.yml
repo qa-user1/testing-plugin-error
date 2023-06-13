@@ -184,11 +184,13 @@
       needs: [ Run-Cypress-Test15 ]
 
       steps:
+        - name: Set up environment variable
+          id: set_date
+          run: echo "NOW=$(date +'%B_%d')" >> $GITHUB_ENV
+
         - uses: abinoda/slack-action@master
           env:
             SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
             NOW: ${{ env.NOW }}
           with:
-            # custom message to send to slack
-            args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/Nucleus-Reports/report_${NOW}  \"}}]}'
-
+            args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/Nucleus-Reports/report_${{ env.NOW }}  \"}}]}'
