@@ -162,9 +162,9 @@
             user-email: 'qa-user1'
             target-branch: "main"
 
-        - name: Upload artifacts to S3
-          run: |
-            node mainScript.js
+       # - name: Upload artifacts to S3
+       #   run: |
+       #     node mainScript.js
         
         
         
@@ -181,13 +181,30 @@
       name: Notify on Slack
       runs-on: ubuntu-latest
       if: always()
-      needs: [Run-Cypress-Test15]
+      needs: [ Run-Cypress-Test15 ]
 
       steps:
+        - name: Prepare report URL
+          id: prepare_report_url
+          run: echo "::set-output name=report_url::https://nucleus-reports.github.io/report_${{ env.NOW }}/"
+
         - uses: abinoda/slack-action@master
           env:
             SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
           with:
             # custom message to send to slack
-            args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/  \"}}]}'
+            args: >
+              {
+                \"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",
+                \"blocks\":[
+                  {
+                    \"type\":\"section\",
+                    \"text\":{
+                      \"type\":\"mrkdwn\",
+                      \"text\":\"*Automated test report* ${steps.prepare_report_url.outputs.report_url}\"
+                    }
+                  }
+                ]
+              }
+    
 
