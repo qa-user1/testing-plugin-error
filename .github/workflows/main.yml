@@ -15,100 +15,11 @@ env:
 
 jobs:
 
-  clear-previous-reports:
-    runs-on: ubuntu-latest
-    timeout-minutes: 250
-    if: always()
-    strategy:
-      fail-fast: false
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-      - name: remove previous reports
-        run: |
-          mkdir emptyFolder
-      - name: Deploy blank report folder temp reports branch
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: false
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: emptyFolder
-
-  Run-Clear-Gmail:
-    name: Clear Gmail
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
-
-
-
-
-
-
-  Run-Cypress-Test15:
-    name: Cypress Test 15
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    # needs: [ Run-Cypress-Test1 ]
-    container:
-      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-      options: --user 1001
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: npm run e2e-test15
-        env:
-          ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
-          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
-
-      - name: Deploy report to temp-reports branch
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: true
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
-
-
-
-
-
-      - run: |
-          mkdir report/S3_bucket
-          mv S3_bucket/* report/S3_bucket
-          mv mainScript.js report
-
-      - name: Deploy report to temp-reports branch
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: true
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
 
   merge-and-deploy-final-report:
     runs-on: ubuntu-latest
     timeout-minutes: 250
     continue-on-error: true
-    needs: [Run-Cypress-Test15]
     if: always()
     strategy:
       fail-fast: false
@@ -116,31 +27,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: gh-pages
-      - name: Install dependencies
-        run: |
-          git config --global http.postBuffer 157286400
-          npm init --yes
-          npm i allure-commandline --save-dev
-        
-          mkdir allure-results
-          
-          
-          if [ -d "allure-results-15" ]; then
-          mv allure-results-15/* allure-results
-          fi
+
 
       - name: Set up environment variable
         id: set_date
         run: echo "NOW=$(date +'%B_%d')" >> $GITHUB_ENV
-
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-      - name: Generate Allure Report
-        if: always()
-        run: |
-          node_modules/allure-commandline/dist/bin/allure generate  allure-results -o report
 
       - name: Deploy to external repository
         uses: cpina/github-action-push-to-another-repository@main
@@ -159,7 +50,7 @@ jobs:
           source-directory: report
           destination-github-username: 'Nucleus-Reports'
           destination-repository-name: 'report_${{ env.NOW }}'
-          user-email: 'protractor.user1@gmail.com'
+          user-email: 'qa-user1'
           target-branch: "main"
 
       - name: Upload artifacts to S3
