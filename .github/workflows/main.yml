@@ -148,7 +148,8 @@
         - name: Generate Allure Report for failed tests
           if: always()
           run: |
-            node_modules/allure-commandline/dist/bin/allure generate allure-results-failed -o report/failed-tests
+            node_modules/allure-commandline/dist/bin/allure generate allure-results-failed -o report/failed-tests --filter.status=failed
+
 
         - name: Deploy all tests report to external repository
           uses: cpina/github-action-push-to-another-repository@main
