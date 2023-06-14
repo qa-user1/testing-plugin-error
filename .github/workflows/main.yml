@@ -49,10 +49,6 @@
         - run: npm run clearGmail
 
 
-
-
-
-
     Run-Cypress-Test15:
       name: Cypress Test 15
       if: success() || failure()
