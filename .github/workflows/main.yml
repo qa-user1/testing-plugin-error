@@ -223,35 +223,31 @@
                   const nodemailer = require("nodemailer");
                   
                   async function sendEmail() {
-                    try {
+                  
                       // Create a SMTP transporter using your email provider's SMTP settings
                       let transporter = nodemailer.createTransport({
-                        host: "smtp.example.com",
-                        port: 587,
-                        secure: false,
-                        auth: {
-                          user: "protractor.user2@gmail.com",
-                          pass: "meoqxyxjayencqlo"
-                        }
+                          host: "smtp.example.com",
+                          port: 587,
+                          secure: false,
+                          auth: {
+                             user: "protractor.user2@gmail.com",
+                             pass: "meoqxyxjayencqlo"
+                          },
+                        
                       });
                   
                       // Compose email message
-                      let message = {
-                        from: "protractor.user2@gmail.com",
-                        to: "senderovic.amina@gmail.com",
-                        subject: "Allure Report - Failed Tests",
-                        text: "Please find the Allure report for failed tests at the following link: ${{ steps.report_url.outputs.url }}"
-                      };
-                  
-                      // Send email
-                      let info = await transporter.sendMail(message);
-                      console.log("Email sent:", info.messageId);
-                    } catch (error) {
-                      console.error("Error sending email:", error);
-                    }
+                      let info = await transporter.sendMail({
+                          from: "protractor.user2@gmail.com",
+                          to: "senderovic.amina@gmail.com",
+                          subject: "Allure Report - Failed Tests",
+                          text: "Please find the Allure report for failed tests at the following link: ${{ steps.report_url.outputs.url }}"
+                      });
+                      console.log("Email sent");
                   }
-                  
-                  sendEmail();
+                  module.exports = {
+                  sendEmail
+                  };
                   '
     slack-notification:
 
