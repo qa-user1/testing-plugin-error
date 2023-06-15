@@ -220,7 +220,7 @@
                   
                   npm install nodemailer
                   mkdir sendEmailAllureReport
-                  mv sendEmailAllureReport.js sendEmailAllureReport/
+                  mv .github/actions-scripts/sendEmailAllureReport.js sendEmailAllureReport/
           
                   node sendEmailAllureReport/sendEmailAllureReport.js
                   
