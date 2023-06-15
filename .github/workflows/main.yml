@@ -209,7 +209,48 @@
             user-email: 'qa-user1'
             target-branch: "main"
 
+        - name: Get report URL
+          id: report_url
+          run: |
+              echo "Report URL: https://nucleus-reports.github.io/report_failed_${{ env.NOW }}"
+              echo "::set-output name=url::https://nucleus-reports.github.io/report_failed_${{ env.NOW }}"
 
+        - name: Send email with Allure report for failed tests
+          run: |
+                  node -e '
+                  const nodemailer = require("nodemailer");
+                  
+                  async function sendEmail() {
+                    try {
+                      // Create a SMTP transporter using your email provider's SMTP settings
+                      let transporter = nodemailer.createTransport({
+                        host: "smtp.example.com",
+                        port: 587,
+                        secure: false,
+                        auth: {
+                          user: "protractor.user2@gmail.com",
+                          pass: "meoqxyxjayencqlo"
+                        }
+                      });
+                  
+                      // Compose email message
+                      let message = {
+                        from: "protractor.user2@gmail.com",
+                        to: "senderovic.amina@gmail.com",
+                        subject: "Allure Report - Failed Tests",
+                        text: "Please find the Allure report for failed tests at the following link: ${{ steps.report_url.outputs.url }}"
+                      };
+                  
+                      // Send email
+                      let info = await transporter.sendMail(message);
+                      console.log("Email sent:", info.messageId);
+                    } catch (error) {
+                      console.error("Error sending email:", error);
+                    }
+                  }
+                  
+                  sendEmail();
+                  '
     slack-notification:
 
       name: Notify on Slack
