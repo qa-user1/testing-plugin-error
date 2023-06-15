@@ -225,7 +225,7 @@
                   
                   async function sendEmail() {
                   
-                      // Create a SMTP transporter using your email provider's SMTP settings
+                      
                       let transporter = nodemailer.createTransport({
                           host: "smtp.example.com",
                           port: 587,
@@ -237,7 +237,7 @@
                         
                       });
                   
-                      // Compose email message
+                      
                       let info = await transporter.sendMail({
                           from: "protractor.user2@gmail.com",
                           to: "senderovic.amina@gmail.com",
