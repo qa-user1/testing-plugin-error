@@ -232,7 +232,7 @@
                           secure: false,
                           auth: {
                              user: "protractor.user2@gmail.com",
-                             pass: "meoqxyxjayencqlo"
+                             pass: "tibmlnfyijshoidz"
                           },
                         
                       });
