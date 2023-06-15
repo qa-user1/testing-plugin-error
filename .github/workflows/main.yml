@@ -128,7 +128,14 @@
             mv allure-results-15/* allure-results
             fi
             
+            echo "Content of allure-results before using jq command:"
+            ls allure-results
+    
             jq 'select(.status=="failed")' allure-results/*.json > allure-results-failed/failed-tests.json
+            
+            echo "Content of allure-results-failed after using jq command:"
+            ls allure-results-failed
+            cat allure-results-failed/failed-tests.json
 
         - name: Set up environment variable
           id: set_date
