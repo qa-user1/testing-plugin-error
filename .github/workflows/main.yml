@@ -101,11 +101,40 @@
             PUBLISH_BRANCH: gh-pages
             PUBLISH_DIR: report
 
+    Run-Cypress-Test21:
+      name: Cypress Test 21
+      if: success() || failure()
+      runs-on: ubuntu-latest
+      timeout-minutes: 40
+     # needs: [ Run-Cypress-Test20 ]
+      container:
+        image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+        options: --user 1001
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v3
+        - run: npm i
+        - uses: nick-invision/retry@v2
+          with:
+            timeout_minutes: 10
+            max_attempts: 3
+            command: npm run e2e-test21
+
+        - name: Deploy report to temp-reports branch
+          if: always()
+          uses: peaceiris/actions-gh-pages@v2
+          with:
+            keepFiles: true
+          env:
+            PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            PUBLISH_BRANCH: gh-pages
+            PUBLISH_DIR: report
+
     merge-and-deploy-final-report:
       runs-on: ubuntu-latest
       timeout-minutes: 250
       continue-on-error: true
-      needs: [Run-Cypress-Test15]
+      needs: [Run-Cypress-Test15, Run-Cypress-Test21 ]
       if: always()
       strategy:
         fail-fast: false
@@ -125,6 +154,10 @@
     
             if [ -d "allure-results-15" ]; then
             mv allure-results-15/* allure-results
+            fi
+            
+            if [ -d "allure-results-21" ]; then
+            mv allure-results-21/* allure-results
             fi
             
             
