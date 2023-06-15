@@ -219,6 +219,9 @@
           run: |
                   
                   npm install nodemailer
+                  mkdir report/failedTests
+                  mv sendEmailAllureReport.js report
+                  
                   node .github/actions-scripts/sendEmailAllureReport.js
                   
 
