@@ -45,7 +45,7 @@
     "parallelTestsAndReport": "npm run parallelTests && npm run openReport",
     "docker:run": "docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_updateSnapshots cypress/included:9.7.0",
     "update:snapshots": "cross-env CYPRESS_updateSnapshots=true npm run docker:run",
-    "sendEmailAllureReportFailed": "node .github/workflows/sendEmailAllureReport.js"
+    "sendEmailAllureReportFailed": "node .github/actions-scripts/sendEmailAllureReport.js"
   },
   "devDependencies": {
     "@shelex/cypress-allure-plugin": "^2.34.0",

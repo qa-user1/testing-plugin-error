@@ -219,7 +219,7 @@
           run: |
                   
                   npm install nodemailer
-                  node sendEmailAllureReport.js
+                  node .github/actions-scripts/sendEmailAllureReport.js
                   
 
     slack-notification:
