@@ -218,7 +218,7 @@
         - name: Send email with Allure report for failed tests
           run: |
                   
-                  npm install nodemailer
+                  
                   node -e '
                   
                   const nodemailer = require("nodemailer");
