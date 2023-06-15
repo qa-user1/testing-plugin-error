@@ -248,8 +248,8 @@
                   }
                   module.exports = {
                   sendEmail
-                  };
-                  '
+                  }; '
+                  
 
     slack-notification:
 
