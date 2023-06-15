@@ -219,7 +219,7 @@
           run: |
                   
                   npm install nodemailer
-                  node -e '
+                  node -e 
                   const nodemailer = require("nodemailer");
                   
                   async function sendEmail() {
@@ -248,7 +248,7 @@
                   module.exports = {
                   sendEmail
                   };
-                  '
+
     slack-notification:
 
       name: Notify on Slack
