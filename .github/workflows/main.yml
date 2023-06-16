@@ -5,7 +5,7 @@
     [ push ]
 
   permissions: write-all
-  
+
   env:
     #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
@@ -159,8 +159,6 @@
             if [ -d "allure-results-21" ]; then
             mv allure-results-21/* allure-results
             fi
-            
-            
 
         - name: Set up environment variable
           id: set_date
@@ -171,14 +169,10 @@
             distribution: 'temurin'
             java-version: '17'
 
-
         - name: Generate Allure Report for all tests
           if: always()
           run: |
             node_modules/allure-commandline/dist/bin/allure generate allure-results -o report/all-tests
-
-        
-
 
         - name: Deploy all tests report to external repository
           uses: cpina/github-action-push-to-another-repository@main
@@ -209,24 +203,20 @@
             user-email: 'qa-user1'
             target-branch: "main"
 
-        - name: Get report URL
-          id: report_url
-          run: |
-              echo "Report URL: https://nucleus-reports.github.io/report_failed_${{ env.NOW }}"
-              echo "::set-output name=url::https://nucleus-reports.github.io/report_failed_${{ env.NOW }}"
-
-        - name: Send email with Allure report for failed tests
-          run: |
-                  
-                  npm install nodemailer
-                  mkdir sendEmailAllureReport
-                  mv .github/actions-scripts/sendEmailAllureReport.js sendEmailAllureReport/
-          
-                  node sendEmailAllureReport/sendEmailAllureReport.js
-                  
+    send-email:
+      name: Send email
+      if: success() || failure()
+      runs-on: ubuntu-latest
+      timeout-minutes: 40
+      needs: [ merge-and-deploy-final-report ]
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v3
+        - run: |
+            npm i
+            node .github/actions-scripts/sendEmailAllureReport.js
 
     slack-notification:
-
       name: Notify on Slack
       runs-on: ubuntu-latest
       if: always()
