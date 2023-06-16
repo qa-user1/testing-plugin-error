@@ -189,6 +189,7 @@
         - name: Generate Allure Report for failed tests
           if: always()
           run: |
+              npm i allure-commandline --save-dev
               node_modules/allure-commandline/dist/bin/allure generate allure-results --only-failed -o report/failed-tests
 
         - name: Deploy failed tests report to external repository
