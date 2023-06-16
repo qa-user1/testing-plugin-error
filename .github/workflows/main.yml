@@ -196,13 +196,14 @@
                       mkdir -p allure-report-failed
                       mv allure-report/history allure-report-failed/history
                       mv allure-report/data allure-report-failed/data
+
         - name: Deploy failed tests report to external repository
           uses: cpina/github-action-push-to-another-repository@main
           env:
             API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
             NOW: ${{ env.NOW }}
           with:
-            source-directory: report/failed-tests
+            source-directory: allure-report-failed
             destination-github-username: 'Nucleus-Reports'
             destination-repository-name: 'report_failed_${{ env.NOW }}'
             user-email: 'qa-user1'
