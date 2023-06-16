@@ -29,43 +29,43 @@ context('16. Nucleus Wealth Wordpress Site', () => {
 
 
 
-    xit('1. Visit Production Site', function () {
+    it('1. Visit Production Site', function () {
         ui.production.open_production_url()
             .verify_production_home_page()
     })
 
-    xit('2. Visit Investment Options', function () {
+    it('2. Visit Investment Options', function () {
 
         ui.production.click_option_from_navbar('Investment Options')
          //   .verify_option_from_navbar('investment-options', 'Investment Options')
     })
 
-    xit('3. Visit Ethical Investing', function () {
+    it('3. Visit Ethical Investing', function () {
         ui.production.click_option_from_navbar('Ethical Investing')
             .verify_option_from_navbar('ethical', 'NUCLEUS ETHICAL')
     })
 
-    xit('4. Visit Superannuation', function () {
+    it('4. Visit Superannuation', function () {
         ui.production.click_option_from_navbar('Superannuation')
             .verify_option_from_navbar('super', 'NUCLEUS SUPER')
     })
 
-    xit('5. Visit Direct Indexing', function () {
+    it('5. Visit Direct Indexing', function () {
         ui.production.click_option_from_navbar('Direct Indexing')
             .verify_option_from_navbar('directindexing', 'Nucleus Direct Indexing – ETFs 2.0')
     })
 
-    xit('6. Visit Resources', function () {
+    it('6. Visit Resources', function () {
         ui.production.click_option_from_navbar('Resources')
             .verify_option_from_navbar('content', 'Content')
     })
 
-    xit('7. Visit Contact', function () {
+    it('7. Visit Contact', function () {
         ui.production.click_option_from_navbar('Contact')
             .verify_option_from_navbar('contact', 'Contact')
     })
 
-    xit('8. Visit Member Login', function () {
+    it('8. Visit Member Login', function () {
         ui.production.click_option_from_navbar('Member Login')
         cy.wait(5000)
         ui.login.verify_login_menu()
@@ -73,7 +73,7 @@ context('16. Nucleus Wealth Wordpress Site', () => {
         cy.go('back')
     })
 
-    xit('9. Visit Get Started', function () {
+    it('9. Visit Get Started', function () {
         ui.production.click_option_from_navbar('Get Started')
         cy.wait(5000)
         ui.login.verify_login_menu()
@@ -81,7 +81,7 @@ context('16. Nucleus Wealth Wordpress Site', () => {
             .verify_sign_up_login_menu(D.newUser)
     })
 
-    xit('10. Check wordpress image uploaded date', function () {
+    it('10. Check wordpress image uploaded date', function () {
         cy.visit('https://nucleuswealth.com/wp-content/uploads/2022/12/')
         ui.production.verify_uploaded_date_for_documents()
     })
