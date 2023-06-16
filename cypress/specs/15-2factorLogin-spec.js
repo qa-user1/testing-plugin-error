@@ -1,10 +1,10 @@
 const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
-const ACCOUNT_SID = process.env.ACCOUNT_SID;
-//const accountSid = "ACac0f0be90244a421a66b99476e960bbc";
-const AUTH_TOKEN = process.env.AUTH_TOKEN;
-//const authToken = "59f5f80f1b912e11513149519c16f64c";
+//const ACCOUNT_SID = process.env.ACCOUNT_SID;
+const accountSid = "AC28a9d686d1c2d2d7e5e1750c6ee44dfa";
+//const AUTH_TOKEN = process.env.AUTH_TOKEN;
+const authToken = "e225a4ce75610939a3717b364400c336";
 
 context('15. Test 2 Factor Login is working', () => {
 
@@ -42,10 +42,10 @@ context('15. Test 2 Factor Login is working', () => {
         cy.wait(10000)
         cy.request({
             method: 'GET',
-            url: `https://api.twilio.com/2010-04-01/Accounts/${ACCOUNT_SID}/Messages.json`,
+            url: `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
             auth: {
-                username: ACCOUNT_SID,
-                password: AUTH_TOKEN,
+                username: accountSid,
+                password: authToken,
                 AuthMethod: 'BasicAuth',
             }
         })
