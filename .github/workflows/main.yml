@@ -187,15 +187,12 @@
             target-branch: "main"
 
         - name: Install Allure Commandline
-          run: npm install allure-commandline@1.5.0
+          run: npm install allure-commandline@latest
 
         - name: Generate Allure Report for failed tests
           if: always()
           run: |
-            mkdir -p report/failed-tests/history
-            cp -r allure-results/* report/failed-tests/history
-            ./node_modules/allure-commandline/bin/allure generate report/failed-tests/history -o report/failed-tests --clean
-            rm -rf report/failed-tests/history
+            node_modules/allure-commandline/dist/bin/allure generate allure-results --only-failed -o report/failed-tests
 
         - name: Deploy failed tests report to external repository
           uses: cpina/github-action-push-to-another-repository@main
