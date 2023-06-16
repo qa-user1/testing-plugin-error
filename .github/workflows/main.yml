@@ -185,6 +185,9 @@
             destination-repository-name: 'report_${{ env.NOW }}'
             user-email: 'qa-user1'
             target-branch: "main"
+            
+        - name: Install Allure Commandline
+          run: npm install allure-commandline@1.5.0
 
         - name: Generate Allure Report for failed tests
           if: always()
