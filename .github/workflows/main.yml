@@ -192,8 +192,10 @@
         - name: Generate Allure Report for failed tests
           if: always()
           run: |
-            node_modules/allure-commandline/dist/bin/allure generate allure-results --only-failed -o report/failed-tests
-
+                      npx allure generate --clean
+                      mkdir -p allure-report-failed
+                      mv allure-report/history allure-report-failed/history
+                      mv allure-report/data allure-report-failed/data
         - name: Deploy failed tests report to external repository
           uses: cpina/github-action-push-to-another-repository@main
           env:
