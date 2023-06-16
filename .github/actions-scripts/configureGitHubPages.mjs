@@ -31,7 +31,7 @@ try {
     //     let month = i < 10 ? '0' + i : i;
     //  //   newRepo = 'report_June_' + month
     //     await octokit.request('DELETE /repos/{owner}/{repo}', {
-    //         owner: 'Safe-QA',
+    //         owner: '...',
     //         repo:  'report_June_' + month,
     //         headers: {
     //             'X-GitHub-Api-Version': '2022-11-28'
@@ -40,7 +40,7 @@ try {
     // }
 
 
-    /*for (let i = 1; i<32; i++){
+    for (let i = 1; i<32; i++){
         let  month = i < 10? '0' + i : i;
         newRepo = 'report_June_' + month
 
@@ -75,9 +75,9 @@ try {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         })
-    }*/
+    }
 
-    for (let i = 1; i<32; i++){
+    /*for (let i = 1; i<32; i++){
         let  month = i < 10? '0' + i : i;
         newRepo = 'report_failed_June_' + month
 
@@ -109,7 +109,7 @@ try {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
         })
-    }
+    }*/
 
 
 
