@@ -12,7 +12,7 @@ context('17.2 Create Test User on Live Portal', () => {
         cy.clearAllSessionStorage()
     })
 
-    xit('6. Create a new user for Macro business', function () {
+    it('6. Create a new user for Macro business', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }

@@ -12,7 +12,7 @@ context('17.1 Create Test User on Live Portal', () => {
         cy.clearAllSessionStorage()
     })
 
-    xit('5. Create a new user for Walk The World', function () {
+    it('5. Create a new user for Walk The World', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }
