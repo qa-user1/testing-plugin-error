@@ -144,9 +144,9 @@
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-node@v3
-      run: |
-        npm i
-        node mainScript.js
+        - run: |
+            npm i
+            node mainScript.js
 
     send-email:
       name: Send email
