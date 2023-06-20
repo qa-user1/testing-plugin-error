@@ -151,7 +151,7 @@
 
     send-email:
       name: Send email
-      if: success() || failure() && ${{ needs.test.result == 'failure' }}
+      if: (success() || failure()) && ${{ needs.test.result == 'failure' }}
       runs-on: ubuntu-latest
       timeout-minutes: 40
       needs: [ merge-and-deploy-final-report ]
