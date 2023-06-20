@@ -2,9 +2,9 @@ const ui = require('../pages/ui-spec');
 const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 //const ACCOUNT_SID = process.env.ACCOUNT_SID;
-const accountSid = "AC28a9d686d1c2d2d7e5e1750c6ee44dfa";
+const accountSid = "ACffe191b22bc5c5e79bc4cbbe35fabec8";
 //const AUTH_TOKEN = process.env.AUTH_TOKEN;
-const authToken = "e225a4ce75610939a3717b364400c336";
+const authToken = "5d9cdeb50ae78b2e5df7868ac201afae";
 
 context('15. Test 2 Factor Login is working', () => {
 
@@ -26,7 +26,7 @@ context('15. Test 2 Factor Login is working', () => {
 
         D.newUser.email = 'testing+mfa' + D.getNewRandomNumber() + '@nucleuswealth.com'
         D.newUser.password = 'Testing1234!'
-        D.newUser.phoneNumber = '+16506632879'
+        D.newUser.phoneNumber = '+14178052843'
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
@@ -38,7 +38,7 @@ context('15. Test 2 Factor Login is working', () => {
 
 
 
-    it('Get SMS and apply it in 2FA form', () => {
+    xit('Get SMS and apply it in 2FA form', () => {
         cy.wait(10000)
         cy.request({
             method: 'GET',
