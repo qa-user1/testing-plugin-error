@@ -11,12 +11,12 @@ context('21. Forgot password function', () => {
 
     it('1. Direct to forgot password page', function () {
         ui.login.open_base_url()
-           /* .verify_login_menu()
+            .verify_login_menu()
             .click_forgot_password_button()
-            .verify_text_is_visible('Enter your Email below and we will send a message to reset your password')*/
+            .verify_text_is_visible('Enter your Email below and we will send a message to reset your password')
     })
 
-    xit('2. Reset password', function () {
+    it('2. Reset password', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }
