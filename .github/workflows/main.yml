@@ -153,8 +153,8 @@
       name: Send email
       runs-on: ubuntu-latest
       timeout-minutes: 40
-      needs: [ merge-and-deploy-final-report ]
-      if: ${{ always() && needs.merge-and-deploy-final-report.result == 'success' && needs.test.result == 'failure'}}
+      needs: [ Run-Cypress-Test21 ]
+      if: needs.test.result == 'failure'
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-node@v3
