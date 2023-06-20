@@ -158,8 +158,8 @@ export default class LoginPage extends BasePage {
 
     verify_links_on_home_page() {
         yourAccountLink().should('be.visible');
-        this.verify_text_is_visible('Your Account(s)d')
-        /*performanceLink().should('be.visible');
+        this.verify_text_is_visible('Your Account(s)')
+        performanceLink().should('be.visible');
         this.verify_text_is_visible('Performance')
         administrationLink().should('be.visible');
         this.verify_text_is_visible('Administration')
@@ -172,7 +172,7 @@ export default class LoginPage extends BasePage {
         formsLink().should('be.visible');
         this.verify_text_is_visible('Forms')
         insightsLink().should('be.visible');
-        this.verify_text_is_visible('Nucleus Wealth Insights')*/
+        this.verify_text_is_visible('Nucleus Wealth Insights')
         return this;
     }
 
