@@ -6,7 +6,7 @@ import {Octokit} from "@octokit/rest";
 
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 //const owner = 'qa-github1'
