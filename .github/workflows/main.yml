@@ -154,7 +154,7 @@
       runs-on: ubuntu-latest
       timeout-minutes: 40
       needs: [ merge-and-deploy-final-report ]
-      if: ${{ needs.merge-and-deploy-final-report.result == 'success' && needs.merge-and-deploy-final-report.outputs.failed_tests == 'true' }}
+      if: ${{ needs.merge-and-deploy-final-report.result == 'success' && needs.merge-and-deploy-final-report.outputs.failed_tests == 'true' && needs.merge-and-deploy-final-report.outputs.total_tests > 0 }}
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-node@v3
