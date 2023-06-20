@@ -165,9 +165,8 @@
     slack-notification:
       name: Notify on Slack
       runs-on: ubuntu-latest
-     # if: always()
+      if: needs.Run-Cypress-Test21.result == 'failure'
       needs: [Run-Cypress-Test21]
-      if: ${{ needs.test.result == 'failure' }}
       steps:
         - name: Set up environment variable
           id: set_date
