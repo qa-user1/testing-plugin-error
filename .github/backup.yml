@@ -1,11 +1,17 @@
 name: Cypress Tests
-
-  # runs tests every day at 4am
-# schedule:
-#  - cron: '0 4 * * *'
-on: [ push ]
+on:
+  # schedule:
+  #  - cron: '0 4 * * *'
+  [ push ]
 
 permissions: write-all
+
+env:
+  #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+  AWS_ACCESS_ID: ${{ secrets.AWS_ACCESS_ID }}
+  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+
 
 jobs:
 
@@ -55,7 +61,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test1
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test1
+      - run: |
+          mkdir report/S3_bucket
+          mv S3_bucket/* report/S3_bucket
+          mv mainScript.js report
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -80,7 +94,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test2
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test2
+      - run: |
+          mkdir report/S3_bucket
+          mv S3_bucket/* report/S3_bucket
+          mv mainScript.js report
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -97,7 +119,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [ Run-Cypress-Test22]
+    needs: [ Run-Cypress-Test22 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -105,7 +127,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test3
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test3
+      - run: |
+          mkdir report/S3_bucket
+          mv S3_bucket/* report/S3_bucket
+          mv mainScript.js report
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -130,7 +160,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test4
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test4
+      - run: |
+          mkdir report/S3_bucket
+          mv S3_bucket/* report/S3_bucket
+          mv mainScript.js report
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -147,7 +185,6 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    # needs: [ Run-Cypress-Test14 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -155,7 +192,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test5
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test5
+      - run: |
+          mkdir report/S3_bucket
+          mv S3_bucket/* report/S3_bucket
+          mv mainScript.js report
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -180,7 +225,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test6
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test6
+      - run: |
+          mkdir report/S3_bucket
+          mv S3_bucket/* report/S3_bucket
+          mv mainScript.js report
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -205,7 +258,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test8
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test8
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -229,7 +286,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test9
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test9
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -253,7 +315,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test10
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 15
+          max_attempts: 3
+          command: npm run e2e-test10
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -277,7 +344,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test11
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test11
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -293,7 +365,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [ Run-Cypress-Test17-1 ]
+    needs: [ Run-Cypress-Test8 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -301,7 +373,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test12
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test12
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -325,7 +402,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test13
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 15
+          max_attempts: 3
+          command: npm run e2e-test13
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -350,7 +432,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test15
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test15
+        env:
+          ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -373,7 +463,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test16
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test16
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -386,19 +481,33 @@ jobs:
 
   Run-Cypress-Test17-0:
     name: Cypress Test 17.0
-    if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    #  needs: [ Run-Cypress-Test11 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
     steps:
+      - name: Get current date
+        id: get-date
+        run: echo "date=$(date +'%u')" >> $GITHUB_OUTPUT
+        shell: bash
+
       - uses: actions/checkout@v2
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
       - uses: actions/setup-node@v3
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
       - run: npm i
-      #  - run: npm run clearGmail
-      - run: npm run e2e-test17.0
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test17.0
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -409,9 +518,9 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+
   Run-Cypress-Test17-1:
     name: Cypress Test 17.1
-    if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
     needs: [ Run-Cypress-Test22 ]
@@ -419,11 +528,26 @@ jobs:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
     steps:
+      - name: Get current date
+        id: get-date
+        run: echo "date=$(date +'%u')" >> $GITHUB_OUTPUT
+        shell: bash
+
       - uses: actions/checkout@v2
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
       - uses: actions/setup-node@v3
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
       - run: npm i
-      #  - run: npm run clearGmail
-      - run: npm run e2e-test17.1
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test17.1
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -437,19 +561,35 @@ jobs:
 
   Run-Cypress-Test17-2:
     name: Cypress Test 17.2
-    if: success() || failure()
+    # if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [ Run-Cypress-Test1]
+    needs: [ Run-Cypress-Test1 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
     steps:
+      - name: Get current date
+        id: get-date
+        run: echo "date=$(date +'%u')" >> $GITHUB_OUTPUT
+        shell: bash
+
       - uses: actions/checkout@v2
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
       - uses: actions/setup-node@v3
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
       - run: npm i
-      #  - run: npm run clearGmail
-      - run: npm run e2e-test17.2
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test17.2
+        if: (github.event_name == 'schedule' && steps.get-date.outputs.date == '3')
+
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -460,6 +600,7 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
+
 
   Run-Cypress-Test18:
     name: Cypress Test 18
@@ -474,7 +615,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test18
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test18
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -499,7 +644,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test19
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test19
 
       - name: Deploy report to temp-reports branch
         if: always()
@@ -524,7 +673,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test20
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test20
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -540,7 +694,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [ Run-Cypress-Test1 ]
+    needs: [ Run-Cypress-Test20 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
       options: --user 1001
@@ -548,7 +702,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test21
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test21
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -558,6 +717,8 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
+
+
 
   Run-Cypress-Test22:
     name: Cypress Test 22
@@ -572,7 +733,18 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
       - run: npm i
-      - run: npm run e2e-test22
+      - uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: npm run e2e-test22
+
+      #  - run: npm run e2e-test22
+      - run: |
+          mkdir report/S3_bucket
+          mv S3_bucket/* report/S3_bucket
+          mv mainScript.js report
+
       - name: Deploy report to temp-reports branch
         if: always()
         uses: peaceiris/actions-gh-pages@v2
@@ -600,7 +772,12 @@ jobs:
           git config --global http.postBuffer 157286400
           npm init --yes
           npm i allure-commandline --save-dev
+          npm i aws-sdk --save-dev
+          npm i path --save-dev
+          npm i fs --save-dev
           mkdir allure-results
+          mkdir allure-results-failed
+          
           
           if [ -d "allure-results-1" ]; then
           mv allure-results-1/* allure-results
@@ -669,24 +846,49 @@ jobs:
           mv allure-results-22/* allure-results
           fi
 
+      - name: Set up environment variable
+        id: set_date
+        run: echo "NOW=$(date +'%B_%d')" >> $GITHUB_ENV
 
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Generate Allure Report
+
+      - name: Generate Allure Report for all tests
         if: always()
         run: |
-          node_modules/allure-commandline/dist/bin/allure generate  allure-results -o report
-      - name: Deploy report to Github Pages directory
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: false
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
+          node_modules/allure-commandline/dist/bin/allure generate allure-results -o report/all-tests
 
+      - name: Deploy all tests report to external repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
+          NOW: ${{ env.NOW }}
+        with:
+          source-directory: report/all-tests
+          destination-github-username: 'Nucleus-Reports'
+          destination-repository-name: 'report_${{ env.NOW }}'
+          user-email: 'qa-user1'
+          target-branch: "main"
+
+      - name: Upload artifacts to S3
+        run: |
+          node mainScript.js
+  
+
+  send-email:
+    name: Send email
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: [ merge-and-deploy-final-report ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: |
+          npm i
+          node .github/actions-scripts/sendEmailAllureReport.js
 
   slack-notification:
     name: Notify on Slack
@@ -695,10 +897,13 @@ jobs:
     needs: [Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test13, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17-0, Run-Cypress-Test17-1, Run-Cypress-Test17-2, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22]
 
     steps:
+      - name: Set up environment variable
+        id: set_date
+        run: echo "NOW=$(date +'%B_%d')" >> $GITHUB_ENV
+
       - uses: abinoda/slack-action@master
         env:
           SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN }}
+          NOW: ${{ env.NOW }}
         with:
-          # custom message to send to slack
-          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://qa-user1.github.io/testing-plugin-error/  \"}}]}'
-
+          args: '{\"channel\":\"${{ secrets.SLACK_PR_CHANNEL_ID }}\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*Automated test report* https://nucleus-reports.github.io/report_${{ env.NOW }}  \"}}]}'
