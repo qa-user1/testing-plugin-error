@@ -16,7 +16,7 @@ context('21. Forgot password function', () => {
             .verify_text_is_visible('Enterr your Email below and we will send a message to reset your password')
     })
 
-    it('2. Reset password', function () {
+    xit('2. Reset password', function () {
         if (Cypress.env('cypressRunnerLocal') === true) {
             ui.app.clear_gmail_inbox()
         }

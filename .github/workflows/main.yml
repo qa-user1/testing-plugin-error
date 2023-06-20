@@ -138,6 +138,7 @@
 
     upload-artifacts-to-S3:
       name: Upload artifacts to S3
+      if: success() || failure()
       runs-on: ubuntu-latest
       timeout-minutes: 40
       needs: [ merge-and-deploy-final-report ]
@@ -150,11 +151,10 @@
 
     send-email:
       name: Send email
-     # if: success() || failure()
+      if: success() || failure() && ${{ needs.test.result == 'failure' }}
       runs-on: ubuntu-latest
       timeout-minutes: 40
       needs: [ merge-and-deploy-final-report ]
-      if: success() || failure() && ${{ needs.test.result == 'failure' }}
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-node@v3
