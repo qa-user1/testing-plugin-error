@@ -154,7 +154,7 @@
       runs-on: ubuntu-latest
       timeout-minutes: 40
       needs: [ merge-and-deploy-final-report, Run-Cypress-Test21 ]
-      if: needs.Run-Cypress-Test21.result == 'failure'
+      if: needs.Run-Cypress-Test21.result == 'success'
 
       steps:
         - uses: actions/checkout@v2
