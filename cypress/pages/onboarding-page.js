@@ -327,7 +327,7 @@ export default class OnboardingPage extends BasePage {
     // *************************** ACTIONS ***************************
 
     verify_account_selection() {
-        cy.url().should('include', 'account-selectionn');
+        cy.url().should('include', 'account-selection');
         cy.get('h1').should('be.visible');
         cy.get('h1').should('have.text', 'Account Selection');
         return this;
