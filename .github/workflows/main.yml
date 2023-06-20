@@ -138,7 +138,14 @@
 
     upload-artifacts-to-S3:
       name: Upload artifacts to S3
+      runs-on: ubuntu-latest
+      timeout-minutes: 40
+      needs: [ merge-and-deploy-final-report ]
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v3
       run: |
+        npm i
         node mainScript.js
 
     send-email:
