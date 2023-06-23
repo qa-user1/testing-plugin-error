@@ -311,6 +311,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     chat = e => cy.get('[id="hubspot-conversations-inline-iframe"]'),
     meetings = e => cy.get('.meetings-iframe-container > iframe'),
     nextButtonTourWindow = e => cy.get('[class="ant-btn css-86j49d ant-btn-primary ant-btn-sm ant-tour-next-btn"]'),
+    nextQuestionButton = e => cy.get('[data-test="questions-nextQuestion-btn"]'),
     investmentChoiceSideBar = e => cy.get('[class="ant-layout-sider ant-layout-sider-dark"]'),
     companyNameValidationMsg = e => cy.contains('Company Name').parent().parent().find('[role="alert"]'),
     companyAustralianBusinessNumberValidationMsg = e => cy.contains('Company Australian Business Number').parent().parent().find('[role="alert"]'),
@@ -414,7 +415,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    manually_enter_fee(fundEntryValues){
+    manually_enter_fee(fundEntryValues) {
         if (fundEntryValues.platformAdministration !== '') {
             manuallyEnterFeesButton().click();
             platformAdministration().clear();
@@ -552,7 +553,7 @@ export default class OnboardingPage extends BasePage {
         citizenshipInputField().click({force: true})
         citizenshipInputField().type(data.citizenshipInput).type('{enter}');
 
-        countryOfBirth().click({force:true})
+        countryOfBirth().click({force: true})
         countryOfBirth().type(data.countryOfBirth).type('{enter}')
 
         employmentInputField().click();
@@ -2871,7 +2872,21 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
+    function
+
+    click_on_next_question_button(numberOfQuestions) {
+        for (let i = 0; i < numberOfQuestions; i++) {
+            nextQuestionButton().then(($buttons) => {
+                if ($buttons.length > 0) {
+                    cy.wrap($buttons[0]).click();
+                }
+            });
+        }
+        return this;
+    }
 
 }
+
+
 
 

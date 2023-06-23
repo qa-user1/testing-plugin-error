@@ -73,6 +73,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -106,6 +107,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -139,6 +141,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -172,6 +175,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -204,6 +208,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -237,6 +242,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -266,6 +272,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -294,6 +301,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -323,6 +331,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -352,6 +361,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -381,6 +391,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -410,6 +421,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -443,6 +455,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -471,6 +484,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -510,6 +524,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -551,6 +566,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -593,6 +609,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -623,6 +640,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -652,6 +670,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -681,6 +700,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -710,6 +730,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -747,6 +768,7 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
+        continue-on-error: true
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
@@ -769,82 +791,82 @@ jobs:
           ref: gh-pages
       - name: Install dependencies
         run: |
-          git config --global http.postBuffer 157286400
-          npm init --yes
-          npm i allure-commandline --save-dev
-          npm i aws-sdk --save-dev
-          npm i path --save-dev
-          npm i fs --save-dev
-          mkdir allure-results
-          mkdir allure-results-failed
-          
-          
-          if [ -d "allure-results-1" ]; then
-          mv allure-results-1/* allure-results
-          fi
-          if [ -d "allure-results-2" ]; then
-          mv allure-results-2/* allure-results
-          fi
-          if [ -d "allure-results-3" ]; then
-          mv allure-results-3/* allure-results
-          fi
-          if [ -d "allure-results-4" ]; then
-          mv allure-results-4/* allure-results
-          fi
-          if [ -d "allure-results-5" ]; then
-          mv allure-results-5/* allure-results
-          fi
-          if [ -d "allure-results-6" ]; then
-          mv allure-results-6/* allure-results
-          fi
-          if [ -d "allure-results-8" ]; then
-          mv allure-results-8/* allure-results
-          fi
-          if [ -d "allure-results-9" ]; then
-          mv allure-results-9/* allure-results
-          fi
-          if [ -d "allure-results-10" ]; then
-          mv allure-results-10/* allure-results
-          fi
-          if [ -d "allure-results-11" ]; then
-          mv allure-results-11/* allure-results
-          fi
-          if [ -d "allure-results-12" ]; then
-          mv allure-results-12/* allure-results
-          fi
-          if [ -d "allure-results-13" ]; then
-          mv allure-results-13/* allure-results
-          fi
-          if [ -d "allure-results-15" ]; then
-          mv allure-results-15/* allure-results
-          fi
-          if [ -d "allure-results-16" ]; then
-          mv allure-results-16/* allure-results
-          fi
-          if [ -d "allure-results-17" ]; then
-          mv allure-results-17/* allure-results
-          fi
-          if [ -d "allure-results-17.1" ]; then
-          mv allure-results-17.1/* allure-results
-          fi
-          if [ -d "allure-results-17.2" ]; then
-          mv allure-results-17.2/* allure-results
-          fi
-          if [ -d "allure-results-18" ]; then
-          mv allure-results-18/* allure-results
-          fi
-          if [ -d "allure-results-19" ]; then
-          mv allure-results-19/* allure-results
-          fi
-          if [ -d "allure-results-20" ]; then
-          mv allure-results-20/* allure-results
-          fi
-          if [ -d "allure-results-21" ]; then
-          mv allure-results-21/* allure-results
-          fi
-          if [ -d "allure-results-22" ]; then
-          mv allure-results-22/* allure-results
-          fi
+               git config --global http.postBuffer 157286400
+               npm init --yes
+               npm i allure-commandline --save-dev
+               npm i aws-sdk --save-dev
+               npm i path --save-dev
+               npm i fs --save-dev
+               mkdir allure-results
+          #  mkdir allure-results-failed
+               
+               
+               if [ -d "allure-results-1" ]; then
+               mv allure-results-1/* allure-results
+               fi
+               if [ -d "allure-results-2" ]; then
+               mv allure-results-2/* allure-results
+               fi
+               if [ -d "allure-results-3" ]; then
+               mv allure-results-3/* allure-results
+               fi
+               if [ -d "allure-results-4" ]; then
+               mv allure-results-4/* allure-results
+               fi
+               if [ -d "allure-results-5" ]; then
+               mv allure-results-5/* allure-results
+               fi
+               if [ -d "allure-results-6" ]; then
+               mv allure-results-6/* allure-results
+               fi
+               if [ -d "allure-results-8" ]; then
+               mv allure-results-8/* allure-results
+               fi
+               if [ -d "allure-results-9" ]; then
+               mv allure-results-9/* allure-results
+               fi
+               if [ -d "allure-results-10" ]; then
+               mv allure-results-10/* allure-results
+               fi
+               if [ -d "allure-results-11" ]; then
+               mv allure-results-11/* allure-results
+               fi
+               if [ -d "allure-results-12" ]; then
+               mv allure-results-12/* allure-results
+               fi
+               if [ -d "allure-results-13" ]; then
+               mv allure-results-13/* allure-results
+               fi
+               if [ -d "allure-results-15" ]; then
+               mv allure-results-15/* allure-results
+               fi
+               if [ -d "allure-results-16" ]; then
+               mv allure-results-16/* allure-results
+               fi
+               if [ -d "allure-results-17" ]; then
+               mv allure-results-17/* allure-results
+               fi
+               if [ -d "allure-results-17.1" ]; then
+               mv allure-results-17.1/* allure-results
+               fi
+               if [ -d "allure-results-17.2" ]; then
+               mv allure-results-17.2/* allure-results
+               fi
+               if [ -d "allure-results-18" ]; then
+               mv allure-results-18/* allure-results
+               fi
+               if [ -d "allure-results-19" ]; then
+               mv allure-results-19/* allure-results
+               fi
+               if [ -d "allure-results-20" ]; then
+               mv allure-results-20/* allure-results
+               fi
+               if [ -d "allure-results-21" ]; then
+               mv allure-results-21/* allure-results
+               fi
+               if [ -d "allure-results-22" ]; then
+               mv allure-results-22/* allure-results
+               fi
 
       - name: Set up environment variable
         id: set_date
@@ -890,7 +912,7 @@ jobs:
     name: Send email
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    needs: [ merge-and-deploy-final-report, Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test13, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17-0, Run-Cypress-Test17-1, Run-Cypress-Test17-2, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22 ]
+    needs: [ Run-Cypress-Test1, Run-Cypress-Test2, Run-Cypress-Test3, Run-Cypress-Test4, Run-Cypress-Test5, Run-Cypress-Test6, Run-Cypress-Test8, Run-Cypress-Test9, Run-Cypress-Test10, Run-Cypress-Test11, Run-Cypress-Test12, Run-Cypress-Test13, Run-Cypress-Test15, Run-Cypress-Test16, Run-Cypress-Test17-0, Run-Cypress-Test17-1, Run-Cypress-Test17-2, Run-Cypress-Test18, Run-Cypress-Test19, Run-Cypress-Test20, Run-Cypress-Test21, Run-Cypress-Test22 ]
     if: failure()
     steps:
       - uses: actions/checkout@v2

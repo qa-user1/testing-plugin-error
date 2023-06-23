@@ -123,12 +123,15 @@ let
     coreInternationalInputField = e => cy.get('[data-test="byp-coreInternational-input"]'),
     govermentBondLadderInputField = e => cy.get('[data-test="byp-governmentBondLadder-input"]'),
     coreAustraliaInputField = e => cy.get('[data-test="byp-coreAustralia-input"]'),
+    australianLeadersInputField = e => cy.get('[data-test="byp-australianLeaders-input"]'),
     allocationTotalValue = e => cy.get('[data-test="byp-allocationTotal-value"]'),
     saveContinueButton = e => cy.get('[data-test="next-btn"]'),
     currentAccount = e => cy.contains('Current Account'),
     newAccount = e => cy.contains('New Account'),
     currentEthics = e => cy.contains('Current Ethics'),
     newEthics = e => cy.contains('New Ethics'),
+    investmentTotalField = e => cy.get('#investment_total'),
+    bypAlert = e => cy.get('[data-test="byp-alert"]'),
     currentSecurityComposition = e => cy.contains('Current Security Composition'),
     newSecurityComposition = e => cy.contains('New Security Composition'),
     submitChangesButton = e => cy.get('[type="submit"]'),
@@ -177,8 +180,9 @@ export default class LoginPage extends BasePage {
     }
 
     click_your_accounts_link() {
-        yourAccountLink().should('be.visible');
-        yourAccountLink().click();
+        // yourAccountLink().should('be.visible');
+        cy.contains('Your Account(s)').click();
+        //yourAccountLink().click();
         this.pause(5)
         return this;
     }
@@ -259,7 +263,7 @@ export default class LoginPage extends BasePage {
                 uploadNewDocument().click();
             }
         });
-       // uploadDocument().click();
+        // uploadDocument().click();
         documentTypeList().click();
         documentTypeList().type('Driver License{enter}');
         uploadFileInput('0').attachFile(D.documentType.id);
@@ -289,84 +293,83 @@ export default class LoginPage extends BasePage {
     }
 
     click_ethics_section(accountNo) {
-    //    cy.task('loadData').then(accountNo => {
-            cy.contains(accountNo).parents('.ant-card-body')
-                .should('exist')
-                .within(() => {
-                    cy.get('[class="ant-btn css-86j49d ant-btn-default ant-btn-lg ant-btn-block"]').eq(1).click()
-                });
-       // })
+        //    cy.task('loadData').then(accountNo => {
+        cy.contains(accountNo).parents('.ant-card-body')
+            .should('exist')
+            .within(() => {
+                cy.get('[class="ant-btn css-86j49d ant-btn-default ant-btn-lg ant-btn-block"]').eq(1).click()
+            });
+        // })
     }
 
     verify_content_of_investment_account_panel(accountNo) {
-       // cy.task('loadData').then(accountNo => {
-            cy.contains(accountNo).parents('.ant-card-body')
-                .should('exist')
-                .within(() => {
-                    cy.contains('Portfolios').should('be.visible');
+        // cy.task('loadData').then(accountNo => {
+        cy.contains(accountNo).parents('.ant-card-body')
+            .should('exist')
+            .within(() => {
+                cy.contains('Portfolios').should('be.visible');
 
-                    cy.contains('Portfolios').should('contain.text', 'Portfolios');
-                    cy.contains('Target Weight').should('be.visible');
-                    cy.contains('Target Weight').should('contain.text', 'Target Weight %');
-                    cy.contains('Target Amount').should('be.visible');
-                    cy.contains('Target Amount').should('contain.text', 'Target Amount $');
-                    cy.contains('Total Assets').should('be.visible');
-                    totalAssetsValue().invoke('text').then(function (total) {
-                        const sum = parseInt(total.replace(',', ''));
-                        expect(sum).to.be.greaterThan(9999)
-
-                    })
+                cy.contains('Portfolios').should('contain.text', 'Portfolios');
+                cy.contains('Target Weight').should('be.visible');
+                cy.contains('Target Weight').should('contain.text', 'Target Weight %');
+                cy.contains('Target Amount').should('be.visible');
+                cy.contains('Target Amount').should('contain.text', 'Target Amount $');
+                cy.contains('Total Assets').should('be.visible');
+                totalAssetsValue().invoke('text').then(function (total) {
+                    const sum = parseInt(total.replace(',', ''));
+                    expect(sum).to.be.greaterThan(9999)
 
                 })
 
-       // })
+            })
+
+        // })
         return this;
     }
 
-     verify_target_weight_total(accountNo) {
-         // cy.task('loadData').then(accountNo => {
+    verify_target_weight_total(accountNo) {
+        // cy.task('loadData').then(accountNo => {
 
-             cy.contains(accountNo.toString()).parents('.ant-card-body')
-                 .should('exist')
-                 .within(() => {
-                     cy.get('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
-                         cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
-                             cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
-                                 const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
-                                 cy.log(targetWeight)
-                                 expect(targetWeight).is.eq(100)
-                             })
-                         })
-                     })
-                 })
-             //  })
+        cy.contains(accountNo.toString()).parents('.ant-card-body')
+            .should('exist')
+            .within(() => {
+                cy.get('tbody').children('tr').eq(0).find('td').eq(1).invoke('text').then(function (cA) {
+                    cy.get('tbody').children('tr').eq(1).find('td').eq(1).invoke('text').then(function (cI) {
+                        cy.get('tbody').children('tr').eq(2).find('td').eq(1).invoke('text').then(function (gBr) {
+                            const targetWeight = parseInt(cA) + parseInt(cI) + parseInt(gBr);
+                            cy.log(targetWeight)
+                            expect(targetWeight).is.eq(100)
+                        })
+                    })
+                })
+            })
+        //  })
 
 
-         return this;
-     }
+        return this;
+    }
 
 
     click_change_portfolio_button(accountNo) {
         // cy.task('loadData').then(accountNo => {
-            cy.contains(accountNo).parents('.ant-card-body')
-                .should('exist')
-                .within(() => {
-                    cy.contains('Change Portfolio').click()
-                });
-    //    });
-         return this;
-     }
-
+        cy.contains(accountNo).parents('.ant-card-body')
+            .should('exist')
+            .within(() => {
+                cy.contains('Change Portfolio').click()
+            });
+        //    });
+        return this;
+    }
 
 
     click_view_account_details(accountNo) {
-      //  cy.task('loadData').then(accountNo => {
-            cy.contains(accountNo).parents('.ant-card-body')
-                .should('exist')
-                .within(() => {
-                    cy.contains('View Account Details').click()
-                });
-       // })
+        //  cy.task('loadData').then(accountNo => {
+        cy.contains(accountNo).parents('.ant-card-body')
+            .should('exist')
+            .within(() => {
+                cy.contains('View Account Details').click()
+            });
+        // })
         return this;
     }
 
@@ -505,15 +508,15 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    expand_current_ethics() {
+    expand_current_ethics(text) {
         currentEthics().click();
-        cy.contains('Below are the categories you have chosen to exclude from your portfolio').should('be.visible')
+        cy.contains(text).should('be.visible')
         return this;
     }
 
-    expand_new_ethics() {
+    expand_new_ethics(text) {
         newEthics().click();
-        cy.contains('Below are the categories you have chosen to exclude from your portfolio').should('be.visible')
+        cy.contains(text).should('be.visible')
         return this;
     }
 
@@ -625,6 +628,18 @@ export default class LoginPage extends BasePage {
         govermentBondLadderInputField().clear();
         saveContinueButton().should('be.visible');
         return this;
+    }
+
+    edit_build_your_portfolio_for_IB() {
+        australianLeadersInputField().type('100')
+        allocationTotalValue().should('have.text', '200%');
+        saveContinueButton().should('not.exist');
+investmentTotalField().clear()
+        investmentTotalField().type('1000000')
+        bypAlert().should('contain.text', 'You have exceeded your investment total of $1,000,000')
+        australianLeadersInputField().clear()
+        saveContinueButton().should('be.visible');
+
     }
 
     verify_final_review_page() {

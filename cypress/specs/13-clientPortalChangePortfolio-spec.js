@@ -134,8 +134,8 @@ context('13. Client Portal - Change Portfolio', () => {
 
     it('5. Check Final Review', function () {
         ui.clientPortal.verify_final_review_page()
-            .expand_current_ethics()
-            .expand_new_ethics()
+            .expand_current_ethics('Below are the categories you have chosen to exclude from your portfolio')
+            .expand_new_ethics('Below are the categories you have chosen to exclude from your portfolio')
             .verify_number_of_selected_options_is_different_in_Current_and_New_Ethics()
             .verify_download_button_for_documents(2)
         ui.onboarding.verify_Documents_available_for_download([
