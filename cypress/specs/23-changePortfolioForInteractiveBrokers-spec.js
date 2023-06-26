@@ -36,7 +36,7 @@ context('23. Change Portfolio for Interactive Brokers', () => {
   .click_Save_and_Continue_button()
   .click_Save_and_Continue_button()
 
-          ui.onboarding.remove_existing_applicant()
+          //ui.onboarding.remove_existing_applicant()
 
           ui.onboarding.add_new_applicant()
 
