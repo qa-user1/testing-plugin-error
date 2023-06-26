@@ -129,7 +129,7 @@ context('23. Change Portfolio for Interactive Brokers', () => {
             .click_Save_and_Continue_button()
     })
 
-    it('4. Complete Build Your Portfolio', function () {
+    it('5. Complete Build Your Portfolio', function () {
         ui.onboarding.go_through_tour_steps(C.buildYourPortfolioStepMsgsIB2)
             .expand_card(2)
         ui.clientPortal.verify_build_your_portfolio_link()
@@ -140,7 +140,7 @@ context('23. Change Portfolio for Interactive Brokers', () => {
     })
 
 
-    it('5. Check Final Review', function () {
+    it('6. Check Final Review', function () {
         ui.clientPortal.verify_final_review_page()
             .expand_current_ethics('You have not chosen any ethics to be excluded from your portfolio')
             .expand_new_ethics('Below are the categories you have chosen to exclude from your portfolio')

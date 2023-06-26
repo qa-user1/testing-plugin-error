@@ -77,17 +77,18 @@ context('18. Check Admin header', () => {
             .click_call_stats('[href="/crm/call-stats"]')
             .verify_link('crm', 'call-stats')
             .verify_admin_navbar()
-        //error loading tables - need to check
-        /*.verify_text_is_visible('This Month Summary Call Stats')
+        .verify_text_is_visible('This Month Summary Call Stats')
         .verify_text_is_visible('Last Month Summary Call Stats')
         .verify_text_is_visible('Daily Aggregate Call Stats')
         .verify_text_is_visible('Call Stats 4')
-        .verify_text_is_visible('Detailed Call Stats - Last 2 Months')*/
+        .verify_text_is_visible('Detailed Call Stats - Last 2 Months')
 
         ui.admin.click_CRM_on_header()
-            .click_stats_submenu()
-            .click_marketing_stats()
-            .verify_link('crm', 'marketing-stats')
+        ui.admin.click_stats_submenu()
+
+        ui.admin.click_marketing_stats()
+
+        ui.admin.verify_link('crm', 'marketing-stats')
             .verify_admin_navbar()
 
         ui.admin.click_CRM_on_header()

@@ -634,7 +634,7 @@ export default class LoginPage extends BasePage {
         australianLeadersInputField().type('100')
         allocationTotalValue().should('have.text', '200%');
         saveContinueButton().should('not.exist');
-investmentTotalField().clear()
+        investmentTotalField().clear()
         investmentTotalField().type('1000000')
         bypAlert().should('contain.text', 'You have exceeded your investment total of $1,000,000')
         australianLeadersInputField().clear()
