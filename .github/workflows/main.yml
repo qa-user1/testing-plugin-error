@@ -78,4 +78,56 @@ jobs:
           mv S3_bucket/* report/S3_bucket
           mv mainScript.js report
 
-      
+  merge-and-deploy-final-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 250
+    continue-on-error: true
+    needs: [Run-Cypress-Test23]
+    if: always()
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+      - name: Install dependencies
+        run: |
+          git config --global http.postBuffer 157286400
+          npm init --yes
+          npm i allure-commandline --save-dev
+          npm i aws-sdk --save-dev
+          npm i path --save-dev
+          npm i fs --save-dev
+          mkdir allure-results
+          #  mkdir allure-results-failed
+          
+          
+          if [ -d "allure-results-23" ]; then
+          mv allure-results-23/* allure-results
+          fi
+
+      - name: Set up environment variable
+        id: set_date
+        run: echo "NOW=$(date +'%B_%d')" >> $GITHUB_ENV
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Generate Allure Report for all tests
+        if: always()
+        run: |
+          node_modules/allure-commandline/dist/bin/allure generate allure-results -o report/all-tests
+
+      - name: Deploy all tests report to external repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.EXTERNAL_REPOSITORY_PERSONAL_ACCESS_TOKEN }}
+          NOW: ${{ env.NOW }}
+        with:
+          source-directory: report/all-tests
+          destination-github-username: 'Nucleus-Reports'
+          destination-repository-name: 'report_${{ env.NOW }}'
+          user-email: 'qa-user1'
+          target-branch: "main"
