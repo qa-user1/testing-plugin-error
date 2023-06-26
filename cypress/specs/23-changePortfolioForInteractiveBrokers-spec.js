@@ -131,7 +131,7 @@ context('23. Change Portfolio for Interactive Brokers', () => {
 
     it('5. Complete Build Your Portfolio', function () {
         ui.onboarding.go_through_tour_steps(C.buildYourPortfolioStepMsgsIB2)
-            .expand_card(2)
+         //   .expand_card(2)
         ui.clientPortal.verify_build_your_portfolio_link()
             .edit_build_your_portfolio_for_IB()
         ui.clientPortal.check_or_uncheck_nuclear_power()
