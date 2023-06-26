@@ -91,8 +91,9 @@ export default class AdminPage extends BasePage {
 
     click_stats_submenu() {
         stats().should('be.visible')
-        this.pause(5)
-        stats().click();
+        cy.contains('span.ant-menu-title-content', 'Stats').click();
+      //  this.pause(5)
+      //  stats().click();
       //  this.pause(2)
         return this;
     }
@@ -255,8 +256,6 @@ export default class AdminPage extends BasePage {
 
     click_marketing_stats() {
         marketingStats().should('be.visible');
-        this.pause(5)
-
         marketingStats().click();
         this.pause(2)
         return this;
