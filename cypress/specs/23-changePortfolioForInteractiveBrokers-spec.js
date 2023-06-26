@@ -8,10 +8,7 @@ context('23. Change Portfolio for Interactive Brokers', () => {
 
       before(function () {
 
-          cy.clearAllLocalStorage()
-          cy.clearAllCookies()
-          cy.clearAllSessionStorage()
-          
+
           ui.login.open_base_url()
               .verify_login_menu(D.user)
               .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
@@ -37,8 +34,8 @@ context('23. Change Portfolio for Interactive Brokers', () => {
           ui.onboarding.click_Save_and_Continue_button()
 
               .click_Save_and_Continue_button()
-  .click_Save_and_Continue_button()
-  .click_Save_and_Continue_button()
+ // .click_Save_and_Continue_button()
+ // .click_Save_and_Continue_button()
 
           ui.onboarding.remove_existing_applicant()
 
