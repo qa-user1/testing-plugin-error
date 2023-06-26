@@ -2800,7 +2800,7 @@ export default class OnboardingPage extends BasePage {
         dropdownOption(data.sourceType).click();
         percentage().click();
         percentage().type(data.percentage).type('{enter}');
-        statementOfInquiry().type(data.statementOfInquiry)
+       // statementOfInquiry().type(data.statementOfInquiry)
         return this;
     }
 

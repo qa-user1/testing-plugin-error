@@ -42,6 +42,18 @@ C.buildYourPortfolioStepMsgsIB = {
     step9: "Then choose which type of stocks you would like to exclude:",
     step10: "Press “Save and Continue” when you are finished:"
 }
+C.buildYourPortfolioStepMsgsIB2 = {
+    step1: "You have chosen to allocate which portfolios to invest in. When your allocation total = 100% you can progress:",
+    step2: "Click the arrows to see what your options are for each category:",
+    step3: "Throughout the page, you will see question marks. If you hover over these, you will see more detailed information:",
+    step4: "The three main types of base portfolios are at the top:",
+    step5: "The direct indexing options also has an option to choose how many stocks you would like in your portfolio:",
+    step6: "Portfolio Tilts show specific themes that you can decide to invest in:",
+    step7: "Click the arrow to see the options for each portfolio tilt. For example, to get extra exposure to cloud computing: (a) click the portfolio tilts arrow (b) click the technology category arrow (c) type in your desired exposure into the cell under cloud computing",
+    step8: "When you are finished adding portfolios, you can screen out particular stocks. First choose a category:",
+    step9: "Then choose which type of stocks you would like to exclude:",
+    step10: "Press “Save and Continue” when you are finished:"
+}
 C.emailTemplates = {
     individualAccountCreated: {
         from: `Nucleus Wealth <contact@nucleuswealth.com>`,

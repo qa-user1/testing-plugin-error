@@ -3,7 +3,7 @@ const D = require('../fixtures/data');
 const C = require('../fixtures/constants');
 
 
-context('22. Individual Onboarding for Interactive Brokers', () => {
+context('23. Change Portfolio for Interactive Brokers', () => {
     let accountNo;
 
       before(function () {
@@ -129,7 +129,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     })
 
     it('4. Complete Build Your Portfolio', function () {
-        ui.onboarding.go_through_tour_steps(C.buildYourPortfolioStepMsgsIB)
+        ui.onboarding.go_through_tour_steps(C.buildYourPortfolioStepMsgsIB2)
             .expand_card(2)
         ui.clientPortal.verify_build_your_portfolio_link()
             .edit_build_your_portfolio_for_IB()
