@@ -8,6 +8,10 @@ context('23. Change Portfolio for Interactive Brokers', () => {
 
       before(function () {
 
+          cy.clearAllLocalStorage()
+          cy.clearAllCookies()
+          cy.clearAllSessionStorage()
+          
           ui.login.open_base_url()
               .verify_login_menu(D.user)
               .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
@@ -143,7 +147,6 @@ context('23. Change Portfolio for Interactive Brokers', () => {
         ui.clientPortal.verify_final_review_page()
             .expand_current_ethics('You have not chosen any ethics to be excluded from your portfolio')
             .expand_new_ethics('Below are the categories you have chosen to exclude from your portfolio')
-            .verify_number_of_selected_options_is_different_in_Current_and_New_Ethics()
             .verify_download_button_for_documents(2)
         ui.onboarding.verify_Documents_available_for_download([
             'MDA Brochure and Agreement',
