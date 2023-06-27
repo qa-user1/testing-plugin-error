@@ -32,13 +32,10 @@ context('23. Change Portfolio for Interactive Brokers', () => {
           D.buildYouPortfolioFields.coreInternational2 = '0'
           ui.onboarding.enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
           ui.onboarding.click_Save_and_Continue_button()
-
               .click_Save_and_Continue_button()
  // .click_Save_and_Continue_button()
  // .click_Save_and_Continue_button()
-
           ui.onboarding.remove_existing_applicant()
-
           ui.onboarding.add_new_applicant()
 
           D.applicantsProfileFields.employmentInput = 'Unemployed'
@@ -46,18 +43,13 @@ context('23. Change Portfolio for Interactive Brokers', () => {
           ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
               .enter_applicant_investment_experience(D.investmentExperience)
               .click_submit_applicant_button()
-
           ui.onboarding.upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
               .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)
               .click_Save_and_Continue_button()
-
           ui.onboarding.click_Save_and_Continue_button()
-
               .enter_Bank_Details(D.bankDetails)
               .click_Save_and_Continue_button()
-
           ui.onboarding.click_Save_and_Continue_button()
-
               .enter_compliance_source_type_and_percentage(D.compliancePageInputFields)
           ui.onboarding.click_Save_and_Continue_button()
 
@@ -103,7 +95,6 @@ context('23. Change Portfolio for Interactive Brokers', () => {
          ui.login.open_base_url()
              .verify_login_menu(D.user)
              .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
-        //cy.visit('https://testwebserver.nucleuswealth.com/client-portal/5483')
         ui.clientPortal.click_your_accounts_link()
             .verify_your_accounts_page()
 
@@ -117,7 +108,6 @@ context('23. Change Portfolio for Interactive Brokers', () => {
 
 
     it('3. Direct user to “Build Your Portfolio”', function () {
-        //cy.visit('https://testwebserver.nucleuswealth.com/client-portal/investment-account/4647/investment-choice')
         ui.onboarding.click_self_directed_button()
         ui.clientPortal.verify_self_directed_icon_is_highlighted()
         ui.onboarding.select_all_checkboxes(6)
