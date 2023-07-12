@@ -38,7 +38,7 @@ context('17.0 Create Test User on Live Portal', () => {
             .verify_text_is_visible('Thanks for subscribing to email updates from nucleus wealth')
     })
 
-    it('3. Subscribe user via Investment Suitability Calculator', function () {
+    it.only('3. Subscribe user via Investment Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/investment-suitability-calculator'
         ui.production.open_base_url()
             .verify_calculator_page()

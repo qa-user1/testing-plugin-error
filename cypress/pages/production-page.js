@@ -99,7 +99,7 @@ export default class ProductionPage extends BasePage {
             getIframeBody()
                 .find('[data-qa-focused="true"]')
                 .find('[data-qa-index="' + (optionToSelect - 1) + '"]')
-                .parents('[class="radio-list__Radio-sc-16rzvkh-1 fOVCTH"]')
+                .parents('[class="radio-list__Radio-sc-16rzvkh-1 fFAffi"]')
                 .invoke('attr', 'aria-checked').then(function (value) {
                 if (value === 'true') {
                     getIframeBody()

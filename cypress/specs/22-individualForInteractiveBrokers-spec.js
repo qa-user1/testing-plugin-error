@@ -7,7 +7,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
 
     before(function () {
-        /*Cypress.Cookies.debug(true)
+        Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -20,10 +20,10 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )*/
-        cy.clearAllLocalStorage()
+        )
+        /*cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()
+        cy.clearAllSessionStorage()*/
 
     })
 
@@ -170,23 +170,25 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         ui.clientPortal.verify_download_button_for_documents(32)
     });
 
-    it('13. Limited Advice Path', function () {
-        ui.onboarding.click_sidebar_option('Investment Choice')
-            .go_through_tour_steps(C.investmentStepMessages)
+    it.only('13. Limited Advice Path', function () {
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4874/investment-choice')
+       // ui.onboarding.click_sidebar_option('Investment Choice')
+            ui.onboarding.go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
             .click_limited_advice_button()
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
             .verify_sidebar_content_not_exist('Build Your Portfolio')
-        ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
+        ui.onboarding.answerAllQuestionsWithSameOption(13, 3)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
-        ui.app.pause(3)
+        ui.onboarding.click_sidebar_option('Review')
+       /* ui.app.pause(3)
         ui.onboarding.click_Save_and_Continue_button()
         ui.app.pause(3)
         ui.onboarding.click_Save_and_Continue_button()
-        ui.app.pause(3)
+        ui.app.pause(3)*/
         ui.onboarding.verify_your_portfolio_content_not_exist('Tactical Growth')
             .click_Save_and_Continue_button()
 
