@@ -76,6 +76,7 @@ jobs:
         continue-on-error: false
         uses: nick-invision/retry@v2
         with:
+            timeout_minutes: 5
             max_attempts: 3
             command: |
               uses: peaceiris/actions-gh-pages@v2
@@ -459,14 +460,19 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
-        continue-on-error: true
-        uses: peaceiris/actions-gh-pages@v2
+        continue-on-error: false
+        uses: nick-invision/retry@v2
         with:
-          keepFiles: true
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
+          timeout_minutes: 5
+          max_attempts: 3
+          command: |
+            uses: peaceiris/actions-gh-pages@v2
+            with:
+              keepFiles: true
+            env:
+              PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              PUBLISH_BRANCH: gh-pages
+              PUBLISH_DIR: report
 
   Run-Cypress-Test16:
     name: Cypress Test 16
