@@ -465,8 +465,7 @@ jobs:
             timeout_minutes: 5
             retry_on: error
             command: |
-              if: always()
-              continue-on-error: false
+            
               uses: peaceiris/actions-gh-pages@v2
               with:
                 keepFiles: true
