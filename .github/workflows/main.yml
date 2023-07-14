@@ -74,14 +74,17 @@ jobs:
       - name: Deploy report to temp-reports branch
         if: always()
         continue-on-error: false
-        retries: 3
-        uses: peaceiris/actions-gh-pages@v2
+        uses: nick-invision/retry@v2
         with:
-          keepFiles: true
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
+            max_attempts: 3
+            command: |
+              uses: peaceiris/actions-gh-pages@v2
+              with:
+                keepFiles: true
+              env:
+                PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                PUBLISH_BRANCH: gh-pages
+                PUBLISH_DIR: report
 
   Run-Cypress-Test2:
     name: Cypress Test 2
