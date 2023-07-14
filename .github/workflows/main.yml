@@ -71,6 +71,9 @@ jobs:
           mv S3_bucket/* report/S3_bucket
           mv mainScript.js report
 
+      - name: Increase Git timeout
+        run: git config --global http.postBuffer 524288000
+        
       - name: Deploy report to temp-reports branch
         if: always()
         continue-on-error: true
