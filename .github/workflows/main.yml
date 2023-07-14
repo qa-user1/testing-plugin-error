@@ -73,7 +73,7 @@ jobs:
 
       - name: Increase Git timeout
         run: git config --global http.postBuffer 524288000
-        
+
       - name: Deploy report to temp-reports branch
         if: always()
         continue-on-error: true
@@ -696,6 +696,9 @@ jobs:
           ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
           AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
 
+      - name: Increase Git timeout
+        run: git config --global http.postBuffer 524288000
+        
       - name: Deploy report to temp-reports branch
         if: always()
         continue-on-error: true
