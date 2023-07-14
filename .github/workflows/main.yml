@@ -73,19 +73,34 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
-        continue-on-error: false
-        uses: nick-invision/retry@v2
+        continue-on-error: true
+        uses: peaceiris/actions-gh-pages@v2
         with:
-            timeout_minutes: 5
-            max_attempts: 3
-            command: |
-              uses: peaceiris/actions-gh-pages@v2
-              with:
-                keepFiles: true
-              env:
-                PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                PUBLISH_BRANCH: gh-pages
-                PUBLISH_DIR: report
+          keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
 
   Run-Cypress-Test2:
     name: Cypress Test 2
@@ -116,6 +131,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -155,6 +190,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test4:
     name: Cypress Test 4
     if: success() || failure()
@@ -189,6 +244,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test5:
     name: Cypress Test 5
     if: success() || failure()
@@ -217,6 +292,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -256,6 +351,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test8:
     name: Cypress Test 8
     if: success() || failure()
@@ -286,6 +401,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test9:
     name: Cypress Test 9
     if: success() || failure()
@@ -310,6 +445,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -345,6 +500,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test11:
     name: Cypress Test 11
     if: success() || failure()
@@ -370,6 +545,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -405,6 +600,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test13:
     name: Cypress Test 13
     if: success() || failure()
@@ -430,6 +645,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -488,7 +723,7 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
-  
+
 
   Run-Cypress-Test16:
     name: Cypress Test 16
@@ -514,6 +749,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -559,6 +814,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
 
   Run-Cypress-Test17-1:
     name: Cypress Test 17.1
@@ -596,6 +871,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -644,6 +939,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
 
   Run-Cypress-Test18:
     name: Cypress Test 18
@@ -670,6 +985,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -705,6 +1040,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test20:
     name: Cypress Test 20
     if: success() || failure()
@@ -735,6 +1090,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test21:
     name: Cypress Test 21
     if: success() || failure()
@@ -760,6 +1135,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -803,6 +1198,26 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
 
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
   Run-Cypress-Test23:
     name: Cypress Test 23
     if: success() || failure()
@@ -833,6 +1248,26 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: report
+
+      - name: Retry if deploy fails
+        if: ${{ failure() }}
+        run: |
+          for attempt in {1..2} 
+          do
+            echo "Retry attempt number: $attempt"
+            if  gh-pages --keepFiles
+            then
+              echo "Deployment successful."
+              break
+            else
+              echo "Deployment failed. Retrying..."
+              sleep 1
+            fi
+          done
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
