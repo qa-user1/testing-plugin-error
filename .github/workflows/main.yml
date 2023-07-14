@@ -460,21 +460,21 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
-        continue-on-error: false
-        uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 3
-          command: |
-            run: |
-          
-              uses: peaceiris/actions-gh-pages@v2
-              with:
-                keepFiles: true
-              env:
-                PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                PUBLISH_BRANCH: gh-pages
-                PUBLISH_DIR: report
+        run: |
+            RETRIES=3
+            until [[ $RETRIES == 0 ]]
+            do
+              npx peaceiris/actions-gh-pages@v2 --keepFiles || RETRIES=$((RETRIES-1))
+              if [[ $RETRIES == 0 ]]
+              then
+                echo "Deploy failed after multiple attempts"
+                exit 1
+              fi
+            done
+        env:
+            PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            PUBLISH_BRANCH: gh-pages
+            PUBLISH_DIR: report
 
   Run-Cypress-Test16:
     name: Cypress Test 16
