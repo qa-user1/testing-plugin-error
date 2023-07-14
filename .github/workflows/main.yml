@@ -73,7 +73,8 @@ jobs:
 
       - name: Deploy report to temp-reports branch
         if: always()
-        continue-on-error: true
+        continue-on-error: false
+        retries: 3
         uses: peaceiris/actions-gh-pages@v2
         with:
           keepFiles: true
