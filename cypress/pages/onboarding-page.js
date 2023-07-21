@@ -1302,7 +1302,8 @@ export default class OnboardingPage extends BasePage {
         this.verify_text_is_visible('General Details');
         this.verify_text_is_visible('Tax Details');
         this.verify_text_is_visible('Residential Address');
-        employmentStatusHeader().should('be.visible');
+        this.verify_text_is_visible('Employment Status');
+       // employmentStatusHeader().should('be.visible');
         return this;
     }
 

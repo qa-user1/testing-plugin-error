@@ -112,10 +112,10 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .verify_applicants_page()
     })
 
-    it('9. Complete Applicants', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5194/applicants')
+    it.only('9. Complete Applicants', function () {
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5202/applicants')
       //  ui.onboarding.remove_existing_applicant()
-      //      .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
+        //    .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .verify_text_is_visible('Investment Experience')

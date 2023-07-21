@@ -112,6 +112,7 @@ export default class BasePage {
     };
 
     verify_text_is_visible(text) {
+        cy.contains(text).scrollIntoView()
         cy.contains(text).should('be.visible');
         return this;
     }
