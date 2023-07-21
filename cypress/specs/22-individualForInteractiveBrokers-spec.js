@@ -8,7 +8,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
     before(function () {
         Cypress.Cookies.debug(true)
-        cy.preserveCookieOnce(
+        /*cy.preserveCookieOnce(
             'secure',
             'ntercom',
             'XSRF-TOKEN',
@@ -20,10 +20,10 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
-        /*cy.clearAllLocalStorage()
+        )*/
+        cy.clearAllLocalStorage()
         cy.clearAllCookies()
-        cy.clearAllSessionStorage()*/
+        cy.clearAllSessionStorage()
 
     })
 
@@ -113,7 +113,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     })
 
     it('9. Complete Applicants', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5202/applicants')
+       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5208/applicants')
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
@@ -172,7 +172,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     });
 
     it('13. Limited Advice Path', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4874/investment-choice')
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5208/investment-choice')
         ui.onboarding.click_sidebar_option('Investment Choice')
             ui.onboarding.go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
@@ -181,7 +181,13 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
             .verify_sidebar_content_not_exist('Build Your Portfolio')
-        ui.onboarding.answerAllQuestionsWithSameOption(13, 3)
+        ui.onboarding.click_Save_and_Continue_button()
+        cy.wait(3000)
+        ui.onboarding.click_Save_and_Continue_button()
+        cy.wait(3000)
+        ui.onboarding.click_Save_and_Continue_button()
+            .click_next_question_button()
+       // ui.onboarding.answerAllQuestionsWithSameOption(13, 3)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
         ui.onboarding.click_sidebar_option('Review')

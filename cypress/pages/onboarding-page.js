@@ -41,6 +41,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     agreementBox = e => cy.get('.ant-alert-message'),
     // saveContinueButton = e => cy.contains('Save and Continue'),
     saveContinueButton = e => cy.get('[data-test="next-btn"]'),
+    netQuestionButton = e => cy.get('[data-test="questions-nextQuestion-btn"]'),
     submitApplicationButton = e => cy.contains('Submit Application'),
     tacticalGrowthField = e => cy.get('#portfolios_1'),
     tacticalIncomeField = e => cy.get('#portfolios_2'),
@@ -1255,6 +1256,11 @@ export default class OnboardingPage extends BasePage {
     click_Save_and_Continue_button() {
         saveContinueButton().should('not.have.attr', 'disabled')
         this.scroll_and_click(saveContinueButton)
+        return this;
+    }
+
+    click_next_question_button(){
+        nextQuestionButton().click()
         return this;
     }
 
