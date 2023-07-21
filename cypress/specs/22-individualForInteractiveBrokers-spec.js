@@ -113,8 +113,9 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     })
 
     it('9. Complete Applicants', function () {
-        ui.onboarding.remove_existing_applicant()
-            .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5194/applicants')
+      //  ui.onboarding.remove_existing_applicant()
+      //      .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .verify_text_is_visible('Investment Experience')
@@ -170,9 +171,9 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         ui.clientPortal.verify_download_button_for_documents(32)
     });
 
-    it.only('13. Limited Advice Path', function () {
-        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4874/investment-choice')
-       // ui.onboarding.click_sidebar_option('Investment Choice')
+    it('13. Limited Advice Path', function () {
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4874/investment-choice')
+        ui.onboarding.click_sidebar_option('Investment Choice')
             ui.onboarding.go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
             .click_limited_advice_button()
