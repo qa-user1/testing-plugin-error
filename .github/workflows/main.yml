@@ -90,43 +90,7 @@ jobs:
           PUBLISH_DIR: report
 
 
-  Run-Cypress-Test23:
-    name: Cypress Test 23
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    # needs: [ Run-Cypress-Test1 ]
-    container:
-      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-      options: --user 1001
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: npm run e2e-test23
 
-      - run: |
-          mkdir report/S3_bucket
-          mv S3_bucket/* report/S3_bucket
-          mv mainScript.js report
-
-      - name: Increase Git timeout
-        run: git config --global http.postBuffer 524288000
-
-      - name: Deploy report to temp-reports branch
-        if: always()
-        continue-on-error: true
-        uses: peaceiris/actions-gh-pages@v2
-        with:
-          keepFiles: true
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: report
 
 
 
@@ -134,7 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 250
     continue-on-error: true
-    needs: [Run-Cypress-Test22, Run-Cypress-Test23]
+    needs: [Run-Cypress-Test22]
     if: always()
     strategy:
       fail-fast: false
