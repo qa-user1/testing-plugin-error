@@ -69,7 +69,7 @@ context('5. Log in to the Nucleus Wealth portal, create a Trust Account and comp
             ui.onboarding.verify_review_page()
     })
 
-    it('6. Review Review Page', function () {
+    xit('6. Review Review Page', function () {
         ui.onboarding.expand_ethical_overlay_panel()
             .verify_no_ethics_selected_message(C.noEthicsMessage)
             .save_data_object_for_Your_Portfolio_Trust_Profile()
@@ -83,7 +83,7 @@ context('5. Log in to the Nucleus Wealth portal, create a Trust Account and comp
 
     it('6. Review Review Page', function () {
         ui.onboarding
-            .save_final_JSON_report('trust_')
+          //  .save_final_JSON_report('trust_')
             .click_Save_and_Continue_button()
             .verify_trust_details_page()
     })

@@ -254,6 +254,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     superFundName = e => cy.get('[data-test="smsf-superFundName-input"]'),
     SMSFAustralianBusinessNumber = e => cy.get('[data-test="smsf-abn-input"]'),
     SMSFAustralianTaxFileNumber = e => cy.get('[data-test="applicants-tfn-input"]'),
+    creationDate = e => cy.get('.ant-picker'),
     SMSFAddress = e => cy.get('[data-test="applicants-residentialAddress-input"]'),
     applicantFullName = e => cy.get('[data-test="applicants-userCardFullName-text"]'),
     investitorsRequiredMsg = e => cy.get('[data-test="applicants-minInvestors-text"]'),
@@ -1680,6 +1681,9 @@ export default class OnboardingPage extends BasePage {
         superFundName().type(data.superFundName);
         SMSFAustralianBusinessNumber().type(data.SMSFAustralianBusinessNumber);
         SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
+        creationDate().click()
+        creationDate().clear();
+        creationDate().type(data.creationDate).type('{enter}');
         SMSFAddress().clear();
         SMSFAddress().type(data.address)
         cy.get('[type="radio"]').check('individual');
@@ -1706,9 +1710,13 @@ export default class OnboardingPage extends BasePage {
         trustNameInputField().type(data.trustName);
         trustTypeInputField().click();
         cy.wait(2000)
+        unitTrustType().scrollIntoView()
         unitTrustType().click();
         SMSFAustralianTaxFileNumber().type(data.SMSFAustralianTaxFileNumber);
         cy.get('[type="radio"]').check('individual');
+        creationDate().click()
+        creationDate().clear();
+        creationDate().type(data.creationDate).type('{enter}');
         return this;
     }
 

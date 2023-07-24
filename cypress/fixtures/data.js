@@ -367,12 +367,14 @@ D.SMSFDetails = {
     superFundName: 'test fund name',
     SMSFAustralianBusinessNumber: '5555',
     SMSFAustralianTaxFileNumber: '11111111',
+    creationDate: '2023-07-24',
     address: 'Tesselaar Flower Farm, 357 Monbulk Rd, Silvan VIC 3795, Australia',
 }
 
 D.TrustDetails = {
     trustName: 'test trust name',
     trustType: 'test trust type',
+    creationDate: '2023-07-24',
     SMSFAustralianTaxFileNumber: '11111111',
     address: 'Tesselaar Flower Farm, 357 Monbulk Rd, Silvan VIC 3795, Australia',
 }
