@@ -7,8 +7,8 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
 
     before(function () {
-        Cypress.Cookies.debug(true)
-        /*cy.preserveCookieOnce(
+        /*Cypress.Cookies.debug(true)
+        cy.preserveCookieOnce(
             'secure',
             'ntercom',
             'XSRF-TOKEN',
@@ -32,7 +32,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
-          .redirect_user_to_the_create_a_new_account_page()
+            .redirect_user_to_the_create_a_new_account_page()
         ui.onboarding.verify_account_selection()
     })
 
@@ -113,7 +113,6 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     })
 
     it('9. Complete Applicants', function () {
-       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5208/applicants')
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
@@ -172,30 +171,24 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     });
 
     it('13. Limited Advice Path', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/5208/investment-choice')
         ui.onboarding.click_sidebar_option('Investment Choice')
-            ui.onboarding.go_through_tour_steps(C.investmentStepMessages)
+            .go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
             .click_limited_advice_button()
             .select_all_checkboxes(6)
             .click_Save_and_Continue_button()
             .verify_risk_profile_page()
             .verify_sidebar_content_not_exist('Build Your Portfolio')
-        ui.onboarding.click_Save_and_Continue_button()
-        cy.wait(3000)
-        ui.onboarding.click_Save_and_Continue_button()
-        cy.wait(3000)
-        ui.onboarding.click_Save_and_Continue_button()
-            .click_next_question_button()
-       // ui.onboarding.answerAllQuestionsWithSameOption(13, 3)
+        ui.onboarding.answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
         ui.onboarding.click_sidebar_option('Review')
-       /* ui.app.pause(3)
-        ui.onboarding.click_Save_and_Continue_button()
-        ui.app.pause(3)
-        ui.onboarding.click_Save_and_Continue_button()
-        ui.app.pause(3)*/
+
+        /* ui.app.pause(4)
+         ui.onboarding.click_Save_and_Continue_button()
+         ui.app.pause(4)
+         ui.onboarding.click_Save_and_Continue_button()
+         ui.app.pause(4)*/
         ui.onboarding.verify_your_portfolio_content_not_exist('Tactical Growth')
             .click_Save_and_Continue_button()
 
