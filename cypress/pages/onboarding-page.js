@@ -1805,6 +1805,11 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
+    answerQuestionsWithSpecificOptionBasedOnText(text) {
+        cy.contains(text).click()
+        return this;
+    }
+
     enter_investment_amount(value) {
         investmentAmountInput().type(value)
         return this;
