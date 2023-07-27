@@ -83,9 +83,21 @@ context('24. Onboarding Portal - Risk Profile Score Calculator', () => {
                 cy.writeFile('S3_bucket/' + 'test2.json', values)
               //  cy.writeFile('S3_bucket/' + 'test2.js', JSON.stringify(response.body.values[0]).replace(/\\"/g,'' ).replace(/"/g,'' ))
 
-
-                let parsedValues = JSON.parse(values)
-                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(parsedValues.input[0].a)
+// add these lines
+                let valuesString = JSON.stringify(values);
+                if (valuesString.length > 2419) {
+                    console.log('Problem character:', valuesString[2419], 'at position:', 2419);
+                }
+               //let parsedValues = JSON.parse(values)
+                if (typeof ui !== 'undefined' && typeof ui.onboarding !== 'undefined' && typeof ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText === 'function') {
+                    if (values[0] && values[0].input && values[0].input[0]) {
+                        ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(values[0].input[0].a);
+                    } else {
+                        console.error('Invalid format for values');
+                    }
+                } else {
+                    console.error('Function ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText is not defined');
+                }
 
                 //    response = response.body;
                 //   cy.log(response)
