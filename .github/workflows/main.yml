@@ -50,8 +50,8 @@ jobs:
 
 
 
-  Run-Cypress-Test2:
-    name: Cypress Test 2
+  Run-Cypress-Test3:
+    name: Cypress Test 3
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
@@ -98,7 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 250
     continue-on-error: true
-    needs: [Run-Cypress-Test2]
+    needs: [Run-Cypress-Test3]
     if: always()
     strategy:
       fail-fast: false
