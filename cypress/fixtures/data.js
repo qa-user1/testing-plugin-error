@@ -110,7 +110,7 @@ D.reviewQuestions = [
     'How would you describe your current investment experience?',
     'What do you want to achieve from your investment with Nucleus Wealth?',
     'When will you need to withdraw more than 30% of the investment?',
-    'When you think of the word "risk" in a financial context, which of the following words comes to mind first?',
+    'When you think of the word \'risk\' in a financial context, which of the following words comes to mind first?',
     'What degree of risk have you taken with your financial decisions in the past?',
     'Investments can go up or down in value and experts often say you should be prepared to weather a downturn. By how much could the total value of all your investments go down in 3 months before you would begin to feel uncomfortable?',
     'Which one of the following best describes your attitude to market volatility when choosing an investment?',
