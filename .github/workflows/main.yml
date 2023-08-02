@@ -67,7 +67,7 @@ jobs:
         with:
           timeout_minutes: 15
           max_attempts: 3
-          command: npm run e2e-test2
+          command: npm run e2e-test3
 
       #  - run: npm run e2e-test22
       - run: |
@@ -88,7 +88,6 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: report
-
 
 
 
