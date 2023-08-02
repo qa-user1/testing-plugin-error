@@ -129,7 +129,7 @@ D.reviewQuestions = [
     D.reviewQuestionsPersonalSuper = [
         'How would you describe your current investment experience?',
         'What do you want to achieve from your investment with Nucleus Wealth?',
-        'When you think of the word "risk" in a financial context, which of the following words comes to mind first?',
+        'When you think of the word \'risk\' in a financial context, which of the following words comes to mind first?',
         'What degree of risk have you taken with your financial decisions in the past?',
         // 'Have you ever borrowed money to make an investment (other than for residential property)?',
         'Investments can go up or down in value and experts often say you should be prepared to weather a downturn. By how much could the total value of all your investments go down in 3 months before you would begin to feel uncomfortable?',
@@ -229,7 +229,7 @@ D.yourPortfolioValues = {
 }
 
 D.indicativePortfolio = {
-    'AAA Cash ETF (AAA)': '2,982',
+    'AAA Cash ETF (AAA)': '2,974',
     'BetaShares U.S. Dollar ETF (USD)': '1,034',
     'Cash (AUDCASH)': '9,651',
     'AGB Apr-2025 (GSBG25)': '488',
@@ -252,7 +252,7 @@ D.indicativePortfolio = {
     'Medibank Private (MPL)': '807',
     'National Australia Bank (NAB)': '236',
     'Northern Star Resources (NST)': '975',
-    'Qantas Airways (QAN)': '271',
+    //'Qantas Airways (QAN)': '271',
     'Sonic Healthcare (SHL)': '398',
     'Transurban (TCL)': '659',
     'Treasury Wine Estates (TWE)': '228',

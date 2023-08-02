@@ -2187,7 +2187,7 @@ export default class OnboardingPage extends BasePage {
             'Medibank Private (MPL)',
             'National Australia Bank (NAB)',
             'Northern Star Resources (NST)',
-            'Qantas Airways (QAN)',
+           // 'Qantas Airways (QAN)',
             'Sonic Healthcare (SHL)',
             'Transurban (TCL)',
             'Treasury Wine Estates (TWE)',
