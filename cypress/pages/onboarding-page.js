@@ -1260,7 +1260,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    click_next_question_button(){
+    click_next_question_button() {
         nextQuestionButton().click()
         return this;
     }
@@ -1310,7 +1310,7 @@ export default class OnboardingPage extends BasePage {
         this.verify_text_is_visible('Tax Details');
         this.verify_text_is_visible('Residential Address');
         this.verify_text_is_visible('Employment Status');
-       // employmentStatusHeader().should('be.visible');
+        // employmentStatusHeader().should('be.visible');
         return this;
     }
 
@@ -1465,6 +1465,23 @@ export default class OnboardingPage extends BasePage {
         ethicalOverlayForm().should('not.exist');
         cy.contains('Your Portfolio').should('be.visible')
         pageTitle().should('have.text', 'Review');
+        return this;
+    }
+
+    verify_output_values_based_on_response_from_API(outputFromApi) {
+        cy.contains("output").invoke('text').then(function (text) {
+            cy.log('Output is ' + text)
+
+            let output = JSON.parse(text).output
+             cy.log(JSON.stringify(output))
+            assert.equal(output.x, outputFromApi.x)
+            assert.equal(output.y, outputFromApi.y)
+            assert.equal(output.safety, outputFromApi.safety)
+            assert.isTrue((output.growth * 100 >= outputFromApi.growth.min) && (output.growth * 100 <= outputFromApi.growth.max))
+            assert.isTrue((output.income * 100 >= outputFromApi.income.min) && (output.income * 100 <= outputFromApi.income.max))
+
+        })
+
         return this;
     }
 
@@ -1806,7 +1823,28 @@ export default class OnboardingPage extends BasePage {
     }
 
     answerQuestionsWithSpecificOptionBasedOnText(text) {
-        cy.contains(text).click()
+        //  cy.get('.ant-col-xl-18').not('.hidden').contains(text).should('be.visible')
+        cy.get('.ant-col-xl-18').not('.hidden').contains(text).click()
+        return this;
+    }
+
+    enter_financial_info_based_on_text_from_API(valueInArray) {
+        birthYear().click();
+        birthYear().clear();
+        birthYear().type(valueInArray.input[12].a).type('{enter}');
+
+        annualNetIncome().clear();
+        annualNetIncome().type(valueInArray.input[13].a);
+
+        investmentTotal().clear()
+        investmentTotal().type(valueInArray.input[14].a);
+
+        liquidNetWorth().clear();
+        liquidNetWorth().type(valueInArray.input[15].a);
+
+        netWorth().clear();
+        netWorth().type(valueInArray.input[16].a);
+
         return this;
     }
 
@@ -2187,7 +2225,7 @@ export default class OnboardingPage extends BasePage {
             'Medibank Private (MPL)',
             'National Australia Bank (NAB)',
             'Northern Star Resources (NST)',
-           // 'Qantas Airways (QAN)',
+            // 'Qantas Airways (QAN)',
             'Sonic Healthcare (SHL)',
             'Transurban (TCL)',
             'Treasury Wine Estates (TWE)',
@@ -2820,7 +2858,7 @@ export default class OnboardingPage extends BasePage {
         dropdownOption(data.sourceType).click();
         percentage().click();
         percentage().type(data.percentage).type('{enter}');
-       // statementOfInquiry().type(data.statementOfInquiry)
+        // statementOfInquiry().type(data.statementOfInquiry)
         return this;
     }
 

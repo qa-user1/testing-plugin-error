@@ -34,30 +34,30 @@ context('24. Onboarding Portal - Risk Profile Score Calculator', () => {
 
         })
 
-        // it('1. Validate login credentials', function () {
-        //     ui.login.open_base_url()
-        //         .verify_login_menu(D.user)
-        //         .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
-        //         .redirect_user_to_the_create_a_new_account_page()
-        //     ui.onboarding.verify_account_selection()
-        // })
-        //
-        // it('2. Create new Personal Super Account', function () {
-        //     ui.onboarding
-        //         .click_create_new_investment_account()
-        //         .click_super_type()
-        //         .click_personal_super_subtype()
-        //         .click_create_investment_account()
-        //         .go_through_tour_steps(C.investmentStepMessages)
-        //         .verify_investment_choice_page()
-        //     cy.saveLocalStorage();
-        // })
+        it('1. Validate login credentials', function () {
+            ui.login.open_base_url()
+                .verify_login_menu(D.user)
+                .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+                .redirect_user_to_the_create_a_new_account_page()
+            ui.onboarding.verify_account_selection()
+        })
+
+        it('2. Create new Personal Super Account', function () {
+            ui.onboarding
+                .click_create_new_investment_account()
+                .click_super_type()
+                .click_personal_super_subtype()
+                .click_create_investment_account()
+                .go_through_tour_steps(C.investmentStepMessages)
+                .verify_investment_choice_page()
+            cy.saveLocalStorage();
+        })
 
         it('3. Complete Investment Choice', function () {
-            // ui.onboarding.click_limited_advice_button()
-            //     .select_all_checkboxes(6)
-            //     .click_Save_and_Continue_button()
-            //     .verify_risk_profile_page()
+            ui.onboarding.click_limited_advice_button()
+                .select_all_checkboxes(6)
+                .click_Save_and_Continue_button()
+                .verify_risk_profile_page()
 
 
             return cy.request({
@@ -66,41 +66,41 @@ context('24. Onboarding Portal - Risk Profile Score Calculator', () => {
                 failOnStatusCode: false
             }).then(response => {
 
+                const firstValueInArray = response.body.values[0][0]
 
-                const values = response.body.values
-                const value = response.body.values[0]
+                cy.log('first value in array ' + JSON.parse(firstValueInArray).input)
+                cy.log('first question in first array ' + JSON.parse(firstValueInArray).input[0].q)
+                cy.log('first answer in first array ' + JSON.parse(firstValueInArray).input[0].a)
 
-                const value1 = JSON.stringify(value[0])
-                const value2 = JSON.parse(value1)
-                // values.forEach(function (value) {
-                //     cy.log('first value array ' + value)
-                // })
+                let inputValues = JSON.parse(firstValueInArray).input
+                let outputValues = JSON.parse(firstValueInArray).output
 
-                //  cy.log('response' + JSON.stringify(response))
-             //   cy.log('values array ' + values)
-               // cy.log('first value array ' + value2)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[0].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[1].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[2].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[3].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[4].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[5].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[6].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[7].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[8].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[9].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[10].a)
+                ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(inputValues[11].a)
+                ui.onboarding.enter_financial_info_based_on_text_from_API(JSON.parse(firstValueInArray))
+                ui.onboarding.click_Save_and_Continue_button()
+                ui.onboarding.verify_screen_and_tilts_page()
+                    .select_ethical_option(D.scenarios[0].ethicalOverlay)
+                    .click_Save_and_Continue_button()
+                    .verify_super_fund_entry_page()
+                    .enter_values_on_super_fund_entry(D.scenarios[0].fundEntryInputFields, D.scenarios[0].bankDetails)
+                    .click_Save_and_Continue_button()
+                    .verify_review_page()
+                    .verify_output_values_based_on_response_from_API(outputValues)
 
-                cy.writeFile('S3_bucket/' + 'test2.json', values)
-              //  cy.writeFile('S3_bucket/' + 'test2.js', JSON.stringify(response.body.values[0]).replace(/\\"/g,'' ).replace(/"/g,'' ))
 
-// add these lines
-                let valuesString = JSON.stringify(values);
-                if (valuesString.length > 2419) {
-                    console.log('Problem character:', valuesString[2419], 'at position:', 2419);
-                }
-               //let parsedValues = JSON.parse(values)
-                if (typeof ui !== 'undefined' && typeof ui.onboarding !== 'undefined' && typeof ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText === 'function') {
-                    if (values[0] && values[0].input && values[0].input[0]) {
-                        ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText(values[0].input[0].a);
-                    } else {
-                        console.error('Invalid format for values');
-                    }
-                } else {
-                    console.error('Function ui.onboarding.answerQuestionsWithSpecificOptionBasedOnText is not defined');
-                }
+              //  cy.writeFile('S3_bucket/' + 'test2.json', values)
 
-                //    response = response.body;
-                //   cy.log(response)
             })
         })
 
