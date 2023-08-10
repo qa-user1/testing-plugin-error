@@ -195,8 +195,11 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     residentialAddressInputField = e => cy.get('[data-test="applicants-residentialAddress-input"]'),
     residentialAddressTypeaheadOption = e => cy.get('[data-test="applicants-addressSuggestion-0-input"]'),
     knowledgeLevel = e => cy.get('#theForm_investmentExperience_0_knowledgeLevel'),
+    knowledgeLevelBond = e => cy.get('#theForm_investmentExperience_1_knowledgeLevel'),
     tradesPerYear = e => cy.get('#theForm_investmentExperience_0_tradesPerYear'),
+    tradesPerYearBond = e => cy.get('#theForm_investmentExperience_1_tradesPerYear'),
     numberOfYearsTrading = e => cy.get('#theForm_investmentExperience_0_yearsTrading'),
+    numberOfYearsTradingBond = e => cy.get('#theForm_investmentExperience_1_yearsTrading'),
     titleInputValidationMsg = e => cy.contains('Title').parent().parent().find('[role="alert"]'),
     surnameInputValidationMsg = e => cy.contains('Surname').parent().parent().find('[role="alert"]'),
     emailInputValidationMsg = e => cy.contains('Email').parent().parent().find('[role="alert"]'),
@@ -596,7 +599,10 @@ export default class OnboardingPage extends BasePage {
     enter_investment_experience_values(data) {
         knowledgeLevel().type(data.knowledgeLevel).type('{enter}')
         tradesPerYear().type(data.tradesPerYear)
-        numberOfYearsTrading().type(data.numberOfYearsTrading)
+        numberOfYearsTrading().type(data.numberOfYearsTrading);
+        knowledgeLevelBond().type(data.knowledgeLevel).type('{enter}')
+        tradesPerYearBond().type(data.tradesPerYear)
+        numberOfYearsTradingBond().type(data.numberOfYearsTrading);
         return this;
     }
 
