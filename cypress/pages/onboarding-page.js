@@ -2870,7 +2870,7 @@ export default class OnboardingPage extends BasePage {
     }
 
     verify_your_portfolio_content_not_exist(option) {
-        //this.pause(3)
+        this.pause(3)
         cy.get('[class="ant-collapse-content ant-collapse-content-active"]').should('be.visible');
         cy.get('[class="ant-collapse-content ant-collapse-content-active"]').should('not.contain', option);
         return this;
