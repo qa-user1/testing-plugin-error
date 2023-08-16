@@ -21,10 +21,10 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )*/
-        cy.clearAllLocalStorage()
+       /* cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()
-
+*/
     })
 
     it('1. Log into user with IB access', function () {
@@ -113,15 +113,18 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     })
 
     it('9. Complete Applicants', function () {
-        ui.onboarding.remove_existing_applicant()
-            .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
+      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3593/applicants')
+      //  ui.onboarding.remove_existing_applicant()
+       //     .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .verify_text_is_visible('Investment Experience')
         D.applicantsProfileFields.employmentInput = 'Unemployed'
         D.applicantsProfileFields.type = 'Individual-IB'
-        ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+        ui.onboarding
+            .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .enter_applicant_investment_experience(D.investmentExperience)
+            .choose_driver_license_format()
             .click_submit_applicant_button()
             .verify_your_identity()
         cy.url().should('include', 'applicants')

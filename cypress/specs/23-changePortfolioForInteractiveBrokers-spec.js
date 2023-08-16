@@ -42,6 +42,7 @@ context('23. Change Portfolio for Interactive Brokers', () => {
           D.applicantsProfileFields.type = 'Individual-IB'
           ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
               .enter_applicant_investment_experience(D.investmentExperience)
+              .choose_driver_license_format()
               .click_submit_applicant_button()
           ui.onboarding.upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
               .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.waterBill)

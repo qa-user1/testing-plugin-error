@@ -200,6 +200,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     tradesPerYearBond = e => cy.get('#theForm_investmentExperience_1_tradesPerYear'),
     numberOfYearsTrading = e => cy.get('#theForm_investmentExperience_0_yearsTrading'),
     numberOfYearsTradingBond = e => cy.get('#theForm_investmentExperience_1_yearsTrading'),
+    driverLicense = option => cy.get('[class="ant-select-selection-item"]').eq(7).find('[title="' + option + '"]'),
     titleInputValidationMsg = e => cy.contains('Title').parent().parent().find('[role="alert"]'),
     surnameInputValidationMsg = e => cy.contains('Surname').parent().parent().find('[role="alert"]'),
     emailInputValidationMsg = e => cy.contains('Email').parent().parent().find('[role="alert"]'),
@@ -1119,8 +1120,15 @@ export default class OnboardingPage extends BasePage {
 
     enter_applicant_investment_experience(data) {
         this.enter_investment_experience_values(data)
-            .upload_file('0', D.documentType.id)
-            .upload_file('1', D.documentType.id)
+        return this;
+    }
+
+    choose_driver_license_format() {
+        cy.contains('Driver License Front-Back (PDF)').click()
+        this.verify_text_is_visible('Driver License Front-Back (PDF)')
+        this.verify_text_is_visible('Driver License Front-Back (Image)')
+    this.upload_file('0', D.documentType.id)
+            //.upload_file('1', D.documentType.id)
         return this;
     }
 

@@ -5,6 +5,11 @@ let dataSets
 
 
 before(function () {
+
+    cy.clearAllLocalStorage()
+    cy.clearAllCookies()
+    cy.clearAllSessionStorage()
+
     return cy.request({
         method: 'GET',
         url: 'https://sheets.googleapis.com/v4/spreadsheets/1WXSpFqMGs3-iVP5WtORKnxdki66ZgdvnJCxxTlVEHG8/values/testing_input_output_super_limitedadvice?key=AIzaSyDPfXkZQt0fnJcz5vw26d6kROxWBYVV3gc',
@@ -25,7 +30,7 @@ context('24. Onboarding Portal - Risk Profile Score Calculator -- data set #', (
             let inputValues = inputOutputValues_object.input
             let outputValues = inputOutputValues_object.output
 
-            cy.writeFile('S3_bucket/' + 'test' + i + '.json', inputOutputValues_object)
+           // cy.writeFile('S3_bucket/' + 'test' + i + '.json', inputOutputValues_object)
 
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
