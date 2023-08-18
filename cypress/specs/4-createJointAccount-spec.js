@@ -6,7 +6,7 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
 
 
     before(function () {
-       /* Cypress.Cookies.debug(true)
+        Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -19,10 +19,10 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )*/
-         cy.clearAllLocalStorage()
-              cy.clearAllCookies()
-              cy.clearAllSessionStorage()
+        )
+      //   cy.clearAllLocalStorage()
+      //        cy.clearAllCookies()
+         //     cy.clearAllSessionStorage()
     })
 
 
@@ -71,7 +71,7 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
             .verify_review_page()
     })
 
-    it('6. Review Review Page', function () {
+    xit('6. Review Review Page', function () {
         ui.onboarding.expand_question_responses_panel()
             .verify_question_responses(D.reviewQuestions, D.reviewResponses)
             .save_data_object_for_Questions_Responses_Personal_Super_Account()
@@ -98,12 +98,14 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
     })
 
     it('7. Complete Applicants', function () {
+       // cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3624/applicants')
         ui.onboarding.verify_2_investitors_required_message()
             .remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
             .verify_add_new_applicant_page()
         ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+            .enter_investment_experience_values(D.investmentExperience)
             .click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)

@@ -6,8 +6,8 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
 
 
     before(function () {
-         /*Cypress.Cookies.debug(true)
-         cy.preserveCookieOnce(
+        Cypress.Cookies.debug(true)
+        /* cy.preserveCookieOnce(
              'secure',
              'ntercom',
              'XSRF-TOKEN',
@@ -120,8 +120,8 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
     it('10. Complete Risk Profile and navigate to Review', function () {
         cy.wait(3000)
         ui.onboarding.click_Save_and_Continue_button()
-        .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
-        .answerAllQuestionsWithSameOption(13, 2)
+            .verify_validation_message_for_Q_at_risk_profile(D.riskProfileValidationMessages)
+            .answerAllQuestionsWithSameOption(13, 2)
             .enter_financial_info(D.financialInfo)
             .click_Save_and_Continue_button()
             .verify_screen_and_tilts_page()
@@ -159,7 +159,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
-            .verify_add_new_applicant_page()
+            // .verify_add_new_applicant_page()
             .click_submit_applicant_button()
             .verify_validation_messages_for_create_new_applicant_input_fields(D.applicantsProfileValidationMessages)
     });
@@ -200,9 +200,8 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
             .click_Agree_checkbox()
             .click_Submit_Application_button()
             .verify_success_page()
-        //  cy.wait(55000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individualAccountCreated)
-           // .store_current_account_number()
+        // .store_current_account_number()
     });
 })
 

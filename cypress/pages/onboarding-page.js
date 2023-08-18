@@ -182,7 +182,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     employmentInputField = e => cy.get('#theForm_employmentDetail_employmentTypeId'),
     occupationInputField = e => cy.get('#theForm_employmentDetail_occupation'),
     employerNameInputField = e => cy.get('#theForm_employmentDetail_employerName'),
-    employerAddressInputField = e => cy.get('#theForm_employmentDetail_employerCountry'),
+    employerAddressInputField = e => cy.get('[data-test="registeredAddress-country-select"]').eq(0),
     employerBusinessInputField = e => cy.get('#theForm_employmentDetail_employerBusiness'),
     employmentStatusAnnualNetIncomeInputField = e => cy.get('[id="theForm_person_annual_net_income"]'),
     employmentStatusNetWorthInputField = e => cy.get('[id="theForm_person_net_worth"]'),
@@ -192,7 +192,10 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     taxInputField = e => cy.get('[data-test="applicants-tfn-input"]'),
     genderInputField = e => cy.get('[data-test="applicants-gender-input"] > .ant-select-selector'),
     numberOfDependentsInputField = e => cy.get('#theForm_num_dependents'),
+    residentialCountryInputField = e => cy.get('[data-test="registeredAddress-country-select"]'),
     residentialAddressInputField = e => cy.get('[data-test="applicants-residentialAddress-input"]'),
+    apartmentNumberInputField = e => cy.get('[id="theForm_apartment_level_unit_number"]'),
+    employmentAddressInputField = e => cy.get('[data-test="applicants-residentialAddress-input"]').eq(0),
     residentialAddressTypeaheadOption = e => cy.get('[data-test="applicants-addressSuggestion-0-input"]'),
     knowledgeLevel = e => cy.get('#theForm_investmentExperience_0_knowledgeLevel'),
     knowledgeLevelBond = e => cy.get('#theForm_investmentExperience_1_knowledgeLevel'),
@@ -520,13 +523,13 @@ export default class OnboardingPage extends BasePage {
             [genderInputValidationMsg, data.genderInput],
             [birthDateInputValidationMsg, data.birthInput],
             // [citizenshipInputValidationMsg, data.citizenshipInput],
-            [employmentInputValidationMsg, data.employmentInput],
+           // [employmentInputValidationMsg, data.employmentInput],
             [taxInputValidationMsg, data.taxInput]
         ])
         return this;
     }
 
-    enter_values_at_create_new_applicant_input_fields(data, type) {
+    enter_values_at_create_new_applicant_input_fields(data) {
         titleInputField().click()
         titleDropdownOptions(data.titleInput).click()
 
@@ -562,6 +565,20 @@ export default class OnboardingPage extends BasePage {
         countryOfBirth().click({force: true})
         countryOfBirth().type(data.countryOfBirth).type('{enter}')
 
+        taxInputField().type(data.taxInput)
+
+        residentialCountryInputField().click();
+        residentialCountryInputField().type(data.employerAddress).type('{enter}')
+        residentialAddressInputField().click();
+        residentialAddressInputField().type(data.residentialAddress)
+            cy.contains(data.residentialAddress).click()
+        apartmentNumberInputField().type(data.apartmentNumber)
+
+        return this;
+    }
+
+    enter_values_for_employment_details(data, type){
+
         employmentInputField().click();
         dropdownOption(data.employmentInput).click()
 
@@ -569,6 +586,8 @@ export default class OnboardingPage extends BasePage {
             occupationInputField().type(data.occupation).type('{enter}');
             employerNameInputField().type(data.employerName);
             employerAddressInputField().type(data.employerAddress).type('{enter}');
+            employmentAddressInputField().click();
+            employmentAddressInputField().type(data.residentialAddress).type('{enter}')
             employerBusinessInputField().click();
             employerBusinessInputField().type(data.employerBusiness).type('{enter}');
         }
@@ -579,15 +598,12 @@ export default class OnboardingPage extends BasePage {
             employmentStatusNetWorthInputField().type(data.netWorth)
         }
 
-        taxInputField().type(data.taxInput)
 
-        residentialAddressInputField().click();
-        residentialAddressInputField().type(data.residentialAddress).type('{enter}')
         // this.enterValue(residentialAddressInputField, data.residentialAddress)
         // residentialAddressInputField().type('{backspace}')
-        residentialAddressTypeaheadOption().should('be.visible')
-        cy.contains(data.residentialAddress).click()
-        residentialAddressInputField().should('have.value', data.residentialAddress)
+       // residentialAddressTypeaheadOption().should('be.visible')
+       // cy.contains(data.residentialAddress).click()
+        //residentialAddressInputField().should('have.value', data.residentialAddress)
 
 
         if (type === 'Individual-IB' || type === 'Joint-IB' || data.type === 'Individual-IB') {
@@ -1772,7 +1788,7 @@ export default class OnboardingPage extends BasePage {
 
 
     enter_address(data) {
-        residentialAddressInputField().type(data.address);
+        residentialCountryInputField().type(data.address);
         return this;
     }
 

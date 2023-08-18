@@ -123,7 +123,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         D.applicantsProfileFields.type = 'Individual-IB'
         ui.onboarding
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
-            .enter_applicant_investment_experience(D.investmentExperience)
+            .enter_investment_experience_values(D.investmentExperience)
             .choose_driver_license_format()
             .click_submit_applicant_button()
             .verify_your_identity()
