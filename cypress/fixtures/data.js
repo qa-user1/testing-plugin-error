@@ -493,7 +493,8 @@ D.investmentExperience = {
 D.documentType = {
     telephoneBill: 'Telephone Bill',
     waterBill: 'Water Bill',
-    id: 'sample.pdf'
+    id: 'sample.pdf',
+    id2: 'id.jpg'
 }
 
 D.bankDetails = {

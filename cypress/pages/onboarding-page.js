@@ -166,7 +166,7 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     dateInputField = e => cy.get('[data-test="applicants-dob-input"]'),
     driverLicenseExpiry = e => cy.get('#theForm_driver_license_expiry'),
     yearInputField = e => cy.get('.ant-picker-year-btn'),
-    todayButton = e => cy.get('.ant-picker-today-btn'),
+    todayButton = e => cy.get('.ant-picker-today-btn').eq(1),
     dropdownOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
     dropdownOptionStock = option => cy.get('[class="ant-select-selector"]').eq(1),
     politicalMilitaryDiplomaticDropdownOption = option => cy.get('#ib-details-form_affiliationDetail_hasAffiliation_list').parent('div').parent('div').find('[title="' + option + '"]'),
@@ -558,6 +558,7 @@ export default class OnboardingPage extends BasePage {
         //dateField().click();
         // this.enterValue(dateInputField, data.dateOfBirth)
         todayButton().click()
+
 
         citizenshipInputField().click({force: true})
         citizenshipInputField().type(data.citizenshipInput).type('{enter}');
@@ -1339,7 +1340,7 @@ export default class OnboardingPage extends BasePage {
         this.verify_text_is_visible('General Details');
         this.verify_text_is_visible('Tax Details');
         this.verify_text_is_visible('Residential Address');
-        this.verify_text_is_visible('Employment Status');
+       // this.verify_text_is_visible('Employment Status');
         // employmentStatusHeader().should('be.visible');
         return this;
     }

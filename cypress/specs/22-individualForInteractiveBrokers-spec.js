@@ -21,10 +21,10 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
         )*/
-       /* cy.clearAllLocalStorage()
+        cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()
-*/
+
     })
 
     it('1. Log into user with IB access', function () {
@@ -122,6 +122,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         D.applicantsProfileFields.employmentInput = 'Unemployed'
         D.applicantsProfileFields.type = 'Individual-IB'
         ui.onboarding
+            .enter_values_for_employment_details(D.applicantsProfileFields)
             .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
             .enter_investment_experience_values(D.investmentExperience)
             .choose_driver_license_format()
@@ -210,7 +211,6 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .select_all_checkboxes(7)
             .click_Submit_Application_button()
         ui.onboarding.verify_success_page()
-        // cy.wait(45000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.individual_IB_AccountCreated)
     });
 })

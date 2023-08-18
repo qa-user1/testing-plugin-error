@@ -266,8 +266,8 @@ export default class LoginPage extends BasePage {
         // uploadDocument().click();
         documentTypeList().click();
         documentTypeList().type('Driver License{enter}');
-        uploadFileInput('0').attachFile(D.documentType.id);
-        uploadFileInput('1').attachFile(D.documentType.id);
+        uploadFileInput('0').attachFile(D.documentType.id2);
+        uploadFileInput('1').attachFile(D.documentType.id2);
         driverLicenceExpiry().click();
         driverLicenceExpiry().type('31/12/2028{enter}');
         uploadButton().click();
