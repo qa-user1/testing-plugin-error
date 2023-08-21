@@ -33,14 +33,14 @@ context('23. Change Portfolio for Interactive Brokers', () => {
           ui.onboarding.enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
           ui.onboarding.click_Save_and_Continue_button()
               .click_Save_and_Continue_button()
- // .click_Save_and_Continue_button()
+  .click_Save_and_Continue_button()
  // .click_Save_and_Continue_button()
           ui.onboarding.remove_existing_applicant()
           ui.onboarding.add_new_applicant()
 
           D.applicantsProfileFields.employmentInput = 'Unemployed'
           D.applicantsProfileFields.type = 'Individual-IB'
-          ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+          ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields, '1')
               .enter_applicant_investment_experience(D.investmentExperience)
               .choose_driver_license_format()
               .click_submit_applicant_button()

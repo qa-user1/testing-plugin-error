@@ -166,7 +166,8 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     dateInputField = e => cy.get('[data-test="applicants-dob-input"]'),
     driverLicenseExpiry = e => cy.get('#theForm_driver_license_expiry'),
     yearInputField = e => cy.get('.ant-picker-year-btn'),
-    todayButton = e => cy.get('.ant-picker-today-btn').eq(1),
+    //todayButton = e => cy.get('.ant-picker-today-btn').eq(1),
+    todayButton = index => cy.get('.ant-picker-footer').find('.ant-picker-today-btn').eq(index),
     dropdownOption = option => cy.get('.rc-virtual-list-holder-inner').find('[title="' + option + '"]'),
     dropdownOptionStock = option => cy.get('[class="ant-select-selector"]').eq(1),
     politicalMilitaryDiplomaticDropdownOption = option => cy.get('#ib-details-form_affiliationDetail_hasAffiliation_list').parent('div').parent('div').find('[title="' + option + '"]'),
@@ -529,7 +530,7 @@ export default class OnboardingPage extends BasePage {
         return this;
     }
 
-    enter_values_at_create_new_applicant_input_fields(data) {
+    enter_values_at_create_new_applicant_input_fields(data, index) {
         titleInputField().click()
         titleDropdownOptions(data.titleInput).click()
 
@@ -557,7 +558,7 @@ export default class OnboardingPage extends BasePage {
         dateInputField2().click();
         //dateField().click();
         // this.enterValue(dateInputField, data.dateOfBirth)
-        todayButton().click()
+        todayButton(index).click()
 
 
         citizenshipInputField().click({force: true})

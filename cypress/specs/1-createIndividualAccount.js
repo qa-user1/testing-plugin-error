@@ -165,7 +165,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
     });
 
     it('12. Complete Applicants', function () {
-        ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+        ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields, '0')
             .click_submit_applicant_button()
             .verify_your_identity()
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)
