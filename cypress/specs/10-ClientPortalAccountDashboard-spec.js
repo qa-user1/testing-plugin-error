@@ -66,7 +66,7 @@ context('10. Client Portal - Account Dashboard', () => {
             .remove_existing_applicant()
             .add_new_applicant()
             .click_submit_applicant_button()
-            .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields)
+            .enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields, '0')
             .click_submit_applicant_button()
             //.verify_your_identity()
             .upload_and_submit_document_for_verification('Upload an ID document', D.documentType.telephoneBill)

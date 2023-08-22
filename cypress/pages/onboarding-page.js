@@ -524,7 +524,7 @@ export default class OnboardingPage extends BasePage {
             [genderInputValidationMsg, data.genderInput],
             [birthDateInputValidationMsg, data.birthInput],
             // [citizenshipInputValidationMsg, data.citizenshipInput],
-           // [employmentInputValidationMsg, data.employmentInput],
+            // [employmentInputValidationMsg, data.employmentInput],
             [taxInputValidationMsg, data.taxInput]
         ])
         return this;
@@ -573,13 +573,13 @@ export default class OnboardingPage extends BasePage {
         residentialCountryInputField().type(data.employerAddress).type('{enter}')
         residentialAddressInputField().click();
         residentialAddressInputField().type(data.residentialAddress)
-            cy.contains(data.residentialAddress).click()
+        cy.contains(data.residentialAddress).click()
         apartmentNumberInputField().type(data.apartmentNumber)
 
         return this;
     }
 
-    enter_values_for_employment_details(data, type){
+    enter_values_for_employment_details(data, type) {
 
         employmentInputField().click();
         dropdownOption(data.employmentInput).click()
@@ -603,8 +603,8 @@ export default class OnboardingPage extends BasePage {
 
         // this.enterValue(residentialAddressInputField, data.residentialAddress)
         // residentialAddressInputField().type('{backspace}')
-       // residentialAddressTypeaheadOption().should('be.visible')
-       // cy.contains(data.residentialAddress).click()
+        // residentialAddressTypeaheadOption().should('be.visible')
+        // cy.contains(data.residentialAddress).click()
         //residentialAddressInputField().should('have.value', data.residentialAddress)
 
 
@@ -1145,8 +1145,8 @@ export default class OnboardingPage extends BasePage {
         cy.contains('Driver License Front-Back (PDF)').click()
         this.verify_text_is_visible('Driver License Front-Back (PDF)')
         this.verify_text_is_visible('Driver License Front-Back (Image)')
-    this.upload_file('0', D.documentType.id)
-            //.upload_file('1', D.documentType.id)
+        this.upload_file('0', D.documentType.id)
+        //.upload_file('1', D.documentType.id)
         return this;
     }
 
@@ -1341,7 +1341,7 @@ export default class OnboardingPage extends BasePage {
         this.verify_text_is_visible('General Details');
         this.verify_text_is_visible('Tax Details');
         this.verify_text_is_visible('Residential Address');
-       // this.verify_text_is_visible('Employment Status');
+        // this.verify_text_is_visible('Employment Status');
         // employmentStatusHeader().should('be.visible');
         return this;
     }
@@ -1505,13 +1505,18 @@ export default class OnboardingPage extends BasePage {
             cy.log('Output is ' + text)
 
             let output = JSON.parse(text).output
-             cy.log(JSON.stringify(output))
+            cy.log(JSON.stringify(output))
             assert.equal(output.x, outputFromApi.x)
             assert.equal(output.y, outputFromApi.y)
             assert.equal(output.safety, outputFromApi.safety)
             assert.isTrue((output.growth * 100 >= outputFromApi.growth.min) && (output.growth * 100 <= outputFromApi.growth.max))
             assert.isTrue((output.income * 100 >= outputFromApi.income.min) && (output.income * 100 <= outputFromApi.income.max))
-
+            for (let i = 0; i < output.portfolios.length; i++) {
+                assert.equal(output.portfolios[i].target_weighting, outputFromApi.portfolios[i].target_weighting)
+            }
+            for (let i = 0; i < output.portfolios.length; i++) {
+                assert.equal(output.portfolios[i].portfolio_id, outputFromApi.portfolios[i].portfolio_id)
+            }
         })
 
         return this;

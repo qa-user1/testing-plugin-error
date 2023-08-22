@@ -324,9 +324,12 @@ return this;
         this.verify_text_is_visible('Platform Transactions');
         this.verify_text_is_visible('Current Settings');
         this.verify_text_is_visible('Initial Onboarding Settings');
-        this.verify_text_is_visible('Submitted: Mon, 28 Feb 2022 06:15:17 GMT');
-        this.verify_text_is_visible('Submitted: Fri, 25 Feb 2022 06:12:13 GMT');
-        this.verify_text_is_visible('Submitted: Wed, 20 Oct 2021 23:37:28 GMT');
+        this.verify_text_is_visible('Pending Change - Not submitted');
+        this.verify_text_is_visible('Submitted: Jun 27, 2022 6:22 AM');
+        this.verify_text_is_visible('Submitted: Feb 28, 2022 7:15 AM');
+        this.verify_text_is_visible('Submitted: Feb 25, 2022 7:12 AM');
+        this.verify_text_is_visible('Submitted: Feb 8, 2022 5:54 AM');
+        this.verify_text_is_visible('Submitted: Dec 31, 2021 8:29 AM');
 return this;
     }
 
