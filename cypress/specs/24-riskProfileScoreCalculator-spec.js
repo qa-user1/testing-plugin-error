@@ -5,7 +5,6 @@ let dataSets
 
 
 before(function () {
-
     cy.clearAllLocalStorage()
     cy.clearAllCookies()
     cy.clearAllSessionStorage()
@@ -26,11 +25,23 @@ context('24. Onboarding Portal - Risk Profile Score Calculator -- data set #', (
     for (let i = 0; i < 19; i++) {
         it('24. Onboarding Portal - Risk Profile Score Calculator -- data set #' + i, () => {
 
-            const inputOutputValues_object = JSON.parse(dataSets[i])
+            function removeLastComma(str) {
+                const lastIndex = str.lastIndexOf(',');
+
+                if (lastIndex !== -1) {
+                    return str.slice(0, lastIndex) + str.slice(lastIndex + 1);
+                }
+
+                return str;
+            }
+
+
+            const dataSet = removeLastComma(dataSets[i])
+           const inputOutputValues_object = JSON.parse(dataSet)
             let inputValues = inputOutputValues_object.input
             let outputValues = inputOutputValues_object.output
 
-           // cy.writeFile('S3_bucket/' + 'test' + i + '.json', inputOutputValues_object)
+            cy.writeFile('S3_bucket/' + 'test' + i + '.json', inputOutputValues_object)
 
             ui.login.open_base_url()
                 .verify_login_menu(D.user)
