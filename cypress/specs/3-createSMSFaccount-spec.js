@@ -98,7 +98,7 @@ context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and comp
     })
 
     it('7. Complete In SMSF Details', function () {
-        ui.onboarding.enter_address(D.SMSFDetails)
+        ui.onboarding.enter_address(D.applicantsProfileFields)
             .click_Save_and_Continue_button()
             .verify_validation_messages_for_SMSF_details(D.smsfDetailsValidationMessages)
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)

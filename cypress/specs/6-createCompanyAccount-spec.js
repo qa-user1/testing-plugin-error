@@ -77,7 +77,7 @@ context('6. Company Account', () => {
     })
 
     it('7. Complete In Company Details', function () {
-        ui.onboarding.enter_address(D.TrustDetails)
+        ui.onboarding.enter_address(D.applicantsProfileFields)
             .click_Save_and_Continue_button()
             .verify_validation_messages_for_company_details(D.companyDetailsValidationMsg)
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)

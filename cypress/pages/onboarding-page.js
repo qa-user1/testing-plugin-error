@@ -196,6 +196,9 @@ let answer = (questionNumber, answerNumber) => cy.get('.ant-col-xxl-12').eq(ques
     residentialCountryInputField = e => cy.get('[data-test="registeredAddress-country-select"]'),
     residentialAddressInputField = e => cy.get('[data-test="applicants-residentialAddress-input"]'),
     apartmentNumberInputField = e => cy.get('[id="theForm_apartment_level_unit_number"]'),
+    SMSFapartmentNumberInputField = e => cy.get('#smsf-details-form_investment_account_identifier_registered_apartment_level_unit_number'),
+    trustDetailsApartmentNumberInputField = e => cy.get('#trust-details-form_investment_account_identifier_registered_apartment_level_unit_number'),
+    companyApartmentNumberInputField = e => cy.get('#company-details-form_investment_account_identifier_registered_apartment_level_unit_number'),
     employmentAddressInputField = e => cy.get('[data-test="applicants-residentialAddress-input"]').eq(0),
     residentialAddressTypeaheadOption = e => cy.get('[data-test="applicants-addressSuggestion-0-input"]'),
     knowledgeLevel = e => cy.get('#theForm_investmentExperience_0_knowledgeLevel'),
@@ -1738,8 +1741,8 @@ export default class OnboardingPage extends BasePage {
         creationDate().click()
         creationDate().clear();
         creationDate().type(data.creationDate).type('{enter}');
-        SMSFAddress().clear();
-        SMSFAddress().type(data.address)
+       // SMSFAddress().clear();
+       // SMSFAddress().type(data.address)
         cy.get('[type="radio"]').check('individual');
         return this;
     }
@@ -1795,7 +1798,24 @@ export default class OnboardingPage extends BasePage {
 
 
     enter_address(data) {
-        residentialCountryInputField().type(data.address);
+        //residentialCountryInputField().type(data.address);
+        residentialCountryInputField().click();
+        residentialCountryInputField().type(data.employerAddress).type('{enter}')
+        residentialAddressInputField().click();
+        residentialAddressInputField().type(data.residentialAddress)
+        cy.contains(data.residentialAddress).click()
+
+        pageTitle().invoke('text').then((text) => {
+            if (text.includes('Trust Details')) {
+                trustDetailsApartmentNumberInputField().type(data.apartmentNumber);
+            }
+            else if (text.includes('SMSF')) {
+                SMSFapartmentNumberInputField().type(data.apartmentNumber)
+            }
+            else if (text.includes('Company Details')) {
+                companyApartmentNumberInputField().type(data.apartmentNumber)
+            }
+        });
         return this;
     }
 

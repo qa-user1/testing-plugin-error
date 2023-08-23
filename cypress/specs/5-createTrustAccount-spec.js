@@ -89,7 +89,7 @@ context('5. Log in to the Nucleus Wealth portal, create a Trust Account and comp
     })
 
     it('7. Complete In Trust Details', function () {
-        ui.onboarding.enter_address(D.TrustDetails)
+        ui.onboarding.enter_address(D.applicantsProfileFields)
             ui.onboarding.click_Save_and_Continue_button()
             ui.onboarding.verify_validation_messages_for_trust_details(D.TrustDetailsValidationMsg)
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)
