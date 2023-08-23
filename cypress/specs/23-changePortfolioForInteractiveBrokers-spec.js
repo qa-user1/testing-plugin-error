@@ -11,7 +11,7 @@ context('23. Change Portfolio for Interactive Brokers', () => {
           cy.clearAllLocalStorage()
           cy.clearAllCookies()
           cy.clearAllSessionStorage()
-          
+
           ui.login.open_base_url()
               .verify_login_menu(D.user)
               .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
@@ -43,7 +43,8 @@ context('23. Change Portfolio for Interactive Brokers', () => {
 
           D.applicantsProfileFields.employmentInput = 'Unemployed'
           D.applicantsProfileFields.type = 'Individual-IB'
-          ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields, '1')
+          ui.onboarding.enter_values_at_create_new_applicant_input_fields(D.applicantsProfileFields, '0')
+              .enter_values_for_employment_details(D.applicantsProfileFields)
               .enter_applicant_investment_experience(D.investmentExperience)
               .choose_driver_license_format()
               .click_submit_applicant_button()
