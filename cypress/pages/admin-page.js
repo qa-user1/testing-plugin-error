@@ -1,7 +1,4 @@
 import BasePage from "./base-page";
-import S from "../fixtures/settings";
-import {currentDate} from "../support/e2e-helper";
-import D from "../fixtures/data";
 
 // *************************** ELEMENTS ***************************
 
@@ -70,7 +67,7 @@ export default class AdminPage extends BasePage {
 
     click_CRM_on_header() {
         this.pause(3)
-      //  cy.contains('CRM').click();
+        //  cy.contains('CRM').click();
         cy.get('.submenu-title-wrapper').click();
         this.pause(2)
         return this;
@@ -85,51 +82,51 @@ export default class AdminPage extends BasePage {
     click_kanbans_submenu() {
         kanbans().should('be.visible')
         kanbans().click();
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
     click_stats_submenu() {
         stats().should('be.visible')
         cy.contains('span.ant-menu-title-content', 'Stats').click();
-      //  this.pause(5)
-      //  stats().click();
-      //  this.pause(2)
+        //  this.pause(5)
+        //  stats().click();
+        //  this.pause(2)
         return this;
     }
 
     click_sales_submenu() {
         sales().should('be.visible')
         sales().click();
-      //  this.pause(2)
+        //  this.pause(2)
         return this;
     }
 
     click_key_prospects() {
         keyProspects().should('be.visible')
         keyProspects().click({force: true});
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
     click_agile_tasks() {
         agileTasks().should('be.visible')
         agileTasks().click({force: true});
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
     click_contact_clients() {
         contactClients().should('be.visible')
         contactClients().click({force: true});
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
     click_brokerage_free_offer() {
         brokerageFreeOffer().should('be.visible')
         brokerageFreeOffer().click({force: true});
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
@@ -143,21 +140,21 @@ export default class AdminPage extends BasePage {
     click_trade_recent() {
         tradeRecent().should('be.visible')
         tradeRecent().click({force: true});
-      //  this.pause(2)
+        //  this.pause(2)
         return this;
     }
 
     click_trade_weights() {
         tradeWeights().should('be.visible')
         tradeWeights().click({force: true});
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
     click_important_follow_ups() {
         importantFollowUps().should('be.visible')
         importantFollowUps().click({force: true});
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
@@ -176,21 +173,21 @@ export default class AdminPage extends BasePage {
     click_research() {
         research().should('be.visible')
         research().click({force: true});
-      //  this.pause(2)
+        //  this.pause(2)
         return this;
     }
 
     click_non_client_certified_docs() {
         nonClientCertifiedDocs().should('be.visible')
         nonClientCertifiedDocs().click();
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
     click_investment_account_search() {
         investmentAccountSearch().should('be.visible')
         investmentAccountSearch().click();
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
@@ -204,14 +201,14 @@ export default class AdminPage extends BasePage {
     click_ethical_investment() {
         ethicalInvestment().should('be.visible')
         ethicalInvestment().click();
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
     click_investment_suitability() {
         investmentSuitability().should('be.visible')
         investmentSuitability().click();
-      //  this.pause(2)
+        //  this.pause(2)
         return this;
     }
 
@@ -219,14 +216,14 @@ export default class AdminPage extends BasePage {
     click_insurance_kanban() {
         insuranceKanban().should('be.visible')
         insuranceKanban().click({force: true});
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
     click_onboarding_kanban() {
         onboardingKanban().should('be.visible')
         onboardingKanban().click({force: true});
-       // this.pause(2)
+        // this.pause(2)
         return this;
     }
 
@@ -274,18 +271,18 @@ export default class AdminPage extends BasePage {
         return this;
     }
 
-    search_account_id(id){
+    search_account_id(id) {
         searchBar().type(id)
         this.pause(2)
         return this;
     }
 
-    click_view_table_button(){
-viewTableButton().click();
-return this;
+    click_view_table_button() {
+        viewTableButton().click();
+        return this;
     }
 
-    verify_account_details_on_admin_page(){
+    verify_account_details_on_admin_page() {
         this.verify_text_is_visible('Investor 1');
         this.verify_text_is_visible('Investor 2');
         this.verify_text_is_visible('Bank Details');
@@ -294,20 +291,20 @@ return this;
         this.verify_text_is_visible('Snoozes/Kanban Comments');
         this.verify_text_is_visible('Third Party Authority');
         this.verify_text_is_visible('Update to MTS Standard In Prae');
-return this;
+        return this;
     }
 
-    click_clients_portal(){
+    click_clients_portal() {
         clientsPortal().invoke('removeAttr', 'target').click()
         return this;
     }
 
-    click_investor_1(){
+    click_investor_1() {
         investor1().click();
         return this;
     }
 
-    verify_investor_1_panel(){
+    verify_investor_1_panel() {
         this.verify_text_is_visible('General Details');
         this.verify_text_is_visible('Verifications');
         this.verify_text_is_visible('Certified Document');
@@ -315,29 +312,30 @@ return this;
         return this;
     }
 
-    click_account_settings_and_history(){
+    click_account_settings_and_history() {
         accountSettingsHistory().click();
         return this;
     }
 
-    verify_account_settings_and_history_panel(){
+    verify_account_settings_and_history_panel() {
         this.verify_text_is_visible('Platform Transactions');
         this.verify_text_is_visible('Current Settings');
         this.verify_text_is_visible('Initial Onboarding Settings');
         this.verify_text_is_visible('Pending Change - Not submitted');
-        this.verify_text_is_visible('Submitted: Jun 27, 2022 6:22 AM');
-        this.verify_text_is_visible('Submitted: Feb 28, 2022 7:15 AM');
-        this.verify_text_is_visible('Submitted: Feb 25, 2022 7:12 AM');
-        this.verify_text_is_visible('Submitted: Feb 8, 2022 5:54 AM');
-        this.verify_text_is_visible('Submitted: Dec 31, 2021 8:29 AM');
-return this;
+        this.verify_text_is_visible('Submitted: Jun 27, 2022');
+        this.verify_text_is_visible('Submitted: Feb 28, 2022');
+        this.verify_text_is_visible('Submitted: Feb 25, 2022');
+        this.verify_text_is_visible('Submitted: Feb 8, 2022');
+        this.verify_text_is_visible('Submitted: Dec 31, 2021');
+        return this;
     }
 
-    click_current_settings(){
+    click_current_settings() {
         cy.contains('Current Settings').click();
         return this;
     }
-    verify_current_settings(data){
+
+    verify_current_settings(data) {
         this.verify_text_is_visible(data.snapshotDetails);
         this.verify_text_is_visible(data.portfolioWeights);
         this.verify_text_is_visible(data.ethicsSettings);

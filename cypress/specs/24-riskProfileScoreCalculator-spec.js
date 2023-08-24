@@ -41,7 +41,7 @@ context('24. Onboarding Portal - Risk Profile Score Calculator -- data set #', (
             let inputValues = inputOutputValues_object.input
             let outputValues = inputOutputValues_object.output
 
-            cy.writeFile('S3_bucket/' + 'test' + i + '.json', inputOutputValues_object)
+          //  cy.writeFile('S3_bucket/' + 'test' + i + '.json', inputOutputValues_object)
 
             ui.login.open_base_url()
                 .verify_login_menu(D.user)

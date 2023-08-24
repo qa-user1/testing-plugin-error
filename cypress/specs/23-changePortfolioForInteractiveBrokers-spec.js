@@ -35,8 +35,9 @@ context('23. Change Portfolio for Interactive Brokers', () => {
           D.buildYouPortfolioFields.coreInternational2 = '0'
           ui.onboarding.enter_tactical_growth_and_core_international_values(D.buildYouPortfolioFields)
           ui.onboarding.click_Save_and_Continue_button()
-              .click_Save_and_Continue_button()
-  .click_Save_and_Continue_button()
+              cy.wait(3000)
+              ui.onboarding.click_Save_and_Continue_button()
+ // .click_Save_and_Continue_button()
  // .click_Save_and_Continue_button()
           ui.onboarding.remove_existing_applicant()
           ui.onboarding.add_new_applicant()
