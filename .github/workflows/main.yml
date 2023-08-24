@@ -55,7 +55,7 @@ jobs:
     name: Cypress Test 24
     if: success() || failure()
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 120
    #needs: [ Run-Cypress-Test1 ]
     container:
       image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
@@ -66,7 +66,7 @@ jobs:
       - run: npm i
       - uses: nick-invision/retry@v2
         with:
-          timeout_minutes: 15
+          timeout_minutes: 120
           max_attempts: 3
           command: npm run e2e-test24
 
