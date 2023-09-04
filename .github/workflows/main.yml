@@ -50,9 +50,9 @@ jobs:
 
 
 
-  Run-Cypress-Test24:
+  Run-Cypress-Test22:
     
-    name: Cypress Test 24
+    name: Cypress Test 22
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -68,7 +68,7 @@ jobs:
         with:
           timeout_minutes: 120
           max_attempts: 3
-          command: npm run e2e-test24
+          command: npm run e2e-test22
 
       #  - run: npm run e2e-test22
       - run: |
