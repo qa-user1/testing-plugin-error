@@ -98,7 +98,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 250
     continue-on-error: true
-    needs: [Run-Cypress-Test24]
+    
+    needs: [Run-Cypress-Test22]
     if: always()
     strategy:
       fail-fast: false
