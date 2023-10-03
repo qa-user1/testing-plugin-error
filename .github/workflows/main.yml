@@ -37,22 +37,22 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: emptyFolder
 
-  Run-Clear-Gmail:
-    name: Clear Gmail
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run clearGmail
+  #Run-Clear-Gmail:
+  #  name: Clear Gmail
+  #  if: success() || failure()
+  #  runs-on: ubuntu-latest
+  #  timeout-minutes: 40
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - uses: actions/setup-node@v3
+  #    - run: npm i
+  #    - run: npm run clearGmail
 
 
 
-  Run-Cypress-Test22:
+  Run-Cypress-Test24:
     
-    name: Cypress Test 22
+    name: Cypress Test 24
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -98,8 +98,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 250
     continue-on-error: true
-    
-    needs: [Run-Cypress-Test22]
+
+    needs: [Run-Cypress-Test24]
     if: always()
     strategy:
       fail-fast: false
