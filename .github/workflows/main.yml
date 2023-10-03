@@ -68,7 +68,7 @@ jobs:
         with:
           timeout_minutes: 120
           max_attempts: 3
-          command: npm run e2e-test22
+          command: npm run e2e-test24
 
       #  - run: npm run e2e-test22
       - run: |
