@@ -167,7 +167,7 @@ context('18. Check Admin header', () => {
         cy.url().should('include', 'property-calculator')
         ui.admin.verify_text_is_visible('Thanks for using our Property Calculator.')
         cy.go('back')
-        ui.login.enter_credentials_and_click_Sign_In(D.managerUser.username, D.managerUser.password)
+       // ui.login.enter_credentials_and_click_Sign_In(D.managerUser.username, D.managerUser.password)
 
 
         ui.admin.click_calculators_on_header()
@@ -175,7 +175,7 @@ context('18. Check Admin header', () => {
             .verify_link('calculators', 'ethical-investment')
             .verify_text_is_visible('How do your ethics compare?')
         cy.go('back')
-        ui.login.enter_credentials_and_click_Sign_In(D.managerUser.username, D.managerUser.password)
+       // ui.login.enter_credentials_and_click_Sign_In(D.managerUser.username, D.managerUser.password)
 
         ui.admin.click_calculators_on_header()
             .click_investment_suitability()

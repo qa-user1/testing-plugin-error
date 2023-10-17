@@ -27,12 +27,12 @@ let
     createAccountSubmitButton = e => visibleModal().find('.amplify-button--primary'),
     //authenticationCode = e => cy.get('#verification_code'),
     authenticationCode = e => cy.get('#amplify-id-23'),
-    forgotPassButton = e => cy.get('[class="redirect-customizable"]').eq(2),
-    resetPasswordButton = e => cy.get('[name="reset_my_password"]'),
-    code = e => cy.get('#forgot_password_code'),
-    newPassword = e => cy.get('#new_password'),
-    confirmPassword = e => cy.get('#confirm_password'),
-    changePasswordButton = e => cy.contains('Change Password')
+    forgotPassButton = e => cy.get('[class="amplify-button amplify-field-group__control amplify-button--link amplify-button--small"]'),
+    sendCodeButton = e => cy.contains('Send code'),
+    code = e => cy.get('#amplify-id-9'),
+    newPassword = e => cy.get('#amplify-id-11'),
+    confirmPassword = e => cy.get('#amplify-id-13'),
+    submitButton = e => cy.contains('Submit')
 
 export default class LoginPage extends BasePage {
 
@@ -228,8 +228,8 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    click_reset_password_button() {
-        resetPasswordButton().click();
+    click_send_code_button() {
+        sendCodeButton().click();
         return this;
     }
 
@@ -244,8 +244,8 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    click_change_password_button() {
-        changePasswordButton().click();
+    click_submit_button() {
+        submitButton().click();
         return this;
     }
 
