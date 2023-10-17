@@ -6,22 +6,27 @@ import D from "../fixtures/data";
 let
     mainContainer = e => cy.get('body'),
     mainContainerHome = e => cy.get('.client-portal-content'),
+    createAccountButton = e => cy.contains('Create Account'),
     signUpButton = e => cy.contains('Sign up'),
-    visibleModal = e => cy.get('.visible-lg'),
-    loginErrorMsg = e => cy.get('#loginErrorMessage'),
-    textDescription = e => cy.get('.textDescription-customizable '),
+    //visibleModal = e => cy.get('.visible-lg'),
+    visibleModal = e => cy.get('[data-amplify-authenticator=""]'),
+    loginErrorMsg = e => cy.get('.amplify-alert'),
+    //textDescription = e => cy.get('.textDescription-customizable '),
+    textDescription = e => cy.get('.amplify-heading'),
     createNewAccount = e => cy.get('[data-test="clientPortal-createNewAccount-btn"]'),
-    usernameInput = e => visibleModal().find('#signInFormUsername'),
-    passwordInput = e => visibleModal().find('#signInFormPassword'),
-    signInButton = e => visibleModal().find('[name="signInSubmitButton"]'),
-    emailInput = e => visibleModal().find('[name="username"]'),
+    //usernameInput = e => visibleModal().find('#signInFormUsername'),
+    usernameInput = e => visibleModal().find('#amplify-id-0'),
+    passwordInput = e => visibleModal().find('#amplify-id-2'),
+    signInButton = e => visibleModal().find('.amplify-button--primary'),
+    emailInput = e => visibleModal().find('#amplify-id-6'),
     emailInputResetPass = e => cy.get('[name="username"]'),
-    phoneNumberInput = e => visibleModal().find('[name="requiredAttributes[phone_number]"]'),
-    givenNameInput = e => visibleModal().find('[name="requiredAttributes[given_name]"]'),
-    passwordSignUpInput = e => visibleModal().find('[name="password"]'),
-    signUpSubmitButton = e => visibleModal().find('[name="signUpButton"]'),
-    authenticationCode = e => cy.get('#verification_code'),
-    confirmAccount = e => cy.get(':nth-child(12) > .btn'),
+    phoneNumberInput = e => visibleModal().find('#amplify-id-9'),
+    givenNameInput = e => visibleModal().find('#amplify-id-11'),
+    passwordSignUpInput = e => visibleModal().find('#amplify-id-13'),
+    passwordSignUpConfirmInput = e => visibleModal().find('#amplify-id-15'),
+    createAccountSubmitButton = e => visibleModal().find('.amplify-button--primary'),
+    //authenticationCode = e => cy.get('#verification_code'),
+    authenticationCode = e => cy.get('#amplify-id-23'),
     forgotPassButton = e => cy.get('[class="redirect-customizable"]').eq(2),
     resetPasswordButton = e => cy.get('[name="reset_my_password"]'),
     code = e => cy.get('#forgot_password_code'),
@@ -38,6 +43,8 @@ export default class LoginPage extends BasePage {
     // *************************** ACTIONS ***************************
 
     enter_credentials_and_click_Sign_In(username, pass) {
+        usernameInput().clear();
+        passwordInput().clear();
         let user = {
             username: username,
             password: pass
@@ -48,16 +55,13 @@ export default class LoginPage extends BasePage {
 
     enter_credentials_for_sign_in(data) {
         let type = data.accountType
-        if (type === 'Individual-IB' || type === 'Joint-IB' || type === 'Company-IB' || type === 'Trust-IB' || type === 'Personal Super-IB'|| type === 'SMSF-IB') {
+        if (type === 'Individual-IB' || type === 'Joint-IB' || type === 'Company-IB' || type === 'Trust-IB' || type === 'Personal Super-IB' || type === 'SMSF-IB') {
             this.enter_credentials_and_click_Sign_In(data.username, data.password)
-        }
-        else if (type === 'Personal Super' || type === 'Individual'|| type === 'SMSF' || type === 'Joint' || type === 'Trust' || type === 'Company') {
+        } else if (type === 'Personal Super' || type === 'Individual' || type === 'SMSF' || type === 'Joint' || type === 'Trust' || type === 'Company') {
             this.enter_credentials_and_click_Sign_In(data.username, data.password)
         }
         return this;
     }
-
-
 
 
     enter_wrong_credentials_and_click_Sign_In(username, pass) {
@@ -72,20 +76,31 @@ export default class LoginPage extends BasePage {
     }
 
     enter_credentials_for_sign_up(data) {
-       emailInput().type(data.email);
-       phoneNumberInput().type(data.phoneNumber);
-       givenNameInput().type(data.givenName);
-       passwordSignUpInput().type(data.password);
+        emailInput().type(data.email);
+        phoneNumberInput().type(data.phoneNumber);
+        givenNameInput().type(data.givenName);
+        passwordSignUpInput().type(data.password);
+        passwordSignUpConfirmInput().type(data.password)
+        return this;
+    }
+
+    change_area_code(){
+        cy.get('select').select('+1')
+        return this;
+    }
+
+    click_create_account_button() {
+        createAccountButton().click({force: true});
         return this;
     }
 
     click_sign_up_button() {
-        signUpButton().click({force:true});
+        signUpButton().click({force: true});
         return this;
     }
 
-    click_submit_sign_up_button() {
-        signUpSubmitButton().click();
+    click_submit_create_account_button() {
+        createAccountSubmitButton().click();
         return this;
     }
 
@@ -94,32 +109,32 @@ export default class LoginPage extends BasePage {
         cy.wait(1000)
         mainContainer().invoke('text').then(function (text) {
             cy.log('text found ' + text)
-            if (text.includes('Sign in with your email and password')) {
+            if (text.includes('Sign in to your account')) {
                 usernameInput().type(user.username);
                 passwordInput().type(user.password);
                 signInButton().click()
             } else {
-              //  for (let i = 0; i < 10; i++) {
-                    cy.wait(500)
-                    mainContainer().invoke('text').then(function (text) {
-                        // if (text.includes('Sign in with your email and password')) {
-                        //     i = 10
-                        //     self.check_for_Cognito_message_and_perform_login(user)
-                        // }
-                        if (text.includes('Sign in with Cognito')) {
-                            cy.contains('Sign in with Cognito').click()
-                            self.check_for_Cognito_message_and_perform_login(user)
-                        }
-                    });
-                }
-           // }
+                //  for (let i = 0; i < 10; i++) {
+                cy.wait(500)
+                mainContainer().invoke('text').then(function (text) {
+                    // if (text.includes('Sign in with your email and password')) {
+                    //     i = 10
+                    //     self.check_for_Cognito_message_and_perform_login(user)
+                    // }
+                    if (text.includes('Sign in with Cognito')) {
+                        cy.contains('Sign in with Cognito').click()
+                        self.check_for_Cognito_message_and_perform_login(user)
+                    }
+                });
+            }
+            // }
         });
         return this;
     }
 
     redirect_user_to_the_create_a_new_account_page() {
-                mainContainerHome().should('be.visible');
-                createNewAccount().invoke('removeAttr', 'target').click({force:true})
+        mainContainerHome().should('be.visible');
+        createNewAccount().invoke('removeAttr', 'target').click({force: true})
         return this;
     }
 
@@ -127,7 +142,7 @@ export default class LoginPage extends BasePage {
         let self = this
         cy.wait(1000)
         mainContainer().invoke('text').then(function (text) {
-            if (text.includes('Sign in with your email and password')) {
+            if (text.includes('Sign in to your account')) {
                 visibleModal().should('be.visible');
                 textDescription().should('be.visible')
                 usernameInput().should('be.visible');
@@ -137,10 +152,10 @@ export default class LoginPage extends BasePage {
                 for (let i = 0; i < 1; i++) {
                     cy.wait(2000)
                     mainContainer().invoke('text').then(function (text) {
-                         if (text.includes('Sign in with your email and password')) {
-                             i = 10
-                             self.verify_login_menu()
-                         }
+                        if (text.includes('Sign in to your account')) {
+                            i = 10
+                            self.verify_login_menu()
+                        }
                         if (text.includes('Sign in with Cognito')) {
                             cy.contains('Sign in with Cognito').click()
                             self.verify_login_menu()
@@ -156,27 +171,27 @@ export default class LoginPage extends BasePage {
         let self = this
         mainContainer().invoke('text').then(function (text) {
 
-            if (text.includes('Sign up with a new account')) {
+            if (text.includes('Sign up new account')) {
                 visibleModal().should('be.visible');
                 emailInput().should('be.visible')
                 phoneNumberInput().should('be.visible');
                 givenNameInput().should('be.visible');
                 passwordSignUpInput().should('be.visible');
-                signUpButton().should('be.visible');
+                createAccountButton().should('be.visible');
             } else {
                 for (let i = 0; i < 10; i++) {
-                //    cy.wait(500)
+                    //    cy.wait(500)
                     /*mainContainer().invoke('text').then(function (text) {
                         if (text.includes('Sign up with a new account')) {
                             i = 10
                             self.verify_sign_up_login_menu()
                         }*/
-                        if (text.includes('Sign in with Cognito')) {
-                            cy.contains('Sign in with Cognito').click()
-                            self.verify_login_menu()
-                            self.click_sign_up_button()
-                        }
-                   // });
+                    if (text.includes('Sign in with Cognito')) {
+                        cy.contains('Sign in with Cognito').click()
+                        self.verify_login_menu()
+                        self.click_create_account_button()
+                    }
+                    // });
                 }
             }
         });
@@ -189,7 +204,7 @@ export default class LoginPage extends BasePage {
     }
 
     click_confirm_account() {
-confirmAccount().click()
+        createAccountSubmitButton().click()
         return this;
     }
 
@@ -198,22 +213,22 @@ confirmAccount().click()
         return this;
     }
 
-    enter_authentication_code(otpcode){
+    enter_authentication_code(otpcode) {
         authenticationCode().type(otpcode)
         return this;
     }
 
-    click_forgot_password_button(){
+    click_forgot_password_button() {
         forgotPassButton().click();
         return this;
     }
 
-    enter_email_for_reset_password(data){
+    enter_email_for_reset_password(data) {
         emailInputResetPass().type(data);
         return this;
     }
 
-    click_reset_password_button(){
+    click_reset_password_button() {
         resetPasswordButton().click();
         return this;
     }
@@ -223,13 +238,13 @@ confirmAccount().click()
         return this;
     }
 
-    enter_and_confirm_new_password(data){
+    enter_and_confirm_new_password(data) {
         newPassword().type(data);
         confirmPassword().type(data);
         return this;
     }
 
-    click_change_password_button(){
+    click_change_password_button() {
         changePasswordButton().click();
         return this;
     }

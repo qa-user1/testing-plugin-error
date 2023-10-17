@@ -26,19 +26,20 @@ context('15. Test 2 Factor Login is working', () => {
 
         D.newUser.email = 'testing+mfa' + D.getNewRandomNumber() + '@nucleuswealth.com'
         D.newUser.password = 'Testing1234!'
-        D.newUser.phoneNumber = '+14178052843'
+        D.newUser.phoneNumber = '4178052843'
 
         ui.login.open_base_url()
             .verify_login_menu(D.user)
-            .click_sign_up_button()
+            .click_create_account_button()
             .verify_sign_up_login_menu(D.newUser)
             .enter_credentials_for_sign_up(D.newUser)
-            .click_submit_sign_up_button()
+            .change_area_code()
+            .click_submit_create_account_button()
     });
 
 
 
-    xit('Get SMS and apply it in 2FA form', () => {
+    it('Get SMS and apply it in 2FA form', () => {
         cy.wait(10000)
         cy.request({
             method: 'GET',

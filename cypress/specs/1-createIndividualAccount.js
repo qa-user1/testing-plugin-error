@@ -159,7 +159,7 @@ context('1. Log in to the Nucleus Wealth portal, create an individual account, a
         ui.onboarding.remove_existing_applicant()
             .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
             .add_new_applicant()
-             .verify_add_new_applicant_page()
+            .verify_add_new_applicant_page()
             .click_submit_applicant_button()
             .verify_validation_messages_for_create_new_applicant_input_fields(D.applicantsProfileValidationMessages)
     });

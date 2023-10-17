@@ -24,7 +24,7 @@ D.ibUser = {
 
 D.newUser = {
     email: 'testing+' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com',
-    phoneNumber: '+12125551234',
+    phoneNumber: '415259515',
     givenName: 'test',
     password: 'Testing123!'
 }

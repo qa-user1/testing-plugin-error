@@ -43,12 +43,11 @@ context('11. Client Portal - Administration', () => {
     })
 
     it('4. Check Administration Page', function () {
-        if (Cypress.env('cypressRunnerLocal') === true) {
-            ui.app.clear_gmail_inbox()
-        }
+     //   if (Cypress.env('cypressRunnerLocal') === true) {
+     //       ui.app.clear_gmail_inbox()
+      //  }
         ui.clientPortal.upload_verification_document()
             .verify_text_is_present_on_main_container('Successfully Uploaded!')
-       // cy.wait(35000)
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.uploadedDocument)
             .verify_text_is_present_on_main_container('Document Uploaded List')
     })
