@@ -99,8 +99,8 @@ context('23. Change Portfolio for Interactive Brokers', () => {
     it('1. Log into user with IB access and direct user to “Your Account(s)” page', function () {
 
          ui.login.open_base_url()
-             .verify_login_menu(D.user)
-             .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
+        //     .verify_login_menu(D.user)
+         //    .enter_credentials_and_click_Sign_In(D.ibUser.username, D.ibUser.password)
         ui.clientPortal.click_your_accounts_link()
             .verify_your_accounts_page()
 

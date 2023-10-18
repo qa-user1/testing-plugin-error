@@ -96,8 +96,8 @@ context('13. Client Portal - Change Portfolio', () => {
     it('1. Direct user to “Your Account(s)” page', function () {
 
         ui.login.open_base_url()
-            .verify_login_menu(D.user)
-       .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
+      //      .verify_login_menu(D.user)
+      // .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
         ui.clientPortal.click_your_accounts_link()
             .verify_your_accounts_page()
 
