@@ -247,7 +247,7 @@ export default class LoginPage extends BasePage {
     }
 
     click_submit_button() {
-        submitButton().click();
+        createAccountSubmitButton().click();
         return this;
     }
 
