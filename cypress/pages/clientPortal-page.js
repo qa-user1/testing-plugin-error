@@ -406,6 +406,7 @@ export default class LoginPage extends BasePage {
     }
 
     click_additional_assets() {
+        additionalAssetsLink().scrollIntoView()
         additionalAssetsLink().click();
         return this;
     }

@@ -117,7 +117,7 @@ context('10. Client Portal - Account Dashboard', () => {
         });
 
 
-        it('4. Check Tactical Panel', function () {
+        it.only('4. Check Tactical Panel', function () {
 
             ui.login.open_base_url()
             ui.clientPortal.click_your_accounts_link()
