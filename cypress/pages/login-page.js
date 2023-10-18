@@ -18,6 +18,7 @@ let
     usernameInput = e => visibleModal().find('#amplify-id-0'),
     emailInputafterResetPassword = e => visibleModal().find('#amplify-id-18'),
     passwordInput = e => visibleModal().find('#amplify-id-2'),
+    passwordInputafterResetPassword = e => visibleModal().find('#amplify-id-20'),
     signInButton = e => visibleModal().find('.amplify-button--primary'),
     emailInput = e => visibleModal().find('#amplify-id-6'),
     emailInputResetPass = e => cy.get('[name="username"]'),
@@ -56,7 +57,8 @@ export default class LoginPage extends BasePage {
 
     enter_credentials_and_click_Sign_In_after_reset_password(username, pass) {
         emailInputafterResetPassword().type(username);
-        passwordInput().type(pass);
+        passwordInputafterResetPassword().type(pass);
+        signInButton().click()
         return this;
     }
 
