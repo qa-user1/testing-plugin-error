@@ -54,9 +54,9 @@ context('15. Test 2 Factor Login is working', () => {
             cy.wait(10000) //wait for SMS
             const otpcode = res.messages[0].body.substring(26, 32)
             ui.login.enter_authentication_code(otpcode)
-           // cy.wait(5000)
-          //  ui.login.click_confirm_account()
-         //   ui.onboarding.verify_account_selection()
+            cy.wait(5000)
+            ui.login.click_confirm_account()
+            ui.onboarding.verify_account_selection()
         })
     });
 
