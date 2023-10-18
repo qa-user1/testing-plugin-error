@@ -30,7 +30,7 @@ context('21. Forgot password function', () => {
             ui.login.enter_code_for_reset_password(D.gmailAccount.code)
                 .enter_and_confirm_new_password(D.gmailAccount.newPass)
                 .click_submit_button()
-            ui.login.enter_credentials_and_click_Sign_In('testing+forgotpassword@nucleuswealth.com', D.gmailAccount.newPass)
+            ui.login.enter_credentials_and_click_Sign_In_after_reset_password('testing+forgotpassword@nucleuswealth.com', D.gmailAccount.newPass)
             ui.onboarding.verify_account_selection()
         })
 

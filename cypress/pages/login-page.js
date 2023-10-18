@@ -16,6 +16,7 @@ let
     createNewAccount = e => cy.get('[data-test="clientPortal-createNewAccount-btn"]'),
     //usernameInput = e => visibleModal().find('#signInFormUsername'),
     usernameInput = e => visibleModal().find('#amplify-id-0'),
+    emailInputafterResetPassword = e => visibleModal().find('#amplify-id-18'),
     passwordInput = e => visibleModal().find('#amplify-id-2'),
     signInButton = e => visibleModal().find('.amplify-button--primary'),
     emailInput = e => visibleModal().find('#amplify-id-6'),
@@ -50,6 +51,12 @@ export default class LoginPage extends BasePage {
             password: pass
         }
         this.check_for_Cognito_message_and_perform_login(user)
+        return this;
+    }
+
+    enter_credentials_and_click_Sign_In_after_reset_password(username, pass) {
+        emailInputafterResetPassword().type(username);
+        passwordInput().type(pass);
         return this;
     }
 
@@ -247,7 +254,7 @@ export default class LoginPage extends BasePage {
     }
 
     click_submit_button() {
-        createAccountSubmitButton().click();
+        submitButton().click();
         return this;
     }
 
