@@ -53,6 +53,8 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
+
+
     enter_credentials_for_sign_in(data) {
         let type = data.accountType
         if (type === 'Individual-IB' || type === 'Joint-IB' || type === 'Company-IB' || type === 'Trust-IB' || type === 'Personal Super-IB' || type === 'SMSF-IB') {
