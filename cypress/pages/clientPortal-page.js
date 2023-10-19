@@ -428,9 +428,9 @@ export default class LoginPage extends BasePage {
 
     enter_cash_and_own_home_values(data) {
         cashInputField().scrollIntoView()
-        cashInputField().type(data.cash);
+        cashInputField().type(data.cash, {force:true});
         ownHomeInputField().scrollIntoView()
-        ownHomeInputField().type(data.ownHome);
+        ownHomeInputField().type(data.ownHome, {force:true});
         return this;
     }
 

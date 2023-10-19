@@ -22,7 +22,7 @@ context('10. Client Portal - Account Dashboard', () => {
         )
     })
     before(function () {
-     /*   ui.login.open_base_url()
+        ui.login.open_base_url()
             .verify_login_menu(D.user)
             .enter_credentials_and_click_Sign_In(D.user.username, D.user.password)
             .redirect_user_to_the_create_a_new_account_page()
@@ -87,7 +87,7 @@ context('10. Client Portal - Account Dashboard', () => {
                 cy.log('ACCOUNT NUMBER ' + accountNo);
                 cy.saveLocalStorage();
             }
-        });*/
+        });
         })
 
 
@@ -117,11 +117,11 @@ context('10. Client Portal - Account Dashboard', () => {
         });
 
 
-        it.only('4. Check Tactical Panel', function () {
+        it('4. Check Tactical Panel', function () {
 
             ui.login.open_base_url()
             ui.clientPortal.click_your_accounts_link()
-             //   .click_view_account_details(accountNo)
+                .click_view_account_details(accountNo)
                 .click_tactical_panel()
                 .verify_tactical_headings()
                 .click_additional_assets()
