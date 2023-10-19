@@ -387,6 +387,7 @@ export default class LoginPage extends BasePage {
         tacticalButton().should('be.visible');
         cy.wait(7000)
         tacticalButton().click();
+
         return this;
     }
 
@@ -406,7 +407,8 @@ export default class LoginPage extends BasePage {
     }
 
     click_additional_assets() {
-        additionalAssetsLink().scrollIntoView()
+        cy.get(':nth-child(2) > :nth-child(1) > :nth-child(1) > :nth-child(10)').click()
+        //additionalAssetsLink().scrollIntoView()
         additionalAssetsLink().click();
         return this;
     }
@@ -425,7 +427,9 @@ export default class LoginPage extends BasePage {
     }
 
     enter_cash_and_own_home_values(data) {
+        cashInputField().scrollIntoView()
         cashInputField().type(data.cash);
+        ownHomeInputField().scrollIntoView()
         ownHomeInputField().type(data.ownHome);
         return this;
     }

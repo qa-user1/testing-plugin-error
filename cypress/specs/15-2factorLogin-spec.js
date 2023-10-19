@@ -32,8 +32,8 @@ context('15. Test 2 Factor Login is working', () => {
             .verify_login_menu(D.user)
             .click_create_account_button()
             .verify_sign_up_login_menu(D.newUser)
-            .enter_credentials_for_sign_up(D.newUser)
             .change_area_code()
+            .enter_credentials_for_sign_up(D.newUser)
             .click_submit_create_account_button()
     });
 
