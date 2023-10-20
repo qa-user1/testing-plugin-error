@@ -7,7 +7,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
 
     before(function () {
-        /*Cypress.Cookies.debug(true)
+        Cypress.Cookies.debug(true)
         cy.preserveCookieOnce(
             'secure',
             'ntercom',
@@ -20,10 +20,10 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )*/
-        cy.clearAllLocalStorage()
-        cy.clearAllCookies()
-        cy.clearAllSessionStorage()
+        )
+        /* cy.clearAllLocalStorage()
+         cy.clearAllCookies()
+         cy.clearAllSessionStorage()*/
 
     })
 
@@ -112,10 +112,10 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .verify_applicants_page()
     })
 
-    it('9. Complete Applicants', function () {
-      //  cy.visit('https://testwebserver.nucleuswealth.com/onboarding/3593/applicants')
-        ui.onboarding.remove_existing_applicant()
-            .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
+    it.only('9. Complete Applicants', function () {
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4673/applicants')
+       // ui.onboarding.remove_existing_applicant()
+       //     .verify_text_is_visible(D.applicantsProfileValidationMessages.successfullyRemovedApplicant)
         ui.onboarding.add_new_applicant()
             .verify_add_new_applicant_page()
             .verify_text_is_visible('Investment Experience')
@@ -137,7 +137,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
     });
 
 
-    it('10. Complete Bank Details', function () {
+    it.only('10. Complete Bank Details', function () {
         ui.onboarding.click_Save_and_Continue_button()
             .verify_validation_messages_for_Bank_Details_fields(D.bankDetailsValidationMessages)
             .enter_Bank_Details(D.bankDetails)
@@ -145,7 +145,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .verify_compliance_page()
     });
 
-    it('11. Complete Compliance', function () {
+    it.only('11. Complete Compliance', function () {
         ui.app.verify_text_is_visible('Investment Objective')
             .verify_text_is_visible('Trading Permission')
             .verify_text_is_visible('Source of Wealth')
@@ -157,7 +157,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .verify_Final_Review_page()
     });
 
-    it('12. Check Final Review', function () {
+    it.only('12. Check Final Review', function () {
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'MDA Brochure and Agreement',
@@ -176,7 +176,8 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
 
     it('13. Limited Advice Path', function () {
         ui.onboarding.click_sidebar_option('Investment Choice')
-            .go_through_tour_steps(C.investmentStepMessages)
+            ui.app.pause(4)
+        ui.onboarding.go_through_tour_steps(C.investmentStepMessages)
             .verify_investment_choice_page()
             .click_limited_advice_button()
             .select_all_checkboxes(6)
