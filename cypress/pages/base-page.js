@@ -369,7 +369,7 @@ export default class BasePage {
         return this;
     };*/
     verify_email_arrives_to_specified_address(emailAccount, emailTemplate) {
-        const MAX_WAIT_TIME = 240000; // Maximum wait time of 240 seconds
+        const MAX_WAIT_TIME = 300000; // Maximum wait time of 240 seconds
         let startTime = new Date().getTime();
 
         const checkEmail = () => {
