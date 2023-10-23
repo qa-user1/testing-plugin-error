@@ -74,8 +74,8 @@ export default class AdminPage extends BasePage {
     }
 
     click_calculators_on_header() {
-        cy.contains('Calculators').click();
         this.pause(2)
+        cy.contains('Calculators').click();
         return this;
     }
 
@@ -199,9 +199,10 @@ export default class AdminPage extends BasePage {
     }
 
     click_ethical_investment() {
+        this.pause(2)
         ethicalInvestment().should('be.visible')
         ethicalInvestment().click();
-        // this.pause(2)
+         this.pause(2)
         return this;
     }
 
