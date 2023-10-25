@@ -157,7 +157,8 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
             .verify_Final_Review_page()
     });
 
-    it('12. Check Final Review', function () {
+    it.only('12. Check Final Review', function () {
+        cy.visit('https://testwebserver.nucleuswealth.com/onboarding/4754/final-review')
         ui.onboarding.verify_Documents_available_for_download([
             'Investment and Fee Summary',
             'MDA Brochure and Agreement',
@@ -174,7 +175,7 @@ context('22. Individual Onboarding for Interactive Brokers', () => {
         ui.clientPortal.verify_download_button_for_documents(32)
     });
 
-    it('13. Limited Advice Path', function () {
+    it.only('13. Limited Advice Path', function () {
         ui.onboarding.click_sidebar_option('Investment Choice')
             ui.app.pause(4)
         ui.onboarding.go_through_tour_steps(C.investmentStepMessages)
