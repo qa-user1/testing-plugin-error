@@ -29,7 +29,7 @@ context('16. Nucleus Wealth Wordpress Site', () => {
 
 
 
-    it('1. Visit Production Site', function () {
+    it.only('1. Visit Production Site', function () {
         ui.production.open_production_url()
             .verify_production_home_page()
     })
@@ -73,7 +73,7 @@ context('16. Nucleus Wealth Wordpress Site', () => {
         cy.go('back')
     })
 
-    it('9. Visit Get Started', function () {
+    it.only('9. Visit Get Started', function () {
         ui.production.click_option_from_navbar('Get Started')
         cy.wait(5000)
         ui.login.verify_login_menu()

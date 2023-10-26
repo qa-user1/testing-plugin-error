@@ -33,7 +33,8 @@ D.newUserLivePortal = {
     email: 'testing+' + 'portal' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com',
     givenName: 'testing',
     password: 'Testing1234!',
-    phoneNumber: '+12125551234'
+    phoneNumber: '415259515',
+    phoneNumber2: '+12125551234'
 }
 
 D.investmentAccount = {

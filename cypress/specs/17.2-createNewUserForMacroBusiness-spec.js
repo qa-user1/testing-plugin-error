@@ -13,16 +13,16 @@ context('17.2 Create Test User on Live Portal', () => {
     })
 
     it('6. Create a new user for Macro business', function () {
-        if (Cypress.env('cypressRunnerLocal') === true) {
-            ui.app.clear_gmail_inbox()
-        }
+      //  if (Cypress.env('cypressRunnerLocal') === true) {
+      //      ui.app.clear_gmail_inbox()
+        //}
         S.baseUrl = 'https://mb.nucleuswealth.com/register'
         ui.login.open_base_url()
             .verify_login_menu()
             .click_sign_up_button()
         D.newUserLivePortal.email = 'testing+' + 'macrobusiness' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com'
-        ui.login.enter_credentials_for_sign_up(D.newUserLivePortal)
-            .click_submit_sign_up_button()
+        ui.login.enter_credentials_for_sign_up_for_walk_the_world(D.newUserLivePortal)
+            .click_sign_up_confirm_button()
         ui.onboarding.verify_account_selection()
         //cy.wait(35000)
         C.emailTemplates.signUpNewUser.subject = 'Welcome to Nucleus Wealth'

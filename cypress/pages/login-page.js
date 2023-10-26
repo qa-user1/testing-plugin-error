@@ -21,11 +21,23 @@ let
     passwordInputafterResetPassword = e => visibleModal().find('#amplify-id-20'),
     signInButton = e => visibleModal().find('.amplify-button--primary'),
     emailInput = e => visibleModal().find('#amplify-id-6'),
+    emailInputLivePortal = e => cy.get('#amplify-id-0'),
+    emailInputWalkTheWorld = e => cy.get('[placeholder="name@host.com"]').eq(0),
     emailInputResetPass = e => cy.get('[name="username"]'),
     phoneNumberInput = e => visibleModal().find('#amplify-id-9'),
-    givenNameInput = e => visibleModal().find('#amplify-id-11'),
-    passwordSignUpInput = e => visibleModal().find('#amplify-id-13'),
-    passwordSignUpConfirmInput = e => visibleModal().find('#amplify-id-15'),
+    phoneNumberInputLivePortal = e => cy.get('#amplify-id-3'),
+    phoneNumberInputWalkTheWorld = e => cy.get('[name="requiredAttributes[phone_number]"]').eq(0),
+    //givenNameInput = e => visibleModal().find('#amplify-id-11'),
+    givenNameInput = e => visibleModal().find('[name="given_name"]'),
+    givenNameInputLivePortal = e => cy.get('#amplify-id-5'),
+    givenNameInputWalkTheWorld = e => cy.get('[name="requiredAttributes[given_name]"]').eq(0),
+    //passwordSignUpInput = e => visibleModal().find('#amplify-id-13'),
+    passwordSignUpInput = e => visibleModal().find('[name="password"]'),
+    passwordSignUpInputLivePortal = e => cy.get('#amplify-id-7'),
+    passwordSignUpInputWalkTheWorld = e => cy.get('[placeholder="Password"]').eq(0),
+    //passwordSignUpConfirmInput = e => visibleModal().find('#amplify-id-15'),
+    passwordSignUpConfirmInput = e => visibleModal().find('[name="confirm_password"]'),
+    passwordSignUpConfirmInputLivePortal = e => cy.get('#amplify-id-9'),
     createAccountSubmitButton = e => visibleModal().find('.amplify-button--primary'),
     //authenticationCode = e => cy.get('#verification_code'),
     authenticationCode = e => cy.get('#amplify-id-23'),
@@ -34,7 +46,9 @@ let
     code = e => cy.get('#amplify-id-9'),
     newPassword = e => cy.get('#amplify-id-11'),
     confirmPassword = e => cy.get('#amplify-id-13'),
-    submitButton = e => cy.contains('Submit')
+    submitButton = e => cy.contains('Submit'),
+    signUpConfirmButton = e => cy.get('[name="signUpButton"]').eq(0)
+
 
 export default class LoginPage extends BasePage {
 
@@ -61,7 +75,6 @@ export default class LoginPage extends BasePage {
         signInButton().click()
         return this;
     }
-
 
 
     enter_credentials_for_sign_in(data) {
@@ -95,7 +108,24 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    change_area_code(){
+    enter_credentials_for_sign_up_on_live_portal(data) {
+        emailInputLivePortal().type(data.email);
+        phoneNumberInputLivePortal().type(data.phoneNumber);
+        givenNameInputLivePortal().type(data.givenName);
+        passwordSignUpInputLivePortal().type(data.password);
+        passwordSignUpConfirmInputLivePortal().type(data.password)
+        return this;
+    }
+
+    enter_credentials_for_sign_up_for_walk_the_world(data) {
+        emailInputWalkTheWorld().type(data.email)
+        phoneNumberInputWalkTheWorld().type(data.phoneNumber2)
+        givenNameInputWalkTheWorld().type(data.givenName);
+        passwordSignUpInputWalkTheWorld().type(data.password);
+        return this;
+    }
+
+    change_area_code() {
         cy.get('select').select('+1')
         return this;
     }
@@ -107,6 +137,11 @@ export default class LoginPage extends BasePage {
 
     click_sign_up_button() {
         signUpButton().click({force: true});
+        return this;
+    }
+
+    click_sign_up_confirm_button() {
+        signUpConfirmButton().click();
         return this;
     }
 
@@ -184,7 +219,7 @@ export default class LoginPage extends BasePage {
 
             if (text.includes('Sign up new account')) {
                 visibleModal().should('be.visible');
-                emailInput().should('be.visible')
+                emailInputResetPass().should('be.visible')
                 phoneNumberInput().should('be.visible');
                 givenNameInput().should('be.visible');
                 passwordSignUpInput().should('be.visible');
