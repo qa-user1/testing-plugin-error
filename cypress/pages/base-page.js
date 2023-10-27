@@ -121,6 +121,7 @@ export default class BasePage {
         for (let i = 0; i < numberOfCheckboxes; i++) {
             checkbox(i).click({force: true})
         }
+        cy.wait(2000)
         return this;
     }
 

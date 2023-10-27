@@ -7,7 +7,7 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
 
     before(function () {
         Cypress.Cookies.debug(true)
-        cy.preserveCookieOnce(
+      /*  cy.preserveCookieOnce(
             'secure',
             'ntercom',
             'XSRF-TOKEN',
@@ -19,10 +19,10 @@ context('4. Log in to the Nucleus Wealth portal, create a Joint Account and comp
             '__Secure-next-auth.callback-url',
             '__Secure-next-auth.session-token',
             '__Host-next-auth.csrf-token',
-        )
-      //   cy.clearAllLocalStorage()
-      //        cy.clearAllCookies()
-         //     cy.clearAllSessionStorage()
+        )*/
+         cy.clearAllLocalStorage()
+              cy.clearAllCookies()
+              cy.clearAllSessionStorage()
     })
 
 
