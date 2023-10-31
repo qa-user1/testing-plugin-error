@@ -48,8 +48,8 @@ jobs:
       - run: npm run clearGmail
 
 
-  Run-Cypress-Test13:
-    name: Cypress Test 13
+  Run-Cypress-Test4:
+    name: Cypress Test 4
     if: success() || failure()
     runs-on: ubuntu-latest
     timeout-minutes: 40
@@ -64,7 +64,7 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 3
-          command: npm run e2e-test13
+          command: npm run e2e-test4
       - run: |
           mkdir report/S3_bucket
           mv S3_bucket/* report/S3_bucket
@@ -87,4 +87,3 @@ jobs:
 
 
 
-  
