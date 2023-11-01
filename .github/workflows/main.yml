@@ -64,7 +64,7 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 3
-          command: npm run e2e-test17.0
+          command: npm run e2e-test17.1
       - run: |
           mkdir report/S3_bucket
           mv S3_bucket/* report/S3_bucket

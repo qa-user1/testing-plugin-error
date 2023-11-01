@@ -21,8 +21,8 @@ context('17.1 Create Test User on Live Portal', () => {
             .verify_login_menu()
             .click_sign_up_button()
         D.newUserLivePortal.email = 'testing+' + 'walktheworld' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com'
-        ui.login.enter_credentials_for_sign_up_for_walk_the_world(D.newUserLivePortal)
-            .click_sign_up_confirm_button()
+        ui.login.enter_credentials_for_sign_up_on_live_portal(D.newUserLivePortal)
+            .click_submit_create_account_button()
         ui.onboarding.verify_account_selection()
       //  cy.wait(55000)
         C.emailTemplates.signUpNewUser.subject = 'Welcome to Nucleus Wealth'

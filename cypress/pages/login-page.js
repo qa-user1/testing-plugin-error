@@ -117,14 +117,6 @@ export default class LoginPage extends BasePage {
         return this;
     }
 
-    enter_credentials_for_sign_up_for_walk_the_world(data) {
-        emailInputWalkTheWorld().type(data.email)
-        phoneNumberInputWalkTheWorld().type(data.phoneNumber2)
-        givenNameInputWalkTheWorld().type(data.givenName);
-        passwordSignUpInputWalkTheWorld().type(data.password);
-        return this;
-    }
-
     change_area_code() {
         cy.get('select').select('+1')
         return this;
