@@ -6,7 +6,7 @@ import {Octokit} from "@octokit/rest";
 
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 //const owner = 'qa-github1'
@@ -42,7 +42,7 @@ try {
 // node .github/actions-scripts/configureGitHubPages.mjs
     for (let i = 1; i<32; i++){
         let  month = i < 10? '0' + i : i;
-        newRepo = 'report_October_' + month
+        newRepo = 'report_November_' + month
 
         // make 31 repositories -- 1 repo for each day in the month
         await octokit.request('POST /orgs/{org}/repos', {
