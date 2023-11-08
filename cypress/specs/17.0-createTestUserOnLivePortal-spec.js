@@ -23,7 +23,7 @@ context('17.0 Create Test User on Live Portal', () => {
             .enter_credentials_for_sign_up_on_live_portal(D.newUserLivePortal)
             .click_submit_create_account_button()
         ui.onboarding.verify_account_selection()
-      //  cy.wait(25000)
+        cy.wait(25000)
         C.emailTemplates.signUpNewUser.subject = 'Welcome to Nucleus Wealth'
         ui.onboarding.verify_email_arrives_to_specified_address(D.gmailAccount, C.emailTemplates.signUpNewUser)
     })
