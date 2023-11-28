@@ -7,20 +7,8 @@ context('3. Log in to the Nucleus Wealth portal, create an SMSF Account and comp
 
 
     before(function () {
-        /*Cypress.Cookies.debug(true)
-        cy.preserveCookieOnce(
-            'secure',
-            'ntercom',
-            'XSRF-TOKEN',
-            '__hssc',
-            'hubspotutk',
-            '__hstc',
-            '_fbp',
-            'cognito',
-            '__Secure-next-auth.callback-url',
-            '__Secure-next-auth.session-token',
-            '__Host-next-auth.csrf-token',
-        )*/
+        Cypress.Cookies.debug(true)
+
         cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.clearAllSessionStorage()
