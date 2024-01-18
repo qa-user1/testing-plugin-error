@@ -17,3 +17,4 @@ screenshots/*
 report/screenshots/*
 archive/*zip
 cypress/fixtures/files/S3_bucket/**
+package-lock.json
