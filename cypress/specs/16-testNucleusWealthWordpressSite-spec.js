@@ -66,7 +66,7 @@ context('16. Nucleus Wealth Wordpress Site', () => {
     })
 
     it('8. Visit Member Login', function () {
-        ui.production.click_option_from_navbar('Member Login')
+        ui.production.click_option_from_navbar2('Member Login')
         cy.wait(5000)
         ui.login.verify_login_menu()
         cy.go('back')
@@ -74,7 +74,7 @@ context('16. Nucleus Wealth Wordpress Site', () => {
     })
 
     it('9. Visit Get Started', function () {
-        ui.production.click_option_from_navbar('Get Started')
+        ui.production.click_option_from_navbar2('Get Started')
         cy.wait(5000)
         ui.login.verify_login_menu()
             .click_sign_up_button()

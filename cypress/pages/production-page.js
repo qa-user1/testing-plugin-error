@@ -16,10 +16,21 @@ const getIframeBody2 = () => {
         .its('0.contentDocument.body').should('not.be.empty')
         .then(cy.wrap)
 }
+const getIframeBody3 = () => {
+    return cy
+        .get('iframe[data-test-id="interactive-frame"]')
+        .its('0.contentDocument.body').should('not.be.empty')
+        .then(cy.wrap)
+}
 
 let
     header = e => cy.get('#masthead'),
     mainContainer = e => cy.get('#main'),
+    popUpWindow = e => cy.get('.go812842568'),
+    emailInput = e => getIframeBody3().find('[id="email-input"]'),
+    submitButton = e => getIframeBody3().find('[name="Submit"]'),
+    closeButton = e => getIframeBody3().find('[id="interactive-close-button"]'),
+    closeButton2 = e => getIframeBody().find('[id="interactive-close-button"]'),
     footer = e => cy.get('#footer'),
     navbarOptions = option => header().contains(option),
     doc1 = e => cy.get('[href="Praemium-SMA-Product-Disclosure-Statement-and-Investment-Menu-extract.pdf"]'),
@@ -64,12 +75,26 @@ export default class ProductionPage extends BasePage {
 
     verify_production_home_page() {
         cy.url().should('include', 'nucleuswealth');
+        popUpWindow().should('be.visible');
+        emailInput().type('testing@nucleuswealth.com')
+        submitButton().click();
+        closeButton().click();
         header().should('be.visible');
         mainContainer().should('be.visible');
         footer().should('be.visible');
         return this;
     }
+    close_pop_up_window() {
+        this.pause(5)
+        cy.get('iframe[data-test-id="interactive-frame"]').then(($btn) => {
+            if ($btn.is(':visible')) {
+                closeButton().click()
+            } else {
 
+            }
+        })
+        return this;
+    }
     verify_calculator_page() {
         this.pause(7)
         cy.get('.ant-layout-content').invoke('text').then(function (text) {
@@ -94,6 +119,8 @@ export default class ProductionPage extends BasePage {
 
 
     answerAllQuestionsWithSpecificOption(numberOfQuestions, optionToSelect) {
+
+
         for (let i = 0; i < numberOfQuestions; i++) {
             this.pause(1)
             getIframeBody()
@@ -185,6 +212,24 @@ click_OK_on_Calculator_wizard() {
     }
 
     click_option_from_navbar(option) {
+        cy.get('iframe[data-test-id="interactive-frame"]').then(($btn) => {
+            if ($btn.is(':visible')) {
+                closeButton().click()
+            } else {
+
+            }
+        })
+        navbarOptions(option).click();
+        cy.get('iframe[data-test-id="interactive-frame"]').then(($btn) => {
+            if ($btn.is(':visible')) {
+                closeButton().click()
+            } else {
+
+            }
+        })
+        return this;
+    }
+    click_option_from_navbar2(option) {
         navbarOptions(option).click();
         return this;
     }

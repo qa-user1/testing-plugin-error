@@ -42,7 +42,7 @@ try {
 // node .github/actions-scripts/configureGitHubPages.mjs
     for (let i = 1; i<32; i++){
         let  month = i < 10? '0' + i : i;
-        newRepo = 'report_November_' + month
+        newRepo = 'report_January_' + month
 
         // make 31 repositories -- 1 repo for each day in the month
         await octokit.request('POST /orgs/{org}/repos', {
