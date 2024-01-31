@@ -38,7 +38,7 @@ let
     accountSettingsHistory = e => cy.contains('Account Settings & History (Data Snapshots)'),
     searchBar = e => cy.get('[placeholder="Search for an investment account, using id, name, email, or SMA"]'),
     resultsTable = e => cy.get('[class="ant-table-container"]').eq(0).find('tbody'),
-    viewTableButton = e => resultsTable().children('tr').find('td').eq(7),
+    viewTableButton = e => resultsTable().children('tr').find('td').eq(8),
     clientsPortal = e => cy.get('[href="https://testwebserver.nucleuswealth.com/client-portal/investment-account/445/account-dashboard"]')
 
 

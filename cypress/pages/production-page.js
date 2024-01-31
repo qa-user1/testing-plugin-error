@@ -93,6 +93,27 @@ export default class ProductionPage extends BasePage {
 
             }
         })
+
+
+        cy.get('iframe[data-qa="iframe"]').then(($iframe1) => {
+
+            cy.wrap($iframe1).its('0.contentDocument').should('exist').then((doc1) => {
+
+                cy.wrap(doc1).find('[data-test-id="interactive-frame"]').then(($iframe2) => {
+
+                    cy.wrap($iframe2).its('0.contentDocument').should('exist').then((doc2) => {
+
+                        cy.wrap(doc2).find('[id="interactive-close-button"]').then(($btn) => {
+                            if ($btn.is(':visible')) {
+                                cy.wrap($btn).click();
+                            } else {
+
+            }
+                        });
+                    });
+                });
+            });
+        });
         return this;
     }
     verify_calculator_page() {
