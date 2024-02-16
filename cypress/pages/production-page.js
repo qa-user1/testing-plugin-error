@@ -30,7 +30,7 @@ let
     emailInput = e => getIframeBody3().find('[id="email-input"]'),
     submitButton = e => getIframeBody3().find('[name="Submit"]'),
     closeButton = e => getIframeBody3().find('[id="interactive-close-button"]'),
-    closeButton2 = e => getIframeBody().find('[id="interactive-close-button"]'),
+    closeButton2 = e => getIframeBody2().find('[data-test-id="initial-message-close-button"]'),
     footer = e => cy.get('#footer'),
     navbarOptions = option => header().contains(option),
     doc1 = e => cy.get('[href="Praemium-SMA-Product-Disclosure-Statement-and-Investment-Menu-extract.pdf"]'),
@@ -94,7 +94,6 @@ export default class ProductionPage extends BasePage {
             }
         })
 
-
         cy.get('iframe[data-qa="iframe"]').then(($iframe1) => {
 
             cy.wrap($iframe1).its('0.contentDocument').should('exist').then((doc1) => {
@@ -116,6 +115,19 @@ export default class ProductionPage extends BasePage {
         });
         return this;
     }
+
+    close_chat_widget() {
+        cy.get('iframe[data-test-id="chat-widget-iframe"]').then(($btn) => {
+            if ($btn.is(':visible')) {
+                closeButton2().click()
+            } else {
+
+            }
+
+        })
+        return this;
+    }
+
     verify_calculator_page() {
         this.pause(7)
         cy.get('.ant-layout-content').invoke('text').then(function (text) {

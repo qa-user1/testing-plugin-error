@@ -58,12 +58,15 @@ context('17.0 Create Test User on Live Portal', () => {
     it('4. Subscribe user via Suitability Calculator', function () {
         S.baseUrl = 'https://nucleuswealth.com/ethical-investment-calculator'
         ui.production.open_base_url()
+            .close_pop_up_window()
             .verify_ethical_calculator_page()
             .click_get_started_button()
+            .close_chat_widget()
             .click_next()
             .click_next()
             .enter_gender_and_date_of_birth()
             .click_next()
+            .close_pop_up_window()
             .enter_First_Name('testing')
             .click_OK_on_Calculator_wizard()
             .enter_Last_Name('testing')
