@@ -32,7 +32,7 @@ D.newUser = {
 D.newUserLivePortal = {
     email: 'testing+' + 'portal' + currentDate + '/' + D.getNewRandomNumber() + '@nucleuswealth.com',
     givenName: 'testing',
-    password: 'Testing1234!',
+    password: 'Testing123PW!',
     phoneNumber: '415259515',
     phoneNumber2: '+12125551234'
 }
