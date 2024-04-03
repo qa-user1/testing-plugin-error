@@ -116,6 +116,18 @@ export default class ProductionPage extends BasePage {
         return this;
     }
 
+    close_pop_up_window2() {
+        this.pause(5)
+        cy.get('iframe[data-test-id="interactive-frame"]').then(($btn) => {
+            if ($btn.is(':visible')) {
+                closeButton().click()
+            } else {
+
+            }
+        })
+
+        return this;
+    }
     close_chat_widget() {
         cy.get('iframe[data-test-id="chat-widget-iframe"]').then(($btn) => {
             if ($btn.is(':visible')) {

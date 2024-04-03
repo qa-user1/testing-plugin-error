@@ -52,11 +52,13 @@ context('16. Nucleus Wealth Wordpress Site', () => {
 
     it('5. Visit Direct Indexing', function () {
         ui.production.click_option_from_navbar('Direct Indexing')
-            .verify_option_from_navbar('directindexing', 'Nucleus Direct Indexing – ETFs 2.0')
+            .verify_option_from_navbar('directindexing', 'Multi-award winning portfolios')
     })
 
     it('6. Visit Resources', function () {
-        ui.production.click_option_from_navbar('Resources')
+        ui.production.close_pop_up_window2()
+            cy.go('back')
+            ui.production.click_option_from_navbar('Resources')
             .verify_option_from_navbar('content', 'Content')
     })
 
